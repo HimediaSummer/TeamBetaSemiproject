@@ -26,4 +26,5 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
+    /* function/account추가*/
 }
