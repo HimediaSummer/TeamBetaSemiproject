@@ -14,7 +14,18 @@ public class AccountDTO implements UserDetails {
     private String userId;    // 사용자 로그인 ID
     private String pwd;    // 사용자 로그인 PW
     private String userName;    // 사용자 이름
-    private UserRole authorityCode;
+    private UserRole userRole;
+
+    public AccountDTO() {
+    }
+
+    public AccountDTO(int userCode, String userId, String pwd, String userName, UserRole userRole) {
+        this.userCode = userCode;
+        this.userId = userId;
+        this.pwd = pwd;
+        this.userName = userName;
+        this.userRole = userRole;
+    }
 
     /* 설명. 권한 정보를 반환하는 메서드
      *   UsernamePasswordAuthenticationToken에 사용자 권한 정보를 반환할 때 사용됨.
@@ -35,6 +46,7 @@ public class AccountDTO implements UserDetails {
      *   UsernamePasswordAuthenticationToken과 사용자의 비밀번호를 비교할 때 사용됨.
      *  */
     @Override
+<<<<<<< HEAD
     public String getPassword() {
         System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.pwd);
         return this.pwd;
@@ -47,6 +59,48 @@ public class AccountDTO implements UserDetails {
     public String getUsername() {
         System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.userId);
         return this.userId;
+=======
+    public String toString() {
+        return "AccountDTO{" +
+                "userCode=" + userCode +
+                ", username='" + userId + '\'' +
+                ", password='" + pwd + '\'' +
+                ", fullName='" + userName + '\'' +
+                ", userRole=" + userRole +
+                '}';
+    }
+
+    public int getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+>>>>>>> refs/rewritten/시큐리티-null-에러-잡기-2
     }
 
     @Override
