@@ -1,12 +1,13 @@
 package beta.function.account.dto;
 
-import beta.function.auth.userRole.UserRole;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import beta.function.auth.userRole.UserRole;
 
 public class AccountDTO implements UserDetails {
 
