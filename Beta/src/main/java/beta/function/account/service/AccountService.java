@@ -47,9 +47,9 @@ public class AccountService {
         return result;
     }
 
-    public AccountDTO findByUsername(String username) {
+    public AccountDTO findByUsername(String userId) {
 
-        AccountDTO foundUser = accountMapper.findByUsername(username);
+        AccountDTO foundUser = accountMapper.findByUsername(userId);
 
         if (!Objects.isNull(foundUser)) {
             return foundUser;

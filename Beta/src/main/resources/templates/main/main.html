@@ -1,12 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 
-    <h1 style="text-align: center;"> Project Beta </h1>
+<h1 style="text-align: center;"> Beta </h1>
+
+<h3>1-1. Spring Security를 이용한 로그인 및 회원 가입</h3>
+<a href="auth/login">로그인(SELECT USER)</a>
+<br>
+<a href="user/signup">회원가입(INSERT USER)</a>
+<br>
+
+<h3>1-2. Spring Security를 이용한 로그아웃</h3>
+<form th:action="@{/auth/logout}" th:method="post">
+    <button>로그아웃</button>
+</form>
+
+<!-- 설명. 'ADMIN' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
+<div sec:authorize="hasAnyAuthority('ADMIN')">
+    <p>Welcome, You are ADMIN!</p>
+</div>
+
+<!-- 설명. 'USER' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
+<div sec:authorize="hasAnyAuthority('USER')">
+    <p>Welcome, You are USER!</p>
+</div>
 
 </body>
 </html>
