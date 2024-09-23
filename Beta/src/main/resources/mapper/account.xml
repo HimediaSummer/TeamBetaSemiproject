@@ -5,24 +5,24 @@
 <mapper namespace="beta.function.account.dao.AccountMapper">
 
     <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
-        <id property="userCode" column="user_code"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
-        <result property="fullName" column="full_name"/>
-        <result property="userRole" column="user_role"/>
+        <id property="userCode" column="userCode"/>
+        <result property="userId" column="userId"/>
+        <result property="pwd" column="pwd"/>
+        <result property="userName" column="userName"/>
+        <result property="userRole" column="authorityCode"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
         select
-            user_code,
+            userId,
             username,
-            password,
-            full_name,
-            user_role
+            pwd,
+            userName,
+            authorityCode
         from
-            tbl_user
+            account_list
         where
-            username = #{ username }
+            userId = #{ userId }
     </select>
 
 </mapper>

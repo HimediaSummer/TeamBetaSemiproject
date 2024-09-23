@@ -11,19 +11,19 @@ import java.util.List;
 public class AccountDTO implements UserDetails {
 
     private int userCode;
-    private String username;    // 사용자 로그인 ID
-    private String password;    // 사용자 로그인 PW
-    private String fullName;    // 사용자 이름
+    private String userId;    // 사용자 로그인 ID
+    private String pwd;    // 사용자 로그인 PW
+    private String userName;    // 사용자 이름
     private UserRole userRole;
 
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole) {
+    public AccountDTO(int userCode, String userId, String pwd, String userName, UserRole userRole) {
         this.userCode = userCode;
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
+        this.userId = userId;
+        this.pwd = pwd;
+        this.userName = userName;
         this.userRole = userRole;
     }
 
@@ -43,9 +43,9 @@ public class AccountDTO implements UserDetails {
     public String toString() {
         return "AccountDTO{" +
                 "userCode=" + userCode +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", username='" + userId + '\'' +
+                ", password='" + pwd + '\'' +
+                ", fullName='" + userName + '\'' +
                 ", userRole=" + userRole +
                 '}';
     }
@@ -58,20 +58,20 @@ public class AccountDTO implements UserDetails {
         this.userCode = userCode;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public UserRole getUserRole() {
