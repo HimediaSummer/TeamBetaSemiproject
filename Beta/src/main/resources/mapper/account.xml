@@ -4,25 +4,47 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beta.function.account.dao.AccountMapper">
 
-    <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
+    <resultMap id="authenticatiedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="userId" column="userId"/>
-        <result property="pwd" column="pwd"/>
-        <result property="userName" column="userName"/>
-        <result property="userRole" column="authorityCodeName"/>
+        <result property="username" column="userId"/>
+        <result property="password" column="password"/>
+        <result property="fullName" column="userName"/>
+        <result property="userRole" column="authorityCode"/>
     </resultMap>
 
-    <select id="findByUsername" resultMap="authenticatedUser">
-        select
+    <select id="findByUsername" resultMap="authenticatiedUser">
+        SELECT
+            userCode,
             userId,
             username,
             pwd,
-            userName,
+            userName
             authorityCode
-        from
+        FROM
             account_list
-        where
+        WHERE
             userId = #{ userId }
     </select>
 
+
+
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
+        INSERT INTO tbl_user
+        (
+        userId,
+        password,
+        userName,
+        authorityCode
+        )
+        VALUES
+        (
+        #{userId},
+        #{password},
+        #{userName},
+        #{authorityCode}
+        )
+
+
+
+    </insert>
 </mapper>

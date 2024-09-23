@@ -1,8 +1,8 @@
 package beta.function.account.service;
 
+import beta.function.account.dto.SignupDTO;
 import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
-import beta.function.account.dto.SignupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -47,9 +47,9 @@ public class AccountService {
         return result;
     }
 
-    public AccountDTO findByUsername(String userId) {
+    public AccountDTO findByUsername(String username) {
 
-        AccountDTO foundUser = accountMapper.findByUsername(userId);
+        AccountDTO foundUser = accountMapper.findByUsername(username);
 
         if (!Objects.isNull(foundUser)) {
             return foundUser;
@@ -57,5 +57,4 @@ public class AccountService {
             return null;
         }
     }
-
 }

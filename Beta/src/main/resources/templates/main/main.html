@@ -19,12 +19,12 @@
     <button>로그아웃</button>
 </form>
 
-<!-- 설명. 'ADMIN' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
+
 <div sec:authorize="hasAnyAuthority('ADMIN')">
     <p>Welcome, You are ADMIN!</p>
 </div>
 
-<!-- 설명. 'USER' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
+
 <div sec:authorize="hasAnyAuthority('USER')">
     <p>Welcome, You are USER!</p>
 </div>
