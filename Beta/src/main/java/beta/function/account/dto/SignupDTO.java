@@ -1,5 +1,6 @@
 package beta.function.account.dto;
 
+
 public class SignupDTO {
 
     private String username;    // 사용자 로그인 ID
@@ -10,8 +11,8 @@ public class SignupDTO {
     public SignupDTO() {
     }
 
-    public SignupDTO(String username, String password, String fullName, String role) {
-        this.username = username;
+    public SignupDTO(String userName, String password, String fullName, String role) {
+        this.username = userName;
         this.password = password;
         this.fullName = fullName;
         this.role = role;
@@ -52,7 +53,7 @@ public class SignupDTO {
     @Override
     public String toString() {
         return "SignupDTO{" +
-                "username='" + username + '\'' +
+                "userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", role='" + role + '\'' +

@@ -14,8 +14,10 @@ import org.springframework.security.web.authentication.SimpleUrlAuthenticationFa
 import java.io.IOException;
 import java.net.URLEncoder;
 
+
 @Configuration
 public class AuthFailHandler extends SimpleUrlAuthenticationFailureHandler {
+
 
     @Override
     public void onAuthenticationFailure(HttpServletRequest req, HttpServletResponse res, AuthenticationException exception)
