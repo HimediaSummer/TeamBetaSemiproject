@@ -20,13 +20,15 @@ public enum UserRole {
         return role;
     }
 
-
-    // toString()
-
+//     toString()
+//    @Override
+//    public String toString() {
+//        return "UserRole{" +
+//                "role='" + role + '\'' +
+//                '}';
+//    }
     @Override
     public String toString() {
-        return "UserRole{" +
-                "role='" + role + '\'' +
-                '}';
+        return "'" + role + '\'';
     }
 }

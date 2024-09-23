@@ -6,44 +6,46 @@
 
     <resultMap id="authenticatiedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="username" column="userId"/>
+        <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <result property="fullName" column="userName"/>
-        <result property="userRole" column="authorityCode"/>
+        <result property="userfullname" column="userfullname"/>
+        <result property="userRole" column="authorityCodeName"/>
+        <result property="authorityCode" column="authorityCode"/>
     </resultMap>
 
-    <select id="findByUsername" resultMap="authenticatiedUser">
+<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
+<!--        select-->
+<!--            userCode,-->
+<!--            username,-->
+<!--            password,-->
+<!--            userfullname,-->
+<!--            authorityCode-->
+<!--        from-->
+<!--            account_list-->
+<!--        where-->
+<!--            username = #{ username }-->
+<!--    </select>-->
+
+    <select id="findByUsername" resultMap="authenticatedUser">
         SELECT
-            userCode,
-            userId,
-            pwd,
-            userName
-            authorityCode
+            a.userCode,
+            a.username,
+            a.password,
+            a.userfullname,
+            CASE
+            WHEN a.authorityCode = 'USER' THEN 1
+            WHEN a.authorityCode = 'ADMIN' THEN 2
+            ELSE NULL
+            END AS authorityCode,
+            b.authorityCodeName
         FROM
-            account_list
+            account_list a
+        LEFT JOIN
+            account_authority b ON a.authorityCode = b.authorityCode
         WHERE
-            userId = #{ userId }
+            a.username = #{ username }
     </select>
 
 
 
-    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
-        INSERT INTO tbl_user
-        (
-        userId,
-        password,
-        userName,
-        authorityCode
-        )
-        VALUES
-        (
-        #{userId},
-        #{password},
-        #{userName},
-        #{authorityCode}
-        )
-
-
-
-    </insert>
 </mapper>

@@ -33,14 +33,68 @@ public class AccountDTO implements UserDetails {
 
     @Override
     public String getPassword() {
-        System.out.println("SpringSecurity가 비밀번호를 요구한다. : " + this.password);
+        System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.password);
         return this.password;
     }
 
     @Override
     public String getUsername() {
-        System.out.println("SpringSecurity가 아이디를 요구한다. : " + this.username);
+        System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.username);
         return this.username;
+    }
+
+    public AccountDTO() {
+    }
+
+    public AccountDTO(int userCode, String username, String password, String userfullname, UserRole userRole) {
+        this.userCode = userCode;
+        this.username = username;
+        this.password = password;
+        this.userfullname = userfullname;
+        this.userRole = userRole;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "userCode=" + userCode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userfullname='" + userfullname + '\'' +
+                ", userRole=" + userRole +
+                '}';
+    }
+
+    public int getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUserfullname() {
+        return userfullname;
+    }
+
+    public void setUserfullname(String userfullname) {
+        this.userfullname = userfullname;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 
 
