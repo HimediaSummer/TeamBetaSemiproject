@@ -6,23 +6,46 @@
 
     <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="userId" column="userId"/>
-        <result property="pwd" column="pwd"/>
-        <result property="userName" column="userName"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="userfullname" column="userfullname"/>
         <result property="userRole" column="authorityCodeName"/>
+        <result property="authorityCode" column="authorityCode"/>
     </resultMap>
 
+<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
+<!--        select-->
+<!--            userCode,-->
+<!--            username,-->
+<!--            password,-->
+<!--            userfullname,-->
+<!--            authorityCode-->
+<!--        from-->
+<!--            account_list-->
+<!--        where-->
+<!--            username = #{ username }-->
+<!--    </select>-->
+
     <select id="findByUsername" resultMap="authenticatedUser">
-        select
-            userId,
-            username,
-            pwd,
-            userName,
-            authorityCode
-        from
-            account_list
-        where
-            userId = #{ userId }
+        SELECT
+            a.userCode,
+            a.username,
+            a.password,
+            a.userfullname,
+            CASE
+            WHEN a.authorityCode = 'USER' THEN 1
+            WHEN a.authorityCode = 'ADMIN' THEN 2
+            ELSE NULL
+            END AS authorityCode,
+            b.authorityCodeName
+        FROM
+            account_list a
+        LEFT JOIN
+            account_authority b ON a.authorityCode = b.authorityCode
+        WHERE
+            a.username = #{ username }
     </select>
+
+
 
 </mapper>
