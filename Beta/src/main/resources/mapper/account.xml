@@ -9,7 +9,7 @@
         <result property="userId" column="userId"/>
         <result property="pwd" column="pwd"/>
         <result property="userName" column="userName"/>
-        <result property="userRole" column="authorityCode"/>
+        <result property="userRole" column="authorityCodeName"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
