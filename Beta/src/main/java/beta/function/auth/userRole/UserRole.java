@@ -25,8 +25,6 @@ public enum UserRole {
 
     @Override
     public String toString() {
-        return "UserRole{" +
-                "role='" + role + '\'' +
-                '}';
+        return "'" + role + '\'';
     }
 }

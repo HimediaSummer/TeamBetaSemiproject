@@ -31,6 +31,7 @@ public class AccountController {
         Integer result = accountService.regist(newUserInfo);
 
         String message = null;
+        System.out.println("널이 여기널임?" + message);
 
         if(result == null) {
             message = "이미 해당 정보로 가입된 회원이 존재합니다.";
