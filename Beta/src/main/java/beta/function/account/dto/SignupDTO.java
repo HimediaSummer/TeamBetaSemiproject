@@ -1,20 +1,43 @@
 package beta.function.account.dto;
 
+import beta.function.auth.userRole.UserRole;
+
 public class SignupDTO {
 
+    private int userCode;
     private String username;    // 사용자 로그인 ID
     private String password;    // 사용자 로그인 PW
-    private String fullName;    // 사용자 이름
-    private String role;        // 사용자 권한
+    private String userfullname;    // 사용자 이름
+    private UserRole authorityCode;
 
     public SignupDTO() {
     }
 
-    public SignupDTO(String username, String password, String fullName, String role) {
+    public SignupDTO(int userCode, String username, String password, String userfullname, UserRole authorityCode) {
+        this.userCode = userCode;
         this.username = username;
         this.password = password;
-        this.fullName = fullName;
-        this.role = role;
+        this.userfullname = userfullname;
+        this.authorityCode = authorityCode;
+    }
+
+    @Override
+    public String toString() {
+        return "SignupDTO{" +
+                "userCode=" + userCode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", userfullname='" + userfullname + '\'' +
+                ", authorityCode=" + authorityCode +
+                '}';
+    }
+
+    public int getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
     }
 
     public String getUsername() {
@@ -33,29 +56,19 @@ public class SignupDTO {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getUserfullname() {
+        return userfullname;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setUserfullname(String userfullname) {
+        this.userfullname = userfullname;
     }
 
-    public String getRole() {
-        return role;
+    public UserRole getAuthorityCode() {
+        return authorityCode;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "SignupDTO{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", role='" + role + '\'' +
-                '}';
+    public void setAuthorityCode(UserRole authorityCode) {
+        this.authorityCode = authorityCode;
     }
 }
