@@ -13,12 +13,12 @@ public class SignupDTO {
     public SignupDTO() {
     }
 
-    public SignupDTO(int userCode, String username, String password, String userfullname, UserRole authorityCode) {
+    public SignupDTO(int userCode, String username, String password, String fullName, UserRole userRole) {
         this.userCode = userCode;
         this.username = username;
         this.password = password;
-        this.userfullname = userfullname;
-        this.authorityCode = authorityCode;
+        this.fullName = fullName;
+        this.userRole = userRole;
     }
 
     @Override
@@ -27,8 +27,8 @@ public class SignupDTO {
                 "userCode=" + userCode +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userfullname='" + userfullname + '\'' +
-                ", authorityCode=" + authorityCode +
+                ", userfullname='" + fullName + '\'' +
+                ", authorityCode=" + userRole +
                 '}';
     }
 
@@ -56,19 +56,19 @@ public class SignupDTO {
         this.password = password;
     }
 
-    public String getUserfullname() {
-        return userfullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUserfullname(String userfullname) {
-        this.userfullname = userfullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public UserRole getAuthorityCode() {
-        return authorityCode;
+    public UserRole getUserRole() {
+        return userRole;
     }
 
-    public void setAuthorityCode(UserRole authorityCode) {
-        this.authorityCode = authorityCode;
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
     }
 }

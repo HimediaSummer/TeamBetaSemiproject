@@ -12,39 +12,6 @@
         <result property="userRole" column="authorityCodeName"/>
     </resultMap>
 
-<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
-<!--        select-->
-<!--            userCode,-->
-<!--            username,-->
-<!--            password,-->
-<!--            userfullname,-->
-<!--            authorityCode-->
-<!--        from-->
-<!--            account_list-->
-<!--        where-->
-<!--            username = #{ username }-->
-<!--    </select>-->
-
-<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
-<!--        SELECT-->
-<!--            a.userCode,-->
-<!--            a.userId,-->
-<!--            a.password,-->
-<!--            a.username,-->
-<!--            CASE-->
-<!--            WHEN a.authorityCode = 'USER' THEN 1-->
-<!--            WHEN a.authorityCode = 'ADMIN' THEN 2-->
-<!--            ELSE NULL-->
-<!--            END AS authorityCode,-->
-<!--            b.authorityCodeName-->
-<!--        FROM-->
-<!--            account_list a-->
-<!--        LEFT JOIN-->
-<!--            account_authority b ON a.authorityCode = b.authorityCode-->
-<!--        WHERE-->
-<!--            a.username = #{ username }-->
-<!--    </select>-->
-
     <select id="findByUsername" resultMap="authenticatedUser">
         SELECT
             a.userCode,
@@ -59,6 +26,26 @@
         WHERE
             a.username = #{ username }
     </select>
+
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
+        INSERT INTO account_list a
+        (
+            a.userId,
+            a.pwd,
+            a.username,
+            b.authorityCodeName
+        )
+        VALUES
+        (
+            #{ userId },
+            #{ pwd },
+            #{ userName },
+            #{ authorityCodeName }
+        join
+            account_authority b  on a.authorityCode = b.authorityCode
+
+
+    </insert>
 
 
 
