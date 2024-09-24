@@ -3,60 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <title>Cart</title>
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/globals.css}"/>-->
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/cart.css}"/>-->
 </head>
 <body>
 
-<!--<div th:replace="common/header.html"></div>-->
 
 <h1>장바구니</h1>
 
-<article>
-<!--    <div class="menu-bar">-->
-<!--        <div class="my-menu">-->
-<!--            <div>-->
-<!--                <h3>최근활동</h3>-->
-<!--            </div>-->
-
-<!--            <div>-->
-<!--                <h3>장바구니</h3>-->
-<!--            </div>-->
-
-<!--            <div>-->
-<!--                <h3>정보수정</h3>-->
-<!--            </div>-->
-<!--        </div>-->
-
-<!--        <div class="my-logout">-->
-<!--            <h3>로그아웃</h3>-->
-<!--        </div>-->
-<!--    </div>-->
-
-<!--    <div class="cart-box">-->
-<!--        <h3>장바구니 내역</h3>-->
-
-<!--        <div class="cart-item">-->
-<!--            <div class="item item1">-->
-<!--                <div class="item-thumbnail">-->
-<!--                    <img src="" alt="thumbnail1">-->
-<!--                </div>-->
-
-<!--                <div class="item-txt">-->
-<!--                    <h3>게임 아이템1</h3>-->
-<!--                    <p>게임 소개 멘트입니다.<br/>게임 소개 멘트입니다.</p>-->
-<!--                </div>-->
-
-<!--                <div class="item-price">-->
-<!--                    <h2>1,900</h2>-->
-<!--                    <i class="fa-solid fa-trash"></i>-->
-<!--                </div>-->
-
-
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-</article>
-
+<table>
+    테스트 테스트 테스트
+    <tr>
+        <th>장바구니 코드</th>
+        <th>회원 코드</th>
+        <th>게임 코드</th>
+        <th>게임 이름</th>
+        <th>게임 가격</th>
+        <th>게임 썸네일</th>
+    </tr>
+    <tr th:each="cart : ${ cartList }">
+        <td th:text="${ cart.cartCode }">
+        <td th:text="${ cart.userCode }">
+        <td th:text="${ cart.gameCode }">
+        <td th:text="${ cart.gameDTO.gameName }">
+        <td th:text="${ cart.gameDTO.gamePrice }">
+        <td th:text="${ cart.gameDTO.gameThumbnail }">
+    </tr>
+</table>
 </body>
 </html>

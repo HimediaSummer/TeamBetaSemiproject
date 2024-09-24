@@ -2,15 +2,15 @@ package beta.function.order.dto;
 
 import java.sql.Date;
 
-public class paymentDTO {
+public class PaymentDTO {
 
     private int paymentCode;
     private Date paymentDate;
 
-    public paymentDTO() {
+    public PaymentDTO() {
     }
 
-    public paymentDTO(int paymentCode, Date paymentDate) {
+    public PaymentDTO(int paymentCode, Date paymentDate) {
         this.paymentCode = paymentCode;
         this.paymentDate = paymentDate;
     }

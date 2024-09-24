@@ -1,6 +1,6 @@
 package beta.function.game.dto;
 
-public class gameDTO {
+public class GameDTO {
 
     private int gameCode;
     private String gameName;
@@ -12,10 +12,10 @@ public class gameDTO {
     private String gamePicture;
     private String gameThumbnail;
 
-    public gameDTO() {
+    public GameDTO() {
     }
 
-    public gameDTO(int gameCode, String gameName, String gameStorage, int gamePrice, String uploadDate, String gameOrigin, String gameRequirement, String gamePicture, String gameThumbnail) {
+    public GameDTO(int gameCode, String gameName, String gameStorage, int gamePrice, String uploadDate, String gameOrigin, String gameRequirement, String gamePicture, String gameThumbnail) {
         this.gameCode = gameCode;
         this.gameName = gameName;
         this.gameStorage = gameStorage;

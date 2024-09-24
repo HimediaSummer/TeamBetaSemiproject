@@ -10,6 +10,7 @@ public class MainController {
     @GetMapping(value = {"/", "/main"})
     public ModelAndView main(ModelAndView mv) {
         mv.setViewName("main/main");
+        System.out.println("메인은나오나?");
         return mv;
     }
 
@@ -31,15 +32,10 @@ public class MainController {
     @GetMapping("/game/detail")
     public ModelAndView detail(ModelAndView mv){
         mv.setViewName("/game/detail");
+        System.out.println("디테일이동버튼클릭함 눌렀음");
         return mv;
     }
 
-    /* 설명. 장바구니 */
-    @GetMapping("/order/cart")
-    public ModelAndView cart(ModelAndView mv){
-        mv.setViewName("order/cart");
-        return mv;
-    }
 
     /**/
     /* function/security 브랜치 추가 */

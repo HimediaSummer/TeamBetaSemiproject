@@ -1,4 +1,4 @@
 package beta.function.account.dao;
 
-public class accountDAO {
+public class AccountDAO {
 }

@@ -1,18 +1,25 @@
 package beta.function.order.dto;
 
-public class cartDTO {
+import beta.function.account.dto.AccountDTO;
+import beta.function.game.dto.GameDTO;
+
+public class CartDTO {
 
     private int cartCode;
     private int userCode;
     private int gameCode;
+    private GameDTO gameDTO;
+    private AccountDTO accountDTO;
 
-    public cartDTO() {
+    public CartDTO() {
     }
 
-    public cartDTO(int cartCode, int userCode, int gameCode) {
+    public CartDTO(int cartCode, int userCode, int gameCode, GameDTO gameDTO, AccountDTO accountDTO) {
         this.cartCode = cartCode;
         this.userCode = userCode;
         this.gameCode = gameCode;
+        this.gameDTO = gameDTO;
+        this.accountDTO = accountDTO;
     }
 
     public int getCartCode() {
@@ -39,12 +46,30 @@ public class cartDTO {
         this.gameCode = gameCode;
     }
 
+    public GameDTO getGameDTO() {
+        return gameDTO;
+    }
+
+    public void setGameDTO(GameDTO gameDTO) {
+        this.gameDTO = gameDTO;
+    }
+
+    public AccountDTO getAccountDTO() {
+        return accountDTO;
+    }
+
+    public void setAccountDTO(AccountDTO accountDTO) {
+        this.accountDTO = accountDTO;
+    }
+
     @Override
     public String toString() {
-        return "cartDTO{" +
+        return "CartDTO{" +
                 "cartCode=" + cartCode +
                 ", userCode=" + userCode +
                 ", gameCode=" + gameCode +
+                ", gameDTO=" + gameDTO +
+                ", accountDTO=" + accountDTO +
                 '}';
     }
 }

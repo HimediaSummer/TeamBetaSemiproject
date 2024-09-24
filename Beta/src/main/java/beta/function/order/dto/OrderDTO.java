@@ -1,12 +1,12 @@
 package beta.function.order.dto;
 
-public class orderDTO {
+public class OrderDTO {
     private int orderCode;
 
-    public orderDTO() {
+    public OrderDTO() {
     }
 
-    public orderDTO(int orderCode) {
+    public OrderDTO(int orderCode) {
         this.orderCode = orderCode;
     }
 

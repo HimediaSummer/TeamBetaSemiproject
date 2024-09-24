@@ -1,4 +1,4 @@
 package beta.function.account.service;
 
-public class accountService {
+public class AccountService {
 }
