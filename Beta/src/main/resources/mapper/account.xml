@@ -27,7 +27,7 @@
             a.username = #{ username }
     </select>
 
-    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
         INSERT INTO account_list a
         (
             a.username,
@@ -40,11 +40,12 @@
             #{ username },
             #{ password },
             #{ fullName },
-            #{ authorityCodeName }
+            #{ userRole }
+        )
         join
             account_authority b  on a.authorityCode = b.authorityCode
 
-
     </insert>
+
 
 </mapper>
