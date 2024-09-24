@@ -1,7 +1,6 @@
 package beta.config;
 
 import beta.exception.AuthFailHandler;
-import beta.function.auth.userRole.UserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
@@ -32,21 +31,15 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-
         return web -> web.ignoring()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
 
-
     @Bean
-    public SecurityFilterChain filterChainConfigure(HttpSecurity http) throws Exception {
-
         // #1. 접근 제어 : 서버의 리소스에 접근 가능한 권한을 URL 별로 매칭하여 설정.
-        http.authorizeHttpRequests(auth -> {
-            // 로그인,회원가입, 실패 페이지와 Root Context는 모두에게 허용
+            // 로그인, 회원가입, 실패 페이지와 Root Context는 모두에게 허용
+            // 해당 URL은 로그인 안해도 볼수있음
             auth.requestMatchers("/auth/login", "/user/signup", "/auth/fail", "/").permitAll();
-            // "/admin/*" 엔드포이트는 "ADMIN" 권한을 가진 사용자만 접근 허용
-            auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
             // "/user/*" 엔드포이트는 "USER" 권한을 가진 사용자만 접근 허용
             auth.requestMatchers("/user/*").hasAnyAuthority(UserRole.USER.getRole(),UserRole.ADMIN.getRole());
             // 나머지 요청은 모두 인증된(로그인한) 사용자만 접근 가능
@@ -57,7 +50,6 @@ public class SecurityConfig {
             login.loginPage("/auth/login");
             // 사용자 ID 입력 필드(form 데이터 input의 name 속성과 일치)
             login.usernameParameter("username");
-            // 사용자 PW 입력 필드(form 데이터 input의 name 속성과 일치)
             login.passwordParameter("password");
             // 로그인 성공시 이동할 기본 페이지(로그인 성공 페이지에 해당되는 핸들러 매핑이 존재해야함)
             login.defaultSuccessUrl("/", true);
@@ -84,7 +76,6 @@ public class SecurityConfig {
                 // CSRF 보호 비활성화
                 csrf.disable()
         );
-
         return http.build();
     }
 

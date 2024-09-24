@@ -49,4 +49,26 @@
 
 
 
+<<<<<<< HEAD
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
+        INSERT INTO tbl_user
+        (
+        userId,
+        password,
+        userName,
+        authorityCode
+        )
+        VALUES
+        (
+        #{userId},
+        #{password},
+        #{userName},
+        #{authorityCode}
+        )
+
+
+
+    </insert>
+=======
+>>>>>>> 3486f41cd887856972f39bfff3e6c5318ff24104
 </mapper>
