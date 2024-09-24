@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+</head>
+<body>
+
+
+<h1>장바구니</h1>
+
+<table>
+    테스트 테스트 테스트
+    <tr>
+        <th>장바구니 코드</th>
+        <th>회원 코드</th>
+        <th>게임 코드</th>
+        <th>게임 이름</th>
+        <th>게임 가격</th>
+        <th>게임 썸네일</th>
+    </tr>
+    <tr th:each="cart : ${ cartList }">
+        <td th:text="${ cart.cartCode }">
+        <td th:text="${ cart.userCode }">
+        <td th:text="${ cart.gameCode }">
+        <td th:text="${ cart.gameDTO.gameName }">
+        <td th:text="${ cart.gameDTO.gamePrice }">
+        <td th:text="${ cart.gameDTO.gameThumbnail }">
+    </tr>
+</table>
+</body>
+</html>
