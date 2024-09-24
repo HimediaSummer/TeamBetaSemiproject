@@ -1,6 +1,7 @@
 package beta.function.account.dto;
 
 import beta.function.auth.userRole.UserRole;
+import org.springframework.lang.NonNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -113,4 +114,33 @@ public class SignupDTO implements Serializable {
     public void setUserRole(UserRole userRole) {
         this.userRole = userRole;
     }
+
+//    public String validate() {
+//
+//        if(username == null || username.trim().isEmpty()) {
+//            return "ID를 입력하시오";
+//        }
+//        if(password == null || password.trim().isEmpty()) {
+//            return "비밀번호를 입력하시오";
+//        }
+//        if(fullName == null || fullName.trim().isEmpty()) {
+//            return "이름을 입력하시오";
+//        }
+//        if(nickName == null || nickName.trim().isEmpty()) {
+//            return "닉네임을 입력하시오";
+//        }
+//        if(birthday == null || birthday.trim().isEmpty()) {
+//            return "생일을 입력하시오";
+//        }
+//        if(email == null || email.trim().isEmpty()) {
+//            return "이메일을 입력하시오";
+//        }
+//        if(phone == null || phone.trim().isEmpty()) {
+//            return "전화번호를 입력하시오";
+//        }
+//        if(profileimg == null || profileimg.trim().isEmpty()) {
+//            return "프로필사진을 입력하시오";
+//        }
+//        return null;
+//    }
 }
