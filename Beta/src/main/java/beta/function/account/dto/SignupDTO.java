@@ -13,9 +13,8 @@ public class SignupDTO {
     public SignupDTO() {
     }
 
-    public SignupDTO(int userCode, String username, String password, String userfullname, UserRole authorityCode) {
-        this.userCode = userCode;
-        this.username = username;
+    public SignupDTO(String userName, String password, String fullName, String role) {
+        this.username = userName;
         this.password = password;
         this.userfullname = userfullname;
         this.authorityCode = authorityCode;
@@ -68,7 +67,17 @@ public class SignupDTO {
         return authorityCode;
     }
 
-    public void setAuthorityCode(UserRole authorityCode) {
-        this.authorityCode = authorityCode;
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "SignupDTO{" +
+                "userName='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

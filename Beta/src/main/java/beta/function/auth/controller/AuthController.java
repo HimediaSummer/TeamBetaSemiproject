@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
@@ -24,4 +23,3 @@ public class AuthController {
     @GetMapping("/login")
     public void login() {}
 }
-
