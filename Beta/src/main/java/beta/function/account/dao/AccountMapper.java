@@ -11,4 +11,6 @@ public interface AccountMapper {
     int regist(SignupDTO newUserInfo);
 
     AccountDTO findByUsername(String username);
+
+    AccountDTO insertAUthrityName(String authorityCodeName);
 }
