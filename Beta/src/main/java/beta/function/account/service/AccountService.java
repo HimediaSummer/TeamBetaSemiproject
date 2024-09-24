@@ -49,6 +49,7 @@ public class AccountService {
 
     public AccountDTO findByUsername(String username) {
 
+        System.out.println("로그인 서비스 호출됨(내꺼)");
         AccountDTO foundUser = accountMapper.findByUsername(username);
 
         if (!Objects.isNull(foundUser)) {

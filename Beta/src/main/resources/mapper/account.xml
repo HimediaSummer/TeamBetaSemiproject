@@ -4,13 +4,12 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beta.function.account.dao.AccountMapper">
 
-    <resultMap id="authenticatiedUser" type="beta.function.account.dto.AccountDTO">
+    <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="username" column="username"/>
-        <result property="password" column="password"/>
-        <result property="userfullname" column="userfullname"/>
+        <result property="username" column="userId"/>
+        <result property="password" column="pwd"/>
+        <result property="fullName" column="userName"/>
         <result property="userRole" column="authorityCodeName"/>
-        <result property="authorityCode" column="authorityCode"/>
     </resultMap>
 
 <!--    <select id="findByUsername" resultMap="authenticatedUser">-->
@@ -26,22 +25,37 @@
 <!--            username = #{ username }-->
 <!--    </select>-->
 
+<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
+<!--        SELECT-->
+<!--            a.userCode,-->
+<!--            a.userId,-->
+<!--            a.password,-->
+<!--            a.username,-->
+<!--            CASE-->
+<!--            WHEN a.authorityCode = 'USER' THEN 1-->
+<!--            WHEN a.authorityCode = 'ADMIN' THEN 2-->
+<!--            ELSE NULL-->
+<!--            END AS authorityCode,-->
+<!--            b.authorityCodeName-->
+<!--        FROM-->
+<!--            account_list a-->
+<!--        LEFT JOIN-->
+<!--            account_authority b ON a.authorityCode = b.authorityCode-->
+<!--        WHERE-->
+<!--            a.username = #{ username }-->
+<!--    </select>-->
+
     <select id="findByUsername" resultMap="authenticatedUser">
         SELECT
             a.userCode,
+            a.userId,
+            a.pwd,
             a.username,
-            a.password,
-            a.userfullname,
-            CASE
-            WHEN a.authorityCode = 'USER' THEN 1
-            WHEN a.authorityCode = 'ADMIN' THEN 2
-            ELSE NULL
-            END AS authorityCode,
             b.authorityCodeName
         FROM
             account_list a
-        LEFT JOIN
-            account_authority b ON a.authorityCode = b.authorityCode
+        join
+            account_authority b  on a.authorityCode = b.authorityCode
         WHERE
             a.username = #{ username }
     </select>
