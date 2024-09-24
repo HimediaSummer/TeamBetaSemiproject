@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listAll</title>
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th>게임코드</th>
+            <th>게임이름</th>
+            <th>게임용량</th>
+            <th>게임가격</th>
+            <th>업로드일자</th>
+            <th>게임출처</th>
+            <th>게임사양</th>
+            <th>원본사진</th>
+            <th>썸네일사진</th>
+        </tr>
+        <tr th:each="game : ${ gameList }">
+            <td th:text="${ game.gameCode }"></td>
+            <td th:text="${ game.gameName }"></td>
+            <td th:text="${ game.gameStorage }"></td>
+            <td th:text="${ game.gamePrice }"></td>
+            <td th:text="${ game.uploadDate }"></td>
+            <td th:text="${ game.gameOrigin }"></td>
+            <td th:text="${ game.gameRequirement }"></td>
+            <td th:text="${ game.gamePicture }"></td>
+            <td th:text="${ game.gameThumbnail }"></td>
+            <td>
+                <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                    <button type="submit">수정</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="location.href='/admin/page'">관리자로</button>
+
+</body>
+</html>

@@ -6,9 +6,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/securitydb
-    username: springsecurity
-    password: springsecurity
+    url: jdbc:mysql://localhost:3306/gamsungdb
+    username: betagamsung
+    password: betagamsung
 
 # MyBatis Framework config
 mybatis:
