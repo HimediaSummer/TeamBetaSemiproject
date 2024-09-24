@@ -2,6 +2,7 @@ package beta.function.account.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -28,37 +29,31 @@ public class AccountController {
 
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv,
-                               @ModelAttribute SignupDTO newUserInfo) {
+                               @ModelAttribute SignupDTO newUserInfo, Model model) {
 
-//        String validationError =  newUserInfo.validate();
-//
-//        if(validationError != null) {
-//            mv.setViewName("user/signup");
-//            mv.addObject("errorMessage",validationError);
-//            return mv;
-//        }
+        System.out.println("로그인 전 뭐 뜸 ?");
 
         if (newUserInfo.getUsername() == null || newUserInfo.getUsername().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Username is required");
-            return mv;
-        }
-        if (newUserInfo.getFullName() == null || newUserInfo.getFullName().trim().isEmpty()) {
             mv.setViewName("user/signup");
             mv.addObject("errorMessage", "Full name is required");
             return mv;
         }
-        if (newUserInfo.getPassword() == null || newUserInfo.getPassword().length() < 8) {
+        else if (newUserInfo.getFullName() == null || newUserInfo.getFullName().trim().isEmpty()) {
+            mv.setViewName("user/signup");
+            mv.addObject("errorMessage", "Full name is required");
+            return mv;
+        }
+        else if (newUserInfo.getPassword() == null || newUserInfo.getPassword().length() < 8) {
             mv.setViewName("user/signup");
             mv.addObject("errorMessage", "Password must be at least 8 characters");
             return mv;
         }
-        if (newUserInfo.getEmail() == null || !newUserInfo.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
+        else if (newUserInfo.getEmail() == null || !newUserInfo.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
             mv.setViewName("user/signup");
             mv.addObject("errorMessage", "Please enter a valid email address");
             return mv;
         }
-        if (newUserInfo.getPhone() == null || newUserInfo.getPhone().trim().isEmpty()) {
+        else if (newUserInfo.getPhone() == null || newUserInfo.getPhone().trim().isEmpty()) {
             mv.setViewName("user/signup");
             mv.addObject("errorMessage", "Phone number is required");
             return mv;
