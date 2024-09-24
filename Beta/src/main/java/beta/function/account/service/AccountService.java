@@ -1,5 +1,7 @@
 package beta.function.account.service;
 
+import beta.function.account.dao.AccountMapper;
+import beta.function.account.dto.AccountDTO;
 import beta.function.account.dto.SignupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -14,12 +16,12 @@ import java.util.Objects;
 public class AccountService {
 
     private PasswordEncoder encoder;
-    private UserMapper userMapper;
+    private AccountMapper accountMapper;
 
     @Autowired
-    public AccountService(PasswordEncoder encoder, UserMapper userMapper) {
+    public AccountService(PasswordEncoder encoder, AccountMapper accountMapper) {
         this.encoder = encoder;
-        this.userMapper = userMapper;
+        this.accountMapper = accountMapper;
     }
 
     @Transactional
@@ -32,7 +34,7 @@ public class AccountService {
         Integer result = null;
 
         try {
-            result = userMapper.regist(newUserInfo);
+            result = accountMapper.regist(newUserInfo);
         } catch (DuplicateKeyException e) {     // 데이터 무결성 위반(중복 키) 발생 시 처리
             result = 0;
             e.printStackTrace();
@@ -45,9 +47,9 @@ public class AccountService {
         return result;
     }
 
-    public UserDTO findByUsername(String username) {
+    public AccountDTO findByUsername(String username) {
 
-        UserDTO foundUser = userMapper.findByUsername(username);
+        AccountDTO foundUser = accountMapper.findByUsername(username);
 
         if (!Objects.isNull(foundUser)) {
             return foundUser;

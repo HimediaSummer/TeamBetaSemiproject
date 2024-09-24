@@ -7,8 +7,8 @@ public class SignupDTO {
     private int userCode;
     private String username;    // 사용자 로그인 ID
     private String password;    // 사용자 로그인 PW
-    private String userfullname;    // 사용자 이름
-    private UserRole authorityCode;
+    private String fullName;    // 사용자 이름
+    private UserRole userRole;
 
     public SignupDTO() {
     }
@@ -27,7 +27,7 @@ public class SignupDTO {
                 "userCode=" + userCode +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userfullname='" + fullName + '\'' +
+                ", fullName='" + fullName + '\'' +
                 ", authorityCode=" + userRole +
                 '}';
     }

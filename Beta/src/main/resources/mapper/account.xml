@@ -6,18 +6,18 @@
 
     <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="username" column="userId"/>
-        <result property="password" column="pwd"/>
-        <result property="fullName" column="userName"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullName" column="fullName"/>
         <result property="userRole" column="authorityCodeName"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
         SELECT
             a.userCode,
-            a.userId,
-            a.pwd,
             a.username,
+            a.password,
+            a.fullName,
             b.authorityCodeName
         FROM
             account_list a
@@ -30,16 +30,16 @@
     <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
         INSERT INTO account_list a
         (
-            a.userId,
-            a.pwd,
             a.username,
+            a.password,
+            a.fullName,
             b.authorityCodeName
         )
         VALUES
         (
-            #{ userId },
-            #{ pwd },
-            #{ userName },
+            #{ username },
+            #{ password },
+            #{ fullName },
             #{ authorityCodeName }
         join
             account_authority b  on a.authorityCode = b.authorityCode
@@ -47,28 +47,4 @@
 
     </insert>
 
-
-
-<<<<<<< HEAD
-    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
-        INSERT INTO tbl_user
-        (
-        userId,
-        password,
-        userName,
-        authorityCode
-        )
-        VALUES
-        (
-        #{userId},
-        #{password},
-        #{userName},
-        #{authorityCode}
-        )
-
-
-
-    </insert>
-=======
->>>>>>> 3486f41cd887856972f39bfff3e6c5318ff24104
 </mapper>

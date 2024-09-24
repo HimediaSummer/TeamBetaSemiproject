@@ -1,5 +1,6 @@
 package beta.function.account.dto;
 
+import beta.function.auth.userRole.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
