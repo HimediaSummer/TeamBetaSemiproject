@@ -26,6 +26,7 @@ public class AuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+        System.out.println("로그인 서비스 호출됨(spring security꺼)");
         AccountDTO foundUser = accountService.findByUsername(username);
 
         if (Objects.isNull(foundUser)) {
