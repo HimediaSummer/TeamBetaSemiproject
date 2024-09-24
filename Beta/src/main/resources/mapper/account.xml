@@ -77,8 +77,13 @@
         #{userName},
         #{authorityCode}
         )
+    </insert>
 
+    <insert id="insertAUthrityName" parameterType="beta.function.account.dto.AccountDTO">
+        insert into account_authority
+        (
 
+        )
 
     </insert>
 </mapper>
