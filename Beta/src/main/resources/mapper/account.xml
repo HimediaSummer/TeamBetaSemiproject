@@ -47,5 +47,30 @@
 
     </insert>
 
+<!--    INSERT INTO account_list-->
+<!--    (-->
+<!--    userName,-->
+<!--    fullName,-->
+<!--    nickName,-->
+<!--    password,-->
+<!--    birthday,-->
+<!--    email,-->
+<!--    phone,-->
+<!--    profileimg,-->
+<!--    authorityCode-->
+<!--    )-->
+<!--    VALUES-->
+<!--    (-->
+<!--    'new_user',-->
+<!--    'New User Full Name',-->
+<!--    'newbie',-->
+<!--    'password123',-->
+<!--    '1990-01-01',-->
+<!--    'newuser@example.com',-->
+<!--    '01012345678',-->
+<!--    'test.jpg',-->
+<!--    (SELECT authorityCode FROM account_authority WHERE authoritycodename = 'USER')-->
+<!--    );-->
+
 
 </mapper>
