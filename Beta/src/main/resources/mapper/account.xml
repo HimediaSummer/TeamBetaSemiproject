@@ -27,26 +27,6 @@
             a.username = #{ username }
     </select>
 
-<!--    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >-->
-<!--        INSERT INTO account_list a-->
-<!--        (-->
-<!--            a.username,-->
-<!--            a.password,-->
-<!--            a.fullName,-->
-<!--            b.authorityCodeName-->
-<!--        )-->
-<!--        VALUES-->
-<!--        (-->
-<!--            #{ username },-->
-<!--            #{ password },-->
-<!--            #{ fullName },-->
-<!--            #{ userRole }-->
-<!--        )-->
-<!--        join-->
-<!--            account_authority b  on a.authorityCode = b.authorityCode-->
-
-<!--    </insert>-->
-
     <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
     INSERT INTO account_list
     (
