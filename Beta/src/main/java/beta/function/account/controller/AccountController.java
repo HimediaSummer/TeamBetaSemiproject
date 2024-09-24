@@ -28,6 +28,7 @@ public class AccountController {
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv,
                                @ModelAttribute SignupDTO newUserInfo) {
+        System.out.println("폼데이터 나옴?"+ newUserInfo);
 
         Integer result = accountService.regist(newUserInfo);
 

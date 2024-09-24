@@ -27,52 +27,59 @@
             a.username = #{ username }
     </select>
 
-    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
-        INSERT INTO account_list a
-        (
-            a.username,
-            a.password,
-            a.fullName,
-            b.authorityCodeName
-        )
-        VALUES
-        (
-            #{ username },
-            #{ password },
-            #{ fullName },
-            #{ userRole }
-        )
-        join
-            account_authority b  on a.authorityCode = b.authorityCode
+<!--    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >-->
+<!--        INSERT INTO account_list a-->
+<!--        (-->
+<!--            a.username,-->
+<!--            a.password,-->
+<!--            a.fullName,-->
+<!--            b.authorityCodeName-->
+<!--        )-->
+<!--        VALUES-->
+<!--        (-->
+<!--            #{ username },-->
+<!--            #{ password },-->
+<!--            #{ fullName },-->
+<!--            #{ userRole }-->
+<!--        )-->
+<!--        join-->
+<!--            account_authority b  on a.authorityCode = b.authorityCode-->
 
-    </insert>
-
-<!--    <insert id="regist">-->
-<!--    INSERT INTO account_list-->
-<!--    (-->
-<!--    userName,-->
-<!--    fullName,-->
-<!--    nickName,-->
-<!--    password,-->
-<!--    birthday,-->
-<!--    email,-->
-<!--    phone,-->
-<!--    profileimg,-->
-<!--    authorityCode-->
-<!--    )-->
-<!--    VALUES-->
-<!--    (-->
-<!--    'new_user',-->
-<!--    'New User Full Name',-->
-<!--    'newbie',-->
-<!--    'password123',-->
-<!--    '1990-01-01',-->
-<!--    'newuser@example.com',-->
-<!--    '01012345678',-->
-<!--    'test.jpg',-->
-<!--    (SELECT authorityCode FROM account_authority WHERE authoritycodename = 'USER')-->
-<!--    );-->
 <!--    </insert>-->
+
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
+    INSERT INTO account_list
+    (
+        userName,
+        password,
+        fullName,
+        nickName,
+        birthday,
+        email,
+        phone,
+        profileimg,
+        authorityCode
+    )
+    VALUES
+    (
+        #{ username },
+        #{ password },
+        #{ fullName },
+        #{ nickName },
+        #{ birthday },
+        #{ email },
+        #{ phone },
+        #{ profileimg },
+        (
+            SELECT
+                authorityCode
+            FROM
+                account_authority
+            WHERE
+                authoritycodename = 'USER'
+        )
+    )
+    </insert>
 
 
 </mapper>

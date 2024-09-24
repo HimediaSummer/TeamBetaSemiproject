@@ -33,7 +33,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        /* 설명. 여기서 말하는 정적 리소스의 위치는 : "src/main/resources/static" */
+
         return web -> web.ignoring()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
     }
