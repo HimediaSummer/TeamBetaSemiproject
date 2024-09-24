@@ -66,18 +66,4 @@ public class SignupDTO {
     public UserRole getAuthorityCode() {
         return authorityCode;
     }
-
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    @Override
-    public String toString() {
-        return "SignupDTO{" +
-                "userName='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", role='" + role + '\'' +
-                '}';
-    }
 }
