@@ -9,22 +9,20 @@ public enum UserRole {
     private String role;
 
     // 매개변수 있는 생성자
-
     UserRole(String role) {
         this.role = role;
     }
 
-    // Getter
-
+    // Getter(Setter는 없음에 주의!)
     public String getRole() {
         return role;
     }
 
-
     // toString()
-
     @Override
     public String toString() {
-        return "'" + role + '\'';
+        return "UserRole{" +
+                "role='" + role + '\'' +
+                "} " + super.toString();
     }
 }

@@ -6,51 +6,18 @@
 
     <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="username" column="userId"/>
-        <result property="password" column="pwd"/>
-        <result property="fullName" column="userName"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="fullName" column="fullName"/>
         <result property="userRole" column="authorityCodeName"/>
     </resultMap>
-
-<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
-<!--        select-->
-<!--            userCode,-->
-<!--            username,-->
-<!--            password,-->
-<!--            userfullname,-->
-<!--            authorityCode-->
-<!--        from-->
-<!--            account_list-->
-<!--        where-->
-<!--            username = #{ username }-->
-<!--    </select>-->
-
-<!--    <select id="findByUsername" resultMap="authenticatedUser">-->
-<!--        SELECT-->
-<!--            a.userCode,-->
-<!--            a.userId,-->
-<!--            a.password,-->
-<!--            a.username,-->
-<!--            CASE-->
-<!--            WHEN a.authorityCode = 'USER' THEN 1-->
-<!--            WHEN a.authorityCode = 'ADMIN' THEN 2-->
-<!--            ELSE NULL-->
-<!--            END AS authorityCode,-->
-<!--            b.authorityCodeName-->
-<!--        FROM-->
-<!--            account_list a-->
-<!--        LEFT JOIN-->
-<!--            account_authority b ON a.authorityCode = b.authorityCode-->
-<!--        WHERE-->
-<!--            a.username = #{ username }-->
-<!--    </select>-->
 
     <select id="findByUsername" resultMap="authenticatedUser">
         SELECT
             a.userCode,
-            a.userId,
-            a.pwd,
             a.username,
+            a.password,
+            a.fullName,
             b.authorityCodeName
         FROM
             account_list a
@@ -60,30 +27,50 @@
             a.username = #{ username }
     </select>
 
-
-
-    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO">
-        INSERT INTO tbl_user
+    <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
+        INSERT INTO account_list a
         (
-        userId,
-        password,
-        userName,
-        authorityCode
+            a.username,
+            a.password,
+            a.fullName,
+            b.authorityCodeName
         )
         VALUES
         (
-        #{userId},
-        #{password},
-        #{userName},
-        #{authorityCode}
+            #{ username },
+            #{ password },
+            #{ fullName },
+            #{ userRole }
         )
+        join
+            account_authority b  on a.authorityCode = b.authorityCode
+
     </insert>
 
-    <insert id="insertAUthrityName" parameterType="beta.function.account.dto.AccountDTO">
-        insert into account_authority
-        (
+<!--    INSERT INTO account_list-->
+<!--    (-->
+<!--    userName,-->
+<!--    fullName,-->
+<!--    nickName,-->
+<!--    password,-->
+<!--    birthday,-->
+<!--    email,-->
+<!--    phone,-->
+<!--    profileimg,-->
+<!--    authorityCode-->
+<!--    )-->
+<!--    VALUES-->
+<!--    (-->
+<!--    'new_user',-->
+<!--    'New User Full Name',-->
+<!--    'newbie',-->
+<!--    'password123',-->
+<!--    '1990-01-01',-->
+<!--    'newuser@example.com',-->
+<!--    '01012345678',-->
+<!--    'test.jpg',-->
+<!--    (SELECT authorityCode FROM account_authority WHERE authoritycodename = 'USER')-->
+<!--    );-->
 
-        )
 
-    </insert>
 </mapper>

@@ -1,7 +1,8 @@
 package beta.function.account.service;
 
-import java.util.Objects;
-
+import beta.function.account.dao.AccountMapper;
+import beta.function.account.dto.AccountDTO;
+import beta.function.account.dto.SignupDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.BadSqlGrammarException;
@@ -9,9 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import beta.function.account.dao.AccountMapper;
-import beta.function.account.dto.AccountDTO;
-import beta.function.account.dto.SignupDTO;
+import java.util.Objects;
 
 @Service
 public class AccountService {
@@ -36,10 +35,10 @@ public class AccountService {
 
         try {
             result = accountMapper.regist(newUserInfo);
-        }catch (DuplicateKeyException e) {      // 데이터 무결성 위반(중복 키) 발생 시 처리
+        } catch (DuplicateKeyException e) {     // 데이터 무결성 위반(중복 키) 발생 시 처리
             result = 0;
             e.printStackTrace();
-        }catch (BadSqlGrammarException e) {
+        } catch (BadSqlGrammarException e) {
             result = 0;
             e.printStackTrace();
         }
@@ -50,12 +49,11 @@ public class AccountService {
 
     public AccountDTO findByUsername(String username) {
 
-        System.out.println("로그인 서비스 호출됨(내꺼)");
         AccountDTO foundUser = accountMapper.findByUsername(username);
 
         if (!Objects.isNull(foundUser)) {
             return foundUser;
-        }else  {
+        } else {
             return null;
         }
     }

@@ -1,7 +1,5 @@
 package beta.function.account.controller;
 
-import beta.function.account.dto.SignupDTO;
-import beta.function.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +7,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import beta.function.account.dto.SignupDTO;
+import beta.function.account.service.AccountService;
 
 @Controller
 @RequestMapping("/user")
@@ -31,7 +32,6 @@ public class AccountController {
         Integer result = accountService.regist(newUserInfo);
 
         String message = null;
-        System.out.println("널이 여기널임?" + message);
 
         if(result == null) {
             message = "이미 해당 정보로 가입된 회원이 존재합니다.";

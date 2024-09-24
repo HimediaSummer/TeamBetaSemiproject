@@ -1,63 +1,121 @@
 package beta.function.account.dto;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import beta.function.auth.userRole.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import beta.function.auth.userRole.UserRole;
+import java.util.ArrayList;
+import java.util.Collection;
 
 public class AccountDTO implements UserDetails {
 
     private int userCode;
-    private String userId;    // 사용자 로그인 ID
-    private String pwd;    // 사용자 로그인 PW
-    private String userName;    // 사용자 이름
+    private String username;
+    private String password;
+    private String fullName;
     private UserRole userRole;
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(() -> userRole.getRole());
+
+        System.out.println("SpringSecurity가 권한을 요구한다 : " + authorities);
+
+        return authorities;
+    }
+
+
+    @Override
+    public String getPassword() {
+        System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.password);
+        return this.password;
+    }
+
+
+    @Override
+    public String getUsername() {
+        System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.username);
+        return this.username;
+    }
+
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
 
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String userId, String pwd, String userName, UserRole userRole) {
+    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole) {
         this.userCode = userCode;
-        this.userId = userId;
-        this.pwd = pwd;
-        this.userName = userName;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
         this.userRole = userRole;
     }
 
-    /* 설명. 권한 정보를 반환하는 메서드
-     *   UsernamePasswordAuthenticationToken에 사용자 권한 정보를 반환할 때 사용됨.
-     *  */
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-
-        /* 설명. 인증된 사용자에게 부여할 권한 컬렉션(List) */
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(() -> userRole.getRole());
-
-        System.out.println("SpringSecurity가 권한을 요구한다. : " + authorities);
-
-        return List.of();
+    public int getUserCode() {
+        return userCode;
     }
 
-    /* 설명. 사용자의 비밀번호를 반환하는 메서드
-     *   UsernamePasswordAuthenticationToken과 사용자의 비밀번호를 비교할 때 사용됨.
-     *  */
-    @Override
-    public String getPassword() {
-        System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.pwd);
-        return this.pwd;
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
     }
 
-    /* 설명. 사용자의 아이디를 반환하는 메서드
-     *   UsernamePasswordAuthenticationToken과 사용자의 아이디를 비교할 때 사용됨.
-     *  */
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
     @Override
-    public String getUsername() {
-        System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.userId);
-        return this.userId;
+    public String toString() {
+        return "UserDTO{" +
+                "userCode=" + userCode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", userRole=" + userRole +
+                '}';
     }
 }

@@ -7,17 +7,18 @@ public class SignupDTO {
     private int userCode;
     private String username;    // 사용자 로그인 ID
     private String password;    // 사용자 로그인 PW
-    private String userfullname;    // 사용자 이름
-    private UserRole authorityCode;
+    private String fullName;    // 사용자 이름
+    private UserRole userRole;
 
     public SignupDTO() {
     }
 
-    public SignupDTO(String userName, String password, String fullName, String role) {
-        this.username = userName;
+    public SignupDTO(int userCode, String username, String password, String fullName, UserRole userRole) {
+        this.userCode = userCode;
+        this.username = username;
         this.password = password;
-        this.userfullname = userfullname;
-        this.authorityCode = authorityCode;
+        this.fullName = fullName;
+        this.userRole = userRole;
     }
 
     @Override
@@ -26,8 +27,8 @@ public class SignupDTO {
                 "userCode=" + userCode +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", userfullname='" + userfullname + '\'' +
-                ", authorityCode=" + authorityCode +
+                ", fullName='" + fullName + '\'' +
+                ", authorityCode=" + userRole +
                 '}';
     }
 
@@ -55,15 +56,15 @@ public class SignupDTO {
         this.password = password;
     }
 
-    public String getUserfullname() {
-        return userfullname;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUserfullname(String userfullname) {
-        this.userfullname = userfullname;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public UserRole getAuthorityCode() {
-        return authorityCode;
+    public UserRole getUserRole() {
+        return userRole;
     }
 }
