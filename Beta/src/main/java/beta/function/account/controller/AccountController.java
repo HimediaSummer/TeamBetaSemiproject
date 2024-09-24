@@ -30,39 +30,6 @@ public class AccountController {
     public ModelAndView signup(ModelAndView mv,
                                @ModelAttribute SignupDTO newUserInfo) {
 
-//        String validationError =  newUserInfo.validate();
-//
-//        if(validationError != null) {
-//            mv.setViewName("user/signup");
-//            mv.addObject("errorMessage",validationError);
-//            return mv;
-//        }
-
-        if (newUserInfo.getUsername() == null || newUserInfo.getUsername().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Username is required");
-            return mv;
-        }
-        if (newUserInfo.getFullName() == null || newUserInfo.getFullName().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Full name is required");
-            return mv;
-        }
-        if (newUserInfo.getPassword() == null || newUserInfo.getPassword().length() < 8) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Password must be at least 8 characters");
-            return mv;
-        }
-        if (newUserInfo.getEmail() == null || !newUserInfo.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Please enter a valid email address");
-            return mv;
-        }
-        if (newUserInfo.getPhone() == null || newUserInfo.getPhone().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Phone number is required");
-            return mv;
-        }
 
         Integer result = accountService.regist(newUserInfo);
 
