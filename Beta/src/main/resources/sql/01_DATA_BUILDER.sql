@@ -87,8 +87,10 @@ CREATE TABLE IF NOT EXISTS game_cart
     
     -- table level constraints
     CONSTRAINT pk_cartCode PRIMARY KEY (cartCode),
-    CONSTRAINT fk_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
-    CONSTRAINT fk_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode)
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
+    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE
+#     CONSTRAINT fk_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
+#     CONSTRAINT fk_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode)
 ) ENGINE=INNODB COMMENT '장바구니';
 
 CREATE TABLE IF NOT EXISTS game_payment
@@ -101,7 +103,8 @@ CREATE TABLE IF NOT EXISTS game_payment
     
     -- table level constraints
     CONSTRAINT pk_paymentCode PRIMARY KEY (paymentCode),
-    CONSTRAINT fk_payment_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode)
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE
+#     CONSTRAINT fk_payment_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode)
 ) ENGINE=INNODB COMMENT '결제';
 
 CREATE TABLE IF NOT EXISTS game_order
@@ -115,12 +118,15 @@ CREATE TABLE IF NOT EXISTS game_order
     
     -- table level constraints
     CONSTRAINT pk_orderCode PRIMARY KEY (orderCode),
-    CONSTRAINT fk_order_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode),
-    CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode),
-    CONSTRAINT fk_order_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
-    CONSTRAINT fk_paymentCode FOREIGN KEY (paymentCode) REFERENCES game_payment (paymentCode)
+    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE,
+    FOREIGN KEY (cartCode) REFERENCES game_cart(cartCode) ON DELETE CASCADE,
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
+    FOREIGN KEY (paymentCode) REFERENCES game_payment(paymentCode) ON DELETE CASCADE
+#     CONSTRAINT fk_order_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode),
+#     CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode),
+#     CONSTRAINT fk_order_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
+#     CONSTRAINT fk_paymentCode FOREIGN KEY (paymentCode) REFERENCES game_payment (paymentCode)
 ) ENGINE=INNODB COMMENT '주문';
-
 
 -- 3. 데이터 삽입
 -- 3-1. 이연홍 데이터 삽입
@@ -217,8 +223,5 @@ INSERT INTO game_order VALUES (null,
 (SELECT gp.userCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1),
 (SELECT paymentCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1));
 
-/*CASCADE 등록*/
-ALTER TABLE game_order DROP FOREIGN KEY fk_order_gameCode;
-ALTER TABLE game_order ADD CONSTRAINT FOREIGN KEY (orderCode) REFERENCES game_cart(orderCode) ON DELETE CASCADE;
 
 COMMIT;

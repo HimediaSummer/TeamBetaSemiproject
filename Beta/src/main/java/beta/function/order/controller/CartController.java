@@ -1,6 +1,5 @@
 package beta.function.order.controller;
 
-import beta.function.game.dto.GameDTO;
 import beta.function.order.dto.CartDTO;
 import beta.function.order.service.CartService;
 import jakarta.servlet.http.HttpSession;
@@ -12,11 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
-import java.util.Locale;
 
 
 @Controller

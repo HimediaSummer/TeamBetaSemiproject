@@ -81,7 +81,7 @@
         FROM
             game_cart
         WHERE
-            gameCode = #{ gameCode };
+            #{ gameCode };
     </delete>
 
     <!--게임 담기 회원별-->
