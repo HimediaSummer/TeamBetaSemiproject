@@ -32,35 +32,8 @@ public class AccountController {
 
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv,
-                               @ModelAttribute SignupDTO newUserInfo, Model model) {
+                               @ModelAttribute SignupDTO newUserInfo) {
 
-        System.out.println("로그인 전 뭐 뜸 ?");
-
-        if (newUserInfo.getUsername() == null || newUserInfo.getUsername().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Full name is required");
-            return mv;
-        }
-        else if (newUserInfo.getFullName() == null || newUserInfo.getFullName().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Full name is required");
-            return mv;
-        }
-        else if (newUserInfo.getPassword() == null || newUserInfo.getPassword().length() < 8) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Password must be at least 8 characters");
-            return mv;
-        }
-        else if (newUserInfo.getEmail() == null || !newUserInfo.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Please enter a valid email address");
-            return mv;
-        }
-        else if (newUserInfo.getPhone() == null || newUserInfo.getPhone().trim().isEmpty()) {
-            mv.setViewName("user/signup");
-            mv.addObject("errorMessage", "Phone number is required");
-            return mv;
-        }
 
         Integer result = accountService.regist(newUserInfo);
 
