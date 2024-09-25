@@ -30,7 +30,6 @@ public class AccountController {
     @PostMapping("/signup")
     public ModelAndView signup(ModelAndView mv,
                                @ModelAttribute SignupDTO newUserInfo) {
-                                @ModelAttribute SignupDTO newUserInfo) {
 
 
         Integer result = accountService.regist(newUserInfo);
