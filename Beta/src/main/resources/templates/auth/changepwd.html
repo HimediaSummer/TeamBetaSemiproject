@@ -7,9 +7,11 @@
 <body>
 <h1>비밀번호 변경하기</h1>
 변경하실 비밀번호를 입력해주세요.
-<form th:action="@{auth/lostpwd}" th:method="POST">
-    <input type="text" id="password" name="password">
-    <button>확인</button>
-</form>
+
+    <form th:action="@{ /auth/changepwd }" th:method="POST">
+        <label>변경할 비밀번호 : </label>
+        <input type="text" id="password" name="password">
+        <button>확인</button>
+    </form>
 </body>
 </html>

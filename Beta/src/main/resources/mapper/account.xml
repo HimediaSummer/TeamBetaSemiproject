@@ -70,12 +70,11 @@
         a.email = #{ email }
     </select>
 
-    <update id="lostpwd" >
+    <update id="changepwd" parameterType="beta.function.account.dto.AccountDTO">
         update
         account_list
         set password = #{ password }
-        where email = '#{ email };
+        where email = 'theta@gmail.com';
     </update>
-
 
 </mapper>

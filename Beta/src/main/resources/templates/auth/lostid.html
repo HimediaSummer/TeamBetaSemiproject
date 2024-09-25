@@ -13,14 +13,8 @@
         <input type="text" id="email" name="email"/>
         <button>아이디찾기</button>
     </form>
-
-<!--<div>-->
-<!--    <p>님 아이디 : <span th:text="${ whereid.username }"></span></p>-->
-<!--</div>-->
-
-<!--<tr th:each="lostId : ${ whereid }">-->
-<tr th:each="whereid : ${ whereid }">
-    <p>님 아이디 : </p><td th:text="${ whereid }"></td>
-</tr>
+    <tr th:each="whereid : ${ whereid }">
+        <p>님 아이디 : </p><td th:text="${ whereid }"></td>
+    </tr>
 </body>
 </html>

@@ -2,23 +2,30 @@ package beta.function.auth.service;
 
 import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
+import beta.function.account.dto.SignupDTO;
 import beta.function.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Objects;
 
 @Service
 public class AuthService implements UserDetailsService {
 
+    private PasswordEncoder encoder;
     private AccountService accountService;
     private final AccountMapper accountMapper;
 
     @Autowired
-    public AuthService(AccountService accountService, AccountMapper accountMapper) {
+    public AuthService(PasswordEncoder encoder, AccountService accountService, AccountMapper accountMapper) {
+        this.encoder = encoder;
         this.accountService = accountService;
         this.accountMapper = accountMapper;
     }
@@ -44,5 +51,15 @@ public class AuthService implements UserDetailsService {
     public AccountDTO lostpwd(String email) {
 
         return accountMapper.lostId(email);
+    }
+
+    @Transactional
+    public void changepwd(AccountDTO accountInfo) {
+
+        System.out.println("평문 : " + accountInfo.getPassword());
+        accountInfo.setPassword(encoder.encode(accountInfo.getPassword()));
+        System.out.println("암호문 : " + accountInfo.getPassword());
+
+        accountMapper.changepwd(accountInfo);
     }
 }
