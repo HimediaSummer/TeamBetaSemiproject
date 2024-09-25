@@ -10,7 +10,6 @@
 <h1>장바구니</h1>
 
 <table>
-    테스트 테스트 테스트
     <tr>
         <th>장바구니 코드</th>
         <th>회원 코드</th>
@@ -26,6 +25,12 @@
         <td th:text="${ cart.gameDTO.gameName }">
         <td th:text="${ cart.gameDTO.gamePrice }">
         <td th:text="${ cart.gameDTO.gameThumbnail }">
+        <td>
+            <form th:action="@{/cart/delete/{cartCode}(cartCode=${cart.cartCode})}" method="post">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
+
     </tr>
 </table>
 </body>
