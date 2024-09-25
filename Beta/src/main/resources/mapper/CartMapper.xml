@@ -11,8 +11,6 @@
         <result property="gameCode" column="gameCode"/>
         <!--game_cart 테이블과 game_list 테이블 join-->
         <collection property="gameDTO" resultMap="gameResultMap"/>
-        <!--game_cart 테이블과 Account_list 테이블 join-->
-        <collection property="AccountDTO" resultMap="accountResultMap"/>
     </resultMap>
 
     <!--game_list 테이블-->
@@ -22,74 +20,11 @@
         <result property="gameThumbnail" column="gameThumbnail"/>
     </resultMap>
 
-    <!--Account_list 테이블-->
-    <resultMap id="accountResultMap" type="beta.function.account.dto.AccountDTO">
-        <id property="userCode" column="userCode"/>
-        <result property="userId" column="userId"/>
-        <result property="userName" column="userName"/>
-        <result property="nickName" column="nickName"/>
-        <result property="pwd" column="pwd"/>
-        <result property="birthday" column="birthday"/>
-        <result property="email" column="email"/>
-        <result property="phone" column="phone"/>
-        <result property="suspension" column="suspension"/>
-        <result property="deletion" column="deletion"/>
-        <result property="profileimg" column="profileimg"/>
-        <result property="authorityCode" column="authorityCode"/>
-    </resultMap>
-
-
-    <select id="findAllUserCode" resultMap="AccountResultMap">
-        SELECT
-            userCode,
-            userId,
-            userName,
-            nickName,
-            pwd,
-            birthday,
-            email,
-            phone,
-            suspension,
-            deletion,
-            profileimg,
-            authorityCode
-        FROM
-            account_list
-    </select>
-
-
-    <select id="findByUserCode" resultMap="cartResultMap">
-        SELECT
-            b.userCode
-        FROM
-            game_cart a
-                JOIN account_list b ON a.userCode = b.userCode
-    </select>
-
-    <select id="findByGameCode" resultMap="cartResultMap">
-        SELECT
-            b.gameCode
-        FROM
-            game_cart a
-        JOIN game_list b ON a.gameCode = b.gameCode
-    </select>
-    
-    <select id="findByGameManagementAndMember" parameterType="beta.function.order.dto.CartDTO" resultMap="cartResultMap">
-        SELECT
-            cartCode,
-            gameCode,
-            userCode
-        FROM
-            game_cart
-        WHERE
-            gameCode = #{ gameCode } AND
-            userCode = #{ userCode }
-    </select>
-
-
-
+    <!--장바구니 리스트-->
     <select id="findAllList" parameterType="map" resultMap="cartResultMap">
         SELECT
+        a.cartCode,
+        a.userCode,
         b.gameCode,
         b.gameName,
         b.gamePrice,
@@ -99,19 +34,51 @@
         JOIN game_list b ON a.gameCode = b.gameCode
     </select>
 
-    <!--회원 코드별 장바구니 리스트-->
-    <select id="allCarts" parameterType="map" resultMap="cartResultMap">
-        SELECT
-            a.cartCode,
-            a.userCode,
-            b.gameCode,
-            b.gameName,
-            b.gamePrice,
-            b.gameThumbnail
-        FROM
-            game_cart a
-        JOIN game_list b ON a.gameCode = b.gameCode
-        WHERE
-            userCode = 1
-    </select>
+    <!--회원별 장바구니 리스트-->
+<!--    <select id="findAllList" parameterType="map" resultMap="cartResultMap">-->
+<!--        SELECT-->
+<!--            a.cartCode,-->
+<!--            a.userCode,-->
+<!--            b.gameCode,-->
+<!--            b.gameName,-->
+<!--            b.gamePrice,-->
+<!--            b.gameThumbnail-->
+<!--        FROM-->
+<!--            game_cart a-->
+<!--        JOIN game_list b ON a.gameCode = b.gameCode-->
+<!--        WHERE-->
+<!--            userCode = #{ userCode }-->
+<!--    </select>-->
+
+    <!--게임 담기-->
+    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
+        INSERT INTO game_cart
+        (
+        cartCode,
+        userCode,
+        gameCode
+        )
+        VALUES
+        (
+        cartCode,
+        userCode,
+        #{ gameCode }
+        )
+    </insert>
+    
+    <!--게임 담기 회원별-->
+    <!--<insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
+        INSERT INTO game_cart
+            (
+            cartCode,
+            userCode,
+            gameCode
+            )
+        VALUES
+            (
+            cartCode,
+            #{ userCode },
+            #{ gameCode }
+            )
+    </insert>-->
 </mapper>

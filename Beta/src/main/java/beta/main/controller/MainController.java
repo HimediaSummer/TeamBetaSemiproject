@@ -26,18 +26,6 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
-
-    /* 설명. 게임 상세페이지 */
-    @GetMapping("/game/detail")
-    public ModelAndView detail(ModelAndView mv){
-        mv.setViewName("/game/detail");
-        System.out.println("디테일이동버튼클릭함 눌렀음");
-        return mv;
-    }
-
-
-    /**/
-    /* function/security 브랜치 추가 */
 }
 
     /* function/account추가*/

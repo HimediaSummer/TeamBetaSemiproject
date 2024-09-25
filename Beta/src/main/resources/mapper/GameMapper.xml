@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beta.function.game.dao.GameMapper">
+
+    <!--game_list 테이블-->
+    <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
+        <id property="gameCode" column="gameCode"/>
+        <result property="gameName" column="gameName"/>
+        <result property="gameStorage" column="gameStorage"/>
+        <result property="gamePrice" column="gamePrice"/>
+        <result property="uploadDate" column="uploadDate"/>
+        <result property="gameOrigin" column="gameOrigin"/>
+        <result property="gameRequirement" column="gameRequirement"/>
+        <result property="gamePicture" column="gamePicture"/>
+        <result property="gameThumbnail" column="gameThumbnail"/>
+    </resultMap>
+
+    <!--게임코드별 게임 정보-->
+    <select id="findByCode" parameterType="int" resultMap="gameResultMap">
+        SELECT
+            gameCode,
+            gameName,
+            gameStorage,
+            gamePrice,
+            uploadDate,
+            gameOrigin,
+            gameRequirement,
+            gamePicture,
+            gameThumbnail
+        FROM
+            game_list
+        WHERE
+            gameCode = #{ gameCode }
+    </select>
+</mapper>

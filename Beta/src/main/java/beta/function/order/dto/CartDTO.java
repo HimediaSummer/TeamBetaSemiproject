@@ -22,6 +22,9 @@ public class CartDTO {
         this.accountDTO = accountDTO;
     }
 
+    public CartDTO(AccountDTO member, GameDTO game, int gamePrice) {
+    }
+
     public int getCartCode() {
         return cartCode;
     }
