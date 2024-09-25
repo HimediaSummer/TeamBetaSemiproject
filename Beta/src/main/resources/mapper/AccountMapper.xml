@@ -21,7 +21,7 @@
     </resultMap>
 
     <!--회원코드별 회원정보-->
-    <select id="findByCode" parameterType="int" resultMap="accountResultMap">
+    <select id="userAllList" resultMap="accountResultMap">
         SELECT
             userCode,
             userId,
@@ -37,8 +37,8 @@
             authorityCode
         FROM
             account_list
-        WHERE
-            userCode = #{ userCode }
+        ORDER BY
+            userCode
     </select>
 
 </mapper>

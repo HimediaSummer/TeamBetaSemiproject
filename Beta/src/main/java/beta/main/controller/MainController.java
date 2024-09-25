@@ -26,8 +26,10 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
+
+    @GetMapping("/game/detail")
+    public ModelAndView detail(ModelAndView mv) {
+        mv.setViewName("game/detail");
+        return mv;
+    }
 }
-
-    /* function/account추가*/
-
-    /* function/order 브랜치 추가 */

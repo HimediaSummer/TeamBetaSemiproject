@@ -4,34 +4,101 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beta.function.game.dao.GameMapper">
 
-    <!--game_list 테이블-->
     <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
-        <id property="gameCode" column="gameCode"/>
-        <result property="gameName" column="gameName"/>
-        <result property="gameStorage" column="gameStorage"/>
-        <result property="gamePrice" column="gamePrice"/>
-        <result property="uploadDate" column="uploadDate"/>
-        <result property="gameOrigin" column="gameOrigin"/>
-        <result property="gameRequirement" column="gameRequirement"/>
-        <result property="gamePicture" column="gamePicture"/>
-        <result property="gameThumbnail" column="gameThumbnail"/>
+        <id property="gameCode" column="gameCode" />
+        <result property="gameName" column="gameName" />
+        <result property="gameStorage" column="gameStorage" />
+        <result property="gamePrice" column="gamePrice" />
+        <result property="uploadDate" column="uploadDate" />
+        <result property="gameOrigin" column="gameOrigin" />
+        <result property="gameRequirement" column="gameRequirement" />
+        <result property="gamePicture" column="gamePicture" />
+        <result property="gameThumbnail" column="gameThumbnail" />
     </resultMap>
 
-    <!--게임코드별 게임 정보-->
-    <select id="findByCode" parameterType="int" resultMap="gameResultMap">
+    <select id="findAllGame" resultMap="gameResultMap">
         SELECT
-            gameCode,
-            gameName,
-            gameStorage,
-            gamePrice,
-            uploadDate,
-            gameOrigin,
-            gameRequirement,
-            gamePicture,
-            gameThumbnail
+        gameCode,
+        gameName,
+        gameStorage,
+        gamePrice,
+        uploadDate,
+        gameOrigin,
+        gameRequirement,
+        gamePicture,
+        gameThumbnail
         FROM
-            game_list
-        WHERE
-            gameCode = #{ gameCode }
+        game_list
+        ORDER BY
+        gameCode
     </select>
+
+    <select id="findGameByCode" parameterType="int" resultMap="gameResultMap">
+        SELECT
+        gameCode,
+        gameName,
+        gameStorage,
+        gamePrice,
+        uploadDate,
+        gameOrigin,
+        gameRequirement,
+        gamePicture,
+        gameThumbnail
+        FROM
+        game_list
+        WHERE
+        gameCode = #{gameCode}
+        ORDER BY
+        gameCode
+    </select>
+
+    <insert id="registNewGame" parameterType="beta.function.game.dto.GameDTO"
+            useGeneratedKeys="true" keyProperty="gameCode">
+        INSERT INTO
+        game_list
+        (
+        gameName,
+        gameStorage,
+        gamePrice,
+        uploadDate,
+        gameOrigin,
+        gameRequirement,
+        gamePicture,
+        gameThumbnail
+        )
+        VALUES
+        (
+        #{gameName},
+        #{gameStorage},
+        #{gamePrice},
+        #{uploadDate},
+        #{gameOrigin},
+        #{gameRequirement},
+        #{gamePicture},
+        #{gameThumbnail}
+        )
+    </insert>
+
+    <update id="updateGame" parameterType="beta.function.game.dto.GameDTO">
+        UPDATE game_list
+        SET
+        gameName = #{gameName},
+        gameStorage = #{gameStorage},
+        gamePrice = #{gamePrice},
+        uploadDate = #{uploadDate},
+        gameOrigin = #{gameOrigin},
+        gameRequirement = #{gameRequirement},
+        gamePicture = #{gamePicture},
+        gameThumbnail = #{gameThumbnail}
+        WHERE
+        gameCode = #{gameCode}
+    </update>
+
+    <delete id="deleteGame" parameterType="int">
+        DELETE
+        FROM
+        game_list
+        WHERE
+        gameCode = #{gameCode}
+    </delete>
 </mapper>

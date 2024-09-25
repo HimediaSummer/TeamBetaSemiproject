@@ -11,8 +11,19 @@ public interface CartMapper {
     /*장바구니 리스트*/
     List<CartDTO> findAllList();
 
-    void addItem(CartDTO newCart);
-
+    /*회원별 장바구니 리스트*/
 //    List<CartDTO> findAllList(int userCode);
+
+    /*장바구니에 담기*/
+    void addItem(CartDTO cart);
+
+    /*동일한 게임이 있는지 확인*/
+    CartDTO findItemByGameAndUser(int gameCode, int userCode);
+
+    /*장바구니 게임 삭제*/
+    void deleteCart(int gameCode);
+
+
+
 
 }

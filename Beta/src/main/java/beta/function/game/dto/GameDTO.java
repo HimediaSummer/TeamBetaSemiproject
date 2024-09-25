@@ -1,12 +1,14 @@
 package beta.function.game.dto;
 
+import java.time.LocalDate;
+
 public class GameDTO {
 
     private int gameCode;
     private String gameName;
     private String gameStorage;
     private int gamePrice;
-    private String uploadDate;
+    private LocalDate uploadDate;
     private String gameOrigin;
     private String gameRequirement;
     private String gamePicture;
@@ -15,12 +17,13 @@ public class GameDTO {
     public GameDTO() {
     }
 
-    public GameDTO(int gameCode, String gameName, String gameStorage, int gamePrice, String uploadDate, String gameOrigin, String gameRequirement, String gamePicture, String gameThumbnail) {
+    public GameDTO(LocalDate uploadDate, int gameCode, String gameName, String gameStorage, int gamePrice,
+                   String gameOrigin, String gameRequirement, String gamePicture, String gameThumbnail) {
+        this.uploadDate = uploadDate;
         this.gameCode = gameCode;
         this.gameName = gameName;
         this.gameStorage = gameStorage;
         this.gamePrice = gamePrice;
-        this.uploadDate = uploadDate;
         this.gameOrigin = gameOrigin;
         this.gameRequirement = gameRequirement;
         this.gamePicture = gamePicture;
@@ -59,11 +62,11 @@ public class GameDTO {
         this.gamePrice = gamePrice;
     }
 
-    public String getUploadDate() {
+    public LocalDate getUploadDate() {
         return uploadDate;
     }
 
-    public void setUploadDate(String uploadDate) {
+    public void setUploadDate(LocalDate uploadDate) {
         this.uploadDate = uploadDate;
     }
 
@@ -106,7 +109,7 @@ public class GameDTO {
                 ", gameName='" + gameName + '\'' +
                 ", gameStorage='" + gameStorage + '\'' +
                 ", gamePrice=" + gamePrice +
-                ", uploadDate='" + uploadDate + '\'' +
+                ", uploadDate=" + uploadDate +
                 ", gameOrigin='" + gameOrigin + '\'' +
                 ", gameRequirement='" + gameRequirement + '\'' +
                 ", gamePicture='" + gamePicture + '\'' +

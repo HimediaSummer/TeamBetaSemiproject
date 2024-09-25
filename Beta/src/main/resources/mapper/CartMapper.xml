@@ -21,16 +21,16 @@
     </resultMap>
 
     <!--장바구니 리스트-->
-    <select id="findAllList" parameterType="map" resultMap="cartResultMap">
+    <select id="findAllList" resultMap="cartResultMap">
         SELECT
-        a.cartCode,
-        a.userCode,
-        b.gameCode,
-        b.gameName,
-        b.gamePrice,
-        b.gameThumbnail
+            a.cartCode,
+            a.userCode,
+            b.gameCode,
+            b.gameName,
+            b.gamePrice,
+            b.gameThumbnail
         FROM
-        game_cart a
+            game_cart a
         JOIN game_list b ON a.gameCode = b.gameCode
     </select>
 
@@ -50,22 +50,40 @@
 <!--            userCode = #{ userCode }-->
 <!--    </select>-->
 
-    <!--게임 담기-->
+    <!--장바구니에 담기-->
     <insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
         INSERT INTO game_cart
         (
-        cartCode,
-        userCode,
-        gameCode
+            userCode,
+            gameCode
         )
         VALUES
         (
-        cartCode,
-        userCode,
-        #{ gameCode }
+            #{ userCode },
+            #{ gameCode }
         )
     </insert>
-    
+
+    <!--동일한 게임이 있는지 확인-->
+    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">
+        SELECT
+            cartCode, userCode, gameCode
+        FROM
+            game_cart
+        WHERE
+            userCode = #{userCode}
+            AND gameCode = #{gameCode}
+    </select>
+
+    <!--장바구니 게임 삭제-->
+    <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
+        DELETE
+        FROM
+            game_cart
+        WHERE
+            #{ gameCode };
+    </delete>
+
     <!--게임 담기 회원별-->
     <!--<insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
         INSERT INTO game_cart
