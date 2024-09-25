@@ -92,6 +92,7 @@ public class AuthController {
 
         System.out.println("테스트 로그");
         System.out.println("테스트 로그2");
+        System.out.println("테스트 로그3");
 
         return "auth/changepwd";
 //        return "redirect:/auth/login";
