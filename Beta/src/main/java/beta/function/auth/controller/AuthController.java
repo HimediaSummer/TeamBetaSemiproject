@@ -90,6 +90,8 @@ public class AuthController {
         rAttr.addFlashAttribute("successMessage", "성공적으로 수정되었습니다.");
         System.out.println("changepwd 어스 컨트롤러 3  " );
 
+        System.out.println("테스트 로그");
+        
         return "auth/changepwd";
 //        return "redirect:/auth/login";
     }
