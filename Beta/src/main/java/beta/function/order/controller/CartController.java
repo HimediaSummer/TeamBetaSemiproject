@@ -43,18 +43,18 @@ public class CartController {
     }
 
     /*회원별 장바구니 리스트*/
-    @GetMapping("/cart/{userCode}")
-    public String findCartList(@PathVariable("userCode") int userCode,
-                               Model model){
-
-        List<CartDTO> cartList = cartService.findAllList(userCode);
-
-        model.addAttribute("cartList", cartList);
-
-        System.out.println("CartController");
-
-        return "order/cart";
-    }
+//    @GetMapping("/cart/{userCode}")
+//    public String findCartList(@PathVariable("userCode") int userCode,
+//                               Model model){
+//
+//        List<CartDTO> cartList = cartService.findAllList(userCode);
+//
+//        model.addAttribute("cartList", cartList);
+//
+//        System.out.println("CartController");
+//
+//        return "order/cart";
+//    }
 
     /*게임 담기*/
     @PostMapping("/cart/{gameCode}")
