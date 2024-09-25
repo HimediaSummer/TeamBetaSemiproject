@@ -26,13 +26,8 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
-<<<<<<< HEAD
-    /* function/game 브랜치 추가 */
-=======
-
-    /**/
-    /**/
-    /**/
-    /* function/security 브랜치 추가 */
->>>>>>> main
 }
+
+    /* function/account추가*/
+
+    /* function/order 브랜치 추가 */
