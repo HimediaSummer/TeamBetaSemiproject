@@ -4,7 +4,6 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beta.function.game.dao.GameMapper">
 
-<<<<<<< HEAD
     <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
         <id property="gameCode" column="gameCode" />
         <result property="gameName" column="gameName" />
@@ -35,7 +34,6 @@
     </select>
 
     <select id="findGameByCode" parameterType="int" resultMap="gameResultMap">
-=======
     <!--game_list 테이블-->
     <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
         <id property="gameCode" column="gameCode"/>
@@ -51,7 +49,6 @@
 
     <!--게임코드별 게임 정보-->
     <select id="findByCode" parameterType="int" resultMap="gameResultMap">
->>>>>>> function/order
         SELECT
             gameCode,
             gameName,
@@ -65,7 +62,6 @@
         FROM
             game_list
         WHERE
-<<<<<<< HEAD
             gameCode = #{gameCode}
         ORDER BY
             gameCode
@@ -116,12 +112,8 @@
     <delete id="deleteGame" parameterType="int">
         DELETE
         FROM
-            game_list
+        game_list
         WHERE
-            gameCode = #{gameCode}
+        gameCode = #{gameCode}
     </delete>
-=======
-            gameCode = #{ gameCode }
-    </select>
->>>>>>> function/order
 </mapper>
