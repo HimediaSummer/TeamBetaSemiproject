@@ -53,4 +53,18 @@ public class AuthController {
 
         return "auth/lostid";
     }
+
+    @GetMapping("/lostpwd")
+    public void findlostpwd(){}
+
+    @PostMapping("/lostpwd")
+    public String findlostpwd(String email, Model model) {
+
+        AccountDTO wherepwd = authService.lostid(email);
+
+        model.addAttribute("wheerepwd",wherepwd);
+        System.out.println("wherepwd = " + wherepwd);
+
+        return "auth/lostpwd";
+    }
 }

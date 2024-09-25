@@ -13,4 +13,8 @@ public interface AccountMapper {
     AccountDTO findByUsername(String username);
 
     AccountDTO lostId(String email);
+
+    AccountDTO lostpwd(String email);
+
+
 }

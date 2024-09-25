@@ -70,5 +70,12 @@
         a.email = #{ email }
     </select>
 
+    <update id="lostpwd" >
+        update
+        account_list
+        set password = #{ password }
+        where email = '#{ email };
+    </update>
+
 
 </mapper>
