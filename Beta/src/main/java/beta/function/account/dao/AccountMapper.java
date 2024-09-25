@@ -12,5 +12,5 @@ public interface AccountMapper {
 
     AccountDTO findByUsername(String username);
 
-    AccountDTO insertAUthrityName(String authorityCodeName);
+    AccountDTO lostId(String email);
 }

@@ -14,7 +14,11 @@ public class AccountDTO implements UserDetails {
     private String password;
     private String fullName;
     private UserRole userRole;
-
+    private String nickName;    // 사용자 닉네임
+    private String birthday;      // 사용자 생일
+    private String email;       // 사용자 이메일
+    private String phone;       // 사용자 폰번호
+    private String profileimg;  // 사용자 프로필 사진
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -68,12 +72,17 @@ public class AccountDTO implements UserDetails {
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole) {
+    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg) {
         this.userCode = userCode;
         this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.userRole = userRole;
+        this.nickName = nickName;
+        this.birthday = birthday;
+        this.email = email;
+        this.phone = phone;
+        this.profileimg = profileimg;
     }
 
     public int getUserCode() {
@@ -108,14 +117,59 @@ public class AccountDTO implements UserDetails {
         this.userRole = userRole;
     }
 
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProfileimg() {
+        return profileimg;
+    }
+
+    public void setProfileimg(String profileimg) {
+        this.profileimg = profileimg;
+    }
+
     @Override
     public String toString() {
-        return "UserDTO{" +
+        return "AccountDTO{" +
                 "userCode=" + userCode +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", userRole=" + userRole +
+                ", nickName='" + nickName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profileimg='" + profileimg + '\'' +
                 '}';
     }
 }

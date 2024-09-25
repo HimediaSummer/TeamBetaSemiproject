@@ -10,6 +10,7 @@
         <result property="password" column="password"/>
         <result property="fullName" column="fullName"/>
         <result property="userRole" column="authorityCodeName"/>
+        <result property="email"    column="email"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
@@ -17,7 +18,6 @@
             a.userCode,
             a.username,
             a.password,
-            a.fullName,
             b.authorityCodeName
         FROM
             account_list a
@@ -60,6 +60,15 @@
         )
     )
     </insert>
+
+    <select id="lostId" resultMap="authenticatedUser">
+        SELECT
+        a.username
+        FROM
+        account_list a
+        WHERE
+        a.email = #{ email }
+    </select>
 
 
 </mapper>

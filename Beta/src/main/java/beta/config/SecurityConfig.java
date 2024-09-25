@@ -45,7 +45,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests(auth -> {
             // 로그인, 회원가입, 실패 페이지와 Root Context는 모두에게 허용
             // 해당 URL은 로그인 안해도 볼수있음
-            auth.requestMatchers("/auth/login", "/user/signup", "/auth/fail", "/").permitAll();
+            auth.requestMatchers("/auth/lostid","/auth/login", "/user/signup", "/auth/fail", "/").permitAll();
             // "/admin/*" 엔드포인트는 "ADMIN" 권한을 가진 사용자만 접근 허용
             auth.requestMatchers("/admin/*").hasAnyAuthority(UserRole.ADMIN.getRole());
             // "/user/*" 엔드포인트는 "USER" 권한을 가진 사용자만 접근 허용

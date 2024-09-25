@@ -1,5 +1,6 @@
 package beta.function.auth.service;
 
+import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
 import beta.function.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,12 @@ import java.util.Objects;
 public class AuthService implements UserDetailsService {
 
     private AccountService accountService;
+    private final AccountMapper accountMapper;
 
     @Autowired
-    public AuthService(AccountService accountService) {
+    public AuthService(AccountService accountService, AccountMapper accountMapper) {
         this.accountService = accountService;
+        this.accountMapper = accountMapper;
     }
 
     @Override
@@ -31,5 +34,10 @@ public class AuthService implements UserDetailsService {
         }
 
         return foundUser;
+    }
+
+    public AccountDTO lostid(String email) {
+        System.out.println("버튼호출 어스서비스 1 ");
+        return accountMapper.lostId(email);
     }
 }

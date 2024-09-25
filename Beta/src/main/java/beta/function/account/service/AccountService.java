@@ -16,7 +16,7 @@ import java.util.Objects;
 public class AccountService {
 
     private PasswordEncoder encoder;
-    private AccountMapper accountMapper;
+    private final AccountMapper accountMapper;
 
     @Autowired
     public AccountService(PasswordEncoder encoder, AccountMapper accountMapper) {
