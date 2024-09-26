@@ -13,5 +13,19 @@
         <input type="text" id="password" name="password">
         <button>확인</button>
     </form>
+
+    <tr th:each="lostpwd : ${ lostpwd }">
+        <p>님 아이디 : </p><td th:text="${ lostpwd.username }"></td>
+        <p>님 아이디 : </p><td th:text="${ lostpwd }"></td>
+    </tr>
+
+    <tr>
+        <p>님 아이디 : </p><td th:text="${ lostpwd }"></td>
+    </tr>
+
+<script>
+    console.log(lostpwd)
+</script>
+
 </body>
 </html>

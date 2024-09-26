@@ -69,22 +69,17 @@ public class AuthController {
     @PostMapping("/lostpwd")
     public String findlostpwd(String email, Model model) {
 
-        System.out.println("wherepwd 어스 컨트롤러 1 = " );
-        AccountDTO wherepwd = authService.lostid(email);
+        System.out.println("버튼호출 어스컨트롤러 1 ");
 
-        System.out.println("wherepwd 어스 컨트롤러 2 = " + wherepwd);
-        model.addAttribute("wheerepwd",wherepwd);
-        System.out.println("wherepwd 어스 컨트롤러 3 = " + wherepwd);
+        AccountDTO lostpwd = authService.lostpwd(email);
+        System.out.println("버튼호출 어스컨트롤러 2 ");
 
+        model.addAttribute("whereid", lostpwd.getUsername());
+        System.out.println("버튼호출 어스컨트롤러 3 " + lostpwd.getUsername());
 
-//        if (result != 0) {
-//            return "fail"; 		// 이메일이 없으면
-//        } else {
-//
-//            return "auth/lostpwd"; 	// 이메일이 있으면
-//        }
-
-        return "auth/lostpwd";
+//        return "auth/lostpwd";
+        return "redirect:/auth/changepwd?username=" + lostpwd.getUsername();
+//        return "redirect:/change-password?email=" + email;
     }
 
     @GetMapping("/changepwd")
