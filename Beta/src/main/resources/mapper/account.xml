@@ -74,7 +74,7 @@
         update
         account_list
         set password = #{ password }
-        where email = 'theta@gmail.com';
+        where email = 'user04@gmail.com';
     </update>
 
 </mapper>
