@@ -67,7 +67,7 @@ public class AuthController {
     public void findlostpwd(){}
 
     @PostMapping("/lostpwd")
-    public String findlostpwd(HttpServletRequest req, HttpServletResponse resp, String email, Model model) throws IOException {
+    public String findlostpwd(String email, Model model) {
 
         System.out.println("wherepwd 어스 컨트롤러 1 = " );
         AccountDTO wherepwd = authService.lostid(email);
@@ -76,18 +76,13 @@ public class AuthController {
         model.addAttribute("wheerepwd",wherepwd);
         System.out.println("wherepwd 어스 컨트롤러 3 = " + wherepwd);
 
-        System.out.println("/session 서블릿 호출됨...");
 
-        // 다시 생각해보니 세션에서 정보를 가져올수가없음 로그인을 안하니까
-        // spring security를 거치지않아서 로그인정보 < 를 요청못함
-        // 그냥 버튼 하나로만들고 화면만 좀 꾸며주고 main에다 합치는걸로
-
+//        if (result != 0) {
+//            return "fail"; 		// 이메일이 없으면
+//        } else {
 //
-//        if( wherepwd != null ){
-//            authService.changepwd(wherepwd);
+//            return "auth/lostpwd"; 	// 이메일이 있으면
 //        }
-
-        resp.sendRedirect("changepwd");
 
         return "auth/lostpwd";
     }
