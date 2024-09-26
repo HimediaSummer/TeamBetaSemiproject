@@ -1,5 +1,7 @@
 package beta.function.account.dto;
 
+import beta.function.order.dto.CartDTO;
+
 public class AccountDTO {
 
     private int userCode;
@@ -14,11 +16,12 @@ public class AccountDTO {
     private String deletion;
     private String profileimg;
     private int authorityCode;
+    private CartDTO cartDTO;
 
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String userId, String userName, String nickName, String pwd, String birthday, String email, String phone, String suspension, String deletion, String profileimg, int authorityCode) {
+    public AccountDTO(int userCode, String userId, String userName, String nickName, String pwd, String birthday, String email, String phone, String suspension, String deletion, String profileimg, int authorityCode, CartDTO cartDTO) {
         this.userCode = userCode;
         this.userId = userId;
         this.userName = userName;
@@ -31,6 +34,7 @@ public class AccountDTO {
         this.deletion = deletion;
         this.profileimg = profileimg;
         this.authorityCode = authorityCode;
+        this.cartDTO = cartDTO;
     }
 
     public int getUserCode() {
@@ -129,6 +133,14 @@ public class AccountDTO {
         this.authorityCode = authorityCode;
     }
 
+    public CartDTO getCartDTO() {
+        return cartDTO;
+    }
+
+    public void setCartDTO(CartDTO cartDTO) {
+        this.cartDTO = cartDTO;
+    }
+
     @Override
     public String toString() {
         return "AccountDTO{" +
@@ -144,6 +156,7 @@ public class AccountDTO {
                 ", deletion='" + deletion + '\'' +
                 ", profileimg='" + profileimg + '\'' +
                 ", authorityCode=" + authorityCode +
+                ", cartDTO=" + cartDTO +
                 '}';
     }
 }

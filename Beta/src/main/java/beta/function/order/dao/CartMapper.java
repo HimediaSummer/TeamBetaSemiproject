@@ -12,7 +12,7 @@ public interface CartMapper {
     List<CartDTO> findAllList();
 
     /*회원별 장바구니 리스트*/
-//    List<CartDTO> findAllList(int userCode);
+    List<CartDTO> findByUser(int userCode);
 
     /*장바구니에 담기*/
     void addItem(CartDTO cart);
