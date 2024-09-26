@@ -5,23 +5,56 @@
     <title>regist</title>
 </head>
 <body>
-    <form action="/game/regist" method="post">
-        <label for="gameName">게임이름: </label>
-        <input type="text" id="gameName" name="gameName" required /><br>
-        <label for="gameStorage">게임용량: </label>
-        <input type="text" id="gameStorage" name="gameStorage" required /><br>
-        <label for="gamePrice">게임가격: </label>
-        <input type="number" id="gamePrice" name="gamePrice" required/><br>
-        <label for="uploadDate">업로드일자: </label>
-        <input type="date" id="uploadDate" name="uploadDate" required/><br>
-        <label for="gameOrigin">게임출처: </label>
-        <input type="text" id="gameOrigin" name="gameOrigin" required/><br>
-        <label for="gameRequirement">게임사양: </label>
-        <input type="text" id="gameRequirement" name="gameRequirement" required/><br>
-        <label for="gamePicture">원본사진: </label>
-        <input type="text" id="gamePicture" name="gamePicture" required/><br>
-        <label for="gameThumbnail">썸네일사진: </label>
-        <input type="text" id="gameThumbnail" name="gameThumbnail" required/><br>
+    <!--
+         The enctype attribute in HTML specifies how form data should be encoded when it is sent to the server
+         It is used within the <form> tag, and it determines the content type used to submit the form data.
+         There are three main values for enctype:
+            1. application/x-www-form-urlencoded(default):
+                - The data is encoded as key-value pairs, with special characters replace by escape codes.
+                - Example: name=John+Doe&age=25
+            2. multipart/form-data:
+                - This is used when the form includes file uploads. Each part of the form is separated by
+                    a boundary, allowing binary data to be included.
+                - Example: When uplading a file, the file's content is encoded separately from other data.
+            3. text/plain:
+                - Data is sent as plain text without any encoding.
+                - Example: name=John Doe age=25 (spaces are not encoded).
+        Typically, multipart/form-data is used when uploading files, while the default application/
+            x-www-form-urlencoded is used for most other type of form submission.
+    -->
+    <form action="/game/regist" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="gameName">게임이름: </label>
+            <input type="text" id="gameName" name="gameName" required />
+        </div>
+        <div>
+            <label for="gameStorage">게임용량: </label>
+            <input type="text" id="gameStorage" name="gameStorage" required />
+        </div>
+        <div>
+            <label for="gamePrice">게임가격: </label>
+            <input type="number" id="gamePrice" name="gamePrice" required/>
+        </div>
+        <div>
+            <label for="uploadDate">업로드일자: </label>
+            <input type="date" id="uploadDate" name="uploadDate" required/>
+        </div>
+        <div>
+            <label for="gameOrigin">게임출처: </label>
+            <input type="text" id="gameOrigin" name="gameOrigin" required/>
+        </div>
+        <div>
+            <label for="gameRequirement">게임사양: </label>
+            <input type="text" id="gameRequirement" name="gameRequirement" required/>
+        </div>
+        <div>
+            <label for="gamePicture">원본사진: </label>
+            <input type="file" id="gamePicture" name="gamePicture" required/>
+        </div>
+        <div>
+            <label for="gameThumbnail">썸네일사진: </label>
+            <input type="file" id="gameThumbnail" name="gameThumbnail" required/>
+        </div>
         <button type="submit">등록하기</button>
     </form>
 </body>

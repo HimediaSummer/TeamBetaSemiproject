@@ -28,7 +28,7 @@ public class GameService {
 
     @Transactional
     public void registNewGame(GameDTO newGame) {
-        gameMapper.registNewGame(newGame);
+        gameMapper.registNewGame(newGame);  // Save everything using MyBatis
     }
 
     @Transactional
