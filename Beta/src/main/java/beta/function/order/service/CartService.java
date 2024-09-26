@@ -29,11 +29,11 @@ public class CartService {
 
 
     /*회원별 장바구니 리스트*/
-//    public List<CartDTO> findAllList(int userCode) {
-//
-//        System.out.println("CartService");
-//        return cartMapper.findAllList(userCode);
-//    }
+    public List<CartDTO> findByUser(int userCode) {
+
+        System.out.println("CartService");
+        return cartMapper.findByUser(userCode);
+    }
 
     /*장바구니에 담기*/
     @Transactional

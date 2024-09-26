@@ -31,5 +31,7 @@ public class MainController {
     public ModelAndView detail(ModelAndView mv) {
         mv.setViewName("game/detail");
         return mv;
-    }
+      }
+
 }
+

@@ -41,23 +41,16 @@ public class CartController {
     }
 
     /*회원별 장바구니 리스트*/
-//     @GetMapping("/order/cart/{userCode}")
-//     public String findCartList(@PathVariable("userCode") int userCode,
-//                                HttpSession session,
-//                                Model model){
-//
-//         // 임의로 userCode를 3로 설정
-//         session.setAttribute("userCode", 3);
-//
-//         System.out.println(userCode);
-//         List<CartDTO> cartList = cartService.findAllList(userCode);
-//
-//         model.addAttribute("cartList", cartList);
-//
-//         System.out.println("CartController");
-//
-//         return "order/cart";
-//     }
+     @PostMapping("/order/userCart/{userCode}")
+     public String findCartList(@PathVariable("userCode") int userCode,
+                                Model model){
+
+         List<CartDTO> users = cartService.findByUser(userCode);
+
+         model.addAttribute("users", users);
+
+         return "order/userCart";
+     }
 
     /*장바구니에 담기*/
     @PostMapping("/game/insert/{gameCode}")

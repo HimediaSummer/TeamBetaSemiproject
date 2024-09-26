@@ -9,20 +9,15 @@ public class CartDTO {
     private int userCode;
     private int gameCode;
     private GameDTO gameDTO;
-    private AccountDTO accountDTO;
 
     public CartDTO() {
     }
 
-    public CartDTO(int cartCode, int userCode, int gameCode, GameDTO gameDTO, AccountDTO accountDTO) {
+    public CartDTO(int cartCode, int userCode, int gameCode, GameDTO gameDTO) {
         this.cartCode = cartCode;
         this.userCode = userCode;
         this.gameCode = gameCode;
         this.gameDTO = gameDTO;
-        this.accountDTO = accountDTO;
-    }
-
-    public CartDTO(AccountDTO member, GameDTO game, int gamePrice) {
     }
 
     public int getCartCode() {
@@ -57,14 +52,6 @@ public class CartDTO {
         this.gameDTO = gameDTO;
     }
 
-    public AccountDTO getAccountDTO() {
-        return accountDTO;
-    }
-
-    public void setAccountDTO(AccountDTO accountDTO) {
-        this.accountDTO = accountDTO;
-    }
-
     @Override
     public String toString() {
         return "CartDTO{" +
@@ -72,7 +59,6 @@ public class CartDTO {
                 ", userCode=" + userCode +
                 ", gameCode=" + gameCode +
                 ", gameDTO=" + gameDTO +
-                ", accountDTO=" + accountDTO +
                 '}';
     }
 }
