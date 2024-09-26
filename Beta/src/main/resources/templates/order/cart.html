@@ -26,7 +26,7 @@
         <td th:text="${ cart.gameDTO.gamePrice }">
         <td th:text="${ cart.gameDTO.gameThumbnail }">
         <td>
-            <form th:action="@{/cart/delete/{cartCode}(cartCode=${cart.cartCode})}" method="post">
+            <form th:action="@{/cart/delete/{gameCode}(gameCode=${cart.gameCode})}" method="post">
                 <button type="submit">삭제</button>
             </form>
         </td>
