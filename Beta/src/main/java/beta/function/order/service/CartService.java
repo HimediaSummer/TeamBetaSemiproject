@@ -55,7 +55,6 @@ public class CartService {
     }
 
     /*장바구니 게임 삭제*/
-    /*여기 다시*/
     public void deleteCart(int gameCode) {
 
         cartMapper.deleteCart(gameCode);
