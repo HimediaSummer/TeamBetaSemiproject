@@ -7,13 +7,16 @@
 <body>
 <h1>비밀번호 찾기 페이지</h1>
 비밀번호를 찾고싶으면 이메일을 입력해주세요
+<div>
 
     <form th:action="@{/auth/lostpwd}" th:method="POST">
         <label>email : </label>
         <input type="text" id="email" name="email"/>
         <button>이메일확인</button>
     </form>
+
         <button type="button" onclick="location.href='changepwd'">맞으면 확인</button>
 
+</div>
 </body>
 </html>
