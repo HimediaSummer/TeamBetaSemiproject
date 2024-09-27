@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>결제확인</title>
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
 </head>
 <body>
-
 <table>
     <tr>
         <th>결제코드</th>
@@ -17,7 +20,7 @@
         <td th:text="${ result.paymentCode }">
         <td th:text="${ result.paymentDate }">
         <td th:text="${ result.amount }">
-        <td th:text="${ result.accountDTO.nickName }">
+        <td th:text="${ userCode }">
     </tr>
 </table>
 

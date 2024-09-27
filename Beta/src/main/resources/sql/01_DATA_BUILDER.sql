@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS game_list
     gameName VARCHAR(100) NOT NULL COMMENT '게임이름',
 	gameStorage VARCHAR(100) NOT NULL COMMENT'게임용량',
     gamePrice INT NOT NULL COMMENT '게임가격',
-    uploadDate TIME NOT NULL COMMENT '업로드일자',
+    uploadDate DATE NOT NULL COMMENT '업로드일자',
     gameOrigin VARCHAR(100) NOT NULL COMMENT '게임출처',
     gameRequirement VARCHAR(100) NOT NULL COMMENT '게임사양',
     gamePicture TEXT NOT NULL COMMENT '원본사진',
@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS comment_list (
 	reviewCode			INT			AUTO_INCREMENT	COMMENT '댓글코드',
 	content				text		NOT NULL	COMMENT '내용',
 	star				INT			NOT NULL	COMMENT '별점',
-	createDate			timestamp	NOT NULL	COMMENT '생성일',
-	updateDate			timestamp	NOT NULL	COMMENT '수정일',
+	createDate			DATE		NOT NULL	COMMENT '생성일',
+	updateDate			DATE 		NOT NULL	COMMENT '수정일',
 	gameCode			INT			NOT NULL	COMMENT '게임코드',
 	userCode			INT			NOT NULL	COMMENT '회원코드',
 	reviewCode2			INT			NULL 	COMMENT '부모댓글',
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS game_payment
 (
     -- column level constraints
     paymentCode INT AUTO_INCREMENT COMMENT '결제코드',
-    paymentDate TIME NOT NULL COMMENT '결제날짜',
+    paymentDate DATE NOT NULL COMMENT '결제날짜',
     amount INT NOT NULL COMMENT '결제금액',
     userCode INT NOT NULL COMMENT '회원코드',
     

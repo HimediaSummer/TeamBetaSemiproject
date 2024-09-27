@@ -59,7 +59,7 @@ public class CartController {
                           RedirectAttributes rAttr){
 
         // 임의로 userCode를 2로 설정
-        session.setAttribute("userCode", 3);
+        session.setAttribute("userCode", 2);
 
         Integer userCode = (Integer) session.getAttribute("userCode");
 

@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
 </head>
 <body>
 <table>
@@ -28,9 +32,21 @@
         </td>
 
         <td>
-            <form th:action="@{/order/result}" method="post">
+            <form th:action="@{/order/result/{userCode}(userCode=${user.userCode})}" method="post">
                 <button type="submit">CHECK OUT</button>
             </form>
+        </td>
+
+        <td>
+            <form th:action="@{/order/insert/{userCode}(userCode=${user.userCode})}" method="post">
+                <button type="submit">담자아</button>
+            </form>
+        </td>
+
+        <td>
+<!--            <form th:action="@{/order/result}" method="post">-->
+<!--                <button type="submit">CHECK OUT</button>-->
+<!--            </form>-->
         </td>
     </tr>
 </table>

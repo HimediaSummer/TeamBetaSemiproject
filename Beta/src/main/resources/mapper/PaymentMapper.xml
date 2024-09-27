@@ -19,6 +19,24 @@
         <result property="nickName" column="nickName"/>
     </resultMap>
 
+    <!--회원별 주문 리스트 담기-->
+    <insert id="addResultList" parameterType="beta.function.order.dto.PaymentDTO">
+        INSERT INTO game_payment
+            (
+                paymentCode,
+                paymentDate,
+                amount,
+                userCode
+            )
+        VALUES
+            (
+                #{ paymentCode }
+                #{ paymentDate },
+                #{ amount },
+                #{ userCode }
+            )
+    </insert>
+
     <!--회원별 주문 리스트 (결제)-->
     <select id="paymentResult" resultMap="paymentAccountResultMap">
             SELECT

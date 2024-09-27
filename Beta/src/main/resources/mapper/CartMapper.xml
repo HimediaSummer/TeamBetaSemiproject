@@ -97,20 +97,4 @@
         WHERE
             gameCode = #{ gameCode }
     </delete>
-
-    <!--게임 담기 회원별-->
-    <!--<insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
-        INSERT INTO game_cart
-            (
-            cartCode,
-            userCode,
-            gameCode
-            )
-        VALUES
-            (
-            cartCode,
-            #{ userCode },
-            #{ gameCode }
-            )
-    </insert>-->
 </mapper>
