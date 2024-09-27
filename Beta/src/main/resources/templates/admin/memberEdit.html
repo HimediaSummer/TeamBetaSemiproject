@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>edit</title>
+</head>
+<body>
+    <h2>회원 수정</h2>
+
+    <form th:action="@{/admin/update}" th:object="${member}" method="post">
+        <input type="hidden" th:field="*{userCode}" />
+        <div>
+            <label for="userCode">회원아이디:</label>
+            <input type="text" id="userCode" th:field="*{userId}" required />
+        </div>
+        <div>
+            <label for="userName">회원이름:</label>
+            <input type="text" id="userName" th:field="*{userName}" required />
+        </div>
+        <div>
+            <label for="nickName">회원별명:</label>
+            <input type="text" id="nickName" th:field="*{nickName}" required />
+        </div>
+        <div>
+            <label for="pwd">회원비번:</label>
+            <input type="text" id="pwd" th:field="*{pwd}" required />
+        </div>
+        <div>
+            <label for="birthday">회원생일:</label>
+            <input type="text" id="birthday" th:field="*{birthday}" required />
+        </div>
+        <div>
+            <label for="email">회원메일:</label>
+            <input type="text" id="email" th:field="*{email}" required />
+        </div>
+        <div>
+            <label for="phone">회원전화:</label>
+            <input type="text" id="phone" th:field="*{phone}" required />
+        </div>
+        <div>
+            <label for="suspension">정지여부:</label>
+            <select name="suspension" id="suspension" th:field="*{suspension}" required>
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+        </div>
+        <div>
+            <label for="deletion">탈퇴여부:</label>
+            <select name="deletion" id="deletion" th:field="*{deletion}" required>
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+        </div>
+        <div>
+            <label for="profileimg">프로필사진:</label>
+            <input type="text" id="profileimg" th:field="*{profileimg}" required />
+            <button>업로드</button><br>
+        </div>
+        <div>
+            <label for="authorityCode">권한코드:</label>
+            <input type="text" id="authorityCode" th:field="*{authorityCode}" required />
+        </div>
+        <div>
+            <div>
+                <button type="submit">수정하기</button>
+            </div>
+            <div>
+                <a href="javascript:history.back()">취소(a 태그 사용)</a>
+                <button onclick="history.back()">취소(button 태그 사용)</button>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        /* 설명. fetch 요청을 통해 카테고리 코드 드롭다운 동적으로 채우기 */
+        document.addEventListener('DOMContentLoaded', function() {
+
+            /* 설명. 현재 보고있는 메뉴의 카테고리 번호를 담을 currentCategoryCode 변수 선언. */
+            const currentauthorityCode = `[[${member.authorityCode}]]`;
+            // console.log(currentCategoryCode);        // 확인용
+
+            /* 설명. 카테고리 데이터를 가져오기 위해 서버에 비동기 요청을 보냄. */
+            fetch("/admin/authority")
+                /* 설명. 위 fetch의 요청에 대한 응답(res)을 JSON 형식으로 변환. */
+                .then(res => res.json())
+                /* 설명. 위에서 JSON 형식으로 변환된 데이터를 이용해 처리 작업 시작 */
+                .then(data => {
+                    const authorityCodeSelect = document.getElementById('authorityCode');
+
+                    // 설명. 초기 <option>을 설정.
+                    // 예: <option value="">카테고리를 선택하세요</option>
+                    data.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.code;
+                        option.textContent = category.name;
+
+                        // 설명. Thymeleaf로부터 받은 값으로 selected 속성 설정
+                        if (category.code.toString() === currentauthorityCode.toString()) {
+                            option.selected = true;
+                        }
+
+                        authorityCodeSelect.appendChild(option);
+                    });
+
+                    /* 설명. Thymeleaf를 통해 설정된 기존 값으로 select의 value를 설정하는 부분을 추가한다. */
+                    /* 설명. 이 부분은 클라이언트 사이드 JavaScript가 아니라 서버 사이드 Thymeleaf 처리 후에 실행된다. */
+                    authorityCodeSelect.value = currentauthorityCode;
+                });
+        });
+    </script>
+</body>
+</html>
