@@ -13,6 +13,15 @@ public class MainController {
         return mv;
     }
 
+    /* 설명. 유저 권한 설정 체크 */
+    @GetMapping("/user/page")
+    public ModelAndView user(ModelAndView mv) {
+        mv.setViewName("user/user");
+        return mv;
+    }
+
+    /* function/account추가*/
+
     /* 설명. 관리자 권한 설정 체크 */
     @GetMapping("/admin/page")
     public ModelAndView admin(ModelAndView mv) {
@@ -20,14 +29,8 @@ public class MainController {
         return mv;
     }
 
-    /* 설명. 유저 권한 설정 체크 */
-    @GetMapping("/user/page")
-    public ModelAndView user(ModelAndView mv) {
-        mv.setViewName("user/user");
-        return mv;
-    }
-    /**/
-    /**/
-    /**/
-    /* function/security 브랜치 추가 */
+
+
+
+
 }

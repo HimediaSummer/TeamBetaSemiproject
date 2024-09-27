@@ -1,22 +1,26 @@
 package beta.function.account.service;
 
+import java.util.Objects;
 import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
+import beta.function.account.dao.AccountDAO;
 import beta.function.account.dto.SignupDTO;
+import beta.function.account.dto.AuthorityDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
+import java.util.List;
 
 @Service
 public class AccountService {
 
-    private PasswordEncoder encoder;
+    private final AccountDAO accountDAO;
     private final AccountMapper accountMapper;
+    private PasswordEncoder encoder;
+    
 
     @Autowired
     public AccountService(PasswordEncoder encoder, AccountMapper accountMapper) {
@@ -56,5 +60,38 @@ public class AccountService {
         } else {
             return null;
         }
+
+    @Autowired
+    public AccountService(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
+
+    public List<AccountDTO> findAllMember() {
+        return accountDAO.findAllMember();
+    }
+
+    public List<AuthorityDTO> findAllAuthority() {
+        return accountDAO.findAllAuthority();
+    }
+
+    @Transactional
+    public void registNewMember(AccountDTO newMember) {
+        accountDAO.registNewMember(newMember);
+    }
+
+    public AccountDTO findMemberByCode(int userCode) {
+        return accountDAO.findMemberByCode(userCode);
+    }
+
+    @Transactional
+    public void updateMember(AccountDTO member) {
+        accountDAO.updateMember(member);
+    }
+
+    @Transactional
+    public void deleteMember(int userCode) {
+
+
+        accountDAO.deleteMember(userCode);
     }
 }
