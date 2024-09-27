@@ -23,19 +23,19 @@
         </div>
         <div>
             <label for="pwd">회원비번:</label>
-            <input type="text" id="pwd" th:field="*{pwd}" required />
+            <input type="password" id="pwd" th:field="*{pwd}" required />
         </div>
         <div>
             <label for="birthday">회원생일:</label>
-            <input type="text" id="birthday" th:field="*{birthday}" required />
+            <input type="date" id="birthday" th:field="*{birthday}" required />
         </div>
         <div>
             <label for="email">회원메일:</label>
-            <input type="text" id="email" th:field="*{email}" required />
+            <input type="email" id="email" th:field="*{email}" required />
         </div>
         <div>
             <label for="phone">회원전화:</label>
-            <input type="text" id="phone" th:field="*{phone}" required />
+            <input type="tel" id="phone" th:field="*{phone}" required />
         </div>
         <div>
             <label for="suspension">정지여부:</label>
@@ -65,8 +65,8 @@
                 <button type="submit">수정하기</button>
             </div>
             <div>
-                <a href="javascript:history.back()">취소(a 태그 사용)</a>
-                <button onclick="history.back()">취소(button 태그 사용)</button>
+<!--                <a href="javascript:history.back()">취소(a 태그 사용)</a>-->
+                <button onclick="history.back()">취소</button>
             </div>
         </div>
     </form>

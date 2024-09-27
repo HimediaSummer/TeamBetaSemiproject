@@ -18,6 +18,7 @@ public class AccountDTO {
     private String profileimg;
     private int authorityCode;
 
+
     public AccountDTO() {
     }
 

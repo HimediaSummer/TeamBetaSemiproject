@@ -22,8 +22,11 @@
         <p>권한코드: <span th:text="${member.authorityCode}"></span></p>
     </div>
 
-    <a th:href="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}">수정하기</a>
-    <button id="editButton">수정하기(JavaScript)</button>
+<!--    <a th:href="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}">수정하기</a>-->
+    <button id="editButton">수정하기</button>
+    <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
+        <button type="submit">삭제하기</button>
+    </form>
 
     <script>
         /* 설명. JavaScript를 사용해 수정 버튼 동작시키기 */
@@ -32,9 +35,6 @@
         });
     </script>
 
-    <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
-        <button type="submit">삭제하기</button>
-    </form>
 
     <button onclick="location.href='/admin/memberList'">목록으로</button><br>
 

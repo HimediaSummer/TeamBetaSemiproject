@@ -53,6 +53,11 @@ public class AccountController {
         return "admin/memberList";
     }
 
+    // 개별 조회
+    @RequestMapping("/memberListone")
+    @GetMapping("/memberListone")
+    public void memeberListone() {}
+
     // Create 또는 Insert 부분
     @GetMapping("/memberRegist")
     public void registPage() {}
