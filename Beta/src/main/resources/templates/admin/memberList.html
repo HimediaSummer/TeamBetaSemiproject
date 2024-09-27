@@ -14,7 +14,7 @@
             <button onclick="location.href='/admin/memberList'">전체조회</button>
 <!--            <button onclick="location.href='/admin/'">개별조회</button>-->
 <!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
-            <button onclick="openWindow('/admin/')">개별조회</button>
+            <button onclick="openWindow('/admin')">개별조회</button>
             <button onclick="openWindow('/admin/memberRegist')">등록</button>
         </div>
     </div>
@@ -36,10 +36,10 @@
         <tr th:each="member : ${ memberList }">
 <!--            <td th:text="${ member.userCode }"></td>-->
             <td><a th:href="@{/admin/memberDetail/{userCode}(userCode=${ member.userCode })}" th:text="${ member.userCode }"></a></td>
-            <td th:text="${ member.userId }"></td>
-            <td th:text="${ member.userName }"></td>
+            <td th:text="${ member.username }"></td>
+            <td th:text="${ member.fullName }"></td>
             <td th:text="${ member.nickName }"></td>
-            <td th:text="${ member.pwd }"></td>
+            <td th:text="${ member.password }"></td>
             <td th:text="${ member.birthday }"></td>
             <td th:text="${ member.email }"></td>
             <td th:text="${ member.phone }"></td>

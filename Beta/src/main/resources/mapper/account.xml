@@ -10,7 +10,18 @@
         <result property="password" column="password"/>
         <result property="fullName" column="fullName"/>
         <result property="userRole" column="authorityCodeName"/>
+        <result property="birthday" column="birthday"/>
         <result property="email"    column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="suspension" column="suspension"/>
+        <result property="deletion" column="deletion"/>
+        <result property="profileimg" column="profileimg"/>
+        <result property="authorityCode" column="authorityCode"/>
+    </resultMap>
+
+    <resultMap id="authorityResultMap" type="beta.function.account.dto.AuthorityDTO">
+        <id property="authorityCode" column="authorityCode"/>
+        <result property="authorityCodeName" column="authorityCodeName"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
@@ -77,34 +88,13 @@
         where username = #{ username };
     </update>
 
-    
-    <resultMap id="memberResultMap" type="beta.function.account.dto.AccountDTO">
-        <id property="userCode" column="userCode"/>
-        <result property="userId" column="userId"/>
-        <result property="userName" column="userName"/>
-        <result property="nickName" column="nickName"/>
-        <result property="pwd" column="pwd"/>
-        <result property="birthday" column="birthday"/>
-        <result property="email" column="email"/>
-        <result property="phone" column="phone"/>
-        <result property="suspension" column="suspension"/>
-        <result property="deletion" column="deletion"/>
-        <result property="profileimg" column="profileimg"/>
-        <result property="authorityCode" column="authorityCode"/>
-    </resultMap>
-
-    <resultMap id="authorityResultMap" type="beta.function.account.dto.AuthorityDTO">
-        <id property="authorityCode" column="authorityCode"/>
-        <result property="authorityCodeName" column="authorityCodeName"/>
-    </resultMap>
-    
-    <select id="findAllMember" resultMap="memberResultMap">
+    <select id="findAllMember" resultMap="authenticatedUser">
         SELECT
             userCode,
-            userId,
-            userName,
+            username,
+            fullname,
             nickName,
-            pwd,
+            password,
             birthday,
             email,
             phone,
@@ -126,7 +116,7 @@
             account_authority
     </select>
 
-    <select id="findMemberByCode" parameterType="int" resultMap="memberResultMap">
+    <select id="findMemberByCode" parameterType="int" resultMap="authenticatedUser">
         SELECT
             userCode,
             userId,

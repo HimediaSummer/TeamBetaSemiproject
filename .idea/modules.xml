@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Beta.iml" filepath="$PROJECT_DIR$/.idea/modules/Beta.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Beta.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Beta.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Beta.test.iml" filepath="$PROJECT_DIR$/.idea/modules/Beta.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/TeamBetaSemiproject.iml" filepath="$PROJECT_DIR$/.idea/TeamBetaSemiproject.iml" />
     </modules>
   </component>

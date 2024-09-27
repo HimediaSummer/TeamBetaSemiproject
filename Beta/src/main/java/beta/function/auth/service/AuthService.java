@@ -1,6 +1,6 @@
 package beta.function.auth.service;
 
-import beta.function.account.dao.AccountMapper;
+import beta.function.account.dao.AccountDAO;
 import beta.function.account.dto.AccountDTO;
 import beta.function.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +20,13 @@ public class AuthService implements UserDetailsService {
 
     private PasswordEncoder encoder;
     private AccountService accountService;
-    private final AccountMapper accountMapper;
+    private final AccountDAO accountDAO;
 
     @Autowired
-    public AuthService(PasswordEncoder encoder, AccountService accountService, AccountMapper accountMapper) {
+    public AuthService(PasswordEncoder encoder, AccountService accountService, AccountDAO accountDAO) {
         this.encoder = encoder;
         this.accountService = accountService;
-        this.accountMapper = accountMapper;
+        this.accountDAO = accountDAO;
     }
 
     @Override
@@ -44,12 +44,12 @@ public class AuthService implements UserDetailsService {
 
     public AccountDTO lostid(String email) {
         System.out.println("버튼호출 어스서비스 1 ");
-        return accountMapper.lostId(email);
+        return accountDAO.lostId(email);
     }
 
     public AccountDTO lostpwd(String email) {
 
-        return accountMapper.lostId(email);
+        return accountDAO.lostId(email);
     }
 
     @Transactional
@@ -64,7 +64,7 @@ public class AuthService implements UserDetailsService {
         Integer changepwd = null;
 
         try {
-            changepwd = accountMapper.changepwd(accountInfo);
+            changepwd = accountDAO.changepwd(accountInfo);
         } catch (DuplicateKeyException e) {     // 데이터 무결성 위반(중복 키) 발생 시 처리
             changepwd = 0;
             e.printStackTrace();

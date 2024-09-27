@@ -20,6 +20,10 @@ public class AccountDTO implements UserDetails {
     private String phone;       // 사용자 폰번호
     private String profileimg;  // 사용자 프로필 사진
 
+    private char suspension;
+    private char deletion;
+    private int authorityCode;
+
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
@@ -42,12 +46,27 @@ public class AccountDTO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+
+
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        authorities.add(() -> userRole.getRole());
+
+        System.out.println("SpringSecurity가 권한을 요구한다 : " + authorities);
+
+        return authorities;
     }
 
-    private char suspension;
-    private char deletion;
-    private int authorityCode;
+    @Override
+    public String getPassword() {
+        System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.password);
+        return this.password;
+    }
+
+    @Override
+    public String getUsername() {
+        System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.username);
+        return this.username;
+    }
 
     public AccountDTO() {
     }
@@ -76,18 +95,8 @@ public class AccountDTO implements UserDetails {
         this.userCode = userCode;
     }
 
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
