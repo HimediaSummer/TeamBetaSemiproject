@@ -1,17 +1,17 @@
 -- 1. 게임 테이블 삭제
 
--- 1-1. 이연홍 테이블 삭제
-DROP TABLE IF EXISTS game_list CASCADE;
-
--- 1-2. 홍진기 테이블 삭제
-DROP TABLE IF EXISTS account_list CASCADE;
-DROP TABLE IF EXISTS account_authority CASCADE;
-DROP TABLE IF EXISTS comment_list CASCADE;
-
 -- 1-3. 정소율 테이블 삭제
 DROP TABLE IF EXISTS game_order CASCADE;
 DROP TABLE IF EXISTS game_payment CASCADE;
 DROP TABLE IF EXISTS game_cart CASCADE;
+
+-- 1-2. 홍진기 테이블 삭제
+DROP TABLE IF EXISTS comment_list CASCADE;
+DROP TABLE IF EXISTS account_list CASCADE;
+DROP TABLE IF EXISTS account_authority CASCADE;
+
+-- 1-1. 이연홍 테이블 삭제
+DROP TABLE IF EXISTS game_list CASCADE;
 
 -- 2. 게임 테이블 생성
 -- 2-1. 이연홍 테이블 생성 
@@ -67,9 +67,10 @@ CREATE TABLE IF NOT EXISTS comment_list (
 	updateDate			timestamp	NOT NULL	COMMENT '수정일',
 	gameCode			INT			NOT NULL	COMMENT '게임코드',
 	userCode			INT			NOT NULL	COMMENT '회원코드',
-	isCommentofComment  VARCHAR(1)	NOT NULL	COMMENT	'대댓글',
-	reviewCode2			INT			NOT NULL 	COMMENT '부모댓글',
+	reviewCode2			INT			NULL 	COMMENT '부모댓글',
     
+	-- isCommentofComment(대댓글) 컬럼 1개 지움 not null -> null 바꿈
+	
     CONSTRAINT pk_reviewCode PRIMARY KEY (reviewCode),
     CONSTRAINT fk_comment_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode),
     CONSTRAINT fk_comment_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
@@ -86,6 +87,8 @@ CREATE TABLE IF NOT EXISTS game_cart
     
     -- table level constraints
     CONSTRAINT pk_cartCode PRIMARY KEY (cartCode),
+#     FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
+#     FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE
     CONSTRAINT fk_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
     CONSTRAINT fk_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode)
 ) ENGINE=INNODB COMMENT '장바구니';
@@ -100,6 +103,7 @@ CREATE TABLE IF NOT EXISTS game_payment
     
     -- table level constraints
     CONSTRAINT pk_paymentCode PRIMARY KEY (paymentCode),
+#     FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE
     CONSTRAINT fk_payment_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode)
 ) ENGINE=INNODB COMMENT '결제';
 
@@ -114,12 +118,15 @@ CREATE TABLE IF NOT EXISTS game_order
     
     -- table level constraints
     CONSTRAINT pk_orderCode PRIMARY KEY (orderCode),
+#     FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE,
+    FOREIGN KEY (cartCode) REFERENCES game_cart(cartCode) ON DELETE CASCADE,
+#     FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
+#     FOREIGN KEY (paymentCode) REFERENCES game_payment(paymentCode) ON DELETE CASCADE
     CONSTRAINT fk_order_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode),
-    CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode),
+#     CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode),
     CONSTRAINT fk_order_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
     CONSTRAINT fk_paymentCode FOREIGN KEY (paymentCode) REFERENCES game_payment (paymentCode)
 ) ENGINE=INNODB COMMENT '주문';
-
 
 -- 3. 데이터 삽입
 -- 3-1. 이연홍 데이터 삽입
@@ -146,15 +153,17 @@ INSERT INTO game_list VALUES (null, 'F-Zero', '1.5MB', 13000, SYSDATE(), 'Beta S
 
 -- 3-2. 홍진기 데이터 삽입
 -- 3-2-1. 홍진기 권한 데이터 삽입 
-INSERT INTO account_authority VALUES (null, 'regular');
+INSERT INTO account_authority VALUES (null, 'user');
 INSERT INTO account_authority VALUES (null, 'admin');
 
 -- 3-2-2. 홍진기 계정 데이터 삽입 
-INSERT INTO account_list VALUES (null, 'reg1', 'user01', 10001, 'pwd1234', SYSDATE(), 'alpha@gmail.com', '01012345678', '1', 'Y', 'c://img/original/reg1', 1);
-INSERT INTO account_list VALUES (null, 'adm1', 'user02', 10002, 'pwd2345', SYSDATE(), 'beta@gamil.com', '01012345678', '1', 'Y', 'c://img/original/adm1', 2);
-
+INSERT INTO account_list VALUES (null, 'user01', 'user01', 10001, 'pass01', SYSDATE(), 'alpha@gmail.com', '01012345678', 'N', 'N', 'img01.jpg', 1);
+INSERT INTO account_list VALUES (null, 'admin01', 'admin01', 10002, 'admin01', SYSDATE(), 'beta@gamil.com', '01012345678', 'N', 'N', 'img02.jpg', 2);
+INSERT INTO account_list VALUES (null, 'user02', 'user02', 10003, 'pass02', SYSDATE(), 'theta@gamil.com', '01012345678', 'N', 'N', 'img03.jpg', 1);
+INSERT INTO account_list VALUES (null, 'user03', 'user03', 10004, 'pass02', SYSDATE(), 'sigma@gamil.com', '01012345678', 'N', 'N', 'img04.jpg', 1);
 -- 3-2-3. 홍진기 댓글 데이터 삽입
- INSERT INTO comment_list VALUES (null, 'lalalalalala', '5', SYSDATE(), SYSDATE(), 10, 1, 0);
+
+ INSERT INTO comment_list VALUES (null, 'lalalalalala', '5', SYSDATE(), SYSDATE(), 10, 1, null);
  INSERT INTO comment_list VALUES (null, 'JFKDLAJFEA', '5', SYSDATE(), SYSDATE(), 3, 2, 1);
  INSERT INTO comment_list VALUES (null, 'WJKFEJALFEJI', '5', SYSDATE(), SYSDATE(), 20, 1, 2);
  INSERT INTO comment_list VALUES (null, 'WUALALALFJEKLA', '5', SYSDATE(), SYSDATE(), 18, 2, 1);
@@ -213,7 +222,6 @@ INSERT INTO game_order VALUES (null,
 (SELECT cartCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1),
 (SELECT gp.userCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1),
 (SELECT paymentCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1));
-
 
 
 COMMIT;

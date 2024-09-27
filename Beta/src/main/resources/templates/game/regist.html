@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>regist</title>
+</head>
+<body>
+    <form action="/game/regist" method="post">
+        <label for="gameName">게임이름: </label>
+        <input type="text" id="gameName" name="gameName" required /><br>
+        <label for="gameStorage">게임용량: </label>
+        <input type="text" id="gameStorage" name="gameStorage" required /><br>
+        <label for="gamePrice">게임가격: </label>
+        <input type="number" id="gamePrice" name="gamePrice" required/><br>
+        <label for="uploadDate">업로드일자: </label>
+        <input type="date" id="uploadDate" name="uploadDate" required/><br>
+        <label for="gameOrigin">게임출처: </label>
+        <input type="text" id="gameOrigin" name="gameOrigin" required/><br>
+        <label for="gameRequirement">게임사양: </label>
+        <input type="text" id="gameRequirement" name="gameRequirement" required/><br>
+        <label for="gamePicture">원본사진: </label>
+        <input type="text" id="gamePicture" name="gamePicture" required/><br>
+        <label for="gameThumbnail">썸네일사진: </label>
+        <input type="text" id="gameThumbnail" name="gameThumbnail" required/><br>
+        <button type="submit">등록하기</button>
+    </form>
+</body>
+</html>

@@ -1,10 +1,10 @@
 package beta.config;
 
+import java.util.Locale;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-
-import java.util.Locale;
 
 @Configuration
 public class BeanConfig {
@@ -20,8 +20,7 @@ public class BeanConfig {
         source.setDefaultEncoding("UTF-8");                 // UTF-8로 설정
         // 메시지 소스를 30초 동안 캐싱하도록 설정.
         source.setCacheSeconds(30);                         // 30초마다 메시지 소스를 다시 로드
-
-        // 제공하지 않는 언어로 요청 시, MessageSource에서 사용할 default 언어로 한국을 설정
+        
         Locale.setDefault(Locale.KOREA);
 
         return source;

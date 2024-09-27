@@ -37,6 +37,7 @@
     </style>
 </head>
 <body>
+    
 <!-- 설명. 'ADMIN' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
 <div sec:authorize="hasAnyAuthority('ADMIN')">
     <p>Welcome, You are ADMIN!</p>
@@ -69,5 +70,22 @@
             window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
         }
     </script>
+    <title>admin</title>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <aside></aside>
+    <section>
+        <button onclick="location.href='/game/listAll'">전체조회</button>
+        <button onclick="location.href='/game/listOne'">개별조회</button>
+        <button onclick="location.href='/game/regist'">등록</button>
+
+        <button onclick="location.href='/user/listAll'">회원 전체조회</button>
+    </section>
+
+
+    <article></article>
+    <footer></footer>
 </body>
 </html>

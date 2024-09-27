@@ -16,6 +16,7 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Locale;
@@ -188,5 +189,16 @@ public class AccountController {
         System.out.println("회원삭제3" + userCode);
 
         return "redirect:/admin/memberList";
+    }
+
+    // 회원 코드를 가져오기 위한 메서드
+    @GetMapping("user/listAll")
+    public String userAllList(Model model){
+
+        List<AccountDTO> userList = accountService.userAllList();
+
+        model.addAttribute("userList", userList);
+
+        return "user/listAll";
     }
 }

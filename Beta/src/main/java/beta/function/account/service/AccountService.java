@@ -13,18 +13,20 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Objects;
+import beta.function.account.dao.AccountMapper;
 
 @Service
 public class AccountService {
 
     private final AccountDAO accountDAO;
     private PasswordEncoder encoder;
+    private final AccountMapper accountMapper;
     
-
     @Autowired
     public AccountService(PasswordEncoder encoder, AccountDAO accountDAO) {
         this.encoder = encoder;
         this.accountDAO = accountDAO;
+        this.accountMapper = accountMapper;
     }
 
     @Transactional
@@ -88,5 +90,10 @@ public class AccountService {
 
 
         accountDAO.deleteMember(userCode);
+    }
+
+    public List<AccountDTO> userAllList() {
+
+        return accountMapper.userAllList();
     }
 }
