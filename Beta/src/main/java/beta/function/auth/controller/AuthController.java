@@ -61,6 +61,7 @@ public class AuthController {
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
 
         return "auth/lostid";
+//        return "auth/lostpwd";
     }
 
     @GetMapping("/lostpwd")
@@ -69,16 +70,16 @@ public class AuthController {
     @PostMapping("/lostpwd")
     public String findlostpwd(String email, Model model) {
 
-        System.out.println("버튼호출 어스컨트롤러 1 ");
+        System.out.println("lostpwd 어스컨트롤러 1 ");
 
         AccountDTO lostpwd = authService.lostpwd(email);
-        System.out.println("버튼호출 어스컨트롤러 2 ");
+        System.out.println("lostpwd 어스컨트롤러 2 ");
 
-        model.addAttribute("whereid", lostpwd.getUsername());
-        System.out.println("버튼호출 어스컨트롤러 3 " + lostpwd.getUsername());
+        model.addAttribute("lostpwd", lostpwd.getUsername());
+        System.out.println("lostpwd 어스컨트롤러 3 " + lostpwd.getUsername());
 
-//        return "auth/lostpwd";
-        return "redirect:/auth/changepwd?username=" + lostpwd.getUsername();
+        return "auth/lostpwd";
+//        return "redirect:/auth/changepwd?username=" + lostpwd.getUsername();
 //        return "redirect:/change-password?email=" + email;
     }
 
@@ -90,13 +91,13 @@ public class AuthController {
 
         System.out.println("changepwd 어스 컨트롤러 1 " );
 
-        authService.changepwd(accountInfo);
+        Integer changepwd = authService.changepwd(accountInfo);
         System.out.println("changepwd 어스 컨트롤러 2  " );
 
         rAttr.addFlashAttribute("successMessage", "성공적으로 수정되었습니다.");
         System.out.println("changepwd 어스 컨트롤러 3  " );
 
-        return "auth/changepwd";
+        return "auth/lostpwd";
 //        return "redirect:/auth/login";
     }
 }

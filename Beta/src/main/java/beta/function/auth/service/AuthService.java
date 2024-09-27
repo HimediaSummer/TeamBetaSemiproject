@@ -2,7 +2,6 @@ package beta.function.auth.service;
 
 import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
-import beta.function.account.dto.SignupDTO;
 import beta.function.account.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
@@ -54,12 +53,26 @@ public class AuthService implements UserDetailsService {
     }
 
     @Transactional
-    public void changepwd(AccountDTO accountInfo) {
+    public Integer changepwd(AccountDTO accountInfo) {
 
+        System.out.println("데이터 뭐 가져옴? 어스서비스 changepwd  1 : " + accountInfo);
         System.out.println("평문 : " + accountInfo.getPassword());
         accountInfo.setPassword(encoder.encode(accountInfo.getPassword()));
         System.out.println("암호문 : " + accountInfo.getPassword());
+        System.out.println("데이터 뭐 가져옴? 어스서비스 changepwd  2 : " + accountInfo);
 
-        accountMapper.changepwd(accountInfo);
+        Integer changepwd = null;
+
+        try {
+            changepwd = accountMapper.changepwd(accountInfo);
+        } catch (DuplicateKeyException e) {     // 데이터 무결성 위반(중복 키) 발생 시 처리
+            changepwd = 0;
+            e.printStackTrace();
+        } catch (BadSqlGrammarException e) {
+            changepwd = 0;
+            e.printStackTrace();
+        }
+        System.out.println("회원가입 처리 결과 => " + changepwd);
+        return changepwd;
     }
 }
