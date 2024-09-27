@@ -3,73 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <title>edit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        .form-container {
+            background-color: white;
+            border: 1px solid #dddddd; /* 테두리 색상 */
+            border-radius: 5px; /* 모서리 둥글게 */
+            padding: 20px; /* 내부 여백 */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 테두리 겹침 방지 */
+        }
+        th, td {
+            padding: 12px; /* 간격 */
+            text-align: left;
+            border: 1px solid #dddddd; /* 테두리 색상 */
+        }
+        th {
+            background-color: #f2f2f2; /* 헤더 배경색 */
+            font-weight: bold; /* 글씨 굵게 */
+        }
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-    <h2>회원 수정</h2>
+<!--    <h2>회원 수정</h2>-->
 
-    <form th:action="@{/admin/update}" th:object="${member}" method="post">
-        <input type="hidden" th:field="*{userCode}" />
-        <div>
-            <label for="userCode">회원아이디:</label>
-            <input type="text" id="userCode" th:field="*{userId}" required />
-        </div>
-        <div>
-            <label for="userName">회원이름:</label>
-            <input type="text" id="userName" th:field="*{userName}" required />
-        </div>
-        <div>
-            <label for="nickName">회원별명:</label>
-            <input type="text" id="nickName" th:field="*{nickName}" required />
-        </div>
-        <div>
-            <label for="pwd">회원비번:</label>
-            <input type="password" id="pwd" th:field="*{pwd}" required />
-        </div>
-        <div>
-            <label for="birthday">회원생일:</label>
-            <input type="date" id="birthday" th:field="*{birthday}" required />
-        </div>
-        <div>
-            <label for="email">회원메일:</label>
-            <input type="email" id="email" th:field="*{email}" required />
-        </div>
-        <div>
-            <label for="phone">회원전화:</label>
-            <input type="tel" id="phone" th:field="*{phone}" required />
-        </div>
-        <div>
-            <label for="suspension">정지여부:</label>
-            <select name="suspension" id="suspension" th:field="*{suspension}" required>
-                <option value="Y">Y</option>
-                <option value="N">N</option>
-            </select>
-        </div>
-        <div>
-            <label for="deletion">탈퇴여부:</label>
-            <select name="deletion" id="deletion" th:field="*{deletion}" required>
-                <option value="Y">Y</option>
-                <option value="N">N</option>
-            </select>
-        </div>
-        <div>
-            <label for="profileimg">프로필사진:</label>
-            <input type="text" id="profileimg" th:field="*{profileimg}" required />
-            <button>업로드</button><br>
-        </div>
-        <div>
-            <label for="authorityCode">권한코드:</label>
-            <input type="text" id="authorityCode" th:field="*{authorityCode}" required />
-        </div>
-        <div>
-            <div>
+<!--    <form th:action="@{/admin/update}" th:object="${member}" method="post">-->
+<!--        <input type="hidden" th:field="*{userCode}" />-->
+<!--        <div>-->
+<!--            <label for="userCode">회원아이디:</label>-->
+<!--            <input type="text" id="userCode" th:field="*{userId}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="userName">회원이름:</label>-->
+<!--            <input type="text" id="userName" th:field="*{userName}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="nickName">회원별명:</label>-->
+<!--            <input type="text" id="nickName" th:field="*{nickName}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="pwd">회원비번:</label>-->
+<!--            <input type="password" id="pwd" th:field="*{pwd}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="birthday">회원생일:</label>-->
+<!--            <input type="date" id="birthday" th:field="*{birthday}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="email">회원메일:</label>-->
+<!--            <input type="email" id="email" th:field="*{email}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="phone">회원전화:</label>-->
+<!--            <input type="tel" id="phone" th:field="*{phone}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="suspension">정지여부:</label>-->
+<!--            <select name="suspension" id="suspension" th:field="*{suspension}" required>-->
+<!--                <option value="Y">Y</option>-->
+<!--                <option value="N">N</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="deletion">탈퇴여부:</label>-->
+<!--            <select name="deletion" id="deletion" th:field="*{deletion}" required>-->
+<!--                <option value="Y">Y</option>-->
+<!--                <option value="N">N</option>-->
+<!--            </select>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="profileimg">프로필사진:</label>-->
+<!--            <input type="text" id="profileimg" th:field="*{profileimg}" required />-->
+<!--            <button>업로드</button><br>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <label for="authorityCode">권한코드:</label>-->
+<!--            <input type="text" id="authorityCode" th:field="*{authorityCode}" required />-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <div>-->
+<!--                <button type="submit">수정하기</button>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--&lt;!&ndash;                <a href="javascript:history.back()">취소(a 태그 사용)</a>&ndash;&gt;-->
+<!--                <button onclick="history.back()">취소</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </form>-->
+
+    <div class="form-container">
+        <form th:action="@{/admin/update}" th:object="${member}" method="post">
+            <input type="hidden" th:field="*{userCode}" />
+            <table>
+                <tbody>
+                <tr>
+                    <th><label for="userId">회원아이디:</label></th>
+                    <td><input type="text" id="userId" th:field="*{userId}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="userName">회원이름:</label></th>
+                    <td><input type="text" id="userName" th:field="*{userName}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="nickName">회원별명:</label></th>
+                    <td><input type="text" id="nickName" th:field="*{nickName}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="pwd">회원비밀번호:</label></th>
+                    <td><input type="password" id="pwd" th:field="*{pwd}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="birthday">회원생일:</label></th>
+                    <td><input type="date" id="birthday" th:field="*{birthday}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="email">회원이메일:</label></th>
+                    <td><input type="email" id="email" th:field="*{email}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="phone">회원전화:</label></th>
+                    <td><input type="tel" id="phone" th:field="*{phone}" required /></td>
+                </tr>
+                <tr>
+                    <th><label for="suspension">정지여부:</label></th>
+                    <td>
+                        <select name="suspension" id="suspension" th:field="*{suspension}" required>
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="deletion">탈퇴여부:</label></th>
+                    <td>
+                        <select name="deletion" id="deletion" th:field="*{deletion}" required>
+                            <option value="Y">Y</option>
+                            <option value="N">N</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="profileimg">프로필사진:</label></th>
+                    <td>
+                        <input type="text" id="profileimg" th:field="*{profileimg}" required />
+                        <button type="button">업로드</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th><label for="authorityCode">권한코드:</label></th>
+                    <td><input type="text" id="authorityCode" th:field="*{authorityCode}" required /></td>
+                </tr>
+                </tbody>
+            </table>
+            <div style="margin-top: 20px;">
                 <button type="submit">수정하기</button>
+                <button type="button" onclick="history.back()">취소</button>
             </div>
-            <div>
-<!--                <a href="javascript:history.back()">취소(a 태그 사용)</a>-->
-                <button onclick="history.back()">취소</button>
-            </div>
-        </div>
-    </form>
+        </form>
+    </div>
 
     <script>
         /* 설명. fetch 요청을 통해 카테고리 코드 드롭다운 동적으로 채우기 */

@@ -3,6 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>list</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse; /* 테두리 겹침 방지 */
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #dddddd; /* 테두리 색상 */
+            text-align: left;
+            padding: 12px; /* 간격 */
+        }
+        th {
+            background-color: #f2f2f2; /* 헤더 배경색 */
+            font-weight: bold; /* 글씨 굵게 */
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9; /* 짝수 행 배경색 */
+        }
+        tr:hover {
+            background-color: #f1f1f1; /* 마우스 오버 시 색상 */
+        }
+        img {
+            width: 50px; /* 이미지 크기 */
+            height: 50px; /* 이미지 크기 */
+            border-radius: 50%; /* 원형으로 만들기 */
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            background-color: #6c757d; /* 기본 색상: 회색 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5a6268; /* 호버 색상: 어두운 회색 */
+        }
+    </style>
     <script>
         const successMessage = `[[${ successMessage}]]`;
         if(successMessage) alert(successMessage);
@@ -12,13 +52,13 @@
     <div class="content">
         <div class="button-group">
             <button onclick="location.href='/admin/memberList'">전체조회</button>
-<!--            <button onclick="location.href='/admin/'">개별조회</button>-->
-<!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
             <button onclick="openWindow('/admin/')">개별조회</button>
             <button onclick="openWindow('/admin/memberRegist')">등록</button>
         </div>
     </div>
+
     <table>
+        <thead>
         <tr>
             <th>회원코드</th>
             <th>회원아이디</th>
@@ -33,22 +73,28 @@
             <th>프로필사진</th>
             <th>권한코드</th>
         </tr>
-        <tr th:each="member : ${ memberList }">
-<!--            <td th:text="${ member.userCode }"></td>-->
-            <td><a th:href="@{/admin/memberDetail/{userCode}(userCode=${ member.userCode })}" th:text="${ member.userCode }"></a></td>
-            <td th:text="${ member.userId }"></td>
-            <td th:text="${ member.userName }"></td>
-            <td th:text="${ member.nickName }"></td>
-            <td th:text="${ member.pwd }"></td>
-            <td th:text="${ member.birthday }"></td>
-            <td th:text="${ member.email }"></td>
-            <td th:text="${ member.phone }"></td>
-            <td th:text="${ member.suspension }"></td>
-            <td th:text="${ member.deletion }"></td>
-            <td th:text="${ member.profileimg }"></td>
-            <td th:text="${ member.authorityCode }"></td>
+        </thead>
+        <tbody>
+        <tr th:each="member : ${memberList}">
+            <td>
+                <a th:href="@{/admin/memberDetail/{userCode}(userCode=${member.userCode})}" th:text="${member.userCode}"></a>
+            </td>
+            <td th:text="${member.userId}"></td>
+            <td th:text="${member.userName}"></td>
+            <td th:text="${member.nickName}"></td>
+            <td th:text="${member.pwd}"></td>
+            <td th:text="${member.birthday}"></td>
+            <td th:text="${member.email}"></td>
+            <td th:text="${member.phone}"></td>
+            <td th:text="${member.suspension}"></td>
+            <td th:text="${member.deletion}"></td>
+            <td><img th:src="${member.profileimg}" alt="Profile Image"/></td>
+            <td th:text="${member.authorityCode}"></td>
         </tr>
+        </tbody>
     </table>
+
+
     <br>
     <button onclick="location.href='/'">메인으로</button>
 

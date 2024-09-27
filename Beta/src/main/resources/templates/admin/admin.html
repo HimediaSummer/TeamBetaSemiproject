@@ -15,66 +15,58 @@
         .sidebar button {
             margin: 5px 0;
             padding: 10px;
-            background-color: #007BFF;
+            background-color: #6c757d; /* 기본 색상: 회색 */
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
         }
         .sidebar button:hover {
-            background-color: #0056b3;
+            background-color: #5a6268; /* 호버 색상: 어두운 회색 */
         }
-        .content {
-            flex-grow: 1; /* Allows content to take the remaining space */
-        }
-        .button-group {
-            display: flex; /* Display buttons horizontally */
-            gap: 10px; /* Space between buttons */
-        }
+
         .button-group button {
-            margin: 0; /* Remove margin for buttons in the group */
+            padding: 10px;
+            background-color: #6c757d; /* 기본 색상: 회색 */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
+        .button-group button:hover {
+            background-color: #5a6268; /* 호버 색상: 어두운 회색 */
+        }
+
     </style>
 </head>
 <body>
-<!--    <ul>-->
-<!--        <li><a href="/admin/memberList">전체조회</a></li>-->
-<!--        <li><a href="/admin/">개별조회</a></li>-->
-<!--        <li><a href="/admin/memberRegist">등록</a></li>-->
-<!--    </ul>-->
-<!--    <ul>-->
-<!--        <li><a href="">회원관리</a></li>-->
-<!--        <li><a href="">게임관리</a></li>-->
-<!--        <li><a href="">주문관리</a></li>-->
-<!--        <li><a href="">댓글관리</a></li>-->
-<!--    </ul>-->
 
-    <div class="sidebar">
-        <button onclick="location.href='/admin/memberList'">회원관리</button>
-        <button onclick="location.href=''">게임관리</button>
-        <button onclick="location.href=''">주문관리</button>
-        <button onclick="location.href=''">댓글관리</button>
+<div class="sidebar">
+    <button onclick="location.href='/admin/memberList'">회원관리</button>
+    <button onclick="location.href=''">게임관리</button>
+    <button onclick="location.href=''">주문관리</button>
+    <button onclick="location.href=''">댓글관리</button>
+</div>
+<div class="content">
+    <div class="button-group">
+        <button onclick="location.href='/admin/memberList'">전체조회</button>
+        <!--            <button onclick="location.href='/admin/'">개별조회</button>-->
+        <!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
+        <button onclick="openWindow('/admin/')">개별조회</button>
+        <button onclick="openWindow('/admin/memberRegist')">등록</button>
     </div>
-    <div class="content">
-        <div class="button-group">
-            <button onclick="location.href='/admin/memberList'">전체조회</button>
-<!--            <button onclick="location.href='/admin/'">개별조회</button>-->
-<!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
-            <button onclick="openWindow('/admin/')">개별조회</button>
-            <button onclick="openWindow('/admin/memberRegist')">등록</button>
-        </div>
-    </div>
+</div>
 
-    <script>
-        function openWindow(url) {
-            // Define the size of the new window
-            const width = 800; // Adjust width
-            const height = 600; // Adjust height
-            const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
-            const top = (window.innerHeight / 2) - (height / 2); // Center vertically
+<script>
+    function openWindow(url) {
+        // Define the size of the new window
+        const width = 800; // Adjust width
+        const height = 600; // Adjust height
+        const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
+        const top = (window.innerHeight / 2) - (height / 2); // Center vertically
 
-            window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
-        }
-    </script>
+        window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
+    }
+</script>
 </body>
 </html>

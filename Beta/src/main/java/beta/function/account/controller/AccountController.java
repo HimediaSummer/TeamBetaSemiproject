@@ -46,7 +46,10 @@ public class AccountController {
     @GetMapping("/memberList")
     public String findMemberList(Model model) {
 
+        System.out.println("멤버 리스트 1 ");
+
         List<AccountDTO> memberList = accountService.findAllMember();
+        System.out.println("멤버 리스트 2 " + memberList);
 
         model.addAttribute("memberList", memberList);
 
@@ -72,21 +75,32 @@ public class AccountController {
     @PostMapping("/memberRegist")
     public String registMember(AccountDTO newMember, RedirectAttributes rAttr, Locale locale) {
 
+        System.out.println("회원 등록 1");
+
         accountService.registNewMember(newMember);
+
+        System.out.println("회원 등록 2" + newMember);
 
         logger.info("Locale : {}", locale);
 
         rAttr.addFlashAttribute("successMessage", messageSource.getMessage("registMember", null, locale));
+
+        System.out.println("회원 등록 3" + newMember);
 
         return "redirect:/admin/memberList";
     }
 
     @GetMapping("/memberDetail/{userCode}")
     public String findMemberDetail(@PathVariable("userCode") int userCode, Model model) {
+        System.out.println("상세 정보 1");
 
         AccountDTO member = accountService.findMemberByCode(userCode);
 
+        System.out.println("상세 정보 2" + member);
+
         model.addAttribute("member", member);
+
+        System.out.println("상세 정보 3" + member);
 
         return "admin/memberDetail";
     }
@@ -94,9 +108,15 @@ public class AccountController {
     @GetMapping("/memberEdit/{userCode}")
     public String showEditMemberForm(@PathVariable("userCode") int userCode, Model model) {
 
+        System.out.println("회원 수정1");
+
         AccountDTO member = accountService.findMemberByCode(userCode);
 
+        System.out.println("회원 수정2" + member);
+
         model.addAttribute("member", member);
+
+        System.out.println("회원 수정3" + member);
 
         return "admin/memberEdit";
     }
@@ -104,9 +124,15 @@ public class AccountController {
     @PostMapping("/update")
     public String updateMember(AccountDTO member, RedirectAttributes rAttr) {
 
+        System.out.println("회원 업데이트1");
+
         accountService.updateMember(member);
 
+        System.out.println("회원 업데이트2" + member);
+
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
+
+        System.out.println("회원 업데이트3" + member);
 
         return "redirect:/admin/memberDetail/" + member.getUserCode();
     }
@@ -114,10 +140,18 @@ public class AccountController {
     @PostMapping("/delete/{userCode}")
     public String deleteMember(@PathVariable("userCode") int userCode, RedirectAttributes rAttr){
 
+        System.out.println("회원삭제1");
+
         accountService.deleteMember(userCode);
+
+        System.out.println("회원삭제2" + userCode);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 삭제되었습니다.");
 
+        System.out.println("회원삭제3" + userCode);
+
         return "redirect:/admin/memberList";
     }
+
+
 }
