@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>결제확인</title>
+</head>
+<body>
+
+<table>
+    <tr>
+        <th>결제코드</th>
+        <th>결제날짜</th>
+        <th>결제금액</th>
+        <th>회원코드</th>
+    </tr>
+    <tr th:each="result : ${ resultList }">
+        <td th:text="${ result.paymentCode }">
+        <td th:text="${ result.paymentDate }">
+        <td th:text="${ result.amount }">
+        <td th:text="${ result.accountDTO.nickName }">
+    </tr>
+</table>
+
+</body>
+</html>
