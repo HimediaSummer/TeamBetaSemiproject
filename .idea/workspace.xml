@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="47013eea-ce32-4240-94fa-9da5ff225708" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/controller/AccountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/controller/AccountController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/dao/AccountDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/dao/AccountDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/dao/AccountMapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/dto/AccountDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/dto/AccountDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/service/AccountService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/account/service/AccountService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/auth/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/auth/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/java/beta/function/auth/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/java/beta/function/auth/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/resources/mapper/account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/resources/mapper/account.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Beta/src/main/resources/templates/admin/memberList.html" beforeDir="false" afterPath="$PROJECT_DIR$/Beta/src/main/resources/templates/admin/memberList.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
