@@ -41,7 +41,7 @@
     <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
     INSERT INTO account_list
     (
-        userName,
+        username,
         password,
         fullName,
         nickName,
@@ -119,10 +119,10 @@
     <select id="findMemberByCode" parameterType="int" resultMap="authenticatedUser">
         SELECT
             userCode,
-            userId,
-            userName,
+        username,
+        fullname,
             nickName,
-            pwd,
+        password,
             birthday,
             email,
             phone,
@@ -141,10 +141,10 @@
         INSERT INTO
             account_list
             (
-            userId,
-            userName,
+            username,
+            fullname,
             nickName,
-            pwd,
+            password,
             birthday,
             email,
             phone,
@@ -155,10 +155,10 @@
             )
         VALUES
             (
-            #{userId},
-            #{userName},
+            #{username},
+            #{fullname},
             #{nickName},
-            #{pwd},
+            #{password},
             #{birthday},
             #{email},
             #{phone},
@@ -172,10 +172,10 @@
     <update id="updateMember" parameterType="beta.function.account.dto.AccountDTO">
         UPDATE account_list
         SET
-            userId = #{userId},
-            userName = #{userName},
+            username = #{username},
+            fullname = #{fullname},
             nickName = #{nickName},
-            pwd = #{pwd},
+            password = #{password},
             birthday = #{birthday},
             email = #{email},
             phone = #{phone},
@@ -194,5 +194,26 @@
         WHERE
             userCode = #{userCode}
     </delete>
+
+    <!--회원코드별 회원정보-->
+    <select id="userAllList" resultMap="authenticatedUser">
+        SELECT
+        userCode,
+        username,
+        fullname,
+        nickName,
+        password,
+        birthday,
+        email,
+        phone,
+        suspension,
+        deletion,
+        profileimg,
+        authorityCode
+        FROM
+        account_list
+        ORDER BY
+        userCode
+    </select>
 
 </mapper>

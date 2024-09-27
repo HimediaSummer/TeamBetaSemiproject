@@ -7,13 +7,13 @@
       </configuration>
     </facet>
   </component>
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_17">
+  <component name="NewModuleRootManager">
     <output-test url="file://$MODULE_DIR$/../../Beta/build/classes/java/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../Beta/src/test">
       <sourceFolder url="file://$MODULE_DIR$/../../Beta/src/test/java" isTestSource="true" />
     </content>
-    <orderEntry type="jdk" jdkName="temurin-17" jdkType="JavaSDK" />
+    <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Beta.main" />
     <orderEntry type="library" name="Gradle: org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3" level="project" />

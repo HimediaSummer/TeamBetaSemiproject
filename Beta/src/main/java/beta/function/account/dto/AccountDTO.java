@@ -24,6 +24,27 @@ public class AccountDTO implements UserDetails {
     private char suspension;
     private char deletion;
     private int authorityCode;
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
+
     private CartDTO cartDTO;
 
        @Override
@@ -48,5 +69,149 @@ public class AccountDTO implements UserDetails {
     public String getUsername() {
         System.out.println("SpringSecurity가 아이디를 요구한다 : " + this.username);
         return this.username;
+    }
+
+    public AccountDTO() {
+    }
+
+    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg, char suspension, char deletion, int authorityCode, CartDTO cartDTO) {
+        this.userCode = userCode;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.userRole = userRole;
+        this.nickName = nickName;
+        this.birthday = birthday;
+        this.email = email;
+        this.phone = phone;
+        this.profileimg = profileimg;
+        this.suspension = suspension;
+        this.deletion = deletion;
+        this.authorityCode = authorityCode;
+        this.cartDTO = cartDTO;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "userCode=" + userCode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", userRole=" + userRole +
+                ", nickName='" + nickName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profileimg='" + profileimg + '\'' +
+                ", suspension=" + suspension +
+                ", deletion=" + deletion +
+                ", authorityCode=" + authorityCode +
+                ", cartDTO=" + cartDTO +
+                '}';
+    }
+
+    public int getUserCode() {
+        return userCode;
+    }
+
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public UserRole getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(UserRole userRole) {
+        this.userRole = userRole;
+    }
+
+    public String getNickName() {
+        return nickName;
+    }
+
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProfileimg() {
+        return profileimg;
+    }
+
+    public void setProfileimg(String profileimg) {
+        this.profileimg = profileimg;
+    }
+
+    public char getSuspension() {
+        return suspension;
+    }
+
+    public void setSuspension(char suspension) {
+        this.suspension = suspension;
+    }
+
+    public char getDeletion() {
+        return deletion;
+    }
+
+    public void setDeletion(char deletion) {
+        this.deletion = deletion;
+    }
+
+    public int getAuthorityCode() {
+        return authorityCode;
+    }
+
+    public void setAuthorityCode(int authorityCode) {
+        this.authorityCode = authorityCode;
+    }
+
+    public CartDTO getCartDTO() {
+        return cartDTO;
+    }
+
+    public void setCartDTO(CartDTO cartDTO) {
+        this.cartDTO = cartDTO;
     }
 }

@@ -192,7 +192,7 @@ public class AccountController {
     }
 
     // 회원 코드를 가져오기 위한 메서드
-    @GetMapping("user/listAll")
+    @GetMapping("/listAll")
     public String userAllList(Model model){
 
         List<AccountDTO> userList = accountService.userAllList();

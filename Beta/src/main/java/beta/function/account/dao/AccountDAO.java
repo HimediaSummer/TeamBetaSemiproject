@@ -32,4 +32,6 @@ public interface AccountDAO {
     AccountDTO lostpwd(String email);
 
     int changepwd(AccountDTO accountInfo);
+
+    List<AccountDTO> userAllList();
 }
