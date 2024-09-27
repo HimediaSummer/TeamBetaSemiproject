@@ -1,37 +1,151 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>회원가입 페이지</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>회원가입 페이지</h1>-->
+
+<!--<form th:action="@{/user/signup}" method="post">-->
+<!--    아이디 : <input type="text" name="username" required/><br>-->
+<!--    비밀번호 : <input type="password" name="password" required minlength="6"/><br>-->
+<!--    이름 : <input type="text" name="fullName" required/><br>-->
+<!--    닉네임 : <input type="text" name="nickName" required/><br>-->
+<!--    생일 : <input type="date" name="birthday" required/><br>-->
+<!--    이메일 : <input type="email" name="email" required/><br>-->
+<!--    폰번호 : <input type="tel" name="phone" required pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"/>'-'를 뻬고 입력하세요.<br>-->
+<!--    프로필 사진 : <input type="text" name="profileimg"/><br>-->
+<!--    권한 :-->
+<!--    <select name="userRole" required>-->
+<!--        <option value="">선택하세요</option>-->
+<!--        <option value="USER">일반회원</option>-->
+<!--        <option value="ADMIN">관리자</option>-->
+<!--    </select>-->
+<!--    <br>-->
+<!--    <button type="submit">회원가입</button>-->
+<!--</form>-->
+
+<!--<script th:inline="javascript">-->
+<!--    /* 설명. 오류 메세지를 출력용 alert() */-->
+<!--    const message = [[${ message }]];-->
+<!--    if (message) {-->
+<!--        alert(message);-->
+<!--    }-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 컨테이너 스타일 */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        /* 헤더 스타일 */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* 폼 스타일 */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 오류 메시지 스타일 */
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+
+    </style>
 </head>
 <body>
-<h1>회원가입 페이지</h1>
+<div class="container">
+    <h1>회원가입 페이지</h1>
 
-<form th:action="@{/user/signup}" method="post">
-    아이디 : <input type="text" name="username" required/><br>
-    비밀번호 : <input type="password" name="password" required minlength="6"/><br>
-    이름 : <input type="text" name="fullName" required/><br>
-    닉네임 : <input type="text" name="nickName" required/><br>
-    생일 : <input type="date" name="birthday" required/><br>
-    이메일 : <input type="email" name="email" required/><br>
-    폰번호 : <input type="tel" name="phone" required pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}"/>'-'를 뻬고 입력하세요.<br>
-    프로필 사진 : <input type="text" name="profileimg"/><br>
-    권한 :
-    <select name="userRole" required>
-        <option value="">선택하세요</option>
-        <option value="USER">일반회원</option>
-        <option value="ADMIN">관리자</option>
-    </select>
-    <br>
-    <button type="submit">회원가입</button>
-</form>
+    <form th:action="@{/user/signup}" method="post">
+        아이디 : <input type="text" name="username" required/><br>
+        비밀번호 : <input type="password" name="password" required minlength="6"/><br>
+        이름 : <input type="text" name="fullName" required/><br>
+        닉네임 : <input type="text" name="nickName" required/><br>
+        생일 : <input type="date" name="birthday" required/><br>
+        이메일 : <input type="email" name="email" required/><br>
+        폰번호 : <input type="tel" name="phone" required pattern="[0-9]{3}[0-9]{3,4}[0-9]{4}" placeholder="'-'를 뻬고 입력하세요."/><br>
+        프로필 사진 : <input type="text" name="profileimg"/><br>
+        권한 :
+        <select name="userRole" required>
+            <option value="">선택하세요</option>
+            <option value="USER">일반회원</option>
+            <option value="ADMIN">관리자</option>
+        </select>
+        <br>
+        <button type="submit">회원가입</button>
+    </form>
 
-<script th:inline="javascript">
-    /* 설명. 오류 메세지를 출력용 alert() */
-    const message = [[${ message }]];
-    if (message) {
-        alert(message);
-    }
-</script>
+    <script th:inline="javascript">
+        /* 설명. 오류 메세지를 출력용 alert() */
+        const message = [[${ message }]];
+        if (message) {
+            alert(message);
+        }
+    </script>
+</div>
 </body>
 </html>

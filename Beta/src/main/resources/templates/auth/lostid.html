@@ -1,21 +1,167 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>아이디찾기 페이지</h1>-->
+<!--아이디를 찾고싶으면 이메일을 입력해주세요-->
+
+<!--    <form th:action="@{/auth/lostid}" th:method="POST">-->
+<!--        <label>email : </label>-->
+<!--        <input type="text" id="email" name="email"/>-->
+<!--        <button>아이디찾기</button>-->
+<!--    </form>-->
+<!--    <tr th:each="whereid : ${ whereid }">-->
+<!--        <p>님 아이디 : </p><td th:text="${ whereid }"></td>-->
+<!--    </tr>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>아이디 찾기</title>
+    <style>
+        /* 기본 스타일 설정 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* 컨테이너 스타일 */
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+
+        /* 헤더 스타일 */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        /* 설명 텍스트 스타일 */
+        p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        /* 폼 스타일 */
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px; /* 로그인 버튼과 간격 조정 */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* 아이디 결과 표시 스타일 */
+        .result-container {
+            margin-top: 20px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .result-container p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .result-container td {
+            font-weight: bold;
+            color: #007bff;
+        }
+    </style>
 </head>
 <body>
-<h1>아이디찾기 페이지</h1>
-아이디를 찾고싶으면 이메일을 입력해주세요
+<div class="container">
+    <h1>아이디 찾기 페이지</h1>
+    <p>아이디를 찾고 싶으면 이메일을 입력해주세요.</p>
 
     <form th:action="@{/auth/lostid}" th:method="POST">
-        <label>email : </label>
-        <input type="text" id="email" name="email"/>
-        <button>아이디찾기</button>
+        <label for="email">이메일 :</label>
+        <input type="text" id="email" name="email" placeholder="이메일을 입력하세요" />
+        <button type="submit">아이디 찾기</button>
     </form>
-    <tr th:each="whereid : ${ whereid }">
-        <p>님 아이디 : </p><td th:text="${ whereid }"></td>
-    </tr>
 
+    <!-- 아이디 결과 표시 -->
+    <div class="result-container">
+        <tr th:each="whereid : ${whereid}">
+            <p>님 아이디: <td th:text="${whereid}"></td></p>
+        </tr>
+    </div>
+
+    <!-- 로그인 페이지로 돌아가는 버튼 -->
+    <button type="button" onclick="location.href='login'">로그인 페이지로 돌아가기</button>
+</div>
 </body>
 </html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>아이디찾기 페이지</h1>-->
+<!--아이디를 찾고싶으면 이메일을 입력해주세요-->
+
+<!--    <form th:action="@{/auth/lostid}" th:method="POST">-->
+<!--        <label>email : </label>-->
+<!--        <input type="text" id="email" name="email"/>-->
+<!--        <button>아이디찾기</button>-->
+<!--    </form>-->
+<!--    <tr th:each="whereid : ${ whereid }">-->
+<!--        <p>님 아이디 : </p><td th:text="${ whereid }"></td>-->
+<!--    </tr>-->
+
+
+
+<!--</body>-->
+<!--</html>-->
