@@ -11,8 +11,8 @@ public class GameDTO {
     private LocalDate uploadDate;
     private String gameOrigin;
     private String gameRequirement;
-    private String gamePicture;
-    private String gameThumbnail;
+    private String gamePicture; // Path for gamePicture
+    private String gameThumbnail; // Path for gameThumbnail
 
     public GameDTO() {
     }
@@ -26,8 +26,8 @@ public class GameDTO {
         this.gamePrice = gamePrice;
         this.gameOrigin = gameOrigin;
         this.gameRequirement = gameRequirement;
-        this.gamePicture = gamePicture;
-        this.gameThumbnail = gameThumbnail;
+//        this.gamePicture = gamePicture;
+//        this.gameThumbnail = gameThumbnail;
     }
 
     public int getGameCode() {

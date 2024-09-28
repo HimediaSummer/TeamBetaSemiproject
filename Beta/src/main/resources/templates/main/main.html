@@ -2,39 +2,69 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-<!--    <link rel="stylesheet" type="text/css" th:href="@{/css/globals.css}"/>-->
+    <title>main page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/global.css}" />
 </head>
 <body>
-
-<h1 style="text-align: center;"> Beta </h1>
-
-<h3>1-1. Spring Security를 이용한 로그인 및 회원 가입</h3>
-<a href="auth/login">로그인(SELECT USER)</a>
-<br>
-<a href="user/signup">회원가입(INSERT USER)</a>
-<br>
-
-<h3>1-2. Spring Security를 이용한 로그아웃</h3>
-<form th:action="@{/auth/logout}" th:method="post">
-    <button>로그아웃</button>
-</form>
-
-
-<div sec:authorize="hasAnyAuthority('ADMIN')">
-    <p>Welcome, You are ADMIN!</p>
-</div>
-
-
-<div sec:authorize="hasAnyAuthority('USER')">
-    <p>Welcome, You are USER!</p>
-</div>
-    <a href="admin/page">관리자 페이지 이동</a><br>
-<!--    <div th:replace="common/header.html"></div>-->
-
-<br>
-
-    <button onclick="location.href='/game/detail'">게임상세</button>
-
+    <header>
+        <!-- Importing the navbar with thymeleaf -->
+        <nav>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <img src="" alt="mainPicture">
+            <p>Let's go back to a time we know.</p>
+            <p>Let's drink the whole night through.</p>
+            <button></button>
+        </article>
+    </main>
+    <aside></aside>
+    <section>
+        <ul class="productGrid" style="display: grid; grid-column: 4; grid-row: 2;">
+            <li>
+                <img src="" alt="game1">
+                <button>Buy Now</button>
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game2">
+                <button>Buy Now</button>
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game3">
+                <button>Buy Now</button>
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game4">
+                <button>Buy Now</button>
+                <button>Learn More</button>
+            </li>
+        </ul>
+    </section>
+    <article>
+        <ul class="productScroll">
+            <li>
+                <img src="" alt="game1">
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game2">
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game3">
+                <button>Learn More</button>
+            </li>
+            <li>
+                <img src="" alt="game4">
+                <button>Learn More</button>
+            </li>
+        </ul>
+    </article>
+    <footer>
+    </footer>
 </body>
 </html>

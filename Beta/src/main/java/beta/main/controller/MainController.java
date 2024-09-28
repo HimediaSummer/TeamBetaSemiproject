@@ -33,7 +33,14 @@ public class MainController {
     public ModelAndView detail(ModelAndView mv) {
         mv.setViewName("game/detail");
         return mv;
-      }
+    }
+
+    /* function/game 브랜치 추가 */
+
+    /**/
+    /**/
+    /**/
+    /* function/security 브랜치 추가 */
 
 }
 
