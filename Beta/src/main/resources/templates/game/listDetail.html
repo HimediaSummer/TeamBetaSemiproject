@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listDetail</title>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <aside></aside>
+    <section>
+        <button onclick="location.href='/game/listAll'">전체조회</button>
+        <button onclick="location.href='/game/listOne'">개별조회</button>
+        <button onclick="location.href='/game/regist'">등록하기</button>
+    </section>
+
+    <article>
+        <div>
+            <p>게임코드: <span th:text="${ game.gameCode }"></span></p>
+            <p>게임이름: <span th:text="${ game.gameName }"></span></p>
+            <p>게임용량: <span th:text="${ game.gameStorage }"></span></p>
+            <p>게임가격: <span th:text="${ game.gamePrice }"></span></p>
+            <p>업로드일자: <span th:text="${ game.uploadDate }"></span></p>
+            <p>게임출처: <span th:text="${ game.gameOrigin }"></span></p>
+            <p>게임사양: <span th:text="${ game.gameRequirement }"></span></p>
+            <p>원본사진:
+                <p><img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto></p>
+            </p>
+            <p>썸네일사진:
+                <p><img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" alt="썸네일사진" width="300" height=auto></p>
+            </p>
+        </div>
+        <button onclick="location.href='/admin/page'">관리자로</button>
+    </article>
+    <footer></footer>
+
+</body>
+</html>
