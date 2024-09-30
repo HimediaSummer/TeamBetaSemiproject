@@ -1,17 +1,18 @@
 package beta.function.order.dao;
 
-import beta.function.game.dto.GameDTO;
+import beta.function.order.dto.OrderDTO;
 import beta.function.order.dto.PaymentDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.core.annotation.Order;
 
 import java.util.List;
 
 @Mapper
-public interface PaymentMapper {
+public interface OrderMapper {
 
-    /*회원별 주문 리스트 담기*/
-    void addResultList(Integer userCode);
+    /*game_payment에 넣어주기*/
+    void insertPayment(PaymentDTO payment);
 
-    /*회원별 주문 리스트*/
-    List<PaymentDTO> paymentResult(Integer userCode);
+    /*결제 확인*/
+    List<PaymentDTO> orderResult(int userCode);
 }
