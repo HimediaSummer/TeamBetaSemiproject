@@ -1,24 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- fontawesome -->
-    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/nav.css}"/>
-</head>
-<body>
-
-<nav class="nav">
-    <div class="nav-menu">
-        <div class="logo">
-            <img src="/img/logo.png" alt="Gamsung Station">
-        </div>
+<!-- src/main/resources/templates/fragments/nav.html -->
+<div class="nav" th:fragment="navbar">
+    <nav class="nav-menu">
+        <a href="/">
+            <div class="logo">
+                <img src="/static/img/logo.svg" alt="Gamsung Station">
+            </div>
+        </a>
 
         <div class="main-nav-menu">
             <a href="/order/cart">
@@ -33,13 +20,13 @@
                 <h3>COMMUNITY</h3>
             </div>
 
-            <div class="login">
-                <i class="fa-solid fa-user-large"></i>
-                <h3>LOG IN</h3>
-            </div>
+            <a href="/auth/login">
+                <div class="login">
+                    <i class="fa-solid fa-user-large"></i>
+                    <h3>LOG IN</h3>
+                </div>
+            </a>
         </div>
-    </div>
-</nav>
 
-</body>
-</html>
+    </nav>
+</div>

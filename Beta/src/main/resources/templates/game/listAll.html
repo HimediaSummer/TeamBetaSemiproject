@@ -3,22 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>listAll</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/nav.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
     </script>
 </head>
 <body>
-    <header></header>
-    <nav></nav>
-    <aside></aside>
-    <section>
-        <button onclick="location.href='/game/listAll'">전체조회</button>
-        <button onclick="location.href='/game/listOne'">개별조회</button>
-        <button onclick="location.href='/game/regist'">등록하기</button>
-    </section>
-    <article>
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/nav :: navbar"></nav>
+</header>
 
+<aside class="side-bar">
+    <ul class="sidebar-menu">
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+        </li>
+        <li>
+            <button class="admin-btn active" onclick="location.href='/game/listAll'">게임관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+        </li>
+    </ul>
+</aside>
+
+<main>
+    <section class="top-bar">
+        <button class="admin-btn active" onclick="location.href='/game/listAll'">전체조회</button>
+        <button class="admin-btn" onclick="location.href='/game/listOne'">개별조회</button>
+        <button class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
+    </section>
+
+    <article>
         <table>
             <tr>
                 <th>게임코드</th>
@@ -53,9 +81,18 @@
                 </td>
             </tr>
         </table>
-        <br>
-        <button onclick="location.href='/admin/page'">관리자로</button>
+
+        <!-- Pagination example -->
+        <nav>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>99</button>
+        </nav>
     </article>
-    <foot></foot>
+</main>
+
+<footer></footer>
 </body>
 </html>
