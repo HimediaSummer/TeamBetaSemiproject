@@ -77,4 +77,14 @@
         where username = #{ username };
     </update>
 
+
+    <select id="checkId" parameterType="beta.function.account.dto.SignupDTO">
+        SELECT
+        count(username)
+        FROM
+        account_list
+        WHERE
+        username = #{ username }
+    </select>
+
 </mapper>

@@ -57,4 +57,15 @@ public class AccountService {
             return null;
         }
     }
+
+    public Integer checkId(SignupDTO newUserInfo) {
+
+        System.out.println("어카운트 서비스 : 체크 아이디 호출됨");
+        accountMapper.checkId(newUserInfo);
+        System.out.println("어카운터 서비스 : 아이디 체크 완료");
+
+        Integer result = accountMapper.checkId(newUserInfo);
+
+        return result;
+    }
 }

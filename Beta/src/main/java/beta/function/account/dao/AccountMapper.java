@@ -17,4 +17,6 @@ public interface AccountMapper {
     AccountDTO lostpwd(String email);
 
     int changepwd(AccountDTO accountInfo);
+
+    int checkId(SignupDTO newUserInfo);
 }
