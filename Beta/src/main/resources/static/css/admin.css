@@ -1,0 +1,158 @@
+/* General layout */
+body {
+    background-color: var(--main-bg-color);
+    color: var(--text03);
+    display: flex;
+    margin-top: 80px; /* Offset for the fixed navbar */
+}
+
+/* Main content area */
+main {
+    width: calc(100vw - 200px); /* Full width minus sidebar */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px; /* Sidebar width */
+}
+
+/* Sidebar */
+.side-bar {
+    width: 200px;
+    background-color: var(--sub-color02);
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    left: 0;
+    top: 0;
+    margin-top: 80px; /* Offset for the navbar */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sidebar menu */
+.side-bar .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Spacing between buttons */
+}
+
+.side-bar .sidebar-menu .active {
+    background-color: var(--sub-color04);
+    color: var(--sub-color03);
+}
+
+/* Top bar (button group) */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    width: 100%; /* Match the table's width */
+}
+
+.top-bar .admin-btn {
+    flex: 1;
+    margin-right: 20px;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.top-bar .admin-btn:last-child {
+    margin-right: 0;
+}
+
+.top-bar .active {
+    background-color: var(--sub-color04);
+    color: var(--sub-color03);
+}
+
+/* Table styling */
+article {
+    background-color: var(--sub-color02);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Allow scrolling on small screens */
+}
+
+table {
+    width: 100%; /* Full width of the article */
+    border-collapse: collapse;
+    color: var(--text03);
+    table-layout: fixed; /* Equal column widths */
+}
+
+th, td {
+    border: 1px solid #585859;
+    font-size: 14px;
+    text-align: center;
+    padding: 8px;
+    width: 10%; /* Equal width columns */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Truncate overflowing text */
+}
+
+th {
+    color: white;
+    font-weight: bold;
+}
+
+/* Button styling inside table */
+td button {
+    background-color: #FF8552;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #FFEE32;
+    color: #39393A;
+}
+
+/* Pagination */
+article nav {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+article nav button {
+    background-color: #585859;
+    color: #E6E6E6;
+    border: none;
+    padding: 10px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+article nav button:hover {
+    background-color: #FF8552;
+    color: #39393A;
+}
+
+/* Active page in pagination */
+article nav .active {
+    background-color: #FFEE32;
+    color: #39393A;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1440px) {
+    body {
+        flex-direction: column;
+    }
+
+    .side-bar {
+        width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+    }
+
+    main {
+        margin-left: 0;
+        width: 100%;
+    }
+}

@@ -26,6 +26,8 @@ img {
 
 body {
     font-family: 'Pretendard', 'Montserrat', sans-serf;
+    color: white;
+    background-color: var(--main-bg-color);
 }
 
 ul{
@@ -66,7 +68,7 @@ p{
 
     /* 포인트 컬러 */
     --sub-color01: #FF8552;
-    --sub-color02: #86A0A8;
+    --sub-color02: RGB(134, 160, 168, 25%);
     --sub-color03: #3BADAD;
     --sub-color04: #FFEE32;
     --sub-color05: #39393A;
@@ -74,6 +76,7 @@ p{
     /* 텍스트 컬러 */
     --text01 : #202020;
     --text02 : #D9D9D9;
+    --text03: #E6E6E6;
 }
 
 /* 버튼 */
@@ -94,7 +97,7 @@ p{
     border-radius: 30px;
     border: 3px solid var(--sub-color04);
     color: var(--sub-color04);
-    background-color: none;
+    background-color: var(--sub-color05);
     cursor: pointer;
 }
 
@@ -104,8 +107,8 @@ p{
     font-weight: 700;
     border-radius: 30px;
     border: 3px solid var(--sub-color04);
-    color: var(--sub-color04);
-    background-color: var(--sub-color05);
+    color: var(--sub-color05);
+    background-color: var(--sub-color04);
     cursor: pointer;
 }
 
@@ -126,6 +129,8 @@ p{
 }
 
 .admin-btn{
+    font-size: 18px;
+    font-weight: bold;
     width: 168px;
     height: 67px;
     border-radius: 12px;

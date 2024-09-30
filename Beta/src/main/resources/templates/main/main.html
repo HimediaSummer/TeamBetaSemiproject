@@ -1,70 +1,110 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>main page</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/global.css}" />
+    <title>Main Page</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/nav.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Include main specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/main.css}">
 </head>
 <body>
-    <header>
-        <!-- Importing the navbar with thymeleaf -->
-        <nav>
-        </nav>
-    </header>
-    <main>
-        <article>
-            <img src="" alt="mainPicture">
-            <p>Let's go back to a time we know.</p>
-            <p>Let's drink the whole night through.</p>
-            <button></button>
-        </article>
-    </main>
-    <aside></aside>
-    <section>
-        <ul class="productGrid" style="display: grid; grid-column: 4; grid-row: 2;">
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/nav :: navbar"></nav>
+</header>
+
+<!-- Hero Section with Slider -->
+<section class="hero">
+    <div class="slider">
+        <div class="slide"><img src="/static/img/original/Tetris.png" alt="Tetris"></div>
+        <!-- Add more images here -->
+    </div>
+    <div class="hero-text">
+        <p>Let's go back to <br> a time we knew.<br>Let's drink the <br> whole night through</p>
+    </div>
+</section>
+
+<!-- Product Grid Section -->
+<section class="product-section">
+    <div class="center-container">
+        <ul class="productGrid">
             <li>
-                <img src="" alt="game1">
-                <button>Buy Now</button>
-                <button>Learn More</button>
+                <img src="/static/img/thumbnail/Tetris.png" alt="Tetris">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
             </li>
             <li>
-                <img src="" alt="game2">
-                <button>Buy Now</button>
-                <button>Learn More</button>
+                <img src="/static/img/thumbnail/SuperMarioBros.png" alt="SuperMarioBros">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
             </li>
             <li>
-                <img src="" alt="game3">
-                <button>Buy Now</button>
-                <button>Learn More</button>
+                <img src="/static/img/thumbnail/Contra.png" alt="Contra">
+                <div class="button-group">
+                    <button>Learn More</button>
+                </div>
             </li>
             <li>
-                <img src="" alt="game4">
-                <button>Buy Now</button>
-                <button>Learn More</button>
+                <img src="/static/img/thumbnail/TheLegendOfZelda.png" alt="TheLegendOfZelda">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
             </li>
+            <!-- Add more products as needed -->
         </ul>
-    </section>
-    <article>
-        <ul class="productScroll">
-            <li>
-                <img src="" alt="game1">
-                <button>Learn More</button>
-            </li>
-            <li>
-                <img src="" alt="game2">
-                <button>Learn More</button>
-            </li>
-            <li>
-                <img src="" alt="game3">
-                <button>Learn More</button>
-            </li>
-            <li>
-                <img src="" alt="game4">
-                <button>Learn More</button>
-            </li>
-        </ul>
-    </article>
-    <footer>
-    </footer>
+    </div>
+</section>
+
+<!-- Swipeable Product Gallery (Cards Section) -->
+<section class="cards-section">
+    <div class="product-container">
+        <div class="product-list">
+            <!-- Add 20 product images here -->
+            <div class="product-item">
+                <img src="/static/img/thumbnail/SuperMarioBros.png" alt="Product 1">
+                <p>Product 1 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/TheLegendOfZelda.png" alt="Product 2">
+                <p>Product 2 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/PacMan.png" alt="Product 3">
+                <p>Product 3 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/SonicTheHedgehog.png" alt="Product 4">
+                <p>Product 4 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <!-- Continue adding all 20 product items -->
+        </div>
+    </div>
+    <button class="prev" onclick="slideProducts(-1)">&#10094;</button>
+    <button class="next" onclick="slideProducts(1)">&#10095;</button>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>All rights are reserved to BetaGamsung Developing Team&#169.</p>
+    </div>
+</footer>
+
+<!-- Include the JS for slider functionality -->
+<script src="/static/js/slider.js"></script>
 </body>
 </html>
