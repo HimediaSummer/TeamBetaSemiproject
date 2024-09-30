@@ -34,4 +34,6 @@ public interface AccountDAO {
     int changepwd(AccountDTO accountInfo);
 
     List<AccountDTO> userAllList();
+
+    int checkId(SignupDTO newUserInfo);
 }

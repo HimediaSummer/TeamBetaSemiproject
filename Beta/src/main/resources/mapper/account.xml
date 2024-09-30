@@ -88,7 +88,6 @@
         where username = #{ username };
     </update>
 
-<<<<<<< HEAD
 
     <select id="checkId" parameterType="beta.function.account.dto.SignupDTO">
         SELECT
@@ -97,7 +96,8 @@
         account_list
         WHERE
         username = #{ username }
-=======
+    </select>
+
     <select id="findAllMember" resultMap="authenticatedUser">
         SELECT
             userCode,
@@ -224,7 +224,6 @@
         account_list
         ORDER BY
         userCode
->>>>>>> 6e4d9096f548314777d4c9d74e093294c95ef536
     </select>
 
 </mapper>
