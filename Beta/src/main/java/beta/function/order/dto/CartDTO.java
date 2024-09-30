@@ -1,6 +1,5 @@
 package beta.function.order.dto;
 
-import beta.function.account.dto.AccountDTO;
 import beta.function.game.dto.GameDTO;
 
 public class CartDTO {

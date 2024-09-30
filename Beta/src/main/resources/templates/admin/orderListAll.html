@@ -1,10 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<table>
+    <tr>
+        <th>주문코드</th>
+        <th>게임코드</th>
+        <th>장바구니코드</th>
+        <th>회원코드</th>
+        <th>결제코드</th>
+    </tr>
+    <tr th:each="order : ${ orderList }">
+        <td th:text="${ order.orderCode }"></td>
+        <td th:text="${ order.gameCode }"></td>
+        <td th:text="${ order.cartCode }"></td>
+        <td th:text="${ order.userCode }"></td>
+        <td th:text="${ order.paymentCode }"></td>
+        <!--<td>
+            <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                <button type="submit">삭제</button>
+            </form>
+        </td>-->
+    </tr>
+</table>
+
+<button onclick="location.href='/admin/orderListOne'">주문 개별조회</button>
 </body>
 </html>

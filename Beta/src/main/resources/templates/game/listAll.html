@@ -6,6 +6,9 @@
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
+
+        const errorMessage = `[[${ errorMessage }]]`;
+        if(errorMessage) alert(errorMessage);
     </script>
 </head>
 <body>
@@ -37,8 +40,8 @@
                     <button type="submit">수정</button>
                 </form>
 
-                <!--장바구니 담는 버튼 (메인페이지, 상세페이지)-->
-                <form th:action="@{/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
+                <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
                     <button type="submit">장바구니 담기</button>
                 </form>
             </td>

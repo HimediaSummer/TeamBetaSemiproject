@@ -86,13 +86,13 @@ CREATE TABLE IF NOT EXISTS game_cart
 (
     -- column level constraints
     cartCode INT AUTO_INCREMENT COMMENT '장바구니코드',
-    userCode INT NOT NULL COMMENT '회원코드',
-    gameCode INT NOT NULL COMMENT '게임코드',
+    userCode INT NULL COMMENT '회원코드',
+    gameCode INT NULL COMMENT '게임코드',
     
     -- table level constraints
     CONSTRAINT pk_cartCode PRIMARY KEY (cartCode),
-    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
-    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE SET NULL,
+    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE SET NULL
 #     CONSTRAINT fk_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
 #     CONSTRAINT fk_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode)
 ) ENGINE=INNODB COMMENT '장바구니';
@@ -103,11 +103,11 @@ CREATE TABLE IF NOT EXISTS game_payment
     paymentCode INT AUTO_INCREMENT COMMENT '결제코드',
     paymentDate DATE NOT NULL COMMENT '결제날짜',
     amount INT NOT NULL COMMENT '결제금액',
-    userCode INT NOT NULL COMMENT '회원코드',
+    userCode INT NULL COMMENT '회원코드',
     
     -- table level constraints
     CONSTRAINT pk_paymentCode PRIMARY KEY (paymentCode),
-    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE SET NULL
 #     CONSTRAINT fk_payment_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode)
 ) ENGINE=INNODB COMMENT '결제';
 
@@ -115,19 +115,19 @@ CREATE TABLE IF NOT EXISTS game_order
 (
     -- column level constraints
     orderCode INT AUTO_INCREMENT COMMENT '주문코드',
-    gameCode INT NOT NULL COMMENT '게임코드',
-    cartCode INT NOT NULL COMMENT '장바구니코드',
-    userCode INT NOT NULL COMMENT '회원코드',
-    paymentCode INT NOT NULL COMMENT '결제코드',
+    gameCode INT NULL COMMENT '게임코드',
+    cartCode INT NULL COMMENT '장바구니코드',
+    userCode INT NULL COMMENT '회원코드',
+    paymentCode INT NULL COMMENT '결제코드',
     
     -- table level constraints
     CONSTRAINT pk_orderCode PRIMARY KEY (orderCode),
-    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE CASCADE,
-    FOREIGN KEY (cartCode) REFERENCES game_cart(cartCode) ON DELETE CASCADE,
-    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE CASCADE,
-    FOREIGN KEY (paymentCode) REFERENCES game_payment(paymentCode) ON DELETE CASCADE
+    FOREIGN KEY (gameCode) REFERENCES game_list(gameCode) ON DELETE SET NULL,
+    FOREIGN KEY (cartCode) REFERENCES game_cart(cartCode) ON DELETE SET NULL,
+    FOREIGN KEY (userCode) REFERENCES account_list(userCode) ON DELETE SET NULL,
+    FOREIGN KEY (paymentCode) REFERENCES game_payment(paymentCode) ON DELETE SET NULL
 #     CONSTRAINT fk_order_gameCode FOREIGN KEY (gameCode) REFERENCES game_list (gameCode),
-#     CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode),
+#     CONSTRAINT fk_order_cartCode FOREIGN KEY (cartCode) REFERENCES game_cart (cartCode)
 #     CONSTRAINT fk_order_userCode FOREIGN KEY (userCode) REFERENCES account_list (userCode),
 #     CONSTRAINT fk_paymentCode FOREIGN KEY (paymentCode) REFERENCES game_payment (paymentCode)
 ) ENGINE=INNODB COMMENT '주문';

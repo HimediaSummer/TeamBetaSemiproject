@@ -1,6 +1,7 @@
 package beta.function.order.service;
 
 
+import beta.function.game.dto.GameDTO;
 import beta.function.order.dao.CartMapper;
 import beta.function.order.dto.CartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,17 +49,33 @@ public class CartService {
         }
 
         CartDTO cart = new CartDTO();
-        cart.setGameCode(gameCode);
         cart.setUserCode(userCode);
+        cart.setGameCode(gameCode);
 
         cartMapper.addItem(cart);
     }
 
     /*장바구니 게임 삭제*/
-    /*여기 다시*/
+    @Transactional
     public void deleteCart(int gameCode) {
 
         cartMapper.deleteCart(gameCode);
     }
 
+    /*장바구니 전체 내역 삭제*/
+    public void clearCart(Integer userCode) {
+
+        cartMapper.deleteAllCart(userCode);
+    }
+
+    /*게임 총 금액*/
+    public int gamePriceTotal(int userCode) {
+
+        List<CartDTO> cartList = cartMapper.findByUser(userCode);
+        int total = cartList.stream()
+                .mapToInt(cart -> cart.getGameDTO().getGamePrice())
+                .sum();
+
+        return total;
+    }
 }

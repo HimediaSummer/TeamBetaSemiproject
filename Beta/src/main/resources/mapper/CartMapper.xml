@@ -64,8 +64,28 @@
             a.userCode = #{ userCode }
     </select>
 
+    <!--동일한 게임이 있는지 확인-->
+    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">
+        SELECT
+        cartCode, userCode, gameCode
+        FROM
+        game_cart
+        WHERE
+        userCode = #{userCode}
+        AND gameCode = #{gameCode}
+    </select>
+
+    <!--게임 총 금액-->
+    <select id="gamePriceTotal" parameterType="beta.function.order.dto.CartDTO">
+        SELECT
+        SUM(gamePrice) as total
+        FROM
+        game_cart a
+        JOIN game_list b ON a.gameCode = b.gameCode
+    </select>
+
     <!--장바구니에 담기-->
-    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
+    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO" useGeneratedKeys="true" keyProperty="userCode">
         INSERT INTO game_cart
         (
             userCode,
@@ -78,17 +98,6 @@
         )
     </insert>
 
-    <!--동일한 게임이 있는지 확인-->
-    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">
-        SELECT
-            cartCode, userCode, gameCode
-        FROM
-            game_cart
-        WHERE
-            userCode = #{userCode}
-            AND gameCode = #{gameCode}
-    </select>
-
     <!--장바구니 게임 삭제-->
     <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
         DELETE
@@ -96,5 +105,14 @@
             game_cart
         WHERE
             gameCode = #{ gameCode }
+    </delete>
+
+    <!--장바구니 전체 내역 삭제-->
+    <delete id="deleteAllCart" parameterType="beta.function.order.dto.CartDTO">
+        DELETE
+        FROM
+            game_cart
+        WHERE
+            userCode = #{ userCode }
     </delete>
 </mapper>

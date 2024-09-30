@@ -13,14 +13,14 @@
     <tr>
         <th>결제코드</th>
         <th>결제날짜</th>
-        <th>결제금액</th>
+        <th>합계</th>
         <th>회원코드</th>
     </tr>
     <tr th:each="result : ${ resultList }">
         <td th:text="${ result.paymentCode }">
         <td th:text="${ result.paymentDate }">
         <td th:text="${ result.amount }">
-        <td th:text="${ userCode }">
+        <td th:text="${ result.userCode }">
     </tr>
 </table>
 

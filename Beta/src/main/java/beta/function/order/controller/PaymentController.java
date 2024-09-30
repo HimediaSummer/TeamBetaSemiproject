@@ -2,6 +2,7 @@ package beta.function.order.controller;
 
 import beta.function.order.dto.PaymentDTO;
 import beta.function.order.service.OrderService;
+import beta.function.order.service.PaymentService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,22 +16,24 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/order")
-public class OrderController {
+public class PaymentController {
 
-    private final OrderService orderService;
+    private final PaymentService paymentService;
     private final MessageSource messageSource;
+    private final OrderService orderService;
 
     @Autowired
-    public OrderController(OrderService orderService, @Qualifier("messageSource") MessageSource messageSource) {
-        this.orderService = orderService;
+    public PaymentController(PaymentService paymentService, @Qualifier("messageSource") MessageSource messageSource, OrderService orderService) {
+        this.paymentService = paymentService;
         this.messageSource = messageSource;
+        this.orderService = orderService;
     }
 
     @PostMapping("/result")
     public String addItem(HttpSession session,
                           Model model){
 
-        System.out.println("[OrderController] addItem : 나오나?");
+        System.out.println("[PaymentController] addItem : 나오나?");
 
         // 임의로 userCode를 2로 설정
         session.setAttribute("userCode", 2);
@@ -38,16 +41,19 @@ public class OrderController {
         Integer userCode = (Integer) session.getAttribute("userCode");
 
         try{
-
             /*game_payment 테이블에 추가*/
-            orderService.addPayment(userCode);
-            System.out.println("[OrderController] userCode : " + userCode);
+            paymentService.addPayment(userCode);
+            System.out.println("[PaymentController] userCode : " + userCode);
+
+            /*game_order 테이블에 추가*/
+            orderService.addOrder(userCode);
+            System.out.println("[PaymentController] userCode : " + userCode);
 
             model.addAttribute("successMessage", "결제가 완료되었습니다.");
 
             /*결제 확인*/
-            List<PaymentDTO> resultList = orderService.orderResult(userCode);
-            System.out.println("[OrderController] resultList : " + resultList);
+            List<PaymentDTO> resultList = paymentService.orderResult(userCode);
+            System.out.println("[PaymentController] resultList : " + resultList);
 
             model.addAttribute("resultList", resultList);
 
@@ -59,7 +65,7 @@ public class OrderController {
 
             model.addAttribute("errorMessage", "결제가 취소되었습니다.");
 
-            System.out.println("[OrderController] : ???");
+            System.out.println("[PaymentController] : ???");
         }
 
         return "redirect:/order/userCart";

@@ -26,12 +26,5 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
-
-    @GetMapping("/game/detail")
-    public ModelAndView detail(ModelAndView mv) {
-        mv.setViewName("game/detail");
-        return mv;
-      }
-
 }
 

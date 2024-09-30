@@ -1,24 +1,28 @@
 package beta.function.order.dto;
 
 import beta.function.account.dto.AccountDTO;
+import beta.function.game.dto.GameDTO;
 
 import java.sql.Date;
+import java.util.List;
 
 public class PaymentDTO {
 
     private int paymentCode;
     private Date paymentDate;
     private int amount;
-    private AccountDTO accountDTO;
+    private int userCode;
+    private List<CartDTO> cartDTO;
 
     public PaymentDTO() {
     }
 
-    public PaymentDTO(int paymentCode, Date paymentDate, int amount, AccountDTO accountDTO) {
+    public PaymentDTO(int paymentCode, Date paymentDate, int amount, int userCode, List<CartDTO> cartDTO) {
         this.paymentCode = paymentCode;
         this.paymentDate = paymentDate;
         this.amount = amount;
-        this.accountDTO = accountDTO;
+        this.userCode = userCode;
+        this.cartDTO = cartDTO;
     }
 
     public int getPaymentCode() {
@@ -45,12 +49,20 @@ public class PaymentDTO {
         this.amount = amount;
     }
 
-    public AccountDTO getAccountDTO() {
-        return accountDTO;
+    public int getUserCode() {
+        return userCode;
     }
 
-    public void setAccountDTO(AccountDTO accountDTO) {
-        this.accountDTO = accountDTO;
+    public void setUserCode(int userCode) {
+        this.userCode = userCode;
+    }
+
+    public List<CartDTO> getCartDTO() {
+        return cartDTO;
+    }
+
+    public void setCartDTO(List<CartDTO> cartDTO) {
+        this.cartDTO = cartDTO;
     }
 
     @Override
@@ -59,7 +71,10 @@ public class PaymentDTO {
                 "paymentCode=" + paymentCode +
                 ", paymentDate=" + paymentDate +
                 ", amount=" + amount +
-                ", accountDTO=" + accountDTO +
+                ", userCode=" + userCode +
+                ", cartDTO=" + cartDTO +
                 '}';
     }
 }
+
+
