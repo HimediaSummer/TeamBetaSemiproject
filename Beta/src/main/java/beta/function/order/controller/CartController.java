@@ -23,13 +23,11 @@ public class CartController {
 
     private final CartService cartService;
     private final MessageSource messageSource;
-    private final HttpSession httpSession;
 
     @Autowired
     public CartController(CartService cartService, @Qualifier("messageSource") MessageSource messageSource) {
         this.cartService = cartService;
         this.messageSource = messageSource;
-        this.httpSession = httpSession;
     }
 
     /*회원 최근 내역*/
@@ -105,14 +103,4 @@ public class CartController {
         return "redirect:/game/listAll";
     }
 
-    /*장바구니 게임 삭제*/
-    @PostMapping("/cart/delete/{gameCode}")
-    public String deleteCart(@PathVariable("gameCode") int gameCode){
-
-        cartService.deleteCart(gameCode);
-
-        return "redirect:/order/cart";
-    }
-
-//
 }
