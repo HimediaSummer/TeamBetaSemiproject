@@ -49,7 +49,9 @@ public class AuthController {
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
 
-        int result = Integer.parseInt(String.valueOf(whereid));
+//        int result = Integer.parseInt(String.valueOf(whereid.getUsername()));
+//
+//        System.out.println("result" + result);
 
         String message = null;
 
