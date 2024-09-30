@@ -18,11 +18,14 @@ public interface CartMapper {
     void addItem(CartDTO cart);
 
     /*동일한 게임이 있는지 확인*/
-    CartDTO findItemByGameAndUser(int gameCode, int userCode);
+//    CartDTO findItemByGameAndUser(int gameCode, int userCode);
 
     /*장바구니 게임 삭제*/
     void deleteCart(int gameCode);
 
     /*장바구니 전체 내역 삭제*/
     void deleteAllCart(Integer userCode);
+
+//    장바구니 담기 전 장바구니 체크
+    
 }

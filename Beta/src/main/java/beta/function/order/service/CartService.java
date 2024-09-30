@@ -41,12 +41,12 @@ public class CartService {
     public void addItem(int gameCode, int userCode) {
 
         // 동일한 게임이 있는지 확인
-        CartDTO existingItem = cartMapper.findItemByGameAndUser(gameCode, userCode);
+//        CartDTO existingItem = cartMapper.findItemByGameAndUser(gameCode, userCode);
 
         // 동일한 게임이 있으면 추가하지 않음
-        if (existingItem != null) {
-            throw new IllegalStateException("이미 장바구니에 추가된 게임입니다.");
-        }
+//        if (existingItem != null) {
+//            throw new IllegalStateException("이미 장바구니에 추가된 게임입니다.");
+//        }
 
         CartDTO cart = new CartDTO();
         cart.setUserCode(userCode);

@@ -10,6 +10,7 @@
         <result property="cartCode" column="cartCode"/>
         <result property="userCode" column="userCode"/>
         <result property="paymentCode" column="paymentCode"/>
+        <result property="gamecheck" column="gamecheck"/>
 <!--        <association property="gameDTO" javaType="beta.function.game.dto.GameDTO"/>-->
 <!--        <association property="paymentDTO" javaType="beta.function.order.dto.PaymentDTO"/>-->
 <!--        <association property="CartDTO" javaType="beta.function.order.dto.CartDTO"/>-->
@@ -21,7 +22,8 @@
             gameCode,
             cartCode,
             userCode,
-            paymentCode
+            paymentCode,
+            gamecheck
         FROM
             game_order
         ORDER BY

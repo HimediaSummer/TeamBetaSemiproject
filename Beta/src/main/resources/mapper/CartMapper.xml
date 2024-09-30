@@ -56,24 +56,29 @@
             b.gameCode,
             b.gameName,
             b.gamePrice,
-            b.gameThumbnail
+            b.gameThumbnail,
+            c.gamecheck,
+            a.addCart
         FROM
             game_cart a
+        <!--게임 리스트 목록에서 아이템을 담는 조인문-->
         JOIN game_list b ON a.gameCode = b.gameCode
+        <!--장바구니에서 결제시 결제여부 체크 조인문-->
+        join game_order c on a.userCode = c.userCode
         WHERE
-            a.userCode = #{ userCode }
+            a.userCode = #{ userCode } AND c.gamecheck = 'N' AND a.addCart = 'Y';
     </select>
 
     <!--동일한 게임이 있는지 확인-->
-    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">
-        SELECT
-        cartCode, userCode, gameCode
-        FROM
-        game_cart
-        WHERE
-        userCode = #{userCode}
-        AND gameCode = #{gameCode}
-    </select>
+<!--    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">-->
+<!--        SELECT-->
+<!--        cartCode, userCode, gameCode-->
+<!--        FROM-->
+<!--        game_cart-->
+<!--        WHERE-->
+<!--        userCode = #{userCode}-->
+<!--        AND gameCode = #{gameCode}-->
+<!--    </select>-->
 
     <!--게임 총 금액-->
     <select id="gamePriceTotal" parameterType="beta.function.order.dto.CartDTO">
@@ -84,6 +89,15 @@
         JOIN game_list b ON a.gameCode = b.gameCode
     </select>
 
+    <!--장바구니 담기 전 장바구니 체크-->
+    <select id="cartListCheck" parameterType="beta.function.order.dto.CartDTO">
+        select
+            count(gc.gameCode)
+        from game_cart gc
+        where gc.gameCode = #{ gameCode } and userCode = 2
+    </select>
+
+
     <!--장바구니에 담기-->
     <insert id="addItem" parameterType="beta.function.order.dto.CartDTO" useGeneratedKeys="true" keyProperty="userCode">
         INSERT INTO game_cart
@@ -92,11 +106,18 @@
             gameCode
         )
         VALUES
-        (
-            #{ userCode },
-            #{ gameCode }
-        )
+            (
+                #{ userCode },
+                #{ gameCode }
+            )
     </insert>
+
+    <update id="addItem" parameterType="beta.function.order.dto.CartDTO" useGeneratedKeys="true" keyProperty="userCode">
+        UPDATE game_cart
+        SET
+        addCart = 'Y'
+        WHERE gameCode = #{ gameCode } and userCode = #{ userCode }
+    </update>
 
     <!--장바구니 게임 삭제-->
     <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
@@ -109,10 +130,16 @@
 
     <!--장바구니 전체 내역 삭제-->
     <delete id="deleteAllCart" parameterType="beta.function.order.dto.CartDTO">
-        DELETE
-        FROM
-            game_cart
-        WHERE
-            userCode = #{ userCode }
+<!--        DELETE-->
+<!--        FROM-->
+<!--            game_cart-->
+<!--        WHERE-->
+<!--            userCode = #{ userCode }-->
+
+        UPDATE game_order
+        SET
+        gamecheck = 'Y'
+        WHERE userCode IN (select userCode from game_cart where userCode = #{ userCode });
+
     </delete>
 </mapper>

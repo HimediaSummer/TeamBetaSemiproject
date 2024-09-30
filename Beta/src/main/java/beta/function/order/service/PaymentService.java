@@ -51,7 +51,7 @@ public class PaymentService {
         paymentMapper.insertPayment(payment);
 
         /*장바구니 전체 내역 삭제*/
-//        cartService.clearCart(userCode);
+        cartService.clearCart(userCode);
     }
 
 

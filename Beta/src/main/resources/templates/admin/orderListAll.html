@@ -19,6 +19,8 @@
         <td th:text="${ order.cartCode }"></td>
         <td th:text="${ order.userCode }"></td>
         <td th:text="${ order.paymentCode }"></td>
+        <td th:text="${ order.gamecheck }"></td>
+
         <!--<td>
             <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
                 <button type="submit">삭제</button>
@@ -27,6 +29,5 @@
     </tr>
 </table>
 
-<button onclick="location.href='/admin/orderListOne'">주문 개별조회</button>
 </body>
 </html>

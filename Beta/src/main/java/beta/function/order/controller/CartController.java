@@ -92,7 +92,8 @@ public class CartController {
         try{
 //            List<CartDTO> cart = cartService.addItem(gameCode, userCode);
             cartService.addItem(gameCode, userCode);
-
+            System.out.println("[CartController] gameCode : " + gameCode);
+            System.out.println("[CartController] userCode : " + userCode);
 //            httpSession.setAttribute("cart", cart);
 
             rAttr.addFlashAttribute("successMessage", "장바구니에 담겼습니다.");

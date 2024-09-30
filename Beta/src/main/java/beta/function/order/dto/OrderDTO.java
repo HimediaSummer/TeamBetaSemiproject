@@ -9,6 +9,7 @@ public class OrderDTO {
     private int cartCode;
     private int userCode;
     private int paymentCode;
+    private char gamecheck;
     private GameDTO gameDTO;
     private PaymentDTO paymentDTO;
     private CartDTO cartDTO;
@@ -16,15 +17,24 @@ public class OrderDTO {
     public OrderDTO() {
     }
 
-    public OrderDTO(int orderCode, int gameCode, int cartCode, int userCode, int paymentCode, GameDTO gameDTO, PaymentDTO paymentDTO, CartDTO cartDTO) {
+    public OrderDTO(int orderCode, int gameCode, int cartCode, int userCode, int paymentCode, char gamecheck, GameDTO gameDTO, PaymentDTO paymentDTO, CartDTO cartDTO) {
         this.orderCode = orderCode;
         this.gameCode = gameCode;
         this.cartCode = cartCode;
         this.userCode = userCode;
         this.paymentCode = paymentCode;
+        this.gamecheck = gamecheck;
         this.gameDTO = gameDTO;
         this.paymentDTO = paymentDTO;
         this.cartDTO = cartDTO;
+    }
+
+    public char getGamecheck() {
+        return gamecheck;
+    }
+
+    public void setGamecheck(char gamecheck) {
+        this.gamecheck = gamecheck;
     }
 
     public int getOrderCode() {
@@ -99,6 +109,7 @@ public class OrderDTO {
                 ", cartCode=" + cartCode +
                 ", userCode=" + userCode +
                 ", paymentCode=" + paymentCode +
+                ", gamecheck=" + gamecheck +
                 ", gameDTO=" + gameDTO +
                 ", paymentDTO=" + paymentDTO +
                 ", cartDTO=" + cartDTO +

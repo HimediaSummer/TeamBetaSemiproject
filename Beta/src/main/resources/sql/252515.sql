@@ -1,0 +1,1 @@
+game_cartSELECT * FROM gamsungdb.game_cart;
