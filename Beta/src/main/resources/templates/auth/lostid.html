@@ -1,37 +1,12 @@
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>아이디찾기 페이지</h1>-->
-<!--아이디를 찾고싶으면 이메일을 입력해주세요-->
-
-<!--    <form th:action="@{/auth/lostid}" th:method="POST">-->
-<!--        <label>email : </label>-->
-<!--        <input type="text" id="email" name="email"/>-->
-<!--        <button>아이디찾기</button>-->
-<!--    </form>-->
-<!--    <tr th:each="whereid : ${ whereid }">-->
-<!--        <p>님 아이디 : </p><td th:text="${ whereid }"></td>-->
-<!--    </tr>-->
-
-
-
-<!--</body>-->
-<!--</html>-->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
     <style>
         /* 기본 스타일 설정 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f7f7;
             margin: 0;
             padding: 0;
             display: flex;
@@ -42,23 +17,22 @@
 
         /* 컨테이너 스타일 */
         .container {
-            background-color: #fff;
+            background-color: #D9D9D9;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 350px;
+            width: 400px;
             text-align: center;
         }
 
         /* 헤더 스타일 */
         h1 {
-            font-size: 24px;
             margin-bottom: 20px;
+            color: #000000;
         }
 
         /* 설명 텍스트 스타일 */
         p {
-            font-size: 14px;
             color: #666;
             margin-bottom: 15px;
         }
@@ -73,6 +47,7 @@
         label {
             font-weight: bold;
             margin-bottom: 5px;
+            color: #333;
         }
 
         input[type="text"] {
@@ -85,8 +60,8 @@
 
         button {
             padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
+            background-color: #3BADAD;
+            color: #FFEE32;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -95,7 +70,8 @@
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: #FFEE32;
+            color: #3BADAD;
         }
 
         /* 아이디 결과 표시 스타일 */
@@ -114,54 +90,39 @@
 
         .result-container td {
             font-weight: bold;
-            color: #007bff;
+        }
+
+        .back-button {
+            background-color: #3BADAD;
+            color: #FFEE32;
+        }
+
+        .back-button:hover {
+            background-color: #FFEE32;
+            color: #3BADAD;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>아이디 찾기 페이지</h1>
+    <h1>아이디 찾기</h1>
     <p>아이디를 찾고 싶으면 이메일을 입력해주세요.</p>
 
     <form th:action="@{/auth/lostid}" th:method="POST">
-        <label for="email">이메일 :</label>
-        <input type="text" id="email" name="email" placeholder="이메일을 입력하세요" />
+        <label for="email">이메일</label>
+        <input type="text" id="email" name="email" placeholder="이메일을 입력하세요" required/>
         <button type="submit">아이디 찾기</button>
     </form>
 
     <!-- 아이디 결과 표시 -->
     <div class="result-container">
         <tr th:each="whereid : ${whereid}">
-            <p>님 아이디: <td th:text="${whereid}"></td></p>
+            <p>아이디: <td th:text="${whereid}"></td></p>
         </tr>
     </div>
 
     <!-- 로그인 페이지로 돌아가는 버튼 -->
-    <button type="button" onclick="location.href='login'">로그인 페이지로 돌아가기</button>
+    <button type="button" class="back-button" onclick="location.href='login'">로그인 페이지로 돌아가기</button>
 </div>
 </body>
 </html>
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Title</title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<h1>아이디찾기 페이지</h1>-->
-<!--아이디를 찾고싶으면 이메일을 입력해주세요-->
-
-<!--    <form th:action="@{/auth/lostid}" th:method="POST">-->
-<!--        <label>email : </label>-->
-<!--        <input type="text" id="email" name="email"/>-->
-<!--        <button>아이디찾기</button>-->
-<!--    </form>-->
-<!--    <tr th:each="whereid : ${ whereid }">-->
-<!--        <p>님 아이디 : </p><td th:text="${ whereid }"></td>-->
-<!--    </tr>-->
-
-
-
-<!--</body>-->
-<!--</html>-->

@@ -61,11 +61,14 @@ public class AccountController {
             message = "중복된 아이디입니다.";
             System.out.println("message = " + message);
 
+            mv.addObject("message",message);
+
         } else if(usernameExists == 0) {
 
             System.out.println("어카운트 컨드롤러 : 아이디 중복체크 결과 문제 없음. 회원가입 로직 실행");
             message = "사용가능한 아이디입니다.";
             System.out.println("message = " + message);
+            mv.addObject("message",message);
 
             // 중복되지 않으면 회원가입 진행
             accountService.regist(newUserInfo); // 회원가입 로직 실행
@@ -73,6 +76,9 @@ public class AccountController {
 
             mv.setViewName("auth/login"); // 회원가입 성공 후 로그인 페이지로 리다이렉트
         }
+
+//        mv.addObject("message",message);
+
         return mv;
         }
 
