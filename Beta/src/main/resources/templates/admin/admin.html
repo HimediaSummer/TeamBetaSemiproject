@@ -3,11 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px; /* Space between sidebar and content */
+        }
+        .sidebar button {
+            margin: 5px 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .sidebar button:hover {
+            background-color: #0056b3;
+        }
+        .content {
+            flex-grow: 1; /* Allows content to take the remaining space */
+        }
+        .button-group {
+            display: flex; /* Display buttons horizontally */
+            gap: 10px; /* Space between buttons */
+        }
+        .button-group button {
+            margin: 0; /* Remove margin for buttons in the group */
+        }
+    </style>
 </head>
 <body>
+    
 <!-- 설명. 'ADMIN' 권한을 가진 사용자만 이 영역을 볼 수 있음 -->
 <div sec:authorize="hasAnyAuthority('ADMIN')">
     <p>Welcome, You are ADMIN!</p>
 </div>
+
+    <div class="sidebar">
+        <button onclick="location.href='/admin/memberList'">회원관리</button>
+        <button onclick="location.href='/game/listAll'">게임관리</button>
+        <button onclick="location.href=''">주문관리</button>
+        <button onclick="location.href=''">댓글관리</button>
+    </div>
+    <div class="content">
+        <div class="button-group">
+            <button onclick="location.href='/admin/memberList'">전체조회</button>
+<!--            <button onclick="location.href='/admin/'">개별조회</button>-->
+<!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
+            <button onclick="openWindow('/admin/')">개별조회</button>
+            <button onclick="openWindow('/admin/memberRegist')">등록</button>
+        </div>
+    </div>
+
+    <script>
+        function openWindow(url) {
+            // Define the size of the new window
+            const width = 800; // Adjust width
+            const height = 600; // Adjust height
+            const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
+            const top = (window.innerHeight / 2) - (height / 2); // Center vertically
+
+            window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
+        }
+    </script>
+    <title>admin</title>
+</body>
+<body>
+<header></header>
+<nav></nav>
+<aside></aside>
+<section>
+    <button onclick="location.href='/game/listAll'">전체조회</button>
+    <button onclick="location.href='/game/listOne'">개별조회</button>
+    <button onclick="location.href='/game/regist'">등록하기</button>
+</section>
+<article></article>
+<footer></footer>
 </body>
 </html>

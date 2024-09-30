@@ -1,24 +1,13 @@
 package beta.function.auth.controller;
 
-import beta.function.account.dao.AccountMapper;
 import beta.function.account.dto.AccountDTO;
-import beta.function.account.dto.SignupDTO;
-import beta.function.account.service.AccountService;
 import beta.function.auth.service.AuthService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.io.IOException;
 
 @Controller
 @RequestMapping("/auth")
@@ -54,11 +43,26 @@ public class AuthController {
         System.out.println("버튼호출 어스컨트롤러 1 ");
 
         AccountDTO whereid = authService.lostid(email);
-        System.out.println("버튼호출 어스컨트롤러 2 ");
+        System.out.println("버튼호출 어스컨트롤러 2 " + whereid);
 
         model.addAttribute("whereid", whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
+
+//        int result = Integer.parseInt(String.valueOf(whereid.getUsername()));
+//
+//        System.out.println("result" + result);
+
+        String message = null;
+
+//        if (result == null) {
+//            message = "이미 해당 정보로 가입된 회원이 존재합니다.";
+//            System.out.println(message);
+//
+//            mv.setViewName("user/signup");
+//        } else if (result == 0) {
+//            message = "회원가입에 실패했습니다. 다시 시도해주세요";
+//            System.out.println(message);
 
         return "auth/lostid";
 //        return "auth/lostpwd";
@@ -73,7 +77,7 @@ public class AuthController {
         System.out.println("lostpwd 어스컨트롤러 1 ");
 
         AccountDTO lostpwd = authService.lostpwd(email);
-        System.out.println("lostpwd 어스컨트롤러 2 ");
+        System.out.println("lostpwd 어스컨트롤러 2 " + lostpwd);
 
         model.addAttribute("lostpwd", lostpwd.getUsername());
         System.out.println("lostpwd 어스컨트롤러 3 " + lostpwd.getUsername());

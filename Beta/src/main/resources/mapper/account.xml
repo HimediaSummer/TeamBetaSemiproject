@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="beta.function.account.dao.AccountMapper">
+<mapper namespace="beta.function.account.dao.AccountDAO">
 
     <resultMap id="authenticatedUser" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
@@ -10,7 +10,18 @@
         <result property="password" column="password"/>
         <result property="fullName" column="fullName"/>
         <result property="userRole" column="authorityCodeName"/>
+        <result property="birthday" column="birthday"/>
         <result property="email"    column="email"/>
+        <result property="phone" column="phone"/>
+        <result property="suspension" column="suspension"/>
+        <result property="deletion" column="deletion"/>
+        <result property="profileimg" column="profileimg"/>
+        <result property="authorityCode" column="authorityCode"/>
+    </resultMap>
+
+    <resultMap id="authorityResultMap" type="beta.function.account.dto.AuthorityDTO">
+        <id property="authorityCode" column="authorityCode"/>
+        <result property="authorityCodeName" column="authorityCodeName"/>
     </resultMap>
 
     <select id="findByUsername" resultMap="authenticatedUser">
@@ -30,7 +41,7 @@
     <insert id="regist" parameterType="beta.function.account.dto.SignupDTO" >
     INSERT INTO account_list
     (
-        userName,
+        username,
         password,
         fullName,
         nickName,
@@ -77,6 +88,7 @@
         where username = #{ username };
     </update>
 
+<<<<<<< HEAD
 
     <select id="checkId" parameterType="beta.function.account.dto.SignupDTO">
         SELECT
@@ -85,6 +97,134 @@
         account_list
         WHERE
         username = #{ username }
+=======
+    <select id="findAllMember" resultMap="authenticatedUser">
+        SELECT
+            userCode,
+            username,
+            fullname,
+            nickName,
+            password,
+            birthday,
+            email,
+            phone,
+            suspension,
+            deletion,
+            profileimg,
+            authorityCode
+        FROM
+            account_list
+        ORDER BY
+            userCode
+    </select>
+
+    <select id="findAllAuthority" resultMap="authorityResultMap">
+        SELECT
+            authorityCode,
+            authorityCodeName
+        FROM
+            account_authority
+    </select>
+
+    <select id="findMemberByCode" parameterType="int" resultMap="authenticatedUser">
+        SELECT
+            userCode,
+        username,
+        fullname,
+            nickName,
+        password,
+            birthday,
+            email,
+            phone,
+            suspension,
+            deletion,
+            profileimg,
+            authorityCode
+        FROM
+            account_list
+        WHERE
+            userCode = #{userCode}
+    </select>
+
+    <insert id="registNewMember" parameterType="beta.function.account.dto.AccountDTO"
+            useGeneratedKeys="true" keyProperty="userCode">
+        INSERT INTO
+            account_list
+            (
+            username,
+            fullname,
+            nickName,
+            password,
+            birthday,
+            email,
+            phone,
+            suspension,
+            deletion,
+            profileimg,
+            authorityCode
+            )
+        VALUES
+            (
+            #{username},
+            #{fullname},
+            #{nickName},
+            #{password},
+            #{birthday},
+            #{email},
+            #{phone},
+            #{suspension},
+            #{deletion},
+            #{profileimg},
+            #{authorityCode}
+            )
+    </insert>
+
+    <update id="updateMember" parameterType="beta.function.account.dto.AccountDTO">
+        UPDATE account_list
+        SET
+            username = #{username},
+            fullname = #{fullname},
+            nickName = #{nickName},
+            password = #{password},
+            birthday = #{birthday},
+            email = #{email},
+            phone = #{phone},
+            suspension = #{suspension},
+            deletion = #{deletion},
+            profileimg = #{profileimg},
+            authorityCode = #{authorityCode}
+        WHERE
+            userCode = #{userCode}
+    </update>
+
+    <delete id="deleteMember" parameterType="int">
+        DELETE
+        FROM
+            account_list
+        WHERE
+            userCode = #{userCode}
+    </delete>
+
+    <!--회원코드별 회원정보-->
+    <select id="userAllList" resultMap="authenticatedUser">
+        SELECT
+        userCode,
+        username,
+        fullname,
+        nickName,
+        password,
+        birthday,
+        email,
+        phone,
+        suspension,
+        deletion,
+        profileimg,
+        authorityCode
+        FROM
+        account_list
+        ORDER BY
+        userCode
+>>>>>>> 6e4d9096f548314777d4c9d74e093294c95ef536
     </select>
 
 </mapper>

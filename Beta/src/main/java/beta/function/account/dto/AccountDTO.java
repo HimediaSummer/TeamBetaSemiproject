@@ -3,9 +3,10 @@ package beta.function.account.dto;
 import beta.function.auth.userRole.UserRole;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import beta.function.order.dto.CartDTO;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 public class AccountDTO implements UserDetails {
 
@@ -20,9 +21,12 @@ public class AccountDTO implements UserDetails {
     private String phone;       // 사용자 폰번호
     private String profileimg;  // 사용자 프로필 사진
 
+    private char suspension;
+    private char deletion;
+    private int authorityCode;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(() -> userRole.getRole());
@@ -32,13 +36,11 @@ public class AccountDTO implements UserDetails {
         return authorities;
     }
 
-
     @Override
     public String getPassword() {
         System.out.println("SpringSecurity가 비밀번호를 요구한다 : " + this.password);
         return this.password;
     }
-
 
     @Override
     public String getUsername() {
@@ -46,18 +48,15 @@ public class AccountDTO implements UserDetails {
         return this.username;
     }
 
-
     @Override
     public boolean isAccountNonExpired() {
         return UserDetails.super.isAccountNonExpired();
     }
 
-
     @Override
     public boolean isAccountNonLocked() {
         return UserDetails.super.isAccountNonLocked();
     }
-
 
     @Override
     public boolean isCredentialsNonExpired() {
@@ -72,7 +71,7 @@ public class AccountDTO implements UserDetails {
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg) {
+    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg, char suspension, char deletion, int authorityCode) {
         this.userCode = userCode;
         this.username = username;
         this.password = password;
@@ -83,6 +82,28 @@ public class AccountDTO implements UserDetails {
         this.email = email;
         this.phone = phone;
         this.profileimg = profileimg;
+        this.suspension = suspension;
+        this.deletion = deletion;
+        this.authorityCode = authorityCode;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDTO{" +
+                "userCode=" + userCode +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", userRole=" + userRole +
+                ", nickName='" + nickName + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", profileimg='" + profileimg + '\'' +
+                ", suspension=" + suspension +
+                ", deletion=" + deletion +
+                ", authorityCode=" + authorityCode +
+                '}';
     }
 
     public int getUserCode() {
@@ -157,19 +178,27 @@ public class AccountDTO implements UserDetails {
         this.profileimg = profileimg;
     }
 
-    @Override
-    public String toString() {
-        return "AccountDTO{" +
-                "userCode=" + userCode +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", userRole=" + userRole +
-                ", nickName='" + nickName + '\'' +
-                ", birthday='" + birthday + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\'' +
-                ", profileimg='" + profileimg + '\'' +
-                '}';
+    public char getSuspension() {
+        return suspension;
+    }
+
+    public void setSuspension(char suspension) {
+        this.suspension = suspension;
+    }
+
+    public char getDeletion() {
+        return deletion;
+    }
+
+    public void setDeletion(char deletion) {
+        this.deletion = deletion;
+    }
+
+    public int getAuthorityCode() {
+        return authorityCode;
+    }
+
+    public void setAuthorityCode(int authorityCode) {
+        this.authorityCode = authorityCode;
     }
 }

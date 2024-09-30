@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beta.function.order.dao.CartMapper">
+
+    <!-- game_cart와 game_list 테이블 -->
+    <resultMap id="cartGameResultMap" type="beta.function.order.dto.CartDTO">
+        <id property="cartCode" column="cartCode"/>
+        <result property="userCode" column="userCode"/>
+        <result property="gameCode" column="gameCode"/>
+        <!--game_cart 테이블과 game_list 테이블 join-->
+        <collection property="gameDTO" resultMap="gameResultMap"/>
+    </resultMap>
+
+    <!--game_list 테이블-->
+    <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
+        <result property="gameName" column="gameName"/>
+        <result property="gamePrice" column="gamePrice"/>
+        <result property="gameThumbnail" column="gameThumbnail"/>
+    </resultMap>
+
+    <!-- account_list와 game_cart 테이블 -->
+    <resultMap id="userCartResultMap" type="beta.function.account.dto.AccountDTO">
+        <id property="userCode" column="userCode"/>
+        <result property="userCode" column="userCode"/>
+        <result property="gameCode" column="gameCode"/>
+        <!-- aaccount_list 테이블과 game_cart 테이블 join -->
+        <collection property="cartDTO" resultMap="cartResultMap"/>
+    </resultMap>
+
+    <!-- account_list 테이블 -->
+    <resultMap id="cartResultMap" type="beta.function.order.dto.CartDTO">
+        <result property="gameCode" column="gameCode"/>
+    </resultMap>
+
+    <!--장바구니 리스트-->
+    <select id="findAllList" resultMap="cartGameResultMap">
+        SELECT
+            a.cartCode,
+            a.userCode,
+            b.gameCode,
+            b.gameName,
+            b.gamePrice,
+            b.gameThumbnail
+        FROM
+            game_cart a
+        JOIN game_list b ON a.gameCode = b.gameCode
+    </select>
+
+    <!--회원별 장바구니 리스트-->
+    <select id="findByUser" resultMap="cartGameResultMap">
+        SELECT
+            a.cartCode,
+            a.userCode,
+            b.gameCode,
+            b.gameName,
+            b.gamePrice,
+            b.gameThumbnail
+        FROM
+            game_cart a
+        JOIN game_list b ON a.gameCode = b.gameCode
+        WHERE
+            a.userCode = #{ userCode }
+    </select>
+
+    <!--장바구니에 담기-->
+    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
+        INSERT INTO game_cart
+        (
+            userCode,
+            gameCode
+        )
+        VALUES
+        (
+            #{ userCode },
+            #{ gameCode }
+        )
+    </insert>
+
+    <!--동일한 게임이 있는지 확인-->
+    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">
+        SELECT
+            cartCode, userCode, gameCode
+        FROM
+            game_cart
+        WHERE
+            userCode = #{userCode}
+            AND gameCode = #{gameCode}
+    </select>
+
+    <!--장바구니 게임 삭제-->
+    <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
+        DELETE
+        FROM
+            game_cart
+        WHERE
+            gameCode = #{ gameCode }
+    </delete>
+
+    <!--게임 담기 회원별-->
+    <!--<insert id="addItem" parameterType="beta.function.order.dto.CartDTO">
+        INSERT INTO game_cart
+            (
+            cartCode,
+            userCode,
+            gameCode
+            )
+        VALUES
+            (
+            cartCode,
+            #{ userCode },
+            #{ gameCode }
+            )
+    </insert>-->
+</mapper>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listAll</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/nav.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+</head>
+<body>
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/nav :: navbar"></nav>
+</header>
+
+<aside class="side-bar">
+    <ul class="sidebar-menu">
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+        </li>
+        <li>
+            <button class="admin-btn active" onclick="location.href='/game/listAll'">게임관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+        </li>
+    </ul>
+</aside>
+
+<main>
+    <section class="top-bar">
+        <button class="admin-btn active" onclick="location.href='/game/listAll'">전체조회</button>
+        <button class="admin-btn" onclick="location.href='/game/listOne'">개별조회</button>
+        <button class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
+    </section>
+
+    <article>
+        <table>
+            <tr>
+                <th>게임코드</th>
+                <th>게임이름</th>
+                <th>게임용량</th>
+                <th>게임가격</th>
+                <th>업로드일자</th>
+                <th>게임출처</th>
+                <th>게임사양</th>
+                <th>원본사진</th>
+                <th>썸네일사진</th>
+            </tr>
+            <tr th:each="game : ${ gameList }">
+                <td th:text="${ game.gameCode }"></td>
+                <td th:text="${ game.gameName }"></td>
+                <td th:text="${ game.gameStorage }"></td>
+                <td th:text="${ game.gamePrice }"></td>
+                <td th:text="${ game.uploadDate }"></td>
+                <td th:text="${ game.gameOrigin }"></td>
+                <td th:text="${ game.gameRequirement }"></td>
+                <td th:text="${ game.gamePicture }"></td>
+                <td th:text="${ game.gameThumbnail }"></td>
+                <td>
+                    <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                        <button type="submit">수정</button>
+                    </form>
+                </td>
+                <td>
+                    <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                        <button type="submit">삭제</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Pagination example -->
+        <nav>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>99</button>
+        </nav>
+    </article>
+</main>
+
+<footer></footer>
+</body>
+</html>

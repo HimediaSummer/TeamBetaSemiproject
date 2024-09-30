@@ -1,24 +1,108 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Main Page</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/nav.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Include main specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/main.css}">
 </head>
 <body>
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/nav :: navbar"></nav>
+</header>
 
-<h1 style="text-align: center;"> Beta </h1>
+<!-- Hero Section with Slider -->
+<section class="hero">
+    <div class="slider">
+        <div class="slide"><img src="/static/img/original/Tetris.png" alt="Tetris"></div>
+        <!-- Add more images here -->
+    </div>
+    <div class="hero-text">
+        <p>Let's go back to <br> a time we knew.<br>Let's drink the <br> whole night through</p>
+    </div>
+</section>
 
-<h3>1-1. Spring Security를 이용한 로그인 및 회원 가입</h3>
-<a href="auth/login">로그인(SELECT USER)</a>
-<br>
-<a href="user/signup">회원가입(INSERT USER)</a>
-<br>
+<!-- Product Grid Section -->
+<section class="product-section">
+    <div class="center-container">
+        <ul class="productGrid">
+            <li>
+                <img src="/static/img/thumbnail/Tetris.png" alt="Tetris">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
+            </li>
+            <li>
+                <img src="/static/img/thumbnail/SuperMarioBros.png" alt="SuperMarioBros">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
+            </li>
+            <li>
+                <img src="/static/img/thumbnail/Contra.png" alt="Contra">
+                <div class="button-group">
+                    <button>Learn More</button>
+                </div>
+            </li>
+            <li>
+                <img src="/static/img/thumbnail/TheLegendOfZelda.png" alt="TheLegendOfZelda">
+                <div class="button-group">
+                    <button class="main-btn02">Buy Now</button>
+                    <button class="main-btn02">Learn More</button>
+                </div>
+            </li>
+            <!-- Add more products as needed -->
+        </ul>
+    </div>
+</section>
 
-<h3>1-2. Spring Security를 이용한 로그아웃</h3>
-<form th:action="@{/auth/logout}" th:method="post">
-    <button>로그아웃</button>
-</form>
+<!-- Swipeable Product Gallery (Cards Section) -->
+<section class="cards-section">
+    <div class="product-container">
+        <div class="product-list">
+            <!-- Add 20 product images here -->
+            <div class="product-item">
+                <img src="/static/img/thumbnail/SuperMarioBros.png" alt="Product 1">
+                <p>Product 1 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/TheLegendOfZelda.png" alt="Product 2">
+                <p>Product 2 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/PacMan.png" alt="Product 3">
+                <p>Product 3 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <div class="product-item">
+                <img src="/static/img/thumbnail/SonicTheHedgehog.png" alt="Product 4">
+                <p>Product 4 Description</p>
+                <button class="sub-btn">Learn More</button>
+            </div>
+            <!-- Continue adding all 20 product items -->
+        </div>
+    </div>
+    <button class="prev" onclick="slideProducts(-1)">&#10094;</button>
+    <button class="next" onclick="slideProducts(1)">&#10095;</button>
+</section>
 
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <p>All rights are reserved to BetaGamsung Developing Team&#169.</p>
+    </div>
+</footer>
 
 <div sec:authorize="hasAnyAuthority('ADMIN')">
     <p>Welcome, You are ADMIN!</p>
@@ -144,3 +228,7 @@
 <!--</script>-->
 <!--</body>-->
 <!--</html>-->
+<!-- Include the JS for slider functionality -->
+<script src="/static/js/slider.js"></script>
+</body>
+</html>

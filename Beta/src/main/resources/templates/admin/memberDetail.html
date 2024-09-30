@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>detail</title>
+</head>
+<body>
+    <h2>회원 상세 정보</h2>
+
+    <div>
+        <p>회원코드: <span th:text="${member.userCode}"></span></p>
+        <p>회원아이디: <span th:text="${member.userId}"></span></p>
+        <p>회원이름: <span th:text="${member.userName}"></span></p>
+        <p>회원별명: <span th:text="${member.nickName}"></span></p>
+        <p>회원비밀번호: <span th:text="${member.pwd}"></span></p>
+        <p>회원생일: <span th:text="${member.birthday }"></span></p>
+        <p>회원이메일: <span th:text="${member.email }"></span></p>
+        <p>회원전화번호: <span th:text="${member.phone }"></span></p>
+        <p>정지여부: <span th:text="${member.suspension}"></span></p>
+        <p>탈퇴여부: <span th:text="${member.deletion}"></span></p>
+        <p>프로필사진: <span th:text="${member.profileimg}"></span></p>
+        <p>권한코드: <span th:text="${member.authorityCode}"></span></p>
+    </div>
+
+<!--    <a th:href="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}">수정하기</a>-->
+    <button id="editButton">수정하기</button>
+    <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
+        <button type="submit">삭제하기</button>
+    </form>
+
+    <script>
+        /* 설명. JavaScript를 사용해 수정 버튼 동작시키기 */
+        document.getElementById('editButton').addEventListener('click', function() {
+            window.location.href = '/admin/memberEdit/' + [[${ member.userCode }]];
+        });
+    </script>
+
+
+    <button onclick="location.href='/admin/memberList'">목록으로</button><br>
+
+</body>
+</html>

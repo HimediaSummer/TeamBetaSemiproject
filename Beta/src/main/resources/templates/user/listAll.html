@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>listAll</title>
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+</head>
+<body>
+
+    <table>
+        <tr>
+            <th>회원코드</th>
+            <th>회원이름</th>
+        </tr>
+        <tr th:each="user : ${ userList }">
+            <td th:text="${ user.userCode }"></td>
+            <td th:text="${ user.userName }"></td>
+
+            <td>
+                <form th:action="@{/order/userCart/{userCode}(userCode=${user.userCode})}" method="post">
+                    <button type="submit">회원별 장바구니</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</body>
+</html>
