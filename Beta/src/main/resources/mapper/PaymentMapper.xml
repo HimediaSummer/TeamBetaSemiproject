@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="beta.function.order.dao.PaymentMapper">
+
+    <!-- game_payment와 game_cart 테이블 -->
+    <resultMap id="paymentOrderResultMap" type="beta.function.order.dto.PaymentDTO">
+        <id property="paymentCode" column="paymentCode"/>
+        <result property="paymentDate" column="paymentDate"/>
+        <result property="amount" column="amount"/>
+        <result property="userCode" column="userCode"/>
+        <!--game_order 테이블과 game_list 테이블 join-->
+        <collection property="cartDTO" resultMap="cartResultMap"/>
+    </resultMap>
+
+    <!-- game_cart 테이블 -->
+    <resultMap id="cartResultMap" type="beta.function.order.dto.CartDTO">
+        <id column="cartCode" property="cartCode"/>
+        <result column="userCode" property="userCode"/>
+        <association property="gameDTO" javaType="beta.function.game.dto.GameDTO">
+            <id column="gameCode" property="gameCode"/>
+            <result column="gameName" property="gameName"/>
+            <result column="gamePrice" property="gamePrice"/>
+        </association>
+    </resultMap>
+
+    <!-- game_payment 테이블 -->
+    <resultMap id="paymentResultMap" type="beta.function.order.dto.PaymentDTO">
+        <result property="paymentDate" column="paymentDate"/>
+        <result property="amount" column="amount"/>
+        <result property="userCode" column="userCode"/>
+    </resultMap>
+
+    <!--결제 확인-->
+    <select id="orderResult" resultMap="paymentOrderResultMap">
+        SELECT
+            a.paymentCode,
+            a.paymentDate,
+            a.amount,
+            b.userCode,
+            b.gameCode
+        FROM
+            game_payment a
+        LEFT JOIN game_cart b ON a.userCode = b.userCode
+        WHERE a.userCode = #{ userCode }
+    </select>
+
+    <!--game_payment에 넣어주기-->
+    <insert id="insertPayment" parameterType="beta.function.order.dto.PaymentDTO" useGeneratedKeys="true" keyProperty="paymentCode">
+        INSERT INTO game_payment
+        (
+            userCode,
+            amount,
+            paymentDate
+        )
+        VALUES
+        (
+            #{ userCode },
+            #{ amount },
+            sysDate()
+        )
+    </insert>
+</mapper>

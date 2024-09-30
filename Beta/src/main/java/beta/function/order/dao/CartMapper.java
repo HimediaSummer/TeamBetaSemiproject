@@ -23,7 +23,6 @@ public interface CartMapper {
     /*장바구니 게임 삭제*/
     void deleteCart(int gameCode);
 
-
-
-
+    /*장바구니 전체 내역 삭제*/
+    void deleteAllCart(Integer userCode);
 }
