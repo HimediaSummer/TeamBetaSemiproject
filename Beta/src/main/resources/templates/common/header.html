@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="nav">
+<div class="nav" xmlns:sec="http://www.w3.org/1999/xhtml">
     <div class="nav-menu">
         <div class="logo">
             <img src="/img/logo.png" alt="Gamsung Station">
@@ -29,15 +29,29 @@
                 <h3>COMMUNITY</h3>
             </div>
 
-            <div class="login" id="login">
-                <i class="fa-solid fa-user-large"></i>
-                <h3>LOG IN</h3>
-            </div>
+            <!--로그인 안된 상태에서 로그인 표시-->
+            <a sec:authorize="isAnonymous()" th:href="@{/auth/login}">
+                <div class="login">
+                    <i class="fa-solid fa-user-large"></i>
+                    <h3>LOG IN</h3>
+                </div>
+            </a>
 
-            <div class="logout" id="logout">
-                <i class="fa-solid fa-user-large"></i>
-                <h3>LOG OUT</h3>
-            </div>
+
+            <!--로그인 한 사용자 이름 표시-->
+            <a sec:authorize="isAuthenticated()" href="/admin/memberList">
+                <div class="username">
+                    <i class="fa-solid fa-user-large"></i>
+                    <h3 sec:authentication="name"></h3>
+                </div>
+            </a>
+
+            <!-- 로그인이 된 상태에서는 로그아웃 표시 -->
+            <a sec:authorize="isAuthenticated()" th:href="@{/auth/logout}">
+                <div class="logout">
+                    <h3>LOG OUT</h3>
+                </div>
+            </a>
 
         </div>
     </div>
