@@ -32,6 +32,8 @@ body {
 
 /* Navigation menu styling */
 .main-nav-menu {
+.cart, .community, .login, .logout {
+    padding: 10px 0 0 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -53,9 +55,14 @@ body {
 
 /* Hover effects for better interaction */
 .cart:hover, .community:hover, .login:hover {
-    color: var(--text03); /* Change text color on hover */
+    color: var(--text03);
+} /* Change text color on hover */
+.cart > i, .community > i, .login > i, .logout > i{
+    margin: 0 10px 0 0;
 }
 
 .cart:hover i, .community:hover i, .login:hover i {
     color: var(--text03); /* Change icon color on hover */
+}
+
 }
