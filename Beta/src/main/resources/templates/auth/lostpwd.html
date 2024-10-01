@@ -139,7 +139,7 @@
     <button type="button" class="back-button" onclick="location.href='login'">로그인 페이지로 돌아가기</button>
 </div>
 
-<script>
+<script th:inline="javascript">
     const mainButton = document.getElementById('mainButton');
     const toggleButton = document.getElementById('toggleButton');
 
@@ -147,5 +147,15 @@
         toggleButton.style.display = toggleButton.style.display === 'none' ? 'inline-block' : 'none';
     });
 </script>
+
+<script th:inline="javascript">
+
+    /*오류 메시지 출력용*/
+    const message = [[${ message }]];
+    if (message) {
+        alert(message);
+    }
+</script>
+
 </body>
 </html>

@@ -47,19 +47,22 @@ public class AuthController {
         System.out.println(email);
 
         AccountDTO whereid = authService.lostid(email);
+
+        String message = null;
+
+        if(whereid == null) {
+            message = "등록된 아이디가 없습니다.";
+            System.out.println("message = " + message);
+            model.addAttribute("message", message);
+            return "/auth/lostid";
+        }
         System.out.println("버튼호출 어스컨트롤러 2 " + whereid);
 
         model.addAttribute("whereid", whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
 
-        String message = null;
-        
-        if(whereid == null) {
-            message = "등록된 아이디가 없습니다.";
-            System.out.println("message = " + message);
-            return "/auth/lostid";
-        }
+
 
 //        int result = Integer.parseInt(String.valueOf(whereid.getUsername()));
 //
@@ -88,6 +91,16 @@ public class AuthController {
         System.out.println("lostpwd 어스컨트롤러 1 ");
 
         AccountDTO lostpwd = authService.lostpwd(email);
+
+        String message = null;
+
+        if(lostpwd == null) {
+            message = "등록된 아이디가 없습니다.";
+            System.out.println("message = " + message);
+            model.addAttribute("message", message);
+            return "/auth/lostpwd";
+        }
+
         System.out.println("lostpwd 어스컨트롤러 2 " + lostpwd);
 
         model.addAttribute("lostpwd", lostpwd.getUsername());
