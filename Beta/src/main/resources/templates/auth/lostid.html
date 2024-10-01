@@ -123,6 +123,16 @@
 
     <!-- 로그인 페이지로 돌아가는 버튼 -->
     <button type="button" class="back-button" onclick="location.href='login'">로그인 페이지로 돌아가기</button>
+
+<script th:inline="javascript">
+    /* 설명. 오류 메세지를 출력용 alert() */
+    const message = [[${ message }]];
+    if (message) {
+        alert(message);
+    }
+
+
+</script>
 </div>
 </body>
 </html>

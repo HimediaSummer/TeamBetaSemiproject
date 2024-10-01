@@ -135,11 +135,26 @@
             transform: translateY(-2px);
         }
 
+        .loginButton {
+            padding: 12px;
+            background-color: #3BADAD;
+            color: #FFEE32;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 28px;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+        }
+
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>로그인</h1>
+    <h1>Log In</h1>
 
     <form th:action="@{/auth/login}" th:method="POST">
         <label for="user">아이디</label>
@@ -148,7 +163,7 @@
         <label for="pass">비밀번호</label>
         <input type="password" id="pass" name="password" placeholder="비밀번호를 입력하세요" />
 
-        <button type="submit">로그인</button>
+        <button type="submit" class="loginButton">로그인</button>
     </form>
 
     <div class="button-group">

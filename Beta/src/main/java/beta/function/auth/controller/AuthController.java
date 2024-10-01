@@ -2,7 +2,10 @@ package beta.function.auth.controller;
 
 import beta.function.account.dto.AccountDTO;
 import beta.function.auth.service.AuthService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +44,7 @@ public class AuthController {
     public String findlostid(String email, Model model) {
 
         System.out.println("버튼호출 어스컨트롤러 1 ");
+        System.out.println(email);
 
         AccountDTO whereid = authService.lostid(email);
         System.out.println("버튼호출 어스컨트롤러 2 " + whereid);
@@ -49,11 +53,18 @@ public class AuthController {
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
 
+        String message = null;
+        
+        if(whereid == null) {
+            message = "등록된 아이디가 없습니다.";
+            System.out.println("message = " + message);
+            return "/auth/lostid";
+        }
+
 //        int result = Integer.parseInt(String.valueOf(whereid.getUsername()));
 //
 //        System.out.println("result" + result);
 
-        String message = null;
 
 //        if (result == null) {
 //            message = "이미 해당 정보로 가입된 회원이 존재합니다.";
@@ -104,4 +115,5 @@ public class AuthController {
 //        return "auth/lostpwd";
         return "redirect:/auth/login";
     }
+
 }
