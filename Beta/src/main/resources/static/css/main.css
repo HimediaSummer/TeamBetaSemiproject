@@ -24,29 +24,29 @@
     object-fit: cover; /* Change to 'cover' to ensure the image fills the area */
 }
 
-/* Gradient Mask Overlay */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
-    z-index: 1;
-}
+/*!* Gradient Mask Overlay *!*/
+/*.hero::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);*/
+/*    z-index: 1;*/
+/*}*/
 
-.hero-text {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translateY(-50%);
-    text-align: left;
-    z-index: 2;
-    color: white; /* Ensure text is clearly visible */
-    font-size: 2.5rem;
-    line-height: 1.5;
-}
+/*.hero-text {*/
+/*    position: absolute;*/
+/*    top: 80%;*/
+/*    left: 20%;*/
+/*    transform: translateY(-50%);*/
+/*    text-align: left;*/
+/*    z-index: 2;*/
+/*    color: white; !* Ensure text is clearly visible *!*/
+/*    font-size: 2.5rem;*/
+/*    line-height: 1.5;*/
+/*}*/
 
 /* Centered Container */
 .center-container {
@@ -109,9 +109,13 @@
 }
 
 .product-list {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: calc(100% * 20); /* 20 products */
+    /*display: flex;*/
+    /*transition: transform 0.5s ease-in-out;*/
+    /*width: calc(100% * 20); !* 20 products *!*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
 }
 
 .product-item {
@@ -132,35 +136,31 @@
 }
 
 /* Positioning the description and the button on top of the image */
-.product-item p {
-    position: absolute;
-    top: 20px; /* Position description near the top of the image */
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    font-size: 1.2rem;
-    color: white; /* Ensure text is visible */
-    background: rgba(0, 0, 0, 0.6); /* Add a background for readability */
-    padding: 5px 10px;
-    border-radius: 5px;
-    max-width: 80%; /* Prevent text from stretching too far */
-    text-align: center;
-}
+/*.product-item p {*/
+/*    position: absolute;*/
+/*    top: 20px; !* Position description near the top of the image *!*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*    z-index: 2;*/
+/*    font-size: 1.2rem;*/
+/*    color: white; !* Ensure text is visible *!*/
+/*    background: rgba(0, 0, 0, 0.6); !* Add a background for readability *!*/
+/*    padding: 5px 10px;*/
+/*    border-radius: 5px;*/
+/*    max-width: 80%; !* Prevent text from stretching too far *!*/
+/*    text-align: center;*/
+/*}*/
 
 .sub-btn {
     position: absolute;
-    bottom: 20px; /* Position button at the bottom of the image */
+    top: 20px; /* Position button at the bottom of the image */
     left: 50%;
-    transform: translateX(-90%);
+    transform: translateX(-50%);
     z-index: 2; /* Make sure the button is on top of the image */
     padding: 10px 20px;
-    /*background-color: var(--sub-color04);*/
     border: none;
-    /*color: var(--sub-color05);*/
     font-weight: bold;
     cursor: pointer;
-    /*border-radius: 5px;*/
-    opacity: 0.9;
     transition: background-color 0.3s ease;
 }
 
@@ -197,12 +197,4 @@
 
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Footer */
-.footer-content {
-    background-color: #585859;
-    padding: 20px;
-    text-align: center;
-    color: #E6E6E6;
 }

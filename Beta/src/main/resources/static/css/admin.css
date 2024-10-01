@@ -1,9 +1,10 @@
 /* General layout */
-body {
-    background-color: var(--main-bg-color);
+wrapper {
     color: var(--text03);
+    background-color: var(--main-bg-color);
     display: flex;
     margin-top: 80px; /* Offset for the fixed navbar */
+    margin-bottom: 60px;
 }
 
 /* Main content area */

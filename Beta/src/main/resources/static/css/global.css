@@ -72,6 +72,7 @@ p{
     --sub-color03: #3BADAD;
     --sub-color04: #FFEE32;
     --sub-color05: #39393A;
+    --sub-color06: RGB(134, 160, 168);
 
     /* 텍스트 컬러 */
     --text01 : #202020;
@@ -144,5 +145,4 @@ p{
     border-radius: 12px;
     background-color: var(--sub-color04);
     color: var(--sub-color03);
-
 }
