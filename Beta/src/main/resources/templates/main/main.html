@@ -104,7 +104,163 @@
     </div>
 </footer>
 
+<div sec:authorize="hasAnyAuthority('ADMIN')">
+    <p>Welcome, You are ADMIN!</p>
+</div>
+
+
+<div sec:authorize="hasAnyAuthority('USER')">
+    <p>Welcome, You are USER!</p>
+</div>
+
+<script>
+    const modal = document.getElementById("modal");
+    const btn = document.getElementById("login-btn");
+    const span = document.getElementsByClassName("close");
+
+    // 로그인 버튼 클릭 시 모달 열기
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // 닫기 버튼 클릭 시 모달 닫기
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // 모달 외부 클릭 시 닫기
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--    <style>-->
+<!--        .modal{-->
+<!--            position:absolute;-->
+<!--            display: none;-->
+
+<!--            justify-content: center;-->
+<!--            top: 0;-->
+<!--            left: 0;-->
+
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+
+<!--            background-color: rgba(0,0,0,0.4);-->
+<!--        }-->
+
+<!--        .modal_body{-->
+<!--            position: absolute;-->
+<!--            top:50%;-->
+
+<!--            width: 458px;-->
+<!--            height: 638px;-->
+
+<!--            padding: 40px;-->
+
+<!--            text-align: center;-->
+
+<!--            background-color: rgb(255,255,255);-->
+<!--            border-radius: 10px;-->
+<!--            box-shadow:0 2px 3px 0 rgba(34,36,38,0.15);-->
+
+<!--            transform:translateY(-50%); /*모듈창열었을때 위치설정 가운데로*/-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--<h1 style="text-align: center;"> Beta </h1>-->
+
+<!--<h3>1-1. Spring Security를 이용한 로그인 및 회원 가입</h3>-->
+<!--&lt;!&ndash;<a href="auth/login">로그인(SELECT USER)</a>&ndash;&gt;-->
+<!--<button class="btn-open-modal">로그인</button>-->
+<!--<div class="modal">-->
+<!--    <div id="loginModal"  class="modal_body">-->
+<!--        <button class="btn-close-modal">Modal닫기</button>-->
+
+<!--    </div>-->
+
+<!--<a type="button" href="auth/login">로그인(SELECT USER)</a>-->
+<!--<br>-->
+<!--<a href="user/signup">회원가입(INSERT USER)</a>-->
+<!--<br>-->
+
+<!--<h3>1-2. Spring Security를 이용한 로그아웃</h3>-->
+<!--<form th:action="@{/auth/logout}" th:method="post">-->
+<!--    <button>로그아웃</button>-->
+<!--</form>-->
+
+
+<!--<div sec:authorize="hasAnyAuthority('ADMIN')">-->
+<!--    <p>Welcome, You are ADMIN!</p>-->
+<!--</div>-->
+
+
+<!--<div sec:authorize="hasAnyAuthority('USER')">-->
+<!--    <p>Welcome, You are USER!</p>-->
+<!--</div>-->
+<!--</div>-->
+<!--<a href="admin/page">관리자 페이지 이동</a><br>-->
+<!--<script>-->
+<!--    const modal = document.querySelector('.modal');-->
+<!--    const btnOpenModal=document.querySelector('.btn-open-modal')-->
+<!--    const btnCloseModal=document.querySelector('.btn-close-modal')-->
+
+<!--    btnOpenModal.addEventListener("click", () => {-->
+<!--        modal.style.display="block"-->
+<!--    })-->
+<!--    btnCloseModal.addEventListener("click", () => {-->
+<!--        modal.style.display="none"-->
+<!--    })-->
+
+<!--    $("#loginModal").load("auth/login.html");-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
 <!-- Include the JS for slider functionality -->
+
+<!--<div th:insert="auth/login :: loginModal"></div>-->
+
+
 <script src="/static/js/slider.js"></script>
+
+<!--<script>-->
+<!--    var modal = document.getElementById("loginModalWindow")-->
+
+<!--    /*로그인 모달창 열기*/-->
+<!--    var button = document.getElementById("loginLink")-->
+
+<!--    var close = modal ? modal.getElementsByClassName("close")[0] : null;-->
+
+<!--    if (button) {-->
+<!--        button.onclick = function () {-->
+<!--            modal.style.display = "block"-->
+<!--        }-->
+<!--    }-->
+
+<!--    if (close) {-->
+<!--        close.onclick = function () {-->
+<!--            modal.style.display = "none"-->
+<!--        }-->
+<!--    }-->
+
+<!--    window.onclick = function (event) {-->
+<!--        if (event.target === modal) {-->
+<!--            modal.style.display = "none"-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
+
 </body>
 </html>

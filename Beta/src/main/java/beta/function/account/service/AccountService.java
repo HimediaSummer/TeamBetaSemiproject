@@ -60,37 +60,48 @@ public class AccountService {
         }
     }
 
-    public List<AccountDTO> findAllMember() {
-        return accountDAO.findAllMember();
+    public Integer checkId(SignupDTO newUserInfo) {
+
+        System.out.println("어카운트 서비스 : 체크 아이디 호출됨");
+        accountDAO.checkId(newUserInfo);
+        System.out.println("어카운터 서비스 : 아이디 체크 완료");
+
+        Integer result = accountDAO.checkId(newUserInfo);
+
+        return result;
     }
+        public List<AccountDTO> findAllMember () {
+            return accountDAO.findAllMember();
+        }
 
-    public List<AuthorityDTO> findAllAuthority() {
-        return accountDAO.findAllAuthority();
+        public List<AuthorityDTO> findAllAuthority () {
+            return accountDAO.findAllAuthority();
+        }
+
+        @Transactional
+        public void registNewMember (AccountDTO newMember){
+            accountDAO.registNewMember(newMember);
+        }
+
+        public AccountDTO findMemberByCode ( int userCode){
+            return accountDAO.findMemberByCode(userCode);
+        }
+
+        @Transactional
+        public void updateMember (AccountDTO member){
+            accountDAO.updateMember(member);
+        }
+
+        @Transactional
+        public void deleteMember ( int userCode){
+
+
+            accountDAO.deleteMember(userCode);
+        }
+
+        public List<AccountDTO> userAllList () {
+
+            return accountDAO.userAllList();
+        }
+
     }
-
-    @Transactional
-    public void registNewMember(AccountDTO newMember) {
-        accountDAO.registNewMember(newMember);
-    }
-
-    public AccountDTO findMemberByCode(int userCode) {
-        return accountDAO.findMemberByCode(userCode);
-    }
-
-    @Transactional
-    public void updateMember(AccountDTO member) {
-        accountDAO.updateMember(member);
-    }
-
-    @Transactional
-    public void deleteMember(int userCode) {
-
-
-        accountDAO.deleteMember(userCode);
-    }
-
-    public List<AccountDTO> userAllList() {
-
-        return accountDAO.userAllList();
-    }
-}
