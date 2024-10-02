@@ -145,7 +145,7 @@ public class AccountController {
     // 회원 등록
     @PostMapping("/memberRegist")
     public String registMember(@RequestParam("username") String username,
-                               @RequestParam("fullname") String fullname,
+                               @RequestParam("fullName") String fullName,
                                @RequestParam("nickName") String nickName,
                                @RequestParam("password") String password,
                                @RequestParam("birthday") String birthday,
@@ -184,7 +184,7 @@ public class AccountController {
         AccountDTO newMember = new AccountDTO();
 
         newMember.setUsername(username);
-        newMember.setFullName(fullname);
+        newMember.setFullName(fullName);
         newMember.setNickName(nickName);
         newMember.setPassword(password);
         newMember.setBirthday(birthday);
@@ -235,13 +235,13 @@ public class AccountController {
 
         System.out.println("회원 수정3" + member);
 
-        return "admin/memberEdit";
+        return "admin/memberList";
     }
 
     @PostMapping("/update")
     public String updateMember(@RequestParam("userCode") int userCode,
                                @RequestParam("username") String username,
-                               @RequestParam("fullname") String fullname,
+                               @RequestParam("fullName") String fullName,
                                @RequestParam("nickName") String nickName,
                                @RequestParam("password") String password,
                                @RequestParam("birthday") String birthday,
@@ -281,7 +281,7 @@ public class AccountController {
 
         member.setUserCode(userCode);
         member.setUsername(username);
-        member.setFullName(fullname);
+        member.setFullName(fullName);
         member.setNickName(nickName);
         member.setPassword(password);
         member.setBirthday(birthday);

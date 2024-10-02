@@ -8,7 +8,7 @@
         <id property="userCode" column="userCode"/>
         <result property="username" column="username"/>
         <result property="password" column="password"/>
-        <result property="fullName" column="fullName"/>
+        <result property="fullName" column="fullname"/>
         <result property="userRole" column="authorityCodeName"/>
         <result property="birthday" column="birthday"/>
         <result property="email"    column="email"/>
@@ -43,7 +43,7 @@
     (
         username,
         password,
-        fullName,
+        fullname,
         nickName,
         birthday,
         email,
@@ -166,7 +166,7 @@
         VALUES
             (
             #{username},
-            #{fullname},
+            #{fullName},
             #{nickName},
             #{password},
             #{birthday},
@@ -183,7 +183,7 @@
         UPDATE account_list
         SET
             username = #{username},
-            fullname = #{fullname},
+            fullname = #{fullName},
             nickName = #{nickName},
             password = #{password},
             birthday = #{birthday},

@@ -76,51 +76,51 @@
 
         <article>
             <div th:if="${member}">
-            <table>
-                <tr>
-                    <th>회원코드</th>
-                    <th>회원ID</th>
-                    <th>회원이름</th>
-                    <th>회원별칭</th>
-                    <th>회원비번</th>
-                    <th>회원생일</th>
-                    <th>회원메일</th>
-                    <th>회원전화</th>
-                    <th>정지여부</th>
-                    <th>탈퇴여부</th>
-                    <th>프로필사진</th>
-                    <th>권한코드</th>
-                </tr>
-                <tr>
-                    <td>
-                        <a th:href="@{/admin/memberDetail/{userCode}(userCode=${member.userCode})}"
-                           th:text="${member.userCode}"
-                           style="color: white">
-                        </a>
-                    </td>
-                    <td th:text="${member.username}"></td>
-                    <td th:text="${member.fullname}"></td>
-                    <td th:text="${member.nickName}"></td>
-                    <td th:text="${member.password}"></td>
-                    <td th:text="${member.birthday}"></td>
-                    <td th:text="${member.email}"></td>
-                    <td th:text="${member.phone}"></td>
-                    <td th:text="${member.suspension}"></td>
-                    <td th:text="${member.deletion}"></td>
-                    <td><img th:src="${'/static/uploadedFiles/img/account/' + member.profileimg}" alt="Profile Image"/></td>
-                    <td th:text="${member.authorityCode}"></td>
-                    <td>
-                        <form th:action="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}" method="post">
-                            <button type="submit">수정</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
-                            <button type="submit">삭제</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+                <table>
+                    <tr>
+                        <th>회원코드</th>
+                        <th>회원ID</th>
+                        <th>회원이름</th>
+                        <th>회원별칭</th>
+                        <th>회원비번</th>
+                        <th>회원생일</th>
+                        <th>회원메일</th>
+                        <th>회원전화</th>
+                        <th>정지여부</th>
+                        <th>탈퇴여부</th>
+                        <th>프로필사진</th>
+                        <th>권한코드</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a th:href="@{/admin/memberDetail/{userCode}(userCode=${member.userCode})}"
+                               th:text="${member.userCode}"
+                               style="color: white">
+                            </a>
+                        </td>
+                        <td th:text="${member.username}"></td>
+                        <td th:text="${member.fullName}"></td>
+                        <td th:text="${member.nickName}"></td>
+                        <td th:text="${member.password}"></td>
+                        <td th:text="${member.birthday}"></td>
+                        <td th:text="${member.email}"></td>
+                        <td th:text="${member.phone}"></td>
+                        <td th:text="${member.suspension}"></td>
+                        <td th:text="${member.deletion}"></td>
+                        <td><img th:src="${'/static/uploadedFiles/img/account/' + member.profileimg}" alt="Profile Image"/></td>
+                        <td th:text="${member.authorityCode}"></td>
+                        <td>
+                            <form th:action="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}" method="post">
+                                <button type="submit">수정</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
+                                <button type="submit">삭제</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </article>
 

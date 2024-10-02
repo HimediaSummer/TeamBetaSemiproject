@@ -74,23 +74,23 @@
             <button id="registBtn" class="admin-btn" onclick="location.href='/admin/memberRegist'">등록하기</button>
         </section>
 
-<!--        <div id="listOneModal" class="modal">-->
-<!--            &lt;!&ndash; Modal content &ndash;&gt;-->
-<!--            <div class="modal-content">-->
-<!--                <div class="modal-header close">&times;</div>-->
-<!--                <div class="modal-body">-->
-<!--                    <form class="adm-form" th:action="@{/admin/memberlistone}" method="post">-->
-<!--                        <div class="admin-main-input">-->
-<!--                            <label for="userCode">회원코드: </label>-->
-<!--                            <input class="adm-sub-input" type="number" id="userCode" name="userCode" required min="1"/>-->
-<!--                        </div>-->
-<!--                        <div class="adm-main-btn">-->
-<!--                            <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>-->
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
+        <!--        <div id="listOneModal" class="modal">-->
+        <!--            &lt;!&ndash; Modal content &ndash;&gt;-->
+        <!--            <div class="modal-content">-->
+        <!--                <div class="modal-header close">&times;</div>-->
+        <!--                <div class="modal-body">-->
+        <!--                    <form class="adm-form" th:action="@{/admin/memberlistone}" method="post">-->
+        <!--                        <div class="admin-main-input">-->
+        <!--                            <label for="userCode">회원코드: </label>-->
+        <!--                            <input class="adm-sub-input" type="number" id="userCode" name="userCode" required min="1"/>-->
+        <!--                        </div>-->
+        <!--                        <div class="adm-main-btn">-->
+        <!--                            <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>-->
+        <!--                        </div>-->
+        <!--                    </form>-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--        </div>-->
 
         <article>
             <table>
@@ -116,7 +116,7 @@
                         </a>
                     </td>
                     <td th:text="${member.username}"></td>
-                    <td th:text="${member.fullname}"></td>
+                    <td th:text="${member.fullName}"></td>
                     <td th:text="${member.nickName}"></td>
                     <td th:text="${member.password}"></td>
                     <td th:text="${member.birthday}"></td>
@@ -154,7 +154,7 @@
                             </div>
                             <div class="adm-main-input">
                                 <label for="userfullNameEdit">회원이름:&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                <input type="text" id="userfullNameEdit" th:field="*{fullname}" class="adm-sub-input" required />
+                                <input type="text" id="userfullNameEdit" th:field="*{fullName}" class="adm-sub-input" required />
                             </div>
                             <div class="adm-main-input">
                                 <label for="nickNameEdit">회원별명:&nbsp;&nbsp;&nbsp;&nbsp;</label>
