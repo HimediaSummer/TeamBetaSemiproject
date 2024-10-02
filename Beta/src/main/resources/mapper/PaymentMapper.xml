@@ -61,4 +61,13 @@
             sysDate()
         )
     </insert>
+
+    <!--장바구니 담기 전 장바구니 체크-->
+    <!--userCode222-->
+    <select id="cartListCheck" parameterType="beta.function.order.dto.CartDTO">
+        select
+        count(gc.gameCode)
+        from game_cart gc
+        where gc.gameCode = #{ gameCode } and userCode = #{ userCode } and addCart = 'Y';
+    </select>
 </mapper>

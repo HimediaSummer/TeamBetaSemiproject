@@ -21,6 +21,11 @@ public class PaymentService {
         this.cartService = cartService;
     }
 
+    public Integer cartListCheck(Integer userCode, List<String> gameCode) {
+
+        return paymentMapper.cartListCheck(userCode ,gameCode);
+    }
+
     /*결제 확인*/
     public List<PaymentDTO> orderResult(int userCode) {
 

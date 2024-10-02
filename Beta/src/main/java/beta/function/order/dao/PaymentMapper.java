@@ -16,4 +16,6 @@ public interface PaymentMapper {
     List<PaymentDTO> orderResult(int userCode);
 
     void insertOrder(OrderDTO order);
+
+    Integer cartListCheck(Integer userCode, List<String> gameCode);
 }
