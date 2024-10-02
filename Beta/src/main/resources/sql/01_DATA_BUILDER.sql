@@ -219,4 +219,5 @@ INSERT INTO game_order VALUES (null,
 (SELECT paymentCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1), 'N');
 
 
+
 COMMIT;

@@ -32,13 +32,31 @@ public class CartService {
     /*회원별 장바구니 리스트*/
     public List<CartDTO> findByUser(int userCode) {
 
-        System.out.println("CartService");
         return cartMapper.findByUser(userCode);
+    }
+
+    public List<CartDTO> haveOrderList(int userCode) {
+
+        return cartMapper.haveOrderList(userCode);
     }
 
     /*장바구니에 담기*/
     @Transactional
     public void addItem(int gameCode, int userCode) {
+
+        CartDTO cart = new CartDTO();
+        cart.setUserCode(userCode);
+        cart.setGameCode(gameCode);
+
+        Integer ischeck = cartMapper.cartListCheck(cart);
+
+        System.out.println("ischeck" + ischeck);
+
+        if(ischeck == 1) {
+            cartMapper.updateItem(cart); // update
+        } else if (ischeck == 0){
+            cartMapper.addItem(cart); // insert
+        }
 
         // 동일한 게임이 있는지 확인
 //        CartDTO existingItem = cartMapper.findItemByGameAndUser(gameCode, userCode);
@@ -48,11 +66,10 @@ public class CartService {
 //            throw new IllegalStateException("이미 장바구니에 추가된 게임입니다.");
 //        }
 
-        CartDTO cart = new CartDTO();
-        cart.setUserCode(userCode);
-        cart.setGameCode(gameCode);
+//        CartDTO cart = new CartDTO();
+//        cart.setUserCode(userCode);
+//        cart.setGameCode(gameCode);
 
-        cartMapper.addItem(cart);
     }
 
     /*장바구니 게임 삭제*/
@@ -77,5 +94,25 @@ public class CartService {
                 .sum();
 
         return total;
+    }
+
+
+//    public void gameCodeList(String userCode, List<String> gameCodeList) {
+    public void gameCode(List<String> gameCode) {
+
+        System.out.println("gamecode service 1");
+        System.out.println("gamecode service 2" + gameCode);
+//       cartMapper.gameCodeList(userCode, gameCodeList);
+       cartMapper.gameCode(gameCode);
+        System.out.println("gamecode service 3" + gameCode);
+    }
+
+    public void deleteY() {
+        cartMapper.deleteY();
+    }
+
+    public List<CartDTO> haveOrderList() {
+
+        return cartMapper.haveOrderList();
     }
 }

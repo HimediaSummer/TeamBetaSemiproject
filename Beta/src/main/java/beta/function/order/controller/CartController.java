@@ -32,10 +32,18 @@ public class CartController {
 
     /*회원 최근 내역*/
     @GetMapping("/history")
-    public String myPage(HttpSession session){
+    public String myPage(HttpSession session, Model model){
 
         // 임의로 userCode를 2로 설정
         session.setAttribute("userCode", 2);
+
+        Integer userCode = (Integer) session.getAttribute("userCode");
+
+        List<CartDTO> mypage = cartService.haveOrderList(userCode);
+
+        System.out.println("mypage :" + mypage);
+
+        model.addAttribute("mypage", mypage);
 
         return "cart/history";
     }

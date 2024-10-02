@@ -1,5 +1,6 @@
 package beta.function.order.service;
 
+import beta.function.game.dto.GameDTO;
 import beta.function.order.dao.CartMapper;
 import beta.function.order.dao.OrderMapper;
 import beta.function.order.dao.PaymentMapper;
@@ -11,6 +12,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,10 +39,11 @@ public class OrderService {
     }
 
     @Transactional
-    public void addOrder(Integer userCode) {
+    public void addOrder(int userCode) {
 
         /*game_cart 있는 userCode 찾아오기*/
-        List<CartDTO> cartList = cartService.findByUser(userCode);
+//        List<CartDTO> cartList = cartService.findByUser(userCode);
+        List<CartDTO> cartList = cartService.haveOrderList(userCode);
         System.out.println("[OS] cartList : " + cartList);
 
         /*game_payment에 있는 userCode 찾아오기*/
@@ -64,13 +67,31 @@ public class OrderService {
             order.setGameCode(gameCode);
             order.setPaymentCode(paymentCode);
 
-            // 주문 테이블에 삽입
-            orderMapper.insertOrder(order);
+//            orderMapper.insertOrder(order); // insert
 
             System.out.println("[OrderService] userCode: " + userCode);
             System.out.println("[OrderService] cartCode: " + cartCode);
             System.out.println("[OrderService] gameCode: " + gameCode);
+
+            Integer ordercheck = orderMapper.cartListCheck(order);
+
+            System.out.println("ordercheck 1 " + ordercheck);
+
+            System.out.println("order 내용물 " + order);
+
+            if(ordercheck == 1) {
+                System.out.println("ordercheck if문 1 일때 ");
+                orderMapper.updateOrder(order); // update
+            } else if (ordercheck == 0){
+                System.out.println("ordercheck if문 0 일때 ");
+                orderMapper.insertOrder(order); // insert
+            }
         }
 
+    }
+
+    public OrderDTO userByOrderList(int orderCode) {
+
+        return orderMapper.userByOrderList(orderCode);
     }
 }

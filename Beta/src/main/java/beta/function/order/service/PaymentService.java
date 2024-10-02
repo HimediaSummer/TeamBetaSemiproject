@@ -32,8 +32,11 @@ public class PaymentService {
     @Transactional
     public void addPayment(Integer userCode) {
 
+        System.out.println("userCode" + userCode);
+
         /*game_cart에 있는 userCode 찾아오기*/
-        List<CartDTO> cartList = cartService.findByUser(userCode);
+//        List<CartDTO> cartList = cartService.findByUser(userCode);
+        List<CartDTO> cartList = cartService.haveOrderList(userCode);
         System.out.println("[PS] cartList : " + cartList);
 
         System.out.println("[PaymentService] addPayment() 1111");
@@ -53,6 +56,5 @@ public class PaymentService {
         /*장바구니 전체 내역 삭제*/
         cartService.clearCart(userCode);
     }
-
 
 }

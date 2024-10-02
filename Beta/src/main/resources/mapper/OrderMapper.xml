@@ -30,20 +30,52 @@
             orderCode
     </select>
 
+    <select id="userByOrderList" parameterType="int" resultMap="orderResultMap">
+        SELECT
+            orderCode,
+            gameCode,
+            cartCode,
+            userCode,
+            paymentCode,
+            gamecheck
+        FROM
+            game_order
+        WHERE
+            orderCode =#{ orderCode }
+        ORDER BY
+            orderCode
+    </select>
+
+    <select id="cartListCheck" parameterType="beta.function.order.dto.OrderDTO">
+        select
+            count(go.gameCode)
+        from game_order go
+        where go.gameCode = #{ gameCode } and userCode = #{ userCode }
+    </select>
+
     <insert id="insertOrder" parameterType="beta.function.order.dto.OrderDTO">
         INSERT INTO game_order
         (
             userCode,
             cartCode,
             gameCode,
-            paymentCode
+            paymentCode,
+            gamecheck
         )
         VALUES
         (
             #{ userCode },
             #{ cartCode },
             #{ gameCode },
-            #{ paymentCode }
+            #{ paymentCode },
+            'Y'
         )
     </insert>
+
+    <update id="updateOrder" parameterType="beta.function.order.dto.OrderDTO">
+        UPDATE game_order
+        SET gamecheck = 'Y'
+        WHERE gameCode = #{ gameCode } and userCode = #{ userCode }
+    </update>
+
 </mapper>
