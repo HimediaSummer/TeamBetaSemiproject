@@ -6,6 +6,7 @@
     <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- css -->
     <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
 </head>
 <body>
 
@@ -21,18 +22,22 @@
                         <h3>MY PAGE</h3>
                 </div>
 
+            <a href="/admin/FAQ">
             <div class="community">
                 <i class="fa-solid fa-comments"></i>
                 <h3>COMMUNITY</h3>
             </div>
+            </a>
 
             <!--로그인 안된 상태에서 로그인 표시-->
-            <a sec:authorize="isAnonymous()" th:href="@{/auth/login}">
+            <div class="modal">
+            <a sec:authorize="isAnonymous()" th:href="@{/auth/login}" id="loginLink">
                 <div class="login">
                     <i class="fa-solid fa-user-large"></i>
                     <h3>LOG IN</h3>
                 </div>
             </a>
+            </div>
 
             <!--로그인 한 사용자 이름 표시-->
             <a sec:authorize="isAuthenticated()" href="/admin/memberList">
@@ -53,3 +58,12 @@
 
     </nav>
 </div>
+
+
+
+</body>
+</html>
+
+
+
+

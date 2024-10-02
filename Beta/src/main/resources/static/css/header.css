@@ -35,7 +35,7 @@ body {
 .main-nav-menu {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    text-transform: uppercase;
 }
 
 /* Individual menu item styling */

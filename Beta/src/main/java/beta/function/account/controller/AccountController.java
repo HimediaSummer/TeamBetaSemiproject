@@ -96,6 +96,7 @@ public class AccountController {
         return "admin/memberList";
     }
 
+
     // 개별 조회
     @RequestMapping("/memberListone")
     @GetMapping("/memberListone")
@@ -202,5 +203,13 @@ public class AccountController {
         model.addAttribute("userList", userList);
 
         return "user/listAll";
+    }
+
+    @GetMapping("FAQ")
+    public String faq() {
+
+        System.out.println("FAQ 호출됨");
+
+        return "admin/FAQ";
     }
 }
