@@ -13,9 +13,10 @@ main {
     display: flex;
     flex-direction: column;
     margin-left: 200px; /* Sidebar width */
-    margin-bottom: 40px;
+    margin-bottom: 50px;
 }
 
+/* SIDE BAR STYLING*/
 /* Sidebar */
 .side-bar {
     width: 200px;
@@ -117,6 +118,7 @@ article nav {
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 article nav button {
