@@ -61,17 +61,24 @@
             <button onclick="openWindow('/admin/memberRegist')">등록</button>
         </div>
     </div>
+    <title>관리자 페이지</title>
+
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
     <script>
-        function openWindow(url) {
-            // Define the size of the new window
-            const width = 800; // Adjust width
-            const height = 600; // Adjust height
-            const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
-            const top = (window.innerHeight / 2) - (height / 2); // Center vertically
-
-            window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
-        }
+        const successMessage = `[[${ successMessage}]]`;
+        if(successMessage) alert(successMessage);
     </script>
     <title>admin</title>
 </body>
@@ -86,5 +93,33 @@
 </section>
 <article></article>
 <footer></footer>
+
+
+</head>
+<body>
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/header :: navbar"></nav>
+</header>
+
+<aside class="side-bar">
+    <ul class="sidebar-menu">
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+        </li>
+    </ul>
+</aside>
+
+<!-- Footer -->
+<footer th:insert="common/footer :: footer"></footer>
 </body>
 </html>

@@ -24,6 +24,20 @@ spring:
     # -> 파일 업로드 위치 설정용
     static-path-pattern: /static/**
 
+# Servlet config
+  servlet:
+    # Multi-part upload config
+    multipart:
+      # 파일 하나의 최대 용량
+      max-file-size: 10MB
+      # 요청 당 최대 용량
+      max-request-size: 10MB
+  # MVC config
+  mvc:
+    # 정적 리소스의 URL 경로 패턴 설정
+    # -> 파일 업로드 위치 설정용
+    static-path-pattern: /static/**
+
 # MyBatis Framework config
 mybatis:
   mapper-locations: mapper/*.xml

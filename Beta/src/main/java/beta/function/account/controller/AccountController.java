@@ -1,25 +1,37 @@
 package beta.function.account.controller;
 
-import beta.function.account.dto.AccountDTO;
-import beta.function.account.dto.AuthorityDTO;
-import beta.function.account.dto.SignupDTO;
-import beta.function.account.service.AccountService;
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
+import java.util.UUID;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.List;
-import java.util.Locale;
+import beta.function.account.dto.AccountDTO;
+import beta.function.account.dto.AuthorityDTO;
+import beta.function.account.dto.SignupDTO;
+import beta.function.account.service.AccountService;
 
 @Controller
 @RequestMapping({"/user", "/admin"})
@@ -29,6 +41,9 @@ public class AccountController {
 
     private final AccountService accountService;
     private final MessageSource messageSource;
+
+    @Autowired
+    private ResourceLoader resourceLoader;
 
     @Bean
     public LocaleResolver localeResolver() {
@@ -98,9 +113,24 @@ public class AccountController {
 
 
     // 개별 조회
-    @RequestMapping("/memberListone")
-    @GetMapping("/memberListone")
+    @GetMapping("/memberlistone")
     public void memeberListone() {}
+
+    @PostMapping("/memberlistone")
+    public String findmemberListOne(Model model, @RequestParam("userCode") int userCode){
+
+        AccountDTO member = accountService.findMemberByCode(userCode);
+
+        if (member == null) {
+            model.addAttribute("errorMessage", "해당 회원코드 정보가 없습니다");
+        } else {
+            model.addAttribute("member", member);
+        }
+        System.out.println("member = " + member);
+
+        return "admin/memberDetail";
+    }
+
 
     // Create 또는 Insert 부분
     @GetMapping("/memberRegist")
@@ -112,9 +142,58 @@ public class AccountController {
         return accountService.findAllAuthority();
     }
 
-
+    // 회원 등록
     @PostMapping("/memberRegist")
-    public String registMember(AccountDTO newMember, RedirectAttributes rAttr, Locale locale) {
+    public String registMember(@RequestParam("username") String username,
+                               @RequestParam("fullname") String fullname,
+                               @RequestParam("nickName") String nickName,
+                               @RequestParam("password") String password,
+                               @RequestParam("birthday") String birthday,
+                               @RequestParam("email") String email,
+                               @RequestParam("phone") String phone,
+                               @RequestParam("suspension") char suspension,
+                               @RequestParam("deletion") char deletion,
+                               @RequestParam("profileimg") MultipartFile profileimg,
+                               @RequestParam("authorityCode") int authorityCode,
+                               RedirectAttributes rAttr,
+                               Locale locale) throws IOException {
+
+        Resource resource = resourceLoader.getResource("classpath:static/uploadedFiles/img/account");
+
+        String filePath = null;
+        if (!resource.exists()) {
+            // 경로가 존재X
+            String root = "src/main/resources/static/uploadedFiles/img/account";
+
+            File file = new File(root);
+            file.mkdirs();
+
+            filePath = file.getAbsolutePath();
+        } else {
+            // 경로가 이미 존재할 때
+            filePath = resourceLoader.getResource("classpath:static/uploadedFiles/img/account").getFile().getAbsolutePath();
+        }
+
+        // Handle profileimg upload
+        String memberImgOriginalName = profileimg.getOriginalFilename();
+        String memberImgExtension = memberImgOriginalName.substring(memberImgOriginalName.lastIndexOf("."));
+        String savedImgName = UUID.randomUUID().toString().replace("-", "") + memberImgExtension;
+        profileimg.transferTo(new File(filePath + "/" + savedImgName));
+
+        // Save paths in AccountDTO
+        AccountDTO newMember = new AccountDTO();
+
+        newMember.setUsername(username);
+        newMember.setFullName(fullname);
+        newMember.setNickName(nickName);
+        newMember.setPassword(password);
+        newMember.setBirthday(birthday);
+        newMember.setEmail(email);
+        newMember.setPhone(phone);
+        newMember.setSuspension(suspension);
+        newMember.setDeletion(deletion);
+        newMember.setProfileimg(savedImgName);
+        newMember.setAuthorityCode(authorityCode);
 
         System.out.println("회원 등록 1");
 
@@ -131,6 +210,7 @@ public class AccountController {
         return "redirect:/admin/memberList";
     }
 
+
     @GetMapping("/memberDetail/{userCode}")
     public String findMemberDetail(@PathVariable("userCode") int userCode, Model model) {
         System.out.println("상세 정보 1");
@@ -146,15 +226,11 @@ public class AccountController {
         return "admin/memberDetail";
     }
 
-    @GetMapping("/memberEdit/{userCode}")
+    @PostMapping("/memberEdit/{userCode}")
     public String showEditMemberForm(@PathVariable("userCode") int userCode, Model model) {
 
-        System.out.println("회원 수정1");
 
         AccountDTO member = accountService.findMemberByCode(userCode);
-
-        System.out.println("회원 수정2" + member);
-
         model.addAttribute("member", member);
 
         System.out.println("회원 수정3" + member);
@@ -163,13 +239,66 @@ public class AccountController {
     }
 
     @PostMapping("/update")
-    public String updateMember(AccountDTO member, RedirectAttributes rAttr) {
+    public String updateMember(@RequestParam("userCode") int userCode,
+                               @RequestParam("username") String username,
+                               @RequestParam("fullname") String fullname,
+                               @RequestParam("nickName") String nickName,
+                               @RequestParam("password") String password,
+                               @RequestParam("birthday") String birthday,
+                               @RequestParam("email") String email,
+                               @RequestParam("phone") String phone,
+                               @RequestParam("suspension") char suspension,
+                               @RequestParam("deletion") char deletion,
+                               @RequestParam("profileimg") MultipartFile profileimg,
+                               @RequestParam("authorityCode") int authorityCode,
+                               RedirectAttributes rAttr,
+                               Locale locale) throws IOException {
+
+        Resource resource = resourceLoader.getResource("classpath:static/uploadedFiles/img/account");
+
+        String filePath = null;
+        if (!resource.exists()) {
+            // 경로가 존재X
+            String root = "src/main/resources/static/uploadedFiles/img/account";
+
+            File file = new File(root);
+            file.mkdirs();
+
+            filePath = file.getAbsolutePath();
+        } else {
+            // 경로가 이미 존재할 때
+            filePath = resourceLoader.getResource("classpath:static/uploadedFiles/img/account").getFile().getAbsolutePath();
+        }
+
+        // Handle profileimg upload
+        String memberImgOriginalName = profileimg.getOriginalFilename();
+        String memberImgExtension = memberImgOriginalName.substring(memberImgOriginalName.lastIndexOf("."));
+        String savedImgName = UUID.randomUUID().toString().replace("-", "") + memberImgExtension;
+        profileimg.transferTo(new File(filePath + "/" + savedImgName));
+
+        // Save paths in AccountDTO
+        AccountDTO member = new AccountDTO();
+
+        member.setUserCode(userCode);
+        member.setUsername(username);
+        member.setFullName(fullname);
+        member.setNickName(nickName);
+        member.setPassword(password);
+        member.setBirthday(birthday);
+        member.setEmail(email);
+        member.setPhone(phone);
+        member.setSuspension(suspension);
+        member.setDeletion(deletion);
+        member.setProfileimg(savedImgName);
+        member.setAuthorityCode(authorityCode);
+
+        System.out.println("member = " + member);
 
         System.out.println("회원 업데이트1");
 
         accountService.updateMember(member);
 
-        System.out.println("회원 업데이트2" + member);
+        logger.info("Locale : {}", locale);
 
         rAttr.addFlashAttribute("successMessage", "메뉴가 성공적으로 수정되었습니다.");
 

@@ -129,10 +129,10 @@
     <select id="findMemberByCode" parameterType="int" resultMap="authenticatedUser">
         SELECT
             userCode,
-        username,
-        fullname,
+            username,
+            fullname,
             nickName,
-        password,
+            password,
             birthday,
             email,
             phone,

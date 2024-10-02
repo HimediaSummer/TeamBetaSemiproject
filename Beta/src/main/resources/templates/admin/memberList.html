@@ -2,66 +2,240 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>list</title>
+    <title>회원 전체조회</title>
+
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
     <script>
         const successMessage = `[[${ successMessage}]]`;
         if(successMessage) alert(successMessage);
     </script>
+
+    <style>
+        button {
+            padding: 10px 15px; /* 버튼 크기 조정 */
+            margin: 5px; /* 버튼 간격 조정 */
+            font-size: 14px; /* 글자 크기 조정 */
+        }
+
+        table {
+            width: 100%; /* 테이블을 전체 폭으로 설정 */
+            table-layout: auto; /* 자동으로 열 크기 조정 */
+        }
+
+        td {
+            overflow: hidden; /* 내용이 넘치면 숨김 */
+            text-overflow: ellipsis; /* 넘치는 내용에 점(...) 추가 */
+            white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+        }
+    </style>
 </head>
 <body>
-    <div class="content">
-        <div class="button-group">
-            <button onclick="location.href='/admin/memberList'">전체조회</button>
-<!--            <button onclick="location.href='/admin/'">개별조회</button>-->
-<!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
-            <button onclick="openWindow('/admin')">개별조회</button>
-            <button onclick="openWindow('/admin/memberRegist')">등록</button>
+<wrapper>
+    <header>
+        <!-- Importing the navbar with Thymeleaf -->
+        <nav th:insert="common/header :: navbar"></nav>
+    </header>
+
+    <aside class="side-bar">
+        <ul class="sidebar-menu">
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href=''">게임관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href=''">주문관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href=''">댓글관리</button>
+            </li>
+        </ul>
+    </aside>
+
+    <main>
+        <section class="top-bar">
+            <button class="admin-btn" onclick="location.href='/admin/memberList'">전체조회</button>
+            <!-- Trigger/Open The listOneModal -->
+            <button id="listOneBtn" class="admin-btn" onclick="location.href='/admin/memberlistone'">개별조회</button>
+            <!-- Trigger/Open The registModal -->
+            <button id="registBtn" class="admin-btn" onclick="location.href='/admin/memberRegist'">등록하기</button>
+        </section>
+
+<!--        <div id="listOneModal" class="modal">-->
+<!--            &lt;!&ndash; Modal content &ndash;&gt;-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header close">&times;</div>-->
+<!--                <div class="modal-body">-->
+<!--                    <form class="adm-form" th:action="@{/admin/memberlistone}" method="post">-->
+<!--                        <div class="admin-main-input">-->
+<!--                            <label for="userCode">회원코드: </label>-->
+<!--                            <input class="adm-sub-input" type="number" id="userCode" name="userCode" required min="1"/>-->
+<!--                        </div>-->
+<!--                        <div class="adm-main-btn">-->
+<!--                            <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>-->
+<!--                        </div>-->
+<!--                    </form>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <article>
+            <table>
+                <tr>
+                    <th>회원코드</th>
+                    <th>회원ID</th>
+                    <th>회원이름</th>
+                    <th>회원별칭</th>
+                    <th>회원비번</th>
+                    <th>회원생일</th>
+                    <th>회원메일</th>
+                    <th>회원전화</th>
+                    <th>정지여부</th>
+                    <th>탈퇴여부</th>
+                    <th>프로필사진</th>
+                    <th>권한코드</th>
+                </tr>
+                <tr th:each="member : ${memberList}">
+                    <td>
+                        <a th:href="@{/admin/memberDetail/{userCode}(userCode=${member.userCode})}"
+                           th:text="${member.userCode}"
+                           style="color: white">
+                        </a>
+                    </td>
+                    <td th:text="${member.username}"></td>
+                    <td th:text="${member.fullname}"></td>
+                    <td th:text="${member.nickName}"></td>
+                    <td th:text="${member.password}"></td>
+                    <td th:text="${member.birthday}"></td>
+                    <td th:text="${member.email}"></td>
+                    <td th:text="${member.phone}"></td>
+                    <td th:text="${member.suspension}"></td>
+                    <td th:text="${member.deletion}"></td>
+                    <td><img th:src="${'/static/uploadedFiles/img/account/' + member.profileimg}" alt="Profile Image"/></td>
+                    <td th:text="${member.authorityCode}"></td>
+                    <td>
+                        <form th:action="@{/admin/memberEdit/{userCode}(userCode=${member.userCode})}" method="post">
+                            <button type="submit">수정</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form th:action="@{/admin/delete/{userCode}(userCode=${member.userCode})}" method="post">
+                            <button type="submit">삭제</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </article>
+
+        <!-- Edit Modal -->
+        <div th:if="${member != null}">
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header close">&times;</div>
+                    <div class="modal-body">
+                        <form class="adm-form" th:action="@{/admin/update}" th:object="${member}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{userCode}" id="userCodeEdit" />
+                            <div class="adm-main-input">
+                                <label for="userNameEdit">회원ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="userNameEdit" th:field="*{username}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="userfullNameEdit">회원이름:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="userfullNameEdit" th:field="*{fullname}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="nickNameEdit">회원별명:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="nickNameEdit" th:field="*{nickName}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="passwordEdit">회원번호:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="password" id="passwordEdit" th:field="*{password}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="birthdayEdit">회원생일:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="date" id="birthdayEdit" th:field="*{birthday}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="emailEdit">회원메일:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="email" id="emailEdit" th:field="*{email}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="phoneEdit">회원전화:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="tel" id="phoneEdit" th:field="*{phone}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="suspensionEdit">정지여부:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="suspensionEdit" th:field="*{suspension}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="deletionEdit">탈퇴여부:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="deletionEdit" th:field="*{deletion}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="profileimgEdit">프로필사진:&nbsp;</label>
+                                <input class="adm-sub-input-file" type="file" id="profileimgEdit" th:field="*{profileimg}" required/>
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="authorityCodeEdit">권한코드:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <input type="text" id="authorityCodeEdit" th:field="*{authorityCode}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-btn">
+                                <button class="adm-sub-btn" type="submit">수정하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <table>
-        <tr>
-            <th>회원코드</th>
-            <th>회원아이디</th>
-            <th>회원이름</th>
-            <th>회원별명</th>
-            <th>회원비밀번호</th>
-            <th>회원생일</th>
-            <th>회원이메일</th>
-            <th>회원전화번호</th>
-            <th>정지여부</th>
-            <th>탈퇴여부</th>
-            <th>프로필사진</th>
-            <th>권한코드</th>
-        </tr>
-        <tr th:each="member : ${ memberList }">
-<!--            <td th:text="${ member.userCode }"></td>-->
-            <td><a th:href="@{/admin/memberDetail/{userCode}(userCode=${ member.userCode })}" th:text="${ member.userCode }"></a></td>
-            <td th:text="${ member.username }"></td>
-            <td th:text="${ member.fullName }"></td>
-            <td th:text="${ member.nickName }"></td>
-            <td th:text="${ member.password }"></td>
-            <td th:text="${ member.birthday }"></td>
-            <td th:text="${ member.email }"></td>
-            <td th:text="${ member.phone }"></td>
-            <td th:text="${ member.suspension }"></td>
-            <td th:text="${ member.deletion }"></td>
-            <td th:text="${ member.profileimg }"></td>
-            <td th:text="${ member.authorityCode }"></td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="location.href='/'">메인으로</button>
 
-    <script>
-        function openWindow(url) {
-            // Define the size of the new window
-            const width = 800; // Adjust width
-            const height = 600; // Adjust height
-            const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
-            const top = (window.innerHeight / 2) - (height / 2); // Center vertically
+        <!-- Include the modals (listOneModal, registModal) -->
+        <div th:insert="admin/memberModal :: memberModal"></div>
+    </main>
+</wrapper>
 
-            window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
+<!-- Footer -->
+<footer th:insert="common/footer :: footer"></footer>
+
+<script>
+    // Ensure the edit modal opens when page loads if game data is available
+    window.onload = function () {
+        var modal3 = document.getElementById("editModal");
+        if (modal3) {
+            modal3.style.display = "block";
         }
-    </script>
+    };
+    // Get the edit modal
+    var modal3 = document.getElementById("editModal");
+
+    // Get the <span> element that closes the edit modal
+    var close3 = modal3 ? modal3.getElementsByClassName("close")[0] : null;
+
+    // When the user clicks the close button (x), close the edit modal
+    if (close3) {
+        close3.onclick = function () {
+            modal3.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside the modal, close the edit modal
+    window.onclick = function (event) {
+        if (event.target === modal3) {
+            modal3.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>

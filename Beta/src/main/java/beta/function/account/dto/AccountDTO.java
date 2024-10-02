@@ -1,12 +1,12 @@
 package beta.function.account.dto;
 
-import beta.function.auth.userRole.UserRole;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import beta.function.order.dto.CartDTO;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import beta.function.auth.userRole.UserRole;
 
 public class AccountDTO implements UserDetails {
 
@@ -163,6 +163,9 @@ public class AccountDTO implements UserDetails {
     }
 
     public String getPhone() {
+        if (phone != null && phone.length() == 11) {
+            return phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7);
+        }
         return phone;
     }
 
