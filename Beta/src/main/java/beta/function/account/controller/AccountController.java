@@ -203,4 +203,12 @@ public class AccountController {
 
         return "user/listAll";
     }
+
+    @GetMapping("FAQ")
+    public String faq() {
+
+        System.out.println("FAQ 호출됨");
+
+        return "admin/FAQ";
+    }
 }

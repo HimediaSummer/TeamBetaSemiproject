@@ -15,6 +15,7 @@
 .main-nav-menu{
     display: flex;
     justify-content: space-between;
+    text-transform: uppercase;
 }
 
 .cart, .community, .login, .username ,.logout {

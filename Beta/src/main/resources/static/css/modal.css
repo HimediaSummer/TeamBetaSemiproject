@@ -1,0 +1,126 @@
+/* The Modal (background) */
+.modal {
+    display: none;  /* Hidden by default */
+    position: fixed;    /* Stay in place */
+    z-index: 20; /* Sit on top */
+    padding-top: 80px;
+    left: 0;
+    top: 0;
+    width: 100%;    /* Full width */
+    height: 100%;   /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(57, 57, 58, 0.9);   /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: var(--sub-color06);
+    margin: auto;   /* 15% from the top and centered */
+    width: 587px; /* Could be more or less, depending on screen size */
+    padding: 50px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity: 0}
+    to  {top: 0; opacity: 1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity: 0}
+    to  {top: 0; opacity: 1}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--sub-color04);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: var(--page-bg-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    color: black;
+    font-weight: bold;
+    font-size: 24px;
+}
+
+label {
+    color: var(--sub-color04);
+    font-weight: normal;
+    font-size: 24px;
+}
+
+.adm-main-input {
+    width: 489px;
+    margin-bottom: 15px;
+}
+
+.adm-sub-input {
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    width: 367px;
+    height: 60px;
+    border-radius: 12px;
+    background-color: var(--text03);
+    text-overflow: ellipsis;
+    padding: 15px;
+}
+
+.adm-sub-btn {
+    width: 489px;
+    height: 60px;
+    border-radius: 12px;
+    color: var(--sub-color03);
+    font-size: 24px;
+    font-weight: bold;
+    background-color: var(--sub-color04);
+    margin-top: 15px;
+}
+
+input::file-selector-button {
+    font-size: 20px;
+    font-weight: normal;
+    border-radius: 12px;
+    height: 60px;
+    /*width: 50%;*/
+    border: none;
+    color: var(--sub-color03);
+    background-color: var(--sub-color04);
+    padding: 15px;
+}
+
+/*.file-upload {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    gap: 5px;*/
+/*}*/
+
+/*.file-name {*/
+/*    !*width: 20px;*!*/
+/*    font-size: 10px;*/
+/*    color: var(--sub-color04);*/
+/*    text-overflow: ellipsis; !* Truncate overflowing text *!*/
+/*}*/
