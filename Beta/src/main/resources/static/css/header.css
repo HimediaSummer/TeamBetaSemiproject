@@ -30,6 +30,7 @@ body {
     height: 80px; /* Adjust the logo size */
 }
 
+
 /* Navigation menu styling */
 .main-nav-menu {
     display: flex;
@@ -51,11 +52,25 @@ body {
     color: var(--sub-color04); /* Yellow color for the icons */
 }
 
+
 /* Hover effects for better interaction */
 .cart:hover, .community:hover, .login:hover, .username:hover, .logout:hover {
     color: var(--text03);
 } /* Change text color on hover */
 
-.cart:hover i, .community:hover i, .login:hover i, .username:hover i, .logout:hover i{
+/* Hover effects for better interaction */
+.cart:hover, .community:hover, .login:hover, .username:hover, .logout:hover {
+    color: var(--text03); /* Change text color on hover */
+}
+
+.cart:hover i, .community:hover i, .login:hover i, .username:hover, .logout:hover i {
     color: var(--text03); /* Change icon color on hover */
+}
+
+i{
+    font-size: 20px;
+}
+
+h3{
+    font-weight: 500;
 }
