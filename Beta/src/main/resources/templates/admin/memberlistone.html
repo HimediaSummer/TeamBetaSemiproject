@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>개별조회</title>
+</head>
+<body>
+    <form th:action="@{/admin/memberlistone}" method="post">
+        <div>
+            <label for="userCode">회원코드:</label>
+            <input type="text" id="userCode" name="userCode" required />
+            <button type="submit">조회하기</button>
+        </div>
+    </form>
+
+
+</body>
+</html>

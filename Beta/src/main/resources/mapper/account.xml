@@ -28,10 +28,10 @@
     
     <resultMap id="memberResultMap" type="beta.function.account.dto.AccountDTO">
         <id property="userCode" column="userCode"/>
-        <result property="userId" column="userId"/>
-        <result property="userName" column="userName"/>
+        <result property="username" column="username"/>
+        <result property="fullname" column="fullname"/>
         <result property="nickName" column="nickName"/>
-        <result property="pwd" column="pwd"/>
+        <result property="password" column="password"/>
         <result property="birthday" column="birthday"/>
         <result property="email" column="email"/>
         <result property="phone" column="phone"/>
@@ -49,10 +49,10 @@
     <select id="findAllMember" resultMap="memberResultMap">
         SELECT
             userCode,
-            userId,
-            userName,
+            username,
+            fullname,
             nickName,
-            pwd,
+            password,
             birthday,
             email,
             phone,
@@ -77,10 +77,10 @@
     <select id="findMemberByCode" parameterType="int" resultMap="memberResultMap">
         SELECT
             userCode,
-            userId,
-            userName,
+            username,
+            fullname,
             nickName,
-            pwd,
+            password,
             birthday,
             email,
             phone,
@@ -99,10 +99,10 @@
         INSERT INTO
             account_list
             (
-            userId,
-            userName,
+            username,
+            fullname,
             nickName,
-            pwd,
+            password,
             birthday,
             email,
             phone,
@@ -113,10 +113,10 @@
             )
         VALUES
             (
-            #{userId},
-            #{userName},
+            #{username},
+            #{fullname},
             #{nickName},
-            #{pwd},
+            #{password},
             #{birthday},
             #{email},
             #{phone},
@@ -130,10 +130,10 @@
     <update id="updateMember" parameterType="beta.function.account.dto.AccountDTO">
         UPDATE account_list
         SET
-            userId = #{userId},
-            userName = #{userName},
+            username = #{username},
+            fullname = #{fullname},
             nickName = #{nickName},
-            pwd = #{pwd},
+            password = #{password},
             birthday = #{birthday},
             email = #{email},
             phone = #{phone},

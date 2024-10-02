@@ -2,71 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        body {
-            display: flex;
-        }
-        .sidebar {
-            display: flex;
-            flex-direction: column;
-            margin-right: 20px; /* Space between sidebar and content */
-        }
-        .sidebar button {
-            margin: 5px 0;
-            padding: 10px;
-            background-color: #6c757d; /* 기본 색상: 회색 */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .sidebar button:hover {
-            background-color: #5a6268; /* 호버 색상: 어두운 회색 */
-        }
+    <title>관리자 페이지</title>
 
-        .button-group button {
-            padding: 10px;
-            background-color: #6c757d; /* 기본 색상: 회색 */
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button-group button:hover {
-            background-color: #5a6268; /* 호버 색상: 어두운 회색 */
-        }
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 
-    </style>
+    <script>
+        const successMessage = `[[${ successMessage}]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+
+
 </head>
 <body>
+<header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/header :: navbar"></nav>
+</header>
 
-<div class="sidebar">
-    <button onclick="location.href='/admin/memberList'">회원관리</button>
-    <button onclick="location.href=''">게임관리</button>
-    <button onclick="location.href=''">주문관리</button>
-    <button onclick="location.href=''">댓글관리</button>
-</div>
-<div class="content">
-    <div class="button-group">
-        <button onclick="location.href='/admin/memberList'">전체조회</button>
-        <!--            <button onclick="location.href='/admin/'">개별조회</button>-->
-        <!--            <button onclick="location.href='/admin/memberRegist'">등록</button>-->
-        <button onclick="openWindow('/admin/')">개별조회</button>
-        <button onclick="openWindow('/admin/memberRegist')">등록</button>
-    </div>
-</div>
+<aside class="side-bar">
+    <ul class="sidebar-menu">
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+        </li>
+        <li>
+            <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+        </li>
+    </ul>
+</aside>
 
-<script>
-    function openWindow(url) {
-        // Define the size of the new window
-        const width = 800; // Adjust width
-        const height = 600; // Adjust height
-        const left = (window.innerWidth / 2) - (width / 2); // Center horizontally
-        const top = (window.innerHeight / 2) - (height / 2); // Center vertically
-
-        window.open(url, '_blank', `width=${width},height=${height},top=${top},left=${left}`);
-    }
-</script>
+<!-- Footer -->
+<footer th:insert="common/footer :: footer"></footer>
 </body>
 </html>

@@ -1,15 +1,15 @@
 package beta.function.account.dto;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
+import beta.function.auth.userRole.UserRole;
 
 public class AccountDTO {
 
     private int userCode;
-    private String userId;
-    private String userName;
+    private String username;
+    private String fullname;
     private String nickName;
-    private String pwd;
+    private String password;
     private String birthday;
     private String email;
     private String phone;
@@ -18,16 +18,15 @@ public class AccountDTO {
     private String profileimg;
     private int authorityCode;
 
-
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String userId, String userName, String nickName, String pwd, String birthday, String email, String phone, char suspension, char deletion, String profileimg, int authorityCode) {
+    public AccountDTO(int userCode, String username, String fullname, String nickName, String password, String birthday, String email, String phone, char suspension, char deletion, String profileimg, int authorityCode) {
         this.userCode = userCode;
-        this.userId = userId;
-        this.userName = userName;
+        this.username = username;
+        this.fullname = fullname;
         this.nickName = nickName;
-        this.pwd = pwd;
+        this.password = password;
         this.birthday = birthday;
         this.email = email;
         this.phone = phone;
@@ -45,20 +44,20 @@ public class AccountDTO {
         this.userCode = userCode;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getNickName() {
@@ -69,12 +68,12 @@ public class AccountDTO {
         this.nickName = nickName;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getBirthday() {
@@ -94,6 +93,9 @@ public class AccountDTO {
     }
 
     public String getPhone() {
+        if (phone != null && phone.length() == 11) {
+            return phone.substring(0, 3) + "-" + phone.substring(3, 7) + "-" + phone.substring(7);
+        }
         return phone;
     }
 
@@ -137,10 +139,10 @@ public class AccountDTO {
     public String toString() {
         return "AccountDTO{" +
                 "userCode=" + userCode +
-                ", userId='" + userId + '\'' +
-                ", userName='" + userName + '\'' +
+                ", username='" + username + '\'' +
+                ", fullname='" + fullname + '\'' +
                 ", nickName='" + nickName + '\'' +
-                ", pwd='" + pwd + '\'' +
+                ", password='" + password + '\'' +
                 ", birthday='" + birthday + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +

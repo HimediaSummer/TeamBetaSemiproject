@@ -44,7 +44,7 @@ public class AccountService {
     @Transactional
     public void deleteMember(int userCode) {
 
-
         accountDAO.deleteMember(userCode);
     }
+
 }
