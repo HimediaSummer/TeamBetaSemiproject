@@ -1,6 +1,5 @@
 package beta.function.order.dto;
 
-import beta.function.account.dto.AccountDTO;
 import beta.function.game.dto.GameDTO;
 
 public class CartDTO {
@@ -8,15 +7,17 @@ public class CartDTO {
     private int cartCode;
     private int userCode;
     private int gameCode;
+    private char addCart;
     private GameDTO gameDTO;
 
     public CartDTO() {
     }
 
-    public CartDTO(int cartCode, int userCode, int gameCode, GameDTO gameDTO) {
+    public CartDTO(int cartCode, int userCode, int gameCode, char addCart, GameDTO gameDTO) {
         this.cartCode = cartCode;
         this.userCode = userCode;
         this.gameCode = gameCode;
+        this.addCart = addCart;
         this.gameDTO = gameDTO;
     }
 
@@ -44,6 +45,14 @@ public class CartDTO {
         this.gameCode = gameCode;
     }
 
+    public char getAddCart() {
+        return addCart;
+    }
+
+    public void setAddCart(char addCart) {
+        this.addCart = addCart;
+    }
+
     public GameDTO getGameDTO() {
         return gameDTO;
     }
@@ -58,6 +67,7 @@ public class CartDTO {
                 "cartCode=" + cartCode +
                 ", userCode=" + userCode +
                 ", gameCode=" + gameCode +
+                ", addCart=" + addCart +
                 ", gameDTO=" + gameDTO +
                 '}';
     }

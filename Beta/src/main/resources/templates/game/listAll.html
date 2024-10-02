@@ -18,6 +18,9 @@
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
+
+        const errorMessage = `[[${ errorMessage }]]`;
+        if(errorMessage) alert(errorMessage);
     </script>
 </head>
 <body>
@@ -44,6 +47,7 @@
         </ul>
     </aside>
 
+<<<<<<< HEAD
     <main>
         <section class="top-bar">
             <button class="admin-btn active" onclick="location.href='/game/listAll'">전체조회</button>
@@ -52,6 +56,22 @@
             <!-- Trigger/Open The registModal -->
             <button id="registBtn" class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
         </section>
+=======
+                <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
+                <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                    <button type="submit">장바구니 담기</button>
+                </form>
+            </td>
+            <td>
+                <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+    <br>
+    <button onclick="location.href='/admin/page'">관리자로</button>
+>>>>>>> 6b479fba4d59717a21758798e2456836a74aa0b5
 
         <div id="listOneModal" class="modal">
             <!-- Modal content -->

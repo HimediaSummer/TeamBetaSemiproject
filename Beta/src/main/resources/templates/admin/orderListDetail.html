@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>listAll</title>
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+</head>
+<body>
+        <section class="top-bar">
+            <button class="admin-btn" onclick="location.href='/order/orderListAll'">전체조회</button>
+            <button class="admin-btn active" onclick="location.href='/order/orderListOne'">개별조회</button>
+        </section>
+
+        <article>
+            <table>
+                <tr>
+                    <th>주문코드</th>
+                    <th>게임코드</th>
+                    <th>장바구니코드</th>
+                    <th>회원코드</th>
+                    <th>결제코드</th>
+                </tr>
+                <tr>
+                    <td th:text="${ order.orderCode }"></td>
+                    <td th:text="${ order.gameCode }"></td>
+                    <td th:text="${ order.cartCode }"></td>
+                    <td th:text="${ order.userCode }"></td>
+                    <td th:text="${ order.paymentCode }"></td>
+                    <td th:text="${ order.gamecheck }"></td>
+
+                    <!--<td>
+                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                            <button type="submit">삭제</button>
+                        </form>
+                    </td>-->
+                </tr>
+            </table>
+        </article>
+</body>
+</html>

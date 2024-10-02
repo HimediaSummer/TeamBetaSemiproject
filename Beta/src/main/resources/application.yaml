@@ -7,7 +7,7 @@ spring:
   # DB config
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/gamsungdb
+    url: jdbc:mysql://localhost:3306/gamsungdb?allowMultiQueries=true
     username: betagamsung
     password: betagamsung
   # Servlet config
@@ -27,5 +27,4 @@ spring:
 # MyBatis Framework config
 mybatis:
   mapper-locations: mapper/*.xml
-
 

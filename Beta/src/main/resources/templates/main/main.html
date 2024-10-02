@@ -2,17 +2,8 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Main Page</title>
-    <!-- Include global stylesheet -->
-    <link rel="stylesheet" th:href="@{/static/css/global.css}">
-    <!-- Include navbar specific stylesheet -->
-    <link rel="stylesheet" th:href="@{/static/css/header.css}">
-    <!-- Include footer specific stylesheet -->
-    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
-    <!-- Include FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!-- Include main specific stylesheet -->
-    <link rel="stylesheet" th:href="@{/static/css/main.css}">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/globals.css}"/>
 </head>
 <body>
 <header>
@@ -20,16 +11,7 @@
     <nav th:insert="common/header :: navbar"></nav>
 </header>
 
-<!-- Hero Section with Slider -->
-<section class="hero">
-    <div class="slider">
-        <div class="slide"><img src="/static/img/original/DoubleDragon.png" alt="DoubleDragon.png"></div>
-        <!-- Add more images here -->
-    </div>
-<!--    <div class="hero-text">-->
-<!--        <p>Let's go back to <br> <em>a time we knew</em>.<br>Let's drink <br> <em>the whole night through</em></p>-->
-<!--    </div>-->
-</section>
+    <div th:replace="common/header.html"></div>
 
 <!-- Product Grid Section -->
 <section class="product-section">
@@ -45,57 +27,6 @@
         </ul>
     </div>
 </section>
-
-<!-- Swipeable Product Gallery (Cards Section) -->
-<section class="cards-section">
-    <div class="product-container">
-        <div class="product-list">
-            <!-- Add 20 product images here -->
-            <div class="product-item" th:each="game : ${gameList}">
-                <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
-<!--                <p th:text="${ game.gameName }"></p>-->
-                <button class="sub-btn">Learn More</button>
-            </div>
-        </div>
-    </div>
-    <button class="prev" onclick="slideProducts(-1)">&#10094;</button>
-    <button class="next" onclick="slideProducts(1)">&#10095;</button>
-</section>
-
-<!-- Footer -->
-<footer th:insert="common/footer :: footer"></footer>
-
-<div sec:authorize="hasAnyAuthority('ADMIN')">
-    <p>Welcome, You are ADMIN!</p>
-</div>
-
-
-<div sec:authorize="hasAnyAuthority('USER')">
-    <p>Welcome, You are USER!</p>
-</div>
-
-<script>
-    const modal = document.getElementById("modal");
-    const btn = document.getElementById("login-btn");
-    const span = document.getElementsByClassName("close");
-
-    // 로그인 버튼 클릭 시 모달 열기
-    btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    // 닫기 버튼 클릭 시 모달 닫기
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // 모달 외부 클릭 시 닫기
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
 
 </body>
 </html>

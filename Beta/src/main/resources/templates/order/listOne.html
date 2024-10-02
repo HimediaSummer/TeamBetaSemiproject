@@ -5,10 +5,10 @@
     <title>listOne</title>
 </head>
 <body>
-    <form th:action="@{/game/listOne}" method="post">
+    <form th:action="@{/order/listOne}" method="post">
         <div>
-            <label for="userCode">게임코드:</label>
-            <input type="number" id="userCode" name="userCode" required />
+            <label for="orderCode">주문코드:</label>
+            <input type="number" id="orderCode" name="orderCode" required />
             <button type="submit">조회하기</button>
         </div>
     </form>
