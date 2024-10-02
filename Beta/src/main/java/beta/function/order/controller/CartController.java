@@ -37,11 +37,12 @@ public class CartController {
         // 임의로 userCode를 2로 설정
         session.setAttribute("userCode", 2);
 
+        System.out.println("mypage 1");
         Integer userCode = (Integer) session.getAttribute("userCode");
 
         List<CartDTO> mypage = cartService.haveOrderList(userCode);
 
-        System.out.println("mypage :" + mypage);
+        System.out.println("mypage 2 :" + mypage);
 
         model.addAttribute("mypage", mypage);
 

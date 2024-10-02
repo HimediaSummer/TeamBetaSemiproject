@@ -13,23 +13,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <!-- Include main specific stylesheet -->
     <link rel="stylesheet" th:href="@{/static/css/main.css}">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
 </head>
 <body>
-<header>
+<div class="main-header">
     <!-- Importing the navbar with Thymeleaf -->
     <nav th:insert="common/header :: navbar"></nav>
-</header>
-
-<!-- Hero Section with Slider -->
-<section class="hero">
-    <div class="slider">
-        <div class="slide"><img src="/static/img/original/DoubleDragon.png" alt="DoubleDragon.png"></div>
+</div>
+<!--Top Section Slider-->
+<section class="swiper auto-mySwiper">
+    <div class="swiper-wrapper auto-myWrapper">
+        <div class="swiper-slide"><img src="/static/img/original/DoubleDragon.png" alt="DoubleDragon.png"></div>
+        <div class="swiper-slide"><img src="/static/img/original/Tetris.png" alt="Tetris.png"></div>
+        <div class="swiper-slide"><img src="/static/img/original/SuperMarioBros.png" alt="SuperMarioBros.png"></div>
+        <div class="swiper-slide"><img src="/static/img/original/Galaga.png" alt="Galaga.png"></div>
+        <div class="swiper-slide"><img src="/static/img/original/Castlevania.png" alt="Castlevania.png"></div>
         <!-- Add more images here -->
     </div>
-<!--    <div class="hero-text">-->
-<!--        <p>Let's go back to <br> <em>a time we knew</em>.<br>Let's drink <br> <em>the whole night through</em></p>-->
-<!--    </div>-->
 </section>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper1 = new Swiper(".auto-mySwiper", {
+        spaceBetween: 30,
+        centeredSlides: true,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+    });
+</script>
 
 <!-- Product Grid Section -->
 <section class="product-section">
@@ -38,30 +56,46 @@
             <li th:each="game, itemStat : ${gameList}" th:if="${itemStat.index < 8}">
                 <img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" th:alt="${ game.gameThumbnail }"/>
                 <div class="button-group">
-                    <button class="main-btn02">Buy Now</button>
+                    <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
+                    <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                        <button class="main-btn02" type="submit">Buy Now</button>
+                    </form>
                     <button class="main-btn02">Learn More</button>
                 </div>
             </li>
-            <!-- Add more products as needed -->
         </ul>
     </div>
 </section>
 
-<!-- Swipeable Product Gallery (Cards Section) -->
-<section class="cards-section">
-    <div class="product-container">
-        <div class="product-list">
-            <!-- Add 20 product images here -->
-            <div class="product-item" th:each="game : ${gameList}">
-                <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
-<!--                <p th:text="${ game.gameName }"></p>-->
-                <button class="sub-btn">Learn More</button>
-            </div>
+<!-- Bottom Section Slider -->
+<section class="swiper-container manual-mySwiper">
+    <div class="swiper-wrapper">
+        <!-- Add 20 product images here -->
+        <div class="swiper-slide" th:each="game : ${gameList}">
+            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
+            <!--                <p th:text="${ game.gameName }"></p>-->
+            <button class="sub-btn">Learn More</button>
         </div>
     </div>
-    <button class="prev" onclick="slideProducts(-1)">&#10094;</button>
-    <button class="next" onclick="slideProducts(1)">&#10095;</button>
 </section>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Initialize Swiper -->
+<script>
+    var swiper2 = new Swiper(".manual-mySwiper", {
+        slidesPerView: 4,
+        spaceBetween: 30,
+        slidesPerGroup: 4,
+        autoplay: {
+            delay: 3000,
+            disableOnInteraction: false,
+        },
+        loop: true,
+        loopFillGroupWithBlank: true,
+    });
+</script>
 
 <!-- Footer -->
 <footer th:insert="common/footer :: footer"></footer>

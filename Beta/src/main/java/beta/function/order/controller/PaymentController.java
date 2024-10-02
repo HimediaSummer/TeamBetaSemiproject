@@ -40,35 +40,45 @@ public class PaymentController {
 //                          @RequestParam String userCode,
                           @RequestParam List<String> gameCode){
 
+        // 임의로 userCode를 2로 설정
+//        session.setAttribute("userCode", 2);
+        session.getAttribute("userCode");
+        Integer userCode = (Integer) session.getAttribute("userCode");
+
         System.out.println("gameCodeList 실행 1");
         System.out.println("gameCodeList " + gameCode);
-//        List<String> gameCodeListcheck = cartService.gameCodeList( gameCodeList);
+//        gameCode.add(userCode)
+        System.out.println("gameCodeList 실행 2");
         cartService.gameCode(gameCode);
+        System.out.println("gameCodeList 실행 3");
         cartService.deleteY();
+        System.out.println("gameCodeList 실행 4");
 //        cartService.gameCodeList(userCode, gameCodeList);
 
 //        System.out.println("gameCodeListcheck" + gameCodeListcheck);
 
         System.out.println("[PaymentController] addItem : 나오나?");
 
-        // 임의로 userCode를 2로 설정
-        session.setAttribute("userCode", 2);
-
-        Integer userCode = (Integer) session.getAttribute("userCode");
 
         try{
             /*game_payment 테이블에 추가*/
+            System.out.println("addpayment1 ");
             paymentService.addPayment(userCode);
+            System.out.println("addpayment2 ");
 //            System.out.println("[PaymentController] userCode : " + userCode);
 
             /*game_order 테이블에 추가*/
+            System.out.println("addOrder 1 ");
             orderService.addOrder(userCode);
+            System.out.println("addOrder 2 ");
 ////          System.out.println("[PaymentController] userCode : " + userCode);
 
             model.addAttribute("successMessage", "결제가 완료되었습니다.");
 
             /*결제 확인*/
+            System.out.println("orderResult 1 ");
             List<PaymentDTO> resultList = paymentService.orderResult(userCode);
+            System.out.println("orderResult 2 ");
 //            System.out.println("[PaymentController] resultList : " + resultList);
 
             model.addAttribute("resultList", resultList);
