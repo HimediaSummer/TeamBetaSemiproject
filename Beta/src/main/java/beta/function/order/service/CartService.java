@@ -32,6 +32,8 @@ public class CartService {
     /*회원별 장바구니 리스트*/
     public List<CartDTO> findByUser(int userCode) {
 
+        System.out.println("CartService findByUser" + userCode);
+
         return cartMapper.findByUser(userCode);
     }
 
@@ -98,12 +100,12 @@ public class CartService {
 
 
 //    public void gameCodeList(String userCode, List<String> gameCodeList) {
-    public void gameCode(List<String> gameCode) {
+    public void gameCode(int userCode , List<String> gameCode) {
 
         System.out.println("gamecode service 1");
         System.out.println("gamecode service 2" + gameCode);
 //       cartMapper.gameCodeList(userCode, gameCodeList);
-       cartMapper.gameCode(gameCode);
+       cartMapper.gameCode(userCode, gameCode);
         System.out.println("gamecode service 3" + gameCode);
     }
 

@@ -42,22 +42,28 @@ public class OrderService {
     public void addOrder(int userCode) {
 
         /*game_cart 있는 userCode 찾아오기*/
-//        List<CartDTO> cartList = cartService.findByUser(userCode);
-        List<CartDTO> cartList = cartService.haveOrderList(userCode);
-        System.out.println("[OS] cartList : " + cartList);
+//        List<CartDTO> cartList = cartService.haveOrderList(userCode);
+        System.out.println("[OS] cartList111111 : " + userCode);
+        List<CartDTO> cartList = cartService.findByUser(userCode);
+        System.out.println("[OS] cartList111111 : " + cartList);
 
         /*game_payment에 있는 userCode 찾아오기*/
         List<PaymentDTO> paymentList = paymentService.orderResult(userCode);
         System.out.println("[OS] paymentList : " + paymentList);
 
+        System.out.println("orderService 이거 실행 함? 1");
         PaymentDTO payment = new PaymentDTO();
         payment.setUserCode(userCode);
         paymentMapper.insertPayment(payment);
+        System.out.println("orderService 이거 실행 함? 2");
 
         int paymentCode = payment.getPaymentCode();
         System.out.println("[OrderService] paymentCode : " + paymentCode);
-
+        System.out.println("orderService 이거 실행 함? 3");
+        
+        System.out.println("포문 직전 1 ");
         for (CartDTO cart : cartList) {
+        System.out.println("포문 속 1 ");
             int cartCode = cart.getCartCode();
             int gameCode = cart.getGameCode();
 

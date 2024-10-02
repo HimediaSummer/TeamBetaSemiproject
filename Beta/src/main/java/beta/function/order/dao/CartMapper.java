@@ -33,7 +33,7 @@ public interface CartMapper {
     int cartListCheck(CartDTO cart);
 
 //    void gameCode(@Param("userCode") String userCode, @Param("gameCodeList") List<String> gameCodeList);
-    void gameCode(@Param("list") List<String> gameCode);
+    void gameCode(Integer userCode, @Param("list") List<String> gameCode);
 
     void deleteY();
 

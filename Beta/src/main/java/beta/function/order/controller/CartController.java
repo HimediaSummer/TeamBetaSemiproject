@@ -110,7 +110,7 @@ public class CartController {
             rAttr.addFlashAttribute("errorMessage", "이미 장바구니에 있는 게임입니다.");
         }
 
-        return "redirect:/game/listAll";
+        return "redirect:/";
     }
 
 }

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -48,13 +49,11 @@ public class PaymentController {
         System.out.println("gameCodeList 실행 1");
         System.out.println("gameCodeList " + gameCode);
 //        gameCode.add(userCode)
-        System.out.println("gameCodeList 실행 2");
-        cartService.gameCode(gameCode);
-        System.out.println("gameCodeList 실행 3");
-        cartService.deleteY();
-        System.out.println("gameCodeList 실행 4");
 //        cartService.gameCodeList(userCode, gameCodeList);
-
+//        List<String> userCodeList = new ArrayList<>();
+//        if(userCode != null){
+//            userCodeList.add(userCode.toString());
+//        }
 //        System.out.println("gameCodeListcheck" + gameCodeListcheck);
 
         System.out.println("[PaymentController] addItem : 나오나?");
@@ -82,6 +81,12 @@ public class PaymentController {
 //            System.out.println("[PaymentController] resultList : " + resultList);
 
             model.addAttribute("resultList", resultList);
+
+            System.out.println("gameCodeList 실행 2");
+            cartService.gameCode(userCode, gameCode);
+            System.out.println("gameCodeList 실행 3");
+            cartService.deleteY();
+            System.out.println("gameCodeList 실행 4");
 
 //            System.out.println(resultList);
 
