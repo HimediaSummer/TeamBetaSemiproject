@@ -46,16 +46,36 @@ body {
     cursor: pointer;
 }
 
-.cart i, .community i, .login i {
+.cart, .community, .login, .username ,.logout {
+    margin-left: 40px; /* Add more space between the menu items */
+    display: flex;
+    align-items: center;
+    color: var(--sub-color04); /* Yellow color for text */
+    cursor: pointer;
+}
+
+.cart i, .community i, .login i, .username i, .logout i {
     margin-right: 10px; /* Add space between icons and text */
     color: var(--sub-color04); /* Yellow color for the icons */
 }
 
+.cart > i, .community > i, .login > i, .logout > i{
+    margin: 0 10px 0 0;
+}
+
 /* Hover effects for better interaction */
-.cart:hover, .community:hover, .login:hover {
+.cart:hover, .community:hover, .login:hover, .username:hover, .logout:hover {
     color: var(--text03); /* Change text color on hover */
 }
 
-.cart:hover i, .community:hover i, .login:hover i {
+.cart:hover i, .community:hover i, .login:hover i, .username:hover, .logout:hover i {
     color: var(--text03); /* Change icon color on hover */
+}
+
+i{
+    font-size: 20px;
+}
+
+h3{
+    font-weight: 500;
 }
