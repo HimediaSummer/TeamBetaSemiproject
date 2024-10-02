@@ -84,6 +84,8 @@ public class GameController {
     public String findGameList(Model model) {
         List<GameDTO> gameList = gameService.findAllGame();
 
+        System.out.println("list all " + gameList);
+
         model.addAttribute("gameList", gameList);
 
         return "game/listAll";

@@ -1,8 +1,12 @@
 /* General navigation styling */
+header {
+    margin-bottom: 80px;
+}
+
 .nav {
     width: 100%;
     height: 80px; /* Increased height */
-    padding: 20px 40px; /* More padding for spacing */
+    padding: 10px 40px; /* More padding for spacing */
     background-color: var(--header-color); /* Dark background for contrast */
     display: flex;
     justify-content: center;
@@ -12,11 +16,6 @@
     left: 0;
     z-index: 10; /* Ensure the navbar stays on top of other elements */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for depth effect */
-}
-
-/* Ensure the content below the navbar is not hidden under it */
-body {
-    margin-top: 80px; /* Add top margin to push content down to avoid overlap with the navbar */
 }
 
 .nav-menu {
@@ -38,7 +37,7 @@ body {
 }
 
 /* Individual menu item styling */
-.cart, .community, .login {
+.my-page, .community, .login, .username, .logout {
     margin-left: 40px; /* Add more space between the menu items */
     display: flex;
     align-items: center;
@@ -46,36 +45,21 @@ body {
     cursor: pointer;
 }
 
-.cart, .community, .login, .username ,.logout {
-    margin-left: 40px; /* Add more space between the menu items */
-    display: flex;
-    align-items: center;
-    color: var(--sub-color04); /* Yellow color for text */
-    cursor: pointer;
-}
-
-.cart i, .community i, .login i, .username i, .logout i {
+.my-page i, .community i, .login i, .username i, .logout i {
     margin-right: 10px; /* Add space between icons and text */
     color: var(--sub-color04); /* Yellow color for the icons */
 }
 
-.cart > i, .community > i, .login > i, .logout > i{
-    margin: 0 10px 0 0;
+.my-page h3, .community h3, .login h3, .username h3, .logout h3 {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* Hover effects for better interaction */
-.cart:hover, .community:hover, .login:hover, .username:hover, .logout:hover {
+.my-page:hover, .community:hover, .login:hover {
     color: var(--text03); /* Change text color on hover */
 }
 
-.cart:hover i, .community:hover i, .login:hover i, .username:hover, .logout:hover i {
+.my-page:hover i, .community:hover i, .login:hover i {
     color: var(--text03); /* Change icon color on hover */
-}
-
-i{
-    font-size: 20px;
-}
-
-h3{
-    font-weight: 500;
 }

@@ -1,43 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <!-- fontawesome -->
-    <link rel ="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <!-- css -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
-    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
-</head>
-<body>
-
 <div class="nav" th:fragment="navbar" xmlns:sec="http://www.w3.org/1999/xhtml">
-    <nav class="nav-menu">
-        <a href="/">
-            <div class="logo">
-                <img src="/static/img/logo.svg" alt="Gamsung Station">
-            </div>
-        </a>
+    <div class="nav-menu">
+        <div class="logo">
+            <img src="/static/img/logo.svg" alt="Gamsung Station">
+        </div>
 
         <div class="main-nav-menu">
-            <a href="/order/cart">
-                <div class="cart">
+            <a href="/order/userCart/">
+                <div class="my-page">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <h3>MY PAGE</h3>
                 </div>
             </a>
 
             <a href="/admin/FAQ">
-            <div class="community">
-                <i class="fa-solid fa-comments"></i>
-                <h3>COMMUNITY</h3>
-            </div>
+                <div class="community">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3>COMMUNITY</h3>
+                </div>
             </a>
-
 
             <!--로그인 안된 상태에서 로그인 표시-->
             <div class="modal">
-                <a sec:authorize="isAnonymous()" th:href="@{/auth/login}" id="loginLink">
+                <a sec:authorize="isAnonymous()" th:href="@{/auth/login}"  id="loginLink">
                     <div class="login">
                         <i class="fa-solid fa-user-large"></i>
                         <h3>LOG IN</h3>
@@ -60,9 +44,7 @@
                     <h3>LOG OUT</h3>
                 </div>
             </a>
-        </div>
-    </nav>
-</div>
-</body>
-</html>
 
+        </div>
+    </div>
+</div>

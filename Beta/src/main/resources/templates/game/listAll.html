@@ -18,9 +18,6 @@
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
-
-        const errorMessage = `[[${ errorMessage }]]`;
-        if(errorMessage) alert(errorMessage);
     </script>
 </head>
 <body>
@@ -33,7 +30,7 @@
     <aside class="side-bar">
         <ul class="sidebar-menu">
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+                <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
             </li>
             <li>
                 <button class="admin-btn active" onclick="location.href='/game/listAll'">게임관리</button>
@@ -46,69 +43,7 @@
             </li>
         </ul>
     </aside>
-                <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
-                <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                    <button type="submit">장바구니 담기</button>
-                </form>
-            </td>
-            <td>
-                <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                    <button type="submit">삭제</button>
-                </form>
-            </td>
-        </tr>
-    </table>
-    <br>
-    <button onclick="location.href='/admin/page'">관리자로</button>
 
-        <div id="listOneModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-<!--                <div class="modal-header close">&times;</div>-->
-                <div class="modal-body">
-                    <form class="adm-form" th:action="@{/game/listOne}" method="post">
-                        <div class="admin-main-input">
-                            <label for="gameCode">게임코드:&nbsp;</label>
-                            <input class="adm-sub-input" type="number" id="gameCode" name="gameCode" required />
-                        </div>
-                        <div class="adm-main-btn">
-                            <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            // Get the modal
-            var modal = document.getElementById("listOneModal");
-
-            // Get the button that opens the moal
-            var btn = document.getElementById("listOneBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal
-            btn.onclick = function () {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function () {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
-        <div id="registModal" class="modal">
-        </div>
     <main>
         <section class="top-bar">
             <button class="admin-btn" onclick="location.href='/game/listAll'">전체조회</button>
@@ -142,18 +77,18 @@
                     <td th:text="${ game.gamePicture }"></td>
                     <td th:text="${ game.gameThumbnail }"></td>
                     <td>
-<!--                        <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
-<!--                            <button id="editBtn" type="submit">수정</button>-->
-<!--                        </form>-->
+                        <!--                        <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
+                        <!--                            <button id="editBtn" type="submit">수정</button>-->
+                        <!--                        </form>-->
                         <!-- Form to trigger the edit action -->
                         <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
                             <button type="submit" id="editBtn">수정</button>
                         </form>
                     </td>
                     <td>
-<!--                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
-<!--                            <button id="deleteBtn" type="submit">삭제</button>-->
-<!--                        </form>-->
+                        <!--                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
+                        <!--                            <button id="deleteBtn" type="submit">삭제</button>-->
+                        <!--                        </form>-->
                         <!-- Form to trigger the delete action -->
                         <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
                             <button type="submit" id="deleteBtn">삭제</button>
@@ -221,13 +156,13 @@
             </div>
         </div>
 
-    <!-- Include the modals (listOneModal, registModal) -->
-    <div th:insert="game/gameModal :: gameModal"></div>
+        <!-- Include the modals (listOneModal, registModal) -->
+        <div th:insert="game/gameModal :: gameModal"></div>
     </main>
 </wrapper>
 
 <!-- Footer -->
-<footer th:insert="common/footer :: footer"></footer>
+<!--<footer th:insert="common/footer :: footer"></footer>-->
 
 <script>
     // Ensure the edit modal opens when page loads if game data is available
