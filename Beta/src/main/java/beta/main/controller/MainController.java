@@ -43,5 +43,27 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
+    /* function/account추가*/
+
+    /* 설명. 관리자 권한 설정 체크 */
+    @GetMapping("/admin/page")
+    public ModelAndView admin(ModelAndView mv) {
+        mv.setViewName("admin/admin");
+        return mv;
+    }
+
+    @GetMapping("/game/detail")
+    public ModelAndView detail(ModelAndView mv) {
+        mv.setViewName("game/detail");
+        return mv;
+    }
+
+    /* function/game 브랜치 추가 */
+
+    /**/
+    /**/
+    /**/
+    /* function/security 브랜치 추가 */
+
 }
 
