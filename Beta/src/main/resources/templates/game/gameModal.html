@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Modals</title>
+</head>
+<body th:fragment="gameModal">
+<!-- List One Modal -->
+<div id="listOneModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header close">&times;</div>
+        <div class="modal-body">
+            <form class="adm-form" th:action="@{/game/listOne}" method="post">
+                <div class="admin-main-input">
+                    <label for="gameCode">게임코드:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="number" id="gameCode" name="gameCode" required />
+                </div>
+                <div class="adm-main-btn">
+                    <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Regist Modal -->
+<div id="registModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header close">&times;</div>
+        <div class="modal-body">
+            <form class="adm-form" th:action="@{/game/regist}" method="post" enctype="multipart/form-data">
+                <div class="adm-main-input">
+                    <label for="gameNameRegist">게임이름:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="text" id="gameNameRegist" name="gameName" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gameStorageRegist">게임용량:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="text" id="gameStorageRegist" name="gameStorage" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gamePriceRegist">게임가격:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="number" id="gamePriceRegist" name="gamePrice" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="uploadDateRegist">업로드일:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="date" id="uploadDateRegist" name="uploadDate" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gameOriginRegist">게임출처:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="text" id="gameOriginRegist" name="gameOrigin" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gameRequirementRegist">게임사양:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="text" id="gameRequirementRegist" name="gameRequirement" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gamePictureRegist">원본사진:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input-file" type="file" id="gamePictureRegist" name="gamePicture" required />
+                </div>
+                <div class="adm-main-input">
+                    <label for="gameThumbnailRegist">썸넬사진:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input-file" type="file" id="gameThumbnailRegist" name="gameThumbnail" required />
+                </div>
+                <div class="adm-main-btn">
+                    <button class="adm-sub-btn" type="submit">등록하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the modals
+    var modal1 = document.getElementById("listOneModal");
+    var modal2 = document.getElementById("registModal");
+
+    // Get the buttons that open the modals
+    var btn1 = document.getElementById("listOneBtn");
+    var btn2 = document.getElementById("registBtn");
+
+    // Get the <span> element that closes the modals
+    var close1 = modal1 ? modal1.getElementsByClassName("close")[0] : null;
+    var close2 = modal2 ? modal2.getElementsByClassName("close")[0] : null;
+
+    // When the user clicks the button, open the respective modal
+    if (btn1) {
+        btn1.onclick = function () {
+            modal1.style.display = "block";
+        }
+    }
+
+    if (btn2) {
+        btn2.onclick = function () {
+            modal2.style.display = "block";
+        }
+    }
+
+    // When the user clicks on <span> (x), close the respective modal
+    if (close1) {
+        close1.onclick = function () {
+            modal1.style.display = "none";
+        }
+    }
+
+    if (close2) {
+        close2.onclick = function () {
+            modal2.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside of the modals, close them
+    window.onclick = function (event) {
+        if (event.target === modal1) {
+            modal1.style.display = "none";
+        }
+        if (event.target === modal2) {
+            modal2.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

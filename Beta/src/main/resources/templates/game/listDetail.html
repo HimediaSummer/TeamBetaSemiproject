@@ -2,7 +2,7 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>listAll</title>
+    <title>listOne</title>
     <!-- Include global stylesheet -->
     <link rel="stylesheet" th:href="@{/static/css/global.css}">
     <!-- Include navbar specific stylesheet -->
@@ -11,6 +11,8 @@
     <link rel="stylesheet" th:href="@{/static/css/footer.css}">
     <!-- Include admin specific stylesheet -->
     <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
     <!-- Include FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script>
@@ -31,7 +33,7 @@
                 <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
             </li>
             <li>
-                <button class="admin-btn active" onclick="location.href='/game/listAll'">게임관리</button>
+                <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
             </li>
             <li>
                 <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
@@ -44,9 +46,11 @@
 
     <main>
         <section class="top-bar">
-            <button class="admin-btn" onclick="location.href='/game/listAll'">전체조회</button>
-            <button class="admin-btn active" onclick="location.href='/game/listOne'">개별조회</button>
-            <button class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
+            <button class="admin-btn active" onclick="location.href='/game/listAll'">전체조회</button>
+            <!-- Trigger/Open The listOneModal -->
+            <button id="listOneBtn" class="admin-btn" onclick="location.href='/game/listOne'">개별조회</button>
+            <!-- Trigger/Open The registModal -->
+            <button id="registBtn" class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
         </section>
 
         <article>
@@ -89,6 +93,9 @@
                 </tr>
             </table>
         </article>
+
+        <div th:insert="game/gameModal :: gameModal"></div>
+
     </main>
 </wrapper>
 

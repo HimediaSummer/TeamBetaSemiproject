@@ -125,26 +125,26 @@ CREATE TABLE IF NOT EXISTS game_order
 
 -- 3. 데이터 삽입
 -- 3-1. 이연홍 데이터 삽입
-INSERT INTO game_list VALUES (null, 'Super Mario Bros.', '32KB', 5000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'SuperMarioBros.png', 'SuperMarioBros.png');
-INSERT INTO game_list VALUES (null, 'The Legend of Zelda', '128KB', 7000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'TheLegendOfZelda.png', 'TheLegendOfZelda.png');
-INSERT INTO game_list VALUES (null, 'Pac-Man', '16KB', 2000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'PacMan.png', 'PacMan.png');
-INSERT INTO game_list VALUES (null, 'Sonic the Hedgehog', '1MB', 9000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'SonicTheHedgehog.png', 'SonicTheHedgehog.png');
-INSERT INTO game_list VALUES (null, 'Tetris', '32KB', 3000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Tetris.png', 'Tetris.png');
-INSERT INTO game_list VALUES (null, 'Street Fighter 2', '3MB', 12000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'StreetFighter2.png', 'StreetFighter2.png');
-INSERT INTO game_list VALUES (null, 'Donkey Kong', '20KB', 1000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DonkeyKong.png', 'DonkeyKong.png');
-INSERT INTO game_list VALUES (null, 'Mega Man 2', '512KB', 10000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'MegaMan2.png', 'MegaMan2.png');
-INSERT INTO game_list VALUES (null, 'Final Fantasy 6', '5MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'FinalFantasy.png', 'FinalFantasy.png');
-INSERT INTO game_list VALUES (null, 'Castlevania', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Castlevania.png', 'Castlevania.png');
-INSERT INTO game_list VALUES (null, 'Metroid', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Metroid.png', 'Metroid.png');
-INSERT INTO game_list VALUES (null, 'Contra', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Contra.png', 'Contra.png');
-INSERT INTO game_list VALUES (null, 'Chrono Trigger', '4MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'ChronoTrigger.png', 'ChronoTrigger.png');
-INSERT INTO game_list VALUES (null, 'Mortal Kombat', '2MB', 12000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'MortalKombat.png', 'MortalKombat.png');
-INSERT INTO game_list VALUES (null, 'Duck Hunt', '32KB', 5000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DuckHunt.png', 'DuckHunt.png');
-INSERT INTO game_list VALUES (null, 'The Oregon Trail', '64KB', 7000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'TheOregonTrail.png', 'TheOregonTrail.png');
-INSERT INTO game_list VALUES (null, 'EarthBound', '3MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'EarthBound.png', 'EarthBound.png');
-INSERT INTO game_list VALUES (null, 'Double Dragon', '256KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DoubleDragon.png', 'DoubleDragon.png');
-INSERT INTO game_list VALUES (null, 'Galaga', '32KB', 3000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Galaga.png', 'Galaga.png');
-INSERT INTO game_list VALUES (null, 'F-Zero', '1.5MB', 13000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'FZero.png', 'FZero.png');
+INSERT INTO game_list VALUES (null, 'Super Mario Bros.', '32KB', 5000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'SuperMarioBros.png', 'SuperMarioBrosThumb.png');
+INSERT INTO game_list VALUES (null, 'The Legend of Zelda', '128KB', 7000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'TheLegendOfZelda.png', 'TheLegendOfZeldaThumb.png');
+INSERT INTO game_list VALUES (null, 'Pac-Man', '16KB', 2000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'PacMan.png', 'PacManThumb.png');
+INSERT INTO game_list VALUES (null, 'Sonic the Hedgehog', '1MB', 9000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'SonicTheHedgehog.png', 'SonicTheHedgehogThumb.png');
+INSERT INTO game_list VALUES (null, 'Tetris', '32KB', 3000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Tetris.png', 'TetrisThumb.png');
+INSERT INTO game_list VALUES (null, 'Street Fighter 2', '3MB', 12000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'StreetFighter2.png', 'StreetFighter2Thumb.png');
+INSERT INTO game_list VALUES (null, 'Donkey Kong', '20KB', 1000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DonkeyKong.png', 'DonkeyKongThumb.png');
+INSERT INTO game_list VALUES (null, 'Mega Man 2', '512KB', 10000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'MegaMan2.png', 'MegaMan2Thumb.png');
+INSERT INTO game_list VALUES (null, 'Final Fantasy 6', '5MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'FinalFantasy.png', 'FinalFantasyThumb.png');
+INSERT INTO game_list VALUES (null, 'Castlevania', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Castlevania.png', 'CastlevaniaThumb.png');
+INSERT INTO game_list VALUES (null, 'Metroid', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Metroid.png', 'MetroidThumb.png');
+INSERT INTO game_list VALUES (null, 'Contra', '128KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Contra.png', 'ContraThumb.png');
+INSERT INTO game_list VALUES (null, 'Chrono Trigger', '4MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'ChronoTrigger.png', 'ChronoTriggerThumb.png');
+INSERT INTO game_list VALUES (null, 'Mortal Kombat', '2MB', 12000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'MortalKombat.png', 'MortalKombatThumb.png');
+INSERT INTO game_list VALUES (null, 'Duck Hunt', '32KB', 5000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DuckHunt.png', 'DuckHuntThumb.png');
+INSERT INTO game_list VALUES (null, 'The Oregon Trail', '64KB', 7000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'TheOregonTrail.png', 'TheOregonTrailThumb.png');
+INSERT INTO game_list VALUES (null, 'EarthBound', '3MB', 15000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'EarthBound.png', 'EarthBoundThumb.png');
+INSERT INTO game_list VALUES (null, 'Double Dragon', '256KB', 6000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'DoubleDragon.png', 'DoubleDragonThumb.png');
+INSERT INTO game_list VALUES (null, 'Galaga', '32KB', 3000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'Galaga.png', 'GalagaThumb.png');
+INSERT INTO game_list VALUES (null, 'F-Zero', '1.5MB', 13000, SYSDATE(), 'Beta Studio', 'Processor: i3 or above, Memory: 4GB or above', 'FZero.png', 'FZeroThumb.png');
 
 -- 3-2. 홍진기 데이터 삽입
 -- 3-2-1. 홍진기 권한 데이터 삽입 

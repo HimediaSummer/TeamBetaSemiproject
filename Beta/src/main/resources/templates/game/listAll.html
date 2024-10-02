@@ -46,7 +46,6 @@
             </li>
         </ul>
     </aside>
-
                 <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
                 <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
                     <button type="submit">장바구니 담기</button>
@@ -110,6 +109,14 @@
 
         <div id="registModal" class="modal">
         </div>
+    <main>
+        <section class="top-bar">
+            <button class="admin-btn" onclick="location.href='/game/listAll'">전체조회</button>
+            <!-- Trigger/Open The listOneModal -->
+            <button id="listOneBtn" class="admin-btn" onclick="location.href='/game/listOne'">개별조회</button>
+            <!-- Trigger/Open The registModal -->
+            <button id="registBtn" class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
+        </section>
 
         <article>
             <table>
@@ -135,13 +142,21 @@
                     <td th:text="${ game.gamePicture }"></td>
                     <td th:text="${ game.gameThumbnail }"></td>
                     <td>
+<!--                        <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
+<!--                            <button id="editBtn" type="submit">수정</button>-->
+<!--                        </form>-->
+                        <!-- Form to trigger the edit action -->
                         <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">수정</button>
+                            <button type="submit" id="editBtn">수정</button>
                         </form>
                     </td>
                     <td>
+<!--                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
+<!--                            <button id="deleteBtn" type="submit">삭제</button>-->
+<!--                        </form>-->
+                        <!-- Form to trigger the delete action -->
                         <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">삭제</button>
+                            <button type="submit" id="deleteBtn">삭제</button>
                         </form>
                     </td>
                 </tr>
@@ -156,10 +171,91 @@
                 <button>99</button>
             </nav>
         </article>
+
+        <!-- Edit Modal -->
+        <div th:if="${game != null}">
+            <div id="editModal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header close">&times;</div>
+                    <div class="modal-body">
+                        <form class="adm-form" th:action="@{/game/update}" th:object="${game}" method="post" enctype="multipart/form-data">
+                            <input type="hidden" th:field="*{gameCode}" id="gameCodeEdit" />
+                            <div class="adm-main-input">
+                                <label for="gameNameEdit">게임이름: </label>
+                                <input type="text" id="gameNameEdit" th:field="*{gameName}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gameStorageEdit">게임용량: </label>
+                                <input type="text" id="gameStorageEdit" th:field="*{gameStorage}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gamePriceEdit">게임가격: </label>
+                                <input type="number" id="gamePriceEdit" th:field="*{gamePrice}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="uploadDateEdit">업로드일: </label>
+                                <input type="date" id="uploadDateEdit" th:field="*{uploadDate}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gameOriginEdit">게임출처: </label>
+                                <input type="text" id="gameOriginEdit" th:field="*{gameOrigin}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gameRequirementEdit">게임사양: </label>
+                                <input type="text" id="gameRequirementEdit" th:field="*{gameRequirement}" class="adm-sub-input" required />
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gamePictureEdit">원본사진: </label>
+                                <input class="adm-sub-input-file" type="file" id="gamePictureEdit" th:field="*{gamePicture}" required/>
+                            </div>
+                            <div class="adm-main-input">
+                                <label for="gameThumbnailEdit">썸넬사진: </label>
+                                <input class="adm-sub-input-file" type="file" id="gameThumbnailEdit" th:field="*{gameThumbnail}" required/>
+                            </div>
+                            <div class="adm-main-btn">
+                                <button class="adm-sub-btn" type="submit">수정하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <!-- Include the modals (listOneModal, registModal) -->
+    <div th:insert="game/gameModal :: gameModal"></div>
     </main>
 </wrapper>
 
 <!-- Footer -->
 <footer th:insert="common/footer :: footer"></footer>
+
+<script>
+    // Ensure the edit modal opens when page loads if game data is available
+    window.onload = function () {
+        var modal3 = document.getElementById("editModal");
+        if (modal3) {
+            modal3.style.display = "block";
+        }
+    };
+    // Get the edit modal
+    var modal3 = document.getElementById("editModal");
+
+    // Get the <span> element that closes the edit modal
+    var close3 = modal3 ? modal3.getElementsByClassName("close")[0] : null;
+
+    // When the user clicks the close button (x), close the edit modal
+    if (close3) {
+        close3.onclick = function () {
+            modal3.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside the modal, close the edit modal
+    window.onclick = function (event) {
+        if (event.target === modal3) {
+            modal3.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
