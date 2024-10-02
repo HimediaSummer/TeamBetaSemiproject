@@ -27,6 +27,7 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             width: 450px;
             text-align: center;
+            position: relative;
         }
 
         /* 헤더 스타일 */
@@ -121,8 +122,10 @@
             gap: 10px;
         }
 
-        .long-button {
-            margin-top: 20px;
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
             width: 50px;
             background-color: #86A0A8;
             color: #FFEE32;
@@ -132,7 +135,7 @@
             transition: all 0.3s ease;
         }
 
-        .long-button:hover {
+        .home-button:hover {
             background-color: #FFEE32;
             color: #86A0A8;
             transform: translateY(-2px);
@@ -178,7 +181,7 @@
                 <button type="button" class="secondary-button" onclick="location.href='lostpwd'">비밀번호 찾기</button>
                 <button type="button" class="secondary-button" onclick="location.href='../user/signup'"> 회원가입</button>
             </div>
-                <button type="button" class="long-button" onclick="location.href='../main'">
+                <button type="button" class="home-button" onclick="location.href='../main'">
                         <i class="fa-solid fa-house"></i>
                 </button>
         </div>
