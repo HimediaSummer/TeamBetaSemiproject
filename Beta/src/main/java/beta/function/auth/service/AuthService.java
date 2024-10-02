@@ -48,6 +48,7 @@ public class AuthService implements UserDetailsService {
     }
 
     public AccountDTO lostpwd(String email) {
+        System.out.println("버튼호출 어스서비스 1 ");
 
         return accountDAO.lostId(email);
     }

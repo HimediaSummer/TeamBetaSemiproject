@@ -26,30 +26,7 @@ public class AccountDTO implements UserDetails {
     private int authorityCode;
 
     @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
-
-    private CartDTO cartDTO;
-
-       @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
 
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(() -> userRole.getRole());
@@ -71,10 +48,30 @@ public class AccountDTO implements UserDetails {
         return this.username;
     }
 
+    @Override
+    public boolean isAccountNonExpired() {
+        return UserDetails.super.isAccountNonExpired();
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return UserDetails.super.isAccountNonLocked();
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return UserDetails.super.isCredentialsNonExpired();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return UserDetails.super.isEnabled();
+    }
+
     public AccountDTO() {
     }
 
-    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg, char suspension, char deletion, int authorityCode, CartDTO cartDTO) {
+    public AccountDTO(int userCode, String username, String password, String fullName, UserRole userRole, String nickName, String birthday, String email, String phone, String profileimg, char suspension, char deletion, int authorityCode) {
         this.userCode = userCode;
         this.username = username;
         this.password = password;
@@ -88,7 +85,6 @@ public class AccountDTO implements UserDetails {
         this.suspension = suspension;
         this.deletion = deletion;
         this.authorityCode = authorityCode;
-        this.cartDTO = cartDTO;
     }
 
     @Override
@@ -107,7 +103,6 @@ public class AccountDTO implements UserDetails {
                 ", suspension=" + suspension +
                 ", deletion=" + deletion +
                 ", authorityCode=" + authorityCode +
-                ", cartDTO=" + cartDTO +
                 '}';
     }
 
@@ -205,13 +200,5 @@ public class AccountDTO implements UserDetails {
 
     public void setAuthorityCode(int authorityCode) {
         this.authorityCode = authorityCode;
-    }
-
-    public CartDTO getCartDTO() {
-        return cartDTO;
-    }
-
-    public void setCartDTO(CartDTO cartDTO) {
-        this.cartDTO = cartDTO;
     }
 }

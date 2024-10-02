@@ -228,11 +228,15 @@ public class GameController {
     public String showEditGameForm(@PathVariable("gameCode") int gameCode,
                                    Model model) {
 
-        GameDTO game = gameService.findGameByCode(gameCode);
+        // Add the list of all games and the game to be edited to the model
+        List<GameDTO> gameList = gameService.findAllGame();
+        model.addAttribute("gameList", gameList);  // Keep all games displayed
 
+        GameDTO game = gameService.findGameByCode(gameCode);
         model.addAttribute("game", game);
 
-        return "game/edit";
+//        return "game/gameModal";
+        return "game/listAll";
     }
 
     @PostMapping("/update")

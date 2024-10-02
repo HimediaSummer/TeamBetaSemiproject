@@ -1,0 +1,201 @@
+/* Hero Section Slider */
+.hero {
+    position: relative;
+    text-align: center;
+    color: white;
+    height: calc(100vh - 80px);
+    overflow: hidden;
+}
+
+.slider {
+    display: flex;
+    width: 100%; /* Width will be set dynamically in JS */
+    height: 100%;
+}
+
+.slide {
+    flex: 0 0 100%; /* Each slide takes full width */
+    height: 100%;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Change to 'cover' to ensure the image fills the area */
+}
+
+/*!* Gradient Mask Overlay *!*/
+/*.hero::before {*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*    background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.hero-text {*/
+/*    position: absolute;*/
+/*    top: 80%;*/
+/*    left: 20%;*/
+/*    transform: translateY(-50%);*/
+/*    text-align: left;*/
+/*    z-index: 2;*/
+/*    color: white; !* Ensure text is clearly visible *!*/
+/*    font-size: 2.5rem;*/
+/*    line-height: 1.5;*/
+/*}*/
+
+/* Centered Container */
+.center-container {
+    max-width: 1440px;
+    margin: 0 auto; /* Center the container */
+    padding: 0 20px; /* Optional padding for responsiveness */
+}
+
+/* Product Grid Section */
+.product-section {
+    padding: 40px 0;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
+}
+
+.productGrid > * { /* Apply styles to direct children of productGrid (li in this case) */
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform 0.3s ease; /* For hover effect */
+}
+
+.productGrid img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Button Group on Top of Image */
+.button-group {
+    position: absolute;
+    bottom: 10px; /* Position buttons at the bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Spacing between buttons */
+    z-index: 2; /* Ensure buttons appear on top of the image */
+}
+
+/* Swipeable Product Gallery (Cards Section) */
+.cards-section {
+    background-color: #212121;
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.product-container {
+    width: 80%;
+    display: flex;
+    overflow: hidden;
+    position: relative;
+}
+
+.product-list {
+    /*display: flex;*/
+    /*transition: transform 0.5s ease-in-out;*/
+    /*width: calc(100% * 20); !* 20 products *!*/
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    justify-items: center;
+}
+
+.product-item {
+    position: relative; /* Enable absolute positioning of the button and description */
+    flex: 0 0 25%; /* Show 4 items per view */
+    margin: 0 10px;
+    text-align: center;
+    overflow: hidden; /* Ensures the content doesn't overflow the card */
+}
+
+.product-item img {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5); /* Shadow for product cards */
+}
+
+/* Positioning the description and the button on top of the image */
+/*.product-item p {*/
+/*    position: absolute;*/
+/*    top: 20px; !* Position description near the top of the image *!*/
+/*    left: 50%;*/
+/*    transform: translateX(-50%);*/
+/*    z-index: 2;*/
+/*    font-size: 1.2rem;*/
+/*    color: white; !* Ensure text is visible *!*/
+/*    background: rgba(0, 0, 0, 0.6); !* Add a background for readability *!*/
+/*    padding: 5px 10px;*/
+/*    border-radius: 5px;*/
+/*    max-width: 80%; !* Prevent text from stretching too far *!*/
+/*    text-align: center;*/
+/*}*/
+
+.sub-btn {
+    position: absolute;
+    top: 20px; /* Position button at the bottom of the image */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2; /* Make sure the button is on top of the image */
+    padding: 10px 20px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sub-btn:hover {
+    background-color: var(--sub-color02); /* Change button color on hover */
+}
+
+/* Hover effect for the product item */
+.product-item:hover img {
+    transform: scale(1.05); /* Slight zoom-in effect */
+    transition: transform 0.3s ease;
+}
+
+/* Buttons for Gallery Navigation */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev {
+    left: -30px;
+}
+
+.next {
+    right: -30px;
+}
+
+.prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
