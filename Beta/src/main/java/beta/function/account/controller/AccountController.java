@@ -96,6 +96,7 @@ public class AccountController {
         return "admin/memberList";
     }
 
+
     // 개별 조회
     @RequestMapping("/memberListone")
     @GetMapping("/memberListone")
