@@ -212,4 +212,12 @@ public class AccountController {
 
         return "admin/FAQ";
     }
+
+    @GetMapping("notice")
+    public String notice() {
+
+        System.out.println("notice 호출됨");
+
+        return "admin/notice";
+    }
 }
