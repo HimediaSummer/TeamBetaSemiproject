@@ -103,15 +103,15 @@
     </select>
 
     <!--동일한 게임이 있는지 확인-->
-<!--    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">-->
-<!--        SELECT-->
-<!--        cartCode, userCode, gameCode-->
-<!--        FROM-->
-<!--        game_cart-->
-<!--        WHERE-->
-<!--        userCode = #{userCode}-->
-<!--        AND gameCode = #{gameCode}-->
-<!--    </select>-->
+    <!--    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">-->
+    <!--        SELECT-->
+    <!--        cartCode, userCode, gameCode-->
+    <!--        FROM-->
+    <!--        game_cart-->
+    <!--        WHERE-->
+    <!--        userCode = #{userCode}-->
+    <!--        AND gameCode = #{gameCode}-->
+    <!--    </select>-->
 
     <!--게임 총 금액-->
     <select id="gamePriceTotal" parameterType="beta.function.order.dto.CartDTO">
@@ -126,26 +126,27 @@
     <!--userCode222-->
     <select id="cartListCheck" parameterType="beta.function.order.dto.CartDTO">
         select
-            count(gc.gameCode)
+        count(gc.gameCode)
         from game_cart gc
-        where gc.gameCode = #{ gameCode } and userCode = #{ userCode }
+        where gc.gameCode = #{ gameCode } and userCode = #{ userCode } and addCart = 'Y';
     </select>
+
 
     <!--장바구니에 담기-->
     <insert id="addItem" parameterType="beta.function.order.dto.CartDTO" >
         INSERT INTO game_cart
         (
-            cartCode,
-            userCode,
-            gameCode,
-            addCart
+        cartCode,
+        userCode,
+        gameCode,
+        addCart
         )
         VALUES
         (
-            null,
-            #{ userCode },
-            #{ gameCode },
-            'Y'
+        null,
+        #{ userCode },
+        #{ gameCode },
+        'Y'
         )
     </insert>
 
@@ -157,28 +158,21 @@
     </update>
 
     <!--장바구니 게임 삭제-->
-<!--    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO">-->
-<!--        UPDATE game_cart-->
-<!--        SET-->
-<!--            addCart = 'N'-->
-<!--        WHERE-->
-<!--            gameCode = #{ gameCode }-->
-<!--    </update>-->
-
-    <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
-        DELETE
-        FROM
-            game_cart
-        WHERE gameCode = #{ gameCode } AND userCode = #{ userCode }
-    </delete>
+    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
+        UPDATE game_cart
+        SET
+        addCart = 'N'
+        WHERE
+        gameCode = #{ gameCode }
+    </update>
 
     <!--장바구니 전체 내역 삭제-->
     <update id="deleteAllCart" parameterType="beta.function.order.dto.OrderDTO">
-<!--        DELETE-->
-<!--        FROM-->
-<!--            game_cart-->
-<!--        WHERE-->
-<!--            userCode = #{ userCode }-->
+        <!--        DELETE-->
+        <!--        FROM-->
+        <!--            game_cart-->
+        <!--        WHERE-->
+        <!--            userCode = #{ userCode }-->
 
         UPDATE game_order
         SET
@@ -186,32 +180,32 @@
         WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })
 
 
-<!--        UPDATE game_order-->
-<!--        SET-->
-<!--        gamecheck = 'Y'-->
-<!--        WHERE userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
+        <!--        UPDATE game_order-->
+        <!--        SET-->
+        <!--        gamecheck = 'Y'-->
+        <!--        WHERE userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
     </update>
 
-<!--    <update id="gameCodeList" parameterType="java.util.List">-->
-<!--&lt;!&ndash;        <foreach collection="list" item="gameCodeList">&ndash;&gt;-->
-<!--        <foreach collection="gameCodeList" item="gameCode">-->
-<!--            UPDATE game_order-->
-<!--            SET-->
-<!--            gamecheck = 'Y'-->
-<!--            WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
-<!--        </foreach>-->
-<!--    </update>    -->
+    <!--    <update id="gameCodeList" parameterType="java.util.List">-->
+    <!--&lt;!&ndash;        <foreach collection="list" item="gameCodeList">&ndash;&gt;-->
+    <!--        <foreach collection="gameCodeList" item="gameCode">-->
+    <!--            UPDATE game_order-->
+    <!--            SET-->
+    <!--            gamecheck = 'Y'-->
+    <!--            WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
+    <!--        </foreach>-->
+    <!--    </update>    -->
 
-<!--    <update id="gameCode" parameterType="java.util.List">-->
-<!--        <foreach collection="gameCode" item="gameCode" separator=";">-->
-<!--&lt;!&ndash;        <foreach collection="gameCodeList" item="gameCode">&ndash;&gt;-->
-<!--            UPDATE game_order-->
-<!--            SET-->
-<!--            gamecheck = 'Y'-->
-<!--            WHERE gameCode = #{ gameCode }-->
-<!--            AND userCode IN (select userCode from game_cart where userCode = 2)-->
-<!--        </foreach>-->
-<!--    </update>-->
+    <!--    <update id="gameCode" parameterType="java.util.List">-->
+    <!--        <foreach collection="gameCode" item="gameCode" separator=";">-->
+    <!--&lt;!&ndash;        <foreach collection="gameCodeList" item="gameCode">&ndash;&gt;-->
+    <!--            UPDATE game_order-->
+    <!--            SET-->
+    <!--            gamecheck = 'Y'-->
+    <!--            WHERE gameCode = #{ gameCode }-->
+    <!--            AND userCode IN (select userCode from game_cart where userCode = 2)-->
+    <!--        </foreach>-->
+    <!--    </update>-->
 
     <!--userCode222-->
     <update id="gameCode" parameterType="java.util.List">

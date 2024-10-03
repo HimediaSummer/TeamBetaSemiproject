@@ -3,7 +3,6 @@ package beta.function.order.service;
 
 import beta.function.game.dto.GameDTO;
 import beta.function.order.dao.CartMapper;
-import beta.function.order.dao.OrderMapper;
 import beta.function.order.dto.CartDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,12 +15,10 @@ import java.util.List;
 public class CartService {
 
     private final CartMapper cartMapper;
-    private final OrderMapper orderMapper;
 
     @Autowired
-    public CartService(CartMapper cartMapper, OrderMapper orderMapper) {
+    public CartService(CartMapper cartMapper) {
         this.cartMapper = cartMapper;
-        this.orderMapper = orderMapper;
     }
 
     /*장바구니 리스트*/
@@ -47,24 +44,21 @@ public class CartService {
 
     /*장바구니에 담기*/
     @Transactional
-    public void addItem(CartDTO cart) {
+    public void addItem(int gameCode, int userCode) {
 
-        cartMapper.addItem(cart);
+        CartDTO cart = new CartDTO();
+        cart.setUserCode(userCode);
+        cart.setGameCode(gameCode);
 
-//        CartDTO cart = new CartDTO();
-//        cart.setUserCode(userCode);
-//        cart.setGameCode(gameCode);
-//
-//        Integer ischeck = cartMapper.cartListCheck(cart);
-//
-//        System.out.println("ischeck" + ischeck);
-//
-//        if(ischeck == 1) {
-//            cartMapper.updateItem(cart); // update
-//        } else if (ischeck == 0){
-//            cartMapper.addItem(cart); // insert
-//        }
+        Integer ischeck = cartMapper.cartListCheck(cart);
 
+        System.out.println("ischeck" + ischeck);
+
+        if(ischeck == 1) {
+            cartMapper.updateItem(cart); // update
+        } else if (ischeck == 0){
+            cartMapper.addItem(cart); // insert
+        }
 
         // 동일한 게임이 있는지 확인
 //        CartDTO existingItem = cartMapper.findItemByGameAndUser(gameCode, userCode);
@@ -82,9 +76,9 @@ public class CartService {
 
     /*장바구니 게임 삭제*/
     @Transactional
-    public void deleteCart(int gameCode, Integer userCode) {
+    public void deleteCart(int gameCode) {
 
-        cartMapper.deleteCart(gameCode, userCode);
+        cartMapper.deleteCart(gameCode);
     }
 
     /*장바구니 전체 내역 삭제*/
@@ -105,13 +99,13 @@ public class CartService {
     }
 
 
-//    public void gameCodeList(String userCode, List<String> gameCodeList) {
+    //    public void gameCodeList(String userCode, List<String> gameCodeList) {
     public void gameCode(int userCode , List<String> gameCode) {
 
         System.out.println("gamecode service 1");
         System.out.println("gamecode service 2" + gameCode);
 //       cartMapper.gameCodeList(userCode, gameCodeList);
-       cartMapper.gameCode(userCode, gameCode);
+        cartMapper.gameCode(userCode, gameCode);
         System.out.println("gamecode service 3" + gameCode);
     }
 
@@ -119,17 +113,8 @@ public class CartService {
         cartMapper.deleteY();
     }
 
-    public Boolean haveOrderList(int gameCode, Integer userCode) {
+    public List<CartDTO> haveOrderList() {
 
-        return cartMapper.haveOrderList(gameCode, userCode);
-    }
-
-    public Integer cartListCheck(CartDTO cart) {
-        return cartMapper.cartListCheck(cart);
-    }
-
-    public void updateItem(CartDTO cart) {
-
-        cartMapper.updateItem(cart);
+        return cartMapper.haveOrderList();
     }
 }

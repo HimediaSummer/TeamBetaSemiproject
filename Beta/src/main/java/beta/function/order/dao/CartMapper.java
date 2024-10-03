@@ -24,21 +24,20 @@ public interface CartMapper {
 //    CartDTO findItemByGameAndUser(int gameCode, int userCode);
 
     /*장바구니 게임 삭제*/
-    void deleteCart(int gameCode, Integer userCode);
+    void deleteCart(int gameCode);
 
     /*장바구니 전체 내역 삭제*/
     void deleteAllCart(Integer userCode);
 
-//    장바구니 담기 전 장바구니 체크
+    //    장바구니 담기 전 장바구니 체크
     int cartListCheck(CartDTO cart);
 
-//    void gameCode(@Param("userCode") String userCode, @Param("gameCodeList") List<String> gameCodeList);
+    //    void gameCode(@Param("userCode") String userCode, @Param("gameCodeList") List<String> gameCodeList);
     void gameCode(Integer userCode, @Param("list") List<String> gameCode);
 
     void deleteY();
 
     List<CartDTO> haveOrderList(int userCode);
 
-    Boolean haveOrderList(int gameCode, Integer userCode);
-
+    List<CartDTO> haveOrderList();
 }
