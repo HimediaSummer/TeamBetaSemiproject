@@ -4,145 +4,179 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FAQ Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #25b0b9;
-            margin: 0;
-            padding: 0;
-        }
-        .header {
-            background-color: #4f4f4f;
-            padding: 15px;
-            text-align: left;
-            color: white;
-        }
-        .header h1 {
-            display: inline-block;
-            font-size: 24px;
-        }
-        .header .menu {
-            float: right;
-        }
-        .header .menu a {
-            color: #ffea00;
-            margin-left: 20px;
-            text-decoration: none;
-        }
-        .sidebar {
-            background-color: #3e5f63;
-            padding: 20px;
-            width: 200px;
-            height: 100vh;
-            float: left;
-        }
-        .sidebar button {
-            background-color: #f0ff25;
-            border: none;
-            padding: 15px;
-            width: 100%;
-            font-size: 16px;
-            margin-bottom: 10px;
-            cursor: pointer;
-        }
-        .sidebar button:nth-child(2) {
-            background-color: #a1dbd9;
-        }
-        .content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-        .faq-item {
-            background-color: #d1e3e2;
-            padding: 20px;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-        .faq-item.open .answer {
-            display: block;
-        }
-        .faq-item .answer {
-            display: none;
-            margin-top: 10px;
-            color: #555;
-        }
-        .pagination {
-            margin-top: 20px;
-            text-align: center;
-        }
-        .pagination a {
-            text-decoration: none;
-            margin: 0 5px;
-            color: red;
-        }
-    </style>
+
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
+    <!--    <style>-->
+    <!--        body {-->
+    <!--            font-family: Arial, sans-serif;-->
+    <!--            background-color: #25b0b9;-->
+    <!--            margin: 0;-->
+    <!--            padding: 0;-->
+    <!--        }-->
+    <!--        .header {-->
+    <!--            background-color: #4f4f4f;-->
+    <!--            padding: 15px;-->
+    <!--            text-align: left;-->
+    <!--            color: white;-->
+    <!--        }-->
+    <!--        .header h1 {-->
+    <!--            display: inline-block;-->
+    <!--            font-size: 24px;-->
+    <!--        }-->
+    <!--        .header .menu {-->
+    <!--            float: right;-->
+    <!--        }-->
+    <!--        .header .menu a {-->
+    <!--            color: #ffea00;-->
+    <!--            margin-left: 20px;-->
+    <!--            text-decoration: none;-->
+    <!--        }-->
+    <!--        .sidebar {-->
+    <!--            background-color: #3e5f63;-->
+    <!--            padding: 20px;-->
+    <!--            width: 200px;-->
+    <!--            height: 100vh;-->
+    <!--            float: left;-->
+    <!--        }-->
+    <!--        .sidebar button {-->
+    <!--            background-color: #f0ff25;-->
+    <!--            border: none;-->
+    <!--            padding: 15px;-->
+    <!--            width: 100%;-->
+    <!--            font-size: 16px;-->
+    <!--            margin-bottom: 10px;-->
+    <!--            cursor: pointer;-->
+    <!--        }-->
+    <!--        .sidebar button:nth-child(2) {-->
+    <!--            background-color: #a1dbd9;-->
+    <!--        }-->
+    <!--        .content {-->
+    <!--            margin-left: 220px;-->
+    <!--            padding: 20px;-->
+    <!--        }-->
+    <!--        .faq-item {-->
+    <!--            background-color: #d1e3e2;-->
+    <!--            padding: 20px;-->
+    <!--            margin-bottom: 10px;-->
+    <!--            border-radius: 10px;-->
+    <!--            cursor: pointer;-->
+    <!--        }-->
+    <!--        .faq-item.open .answer {-->
+    <!--            display: block;-->
+    <!--        }-->
+    <!--        .faq-item .answer {-->
+    <!--            display: none;-->
+    <!--            margin-top: 10px;-->
+    <!--            color: #555;-->
+    <!--        }-->
+    <!--        .pagination {-->
+    <!--            margin-top: 20px;-->
+    <!--            text-align: center;-->
+    <!--        }-->
+    <!--        .pagination a {-->
+    <!--            text-decoration: none;-->
+    <!--            margin: 0 5px;-->
+    <!--            color: red;-->
+    <!--        }-->
+    <!--    </style>-->
 </head>
 <body>
-<div class="header">
-    <a href="/main">
-        <h1>Gamsung STATION</h1>
-    </a>
+<wrapper>
+    <header>
+        <!-- Importing the navbar with Thymeleaf -->
+        <nav th:insert="common/header :: navbar"></nav>
+    </header>
 
+    <aside class="side-bar">
+        <ul class="sidebar-menu">
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/member-management'">자주하는 질문</button>
+            </li>
+            <li>
+                <button class="admin-btn active" onclick="location.href='/game/listAll'">공지사항</button>
+            </li>
+        </ul>
+    </aside>
 
-    <div class="menu">
-        <a href="#">MY CART</a>
-        <a href="#">COMMUNITY</a>
-        <a href="#">ADMIN 1</a>
-    </div>
-</div>
+    <main>
 
-<div class="sidebar">
-    <button>자주 묻는 질문</button>
-    <button>공지사항</button>
-</div>
+        <article>
 
-<div class="content">
-    <!-- FAQ items -->
-    <div class="faq-item">
-        <div class="question">
-            <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
-        </div>
-        <div class="answer">
-            A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
-        </div>
-    </div>
+            <!-- FAQ items -->
+            <div class="faq-item">
+                <div class="question">
+                    <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+                </div>
+                <div class="answer">
+                    A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
+                </div>
+            </div>
 
-    <div class="faq-item">
-        <div class="question">
-            <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
-        </div>
-    </div>
+            <div class="faq-item">
+                <div class="question">
+                    <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+                </div>
+                <div class="answer">
+                    A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
+                </div>
+            </div>
 
-    <div class="faq-item">
-        <div class="question">
-            <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
-        </div>
-    </div>
+            <div class="faq-item">
+                <div class="question">
+                    <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+                </div>
+                <div class="answer">
+                    A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
+                </div>
+            </div>
 
-    <div class="faq-item">
-        <div class="question">
-            <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
-        </div>
-    </div>
+            <div class="faq-item">
+                <div class="question">
+                    <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+                </div>
+                <div class="answer">
+                    A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
+                </div>
+            </div>
 
-    <div class="faq-item">
-        <div class="question">
-            <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
-        </div>
-    </div>
+            <div class="faq-item">
+                <div class="question">
+                    <b>Q. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</b>
+                </div>
+                <div class="answer">
+                    A. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Prion faucibus maximus mauris et eleifend. Aliquam sed ultricies ante, sit amet suscipit augue.
+                </div>
+            </div>
 
-    <!-- Pagination -->
-    <div class="pagination">
-        <a href="#">&lt;</a>
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <span>...</span>
-        <a href="#">99</a>
-        <a href="#">&gt;</a>
-    </div>
-</div>
+            <!-- Pagination -->
+            <nav>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>99</button>
+            </nav>
+        </article>
+    </main>
+
+</wrapper>
+
+<footer th:insert="common/footer :: footer"></footer>
 
 <script>
     // FAQ Toggle
