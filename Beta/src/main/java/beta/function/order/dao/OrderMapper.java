@@ -1,5 +1,6 @@
 package beta.function.order.dao;
 
+import beta.function.order.dto.CartDTO;
 import beta.function.order.dto.OrderDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -22,4 +23,6 @@ public interface OrderMapper {
     void updateOrder(OrderDTO orderList);
 
     void insertOrder(OrderDTO order);
+
+    Integer gameListCheck(CartDTO cart);
 }

@@ -24,7 +24,7 @@ public interface CartMapper {
 //    CartDTO findItemByGameAndUser(int gameCode, int userCode);
 
     /*장바구니 게임 삭제*/
-    void deleteCart(int gameCode);
+    void deleteCart(int gameCode, Integer userCode);
 
     /*장바구니 전체 내역 삭제*/
     void deleteAllCart(Integer userCode);
@@ -39,5 +39,6 @@ public interface CartMapper {
 
     List<CartDTO> haveOrderList(int userCode);
 
-    List<CartDTO> haveOrderList();
+    Boolean haveOrderList(int gameCode, Integer userCode);
+
 }

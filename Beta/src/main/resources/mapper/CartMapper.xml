@@ -131,7 +131,6 @@
         where gc.gameCode = #{ gameCode } and userCode = #{ userCode }
     </select>
 
-
     <!--장바구니에 담기-->
     <insert id="addItem" parameterType="beta.function.order.dto.CartDTO" >
         INSERT INTO game_cart
@@ -158,13 +157,20 @@
     </update>
 
     <!--장바구니 게임 삭제-->
-    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
-        UPDATE game_cart
-        SET
-            addCart = 'N'
-        WHERE
-            gameCode = #{ gameCode }
-    </update>
+<!--    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO">-->
+<!--        UPDATE game_cart-->
+<!--        SET-->
+<!--            addCart = 'N'-->
+<!--        WHERE-->
+<!--            gameCode = #{ gameCode }-->
+<!--    </update>-->
+
+    <delete id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
+        DELETE
+        FROM
+            game_cart
+        WHERE gameCode = #{ gameCode } AND userCode = #{ userCode }
+    </delete>
 
     <!--장바구니 전체 내역 삭제-->
     <update id="deleteAllCart" parameterType="beta.function.order.dto.OrderDTO">
