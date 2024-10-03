@@ -87,6 +87,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     opacity: 0.8;
+    border-radius: 50px;
 }
 
 .main-pic-btn:hover {
@@ -106,6 +107,7 @@
     color: var(--sub-color05);
     background-color: var(--sub-color01);
     opacity: 1;
+    border-radius: 50px;
 }
 
 /* Swiper container and slide */
