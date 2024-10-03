@@ -17,6 +17,8 @@
         <result property="gameName" column="gameName"/>
         <result property="gamePrice" column="gamePrice"/>
         <result property="gameThumbnail" column="gameThumbnail"/>
+        <result property="gamePicture" column="gamePicture"/>
+        <result property="gameOrigin" column="gameOrigin"/>
     </resultMap>
 
 <!--    <resultMap id="userCartResultMap" type="beta.function.account.dto.AccountDTO">-->
@@ -62,6 +64,8 @@
             b.gameCode,
             b.gameName,
             b.gamePrice,
+            b.gameOrigin,
+            b.gamePicture,
             b.gameThumbnail,
             c.gamecheck,
             a.addCart
@@ -83,6 +87,8 @@
         b.gameCode,
         b.gameName,
         b.gamePrice,
+        b.gameOrigin,
+        b.gamePicture,
         b.gameThumbnail,
         c.gamecheck,
         a.addCart

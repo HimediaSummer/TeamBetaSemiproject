@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Modals</title>
+</head>
+<body th:fragment="orderModal">
+<!-- List One Modal -->
+<div id="listOneModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header close">&times;</div>
+        <div class="modal-body">
+            <form class="adm-form" th:action="@{/admin/orderListOne}" method="post">
+                <div class="admin-main-input">
+                    <label for="orderCode">주문코드:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <input class="adm-sub-input" type="number" id="orderCode" name="orderCode" required />
+                </div>
+                <div class="adm-main-btn">
+                    <button class="adm-sub-btn" type="submit">조회하기&nbsp;<i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the modals
+    var modal1 = document.getElementById("listOneModal");
+
+    // Get the buttons that open the modals
+    var btn1 = document.getElementById("listOneBtn");
+
+
+    // Get the <span> element that closes the modals
+    var close1 = modal1 ? modal1.getElementsByClassName("close")[0] : null;
+
+    // When the user clicks the button, open the respective modal
+    if (btn1) {
+        btn1.onclick = function () {
+            modal1.style.display = "block";
+        }
+    }
+
+    // When the user clicks on <span> (x), close the respective modal
+    if (close1) {
+        close1.onclick = function () {
+            modal1.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside of the modals, close them
+    window.onclick = function (event) {
+        if (event.target === modal1) {
+            modal1.style.display = "none";
+        }
+    }
+</script>
+</body>
+</html>

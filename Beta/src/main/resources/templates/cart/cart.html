@@ -5,33 +5,26 @@
     <title>Cart</title>
 </head>
 <body>
+<section class="my-page-bar">
+    <!--        <div class="my-menu-bar-bg"></div>-->
+    <div class="my-menu-bar">
+        <div class="my-menu">
+            <button onclick="location.href='/cart/history'"  class="my-btn my-history">
+                <h3>최근활동</h3>
+            </button>
 
+            <button onclick="location.href='/cart/userCart'" class="my-btn my-cart">
+                <h3>장바구니</h3>
+            </button>
 
-<h1>장바구니</h1>
-
-<table>
-    <tr>
-        <th>장바구니 코드</th>
-        <th>회원 코드</th>
-        <th>게임 코드</th>
-        <th>게임 이름</th>
-        <th>게임 가격</th>
-        <th>게임 썸네일</th>
-    </tr>
-    <tr th:each="cart : ${ cartList }">
-        <td th:text="${ cart.gameCode }">
-        <td th:text="${ cart.userCode }">
-        <td th:text="${ cart.gameCode }">
-        <td th:text="${ cart.gameDTO.gameName }">
-        <td th:text="${ cart.gameDTO.gamePrice }">
-        <td th:text="${ cart.gameDTO.gameThumbnail }">
-        <td>
-            <form th:action="@{/cart/delete/{gameCode}(gameCode=${cart.gameCode})}" method="post">
-                 <button type="submit">삭제</button>
-            </form>
-        </td>
-    </tr>
-</table>
-
+            <button onclick="location.href='/cart/history'" class="my-btn my-">
+                <h3>정보수정</h3>
+            </button>
+        </div>
+        <div class="my-logout">
+            <button>로그아웃</button>
+        </div>
+    </div>
+</section>
 </body>
 </html>

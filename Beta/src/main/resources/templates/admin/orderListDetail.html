@@ -2,16 +2,53 @@
 <html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>listAll</title>
+    <title>listOne</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
     </script>
 </head>
 <body>
+<wrapper>
+    <header>
+        <!-- Importing the navbar with Thymeleaf -->
+        <nav th:insert="common/header :: navbar"></nav>
+    </header>
+
+    <aside class="side-bar">
+        <ul class="sidebar-menu">
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/orderListAll'">주문관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+            </li>
+        </ul>
+    </aside>
+
+    <main>
         <section class="top-bar">
-            <button class="admin-btn" onclick="location.href='/order/orderListAll'">전체조회</button>
-            <button class="admin-btn active" onclick="location.href='/order/orderListOne'">개별조회</button>
+            <button class="admin-btn active" onclick="location.href='/admin/orderListAll'">전체조회</button>
+            <!-- Trigger/Open The listOneModal -->
+            <button id="listOneBtn" class="admin-btn" onclick="location.href='/admin/orderListOne'">개별조회</button>
         </section>
 
         <article>
@@ -22,6 +59,7 @@
                     <th>장바구니코드</th>
                     <th>회원코드</th>
                     <th>결제코드</th>
+                    <th>게임보유여부</th>
                 </tr>
                 <tr>
                     <td th:text="${ order.orderCode }"></td>
@@ -30,14 +68,13 @@
                     <td th:text="${ order.userCode }"></td>
                     <td th:text="${ order.paymentCode }"></td>
                     <td th:text="${ order.gamecheck }"></td>
-
-                    <!--<td>
-                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">삭제</button>
-                        </form>
-                    </td>-->
                 </tr>
             </table>
         </article>
+
+        <div th:insert="admin/orderModal :: orderModal"></div>
+
+    </main>
+</wrapper>
 </body>
 </html>

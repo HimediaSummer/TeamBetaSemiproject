@@ -1,46 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!---->
+    <link rel="stylesheet" th:href="@{/static/css/history.css}">
+    <script>
+        const successMessage = `[[${ successMessage }]]`;
+        if(successMessage) alert(successMessage);
+    </script>
 </head>
 <body>
-<div>
-    <div>
-        <button>최근활동</button>
-    </div>
+<div th:insert="common/header :: navbar"></div>
 
-    <div onclick="location.href='/cart/userCart'">
-        <button>장바구니</button>
-    </div>
+<article>
+    <section class="my-page-bar">
 
-    <div>
-        <button>정보수정</button>
-    </div>
-</div>
+        <div class="my-menu-bar">
+            <div class="my-menu">
+                <button onclick="location.href='/cart/history'"  class="my-btn my-history">
+                    <h3>최근활동</h3>
+                </button>
 
-<section>
-    <h3>최근 결제 내역</h3>
+                <button onclick="location.href='/cart/userCart'" class="my-btn my-cart">
+                    <h3>장바구니</h3>
+                </button>
 
-    <div th:each="my : ${mypage}">
-        <div>
-            <div>
-                <img th:src="${ my.gameDTO.gameThumbnail }">
+                <button onclick="location.href='/cart/history'" class="my-btn my-information">
+                    <h3>정보수정</h3>
+                </button>
             </div>
+            <a href="/" class="my-logout">로그아웃</a>
+        </div>
+        <div class="my-menu-bar-bg"></div>
+    </section>
 
-            <div>
-                <h3 th:text="${ my.gameDTO.gameName }"></h3>
-                <p th:text="${my.gameDTO.gameOrigin}"></p>
+    <section class="my-history-box">
+        <div class="my-user">
+            <!--로그인 한 사용자 이름 표시-->
+            <h1 sec:authorize="isAuthenticated()" href="/admin/memberList">
+                <div class="username">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <h3 sec:authentication="name"></h3>
+                </div>
+            </h1>
+        </div>
+
+        <h3>최근 결제 내역</h3>
+
+        <div th:each="my : ${mypage}" class="my-item">
+            <div class="my-item-thumbnail">
+                <img th:src="${ '/static/uploadedFiles/img/game/' + my.gameDTO.gamePicture }" th:alt="${ my.gameDTO.gamePicture }"/>
+<!--                <img th:src="${ my.gameDTO.gameThumbnail }" th:alt="${ my.gameDTO.gameThumbnail }"/>-->
             </div>
-
-            <div>
-                <h2 th:text="${ my.gameDTO.gamePrice }"></h2>
-                <form th:action="@{/cart/delete/{gameCode}(gameCode=${my.gameCode})}" method="post">
-                    <button type="submit">삭제</button>
-                </form>
+            <div class="my-item-txt">
+                <h3 th:text="${ my.gameDTO.gameName }">테트리스</h3>
+                <p th:text="${ my.gameDTO.gameOrigin }">
+                    여기는 게임 소개 텍스트 입니다.
+                </p>
             </div>
         </div>
-    </div>
-</section>
+
+        <!-- Pagination example -->
+        <nav>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>...</button>
+            <button>99</button>
+        </nav>
+    </section>
+</article>
 </body>
 </html>

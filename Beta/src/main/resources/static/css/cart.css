@@ -1,28 +1,46 @@
-*{
-    border: solid 0px #000;
-}
-
-body{
-    background-color: #212121;
-}
-
 article{
     width: 1440px;
     margin: 0 auto;
+    padding: 100px 0 0 0;
     display: flex;
     justify-items: flex-start;
-    color: #E6E6E6;
+    color: var(--text03);
 }
 
-.menu-bar{
+button{
+    background-color: inherit;
+    color : var(--text03);
+    cursor: pointer;
+}
+
+h3{
+    font-weight: 400;
+}
+
+.my-page-bar{
+    position: relative;
+}
+
+.my-menu-bar{
     width: 200px;
-    height: 780px;
+    height: 740px;
     margin: 38px 0 0 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     border-radius: 50px 0 0 0;
-    background-color: #585859;
+    background-color: var(--header-color)
+}
+
+.my-menu-bar-bg{
+    width: 200px;
+    height: 740px;
+    border-radius: 50px 0 0 0;
+    background-color: var(--page-bg-color);
+    position: absolute;
+    bottom: -10px;
+    left: 10px;
+    z-index: -10;
 }
 
 .my-menu{
@@ -31,74 +49,168 @@ article{
     flex-direction: column;
 }
 
-.my-menu > div{
+.my-btn{
     padding: 20px 0;
-    text-align: center;
-    cursor: pointer;
 }
 
-.my-logout{
-    margin: 30px;
-    cursor: pointer;
+.my-logout{/*여기 다시*/
+    text-decoration: none;
+    margin: 0 0 36px 32px;
+    font-size: 24px;
 }
 
-.my-menu > div:hover{
-    background-color: #39393A;
-    border-right: solid 4px #212121;
-    border-left: solid 4px #212121;
+.my-btn:hover{
+    background-color: var(--page-bg-color);
+    border-right: solid 4px var(--main-bg-color);
+    border-left: solid 4px var(--main-bg-color);
     border-radius: 40px 0 40px 0;
 }
 
 /**/
-.cart-box{
+.my-cart-box{
     width: 530px;
-    height: 640px;
-    margin: 100px 0 0 50px;
+    height: 646px;
+    margin: 100px 0  0 50px;
 }
 
-.cart-item{
+.my-item-box{
     margin: 20px 0 0 0;
 }
 
-.item{
+.my-item{
     width: 100%;
     height: 160px;
     padding: 14px 10px;
     display: flex;
     flex-direction: row;
     border-radius: 12px;
-    background-color: #39393a;
+    background-color: var(--page-bg-color);
 }
 
-.item-thumbnail{
+.my-item-thumbnail{
     width: 136px;
     height: 136px;
     border-radius: 12px;
-    background-color: #d9d9d9;
+    background-color: var(--text01);
 }
 
-.item-txt{
+.my-item-thumbnail > img{
+    width: 136px;
+    box-sizing: border-box;
+}
+
+.my-item-txt{
+    width: 162px;
     margin: 12px 56px 0 20px;
 }
 
-.item-txt > h3{
-    color: #ffee32;
+.my-item-txt > h3{
+    color: var(--sub-color04);
     margin-bottom: 25px;
 }
 
-.item-txt > p{
+.my-item-txt > p{
     line-height: 1.5rem;
 }
 
-.item-price{
+.my-item-price{
     margin: 50px 0;
     line-height: 1.5rem;
     display: flex;
     flex-direction: row;
-    color: #ffee32;
+    color: var(--sub-color04);
 }
 
-.item-price > h2{
+.my-item-price > h2{
     margin: 0 20px 0 0;
 }
+
+.fa-trash{
+    font-size: 24px;
+    color : var(--sub-color04);
+}
+
+
+/*  */
+.my-payment{
+    width: 550px;
+    height: 646px;
+    margin: 100px 0  0 50px;
+    border-radius: 12px;
+    background-color: var(--page-bg-color);
+}
+
+.my-paybox{
+    width: 482px;
+    height: 552px;
+    margin: 47px 34px 50px 34px;
+}
+
+.my-pay{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--text03);
+}
+
+.paybox{
+    width: 482px;
+    height: 368px;
+    margin: 50px 0 33px 0;
+}
+
+.pay-now{
+    height: 79px;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pay-now > label{
+    margin-bottom: 15px;
+    font-size: 18px;
+    font-weight: 100;
+    text-align: left;
+    color: var(--sub-color04);
+}
+
+.pay-now > select{
+    height: 50px;
+    border-radius: 12px;
+    background-color: var(--text02);
+}
+
+.pay-other{
+    margin-top: 50px;
+}
+
+.pay-other > p{
+    font-weight: 100;
+    color: var(--sub-color04);
+    margin-bottom: 15px;
+}
+
+.pay-other-btn{
+    display: flex;
+    justify-content: space-between;
+}
+
+.pay-other-btn > button{
+    width: 130px;
+    height: 64px;
+    border-radius: 12px;
+    background-color: var(--text02);
+    color: var(--text01);
+}
+
+.sub-btn02{
+    font-size: 28px;
+    font-weight: 400;
+}
+
+
+
+
+
+
+
 

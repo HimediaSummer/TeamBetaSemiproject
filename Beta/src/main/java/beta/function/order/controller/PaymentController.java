@@ -90,7 +90,8 @@ public class PaymentController {
 
 //            System.out.println(resultList);
 
-            return "redirect:/order/resultdetail";
+//            return "redirect:/order/resultdetail";
+            return "redirect:/cart/history";
 
         }catch (IllegalStateException e){
 

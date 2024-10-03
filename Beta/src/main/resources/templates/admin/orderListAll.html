@@ -3,34 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include admin specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/admin.css}">
+    <!-- Include modal specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/modal.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 </head>
 <body>
 
-<button onclick="location.href='/admin/orderListOne'">개별조회</button>
+<wrapper>
+    <header>
+        <!-- Importing the navbar with Thymeleaf -->
+        <nav th:insert="common/header :: navbar"></nav>
+    </header>
 
-<table>
-    <tr>
-        <th>주문코드</th>
-        <th>게임코드</th>
-        <th>장바구니코드</th>
-        <th>회원코드</th>
-        <th>결제코드</th>
-    </tr>
-    <tr th:each="order : ${ orderList }">
-        <td th:text="${ order.orderCode }"></td>
-        <td th:text="${ order.gameCode }"></td>
-        <td th:text="${ order.cartCode }"></td>
-        <td th:text="${ order.userCode }"></td>
-        <td th:text="${ order.paymentCode }"></td>
-        <td th:text="${ order.gamecheck }"></td>
+    <aside class="side-bar">
+        <ul class="sidebar-menu">
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
+            </li>
+            <li>
+                <button class="admin-btn active" onclick="location.href='/admin/orderListAll'">주문관리</button>
+            </li>
+            <li>
+                <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+            </li>
+        </ul>
+    </aside>
 
-        <!--<td>
-            <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                <button type="submit">삭제</button>
-            </form>
-        </td>-->
-    </tr>
-</table>
+    <main>
+        <section class="top-bar">
+            <button class="admin-btn" onclick="location.href='/admin/orderListAll'">전체조회</button>
+            <!-- Trigger/Open The listOneModal -->
+            <button id="listOneBtn" class="admin-btn" onclick="location.href='/admin/orderListOne'">개별조회</button>
+        </section>
 
+        <article>
+            <table>
+                <tr>
+                    <th>주문코드</th>
+                    <th>게임코드</th>
+                    <th>장바구니코드</th>
+                    <th>회원코드</th>
+                    <th>결제코드</th>
+                    <th>게임보유여부</th>
+                </tr>
+                    <tr th:each="order : ${ orderList }">
+                        <td th:text="${ order.orderCode }"></td>
+                        <td th:text="${ order.gameCode }"></td>
+                        <td th:text="${ order.cartCode }"></td>
+                        <td th:text="${ order.userCode }"></td>
+                        <td th:text="${ order.paymentCode }"></td>
+                        <td th:text="${ order.gamecheck }"></td>
+
+<!--                        <td>-->
+<!--                            <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">-->
+<!--                                <button type="submit">삭제</button>-->
+<!--                            </form>-->
+<!--                        </td>-->
+                    </tr>
+            </table>
+
+            <!-- Pagination example -->
+            <nav>
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>...</button>
+                <button>99</button>
+            </nav>
+        </article>
+
+        <!-- Include the modals (listOneModal, registModal) -->
+        <div th:insert="admin/orderModal :: orderModal"></div>
+    </main>
+</wrapper>
+
+<!-- Footer -->
+<!--<footer th:insert="common/footer :: footer"></footer>-->
+
+<script>
+    // Ensure the edit modal opens when page loads if game data is available
+    window.onload = function () {
+        var modal3 = document.getElementById("editModal");
+        if (modal3) {
+            modal3.style.display = "block";
+        }
+    };
+    // Get the edit modal
+    var modal3 = document.getElementById("editModal");
+
+    // Get the <span> element that closes the edit modal
+    var close3 = modal3 ? modal3.getElementsByClassName("close")[0] : null;
+
+    // When the user clicks the close button (x), close the edit modal
+    if (close3) {
+        close3.onclick = function () {
+            modal3.style.display = "none";
+        }
+    }
+
+    // When the user clicks anywhere outside the modal, close the edit modal
+    window.onclick = function (event) {
+        if (event.target === modal3) {
+            modal3.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>
