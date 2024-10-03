@@ -5,6 +5,8 @@ import beta.function.game.service.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -26,15 +28,22 @@ public class MainController {
         mv.setViewName("main/main");
 
         return mv;
+    }
 
-//        public String findGameList(Model model) {
-//            List<GameDTO> gameList = gameService.findAllGame();
-//
-//            model.addAttribute("gameList", gameList);
-//
-//            return "game/listAll";
-//        }
+    @PostMapping("/main/game/{gameCode}")
+    public ModelAndView callGame(@PathVariable("gameCode") int gameCode,
+                                 ModelAndView mv) {
 
+        // Add the list of all games and the game to be displayed
+        List<GameDTO> gameList = gameService.findAllGame();
+        mv.addObject("gameList", gameList);  // Keep all games displayed
+
+        GameDTO game = gameService.findGameByCode(gameCode);
+        mv.addObject("game", game);
+
+        mv.setViewName("main/product-detail");
+
+        return mv;
     }
 
     /* 설명. 유저 권한 설정 체크 */
@@ -43,10 +52,11 @@ public class MainController {
         mv.setViewName("user/user");
         return mv;
     }
+
     /* function/account추가*/
 
     /* 설명. 관리자 권한 설정 체크 */
-    @GetMapping("/admin")
+    @GetMapping("/admin/page")
     public ModelAndView admin(ModelAndView mv) {
         mv.setViewName("admin/admin");
         return mv;

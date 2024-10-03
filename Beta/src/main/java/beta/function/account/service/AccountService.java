@@ -54,11 +54,14 @@ public class AccountService {
 
         AccountDTO foundUser = accountDAO.findByUsername(username);
 
+        System.out.println("멤버롤 프린트하기 = " + foundUser);
+
         if (!Objects.isNull(foundUser)) {
             return foundUser;
         } else {
             return null;
         }
+
     }
 
     public Integer checkId(SignupDTO newUserInfo) {
