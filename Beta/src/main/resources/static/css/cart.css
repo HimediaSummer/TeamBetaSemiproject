@@ -53,10 +53,11 @@ h3{
     padding: 20px 0;
 }
 
-.my-logout{/*여기 다시*/
+.my-logout{
     text-decoration: none;
     margin: 0 0 36px 32px;
     font-size: 24px;
+    background: var(--text02);
 }
 
 .my-btn:hover{

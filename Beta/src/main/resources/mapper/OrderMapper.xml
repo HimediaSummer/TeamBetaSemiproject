@@ -66,6 +66,13 @@
         where go.gameCode = #{ gameCode } and userCode = #{ userCode }
     </select>
 
+    <select id="gameListCheck" parameterType="beta.function.order.dto.OrderDTO">
+        select
+        count(go.gameCode)
+        from game_order go
+        where go.gameCode = #{ gameCode } and userCode = #{ userCode }
+    </select>
+
     <insert id="insertOrder" parameterType="beta.function.order.dto.OrderDTO">
         INSERT INTO game_order
         (

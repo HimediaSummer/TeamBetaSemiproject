@@ -108,13 +108,13 @@ public class CartService {
     }
 
 
-//    public void gameCodeList(String userCode, List<String> gameCodeList) {
+    //    public void gameCodeList(String userCode, List<String> gameCodeList) {
     public void gameCode(int userCode , List<String> gameCode) {
 
         System.out.println("gamecode service 1");
         System.out.println("gamecode service 2" + gameCode);
 //       cartMapper.gameCodeList(userCode, gameCodeList);
-       cartMapper.gameCode(userCode, gameCode);
+        cartMapper.gameCode(userCode, gameCode);
         System.out.println("gamecode service 3" + gameCode);
     }
 
