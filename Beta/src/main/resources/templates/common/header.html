@@ -39,6 +39,15 @@
                 </div>
             </a>
 
+            <!--로그인 한 사용자 이름 표시-->
+            <!--            <a sec:authorize="isAuthenticated()" href="/admin/memberList">-->
+            <a sec:authorize="isAuthenticated()">
+                <div class="username">
+                    <i class="fa-solid fa-user-large"></i>
+                    <h3 sec:authentication="name"></h3>
+                </div>
+            </a>
+
             <!--로그인 안된 상태에서 로그인 표시-->
             <div class="modal">
                 <a sec:authorize="isAnonymous()" th:href="@{/auth/login}"  id="loginLink">
@@ -58,14 +67,6 @@
                 </div>
             </a>
 
-            <!--로그인 한 사용자 이름 표시-->
-            <!--            <a sec:authorize="isAuthenticated()" href="/admin/memberList">-->
-            <a sec:authorize="isAuthenticated()">
-                <div class="username">
-                    <i class="fa-solid fa-user-large"></i>
-                    <h3 sec:authentication="name"></h3>
-                </div>
-            </a>
 
         </div>
     </div>
