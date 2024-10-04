@@ -175,10 +175,10 @@ INSERT INTO game_payment VALUES (null, SYSDATE(),
 (SELECT
     SUM(gamePrice)
 FROM
-	game_cart
+   game_cart
 LEFT JOIN game_list ON game_cart.gameCode=game_list.gameCode
 WHERE
-	userCode = 1
+   userCode = 1
 ),
 1);
 
@@ -186,10 +186,10 @@ INSERT INTO game_payment VALUES (null, SYSDATE(),
 (SELECT
     SUM(gamePrice)
 FROM
-	game_cart
+   game_cart
 LEFT JOIN game_list ON game_cart.gameCode=game_list.gameCode
 WHERE
-	userCode = 2
+   userCode = 2
 ),
 2);
 
@@ -217,7 +217,6 @@ INSERT INTO game_order VALUES (null,
 (SELECT cartCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1),
 (SELECT gp.userCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1),
 (SELECT paymentCode FROM game_payment AS gp INNER JOIN game_cart AS gc ON gp.userCode=gc.userCode LIMIT 3, 1), 'N');
-
 
 
 COMMIT;
