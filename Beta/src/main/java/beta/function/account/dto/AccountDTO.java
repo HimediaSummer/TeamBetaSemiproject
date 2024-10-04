@@ -32,7 +32,11 @@ public class AccountDTO implements UserDetails {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(() -> userRole.getRole());
 
-        System.out.println("SpringSecurity가 권한을 요구한다 : " + authorities);
+        if (authorities == null) {
+            System.out.println("권한 없다");
+        } else {
+            System.out.println("SpringSecurity가 권한을 요구한다 : " + authorities);
+        }
 
         return authorities;
     }
@@ -203,3 +207,22 @@ public class AccountDTO implements UserDetails {
         this.authorityCode = authorityCode;
     }
 }
+
+//@Override
+//public String toString() {
+//    return "AccountDTO{" +
+//            "userCode=" + userCode +
+//            ", username='" + username + '\'' +
+//            ", password='" + password + '\'' +
+//            ", fullName='" + fullName + '\'' +
+//            ", userRole=" + userRole +
+//            ", nickName='" + nickName + '\'' +
+//            ", birthday='" + birthday + '\'' +
+//            ", email='" + email + '\'' +
+//            ", phone='" + phone + '\'' +
+//            ", profileimg='" + profileimg + '\'' +
+//            ", suspension=" + suspension +
+//            ", deletion=" + deletion +
+//            ", authorityCode=" + authorityCode +
+//            '}';
+//}

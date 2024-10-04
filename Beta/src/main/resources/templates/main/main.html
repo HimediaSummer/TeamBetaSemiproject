@@ -62,23 +62,42 @@
                 <div class="button-group">
                     <!--장바구니 담는 버튼 (상세페이지에서 실행)-->
                     <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                        <button class="main-btn02" type="submit">Buy Now</button>
+                        <button class="main-btn02" type="submit">
+                            <span class="game-price" th:text="${ game.gamePrice }"></span> 원
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+
                     </form>
-                    <button class="main-btn02">Learn More</button>
+                    <form th:action="@{/main/game/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                        <button class="main-btn02">Learn More</button>
+                    </form>
                 </div>
             </li>
         </ul>
     </div>
 </section>
 
+<script>
+    // Get all elements with the class 'game-price'
+    const gamePriceElements = document.querySelectorAll('.game-price');
+
+    // Loop through each element and format the price
+    gamePriceElements.forEach(function(element) {
+        const gamePrice = parseInt(element.textContent);
+        element.textContent = gamePrice.toLocaleString(); // Format number with thousands separator
+    });
+</script>
+
 <!-- Bottom Section Slider -->
-<section class="swiper-container manual-mySwiper">
+<section class="swiper-container loop-mySwiper">
     <div class="swiper-wrapper">
         <!-- Add 20 product images here -->
         <div class="swiper-slide" th:each="game : ${gameList}">
-            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
+            <img class="slide-img" th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
             <!--                <p th:text="${ game.gameName }"></p>-->
-            <button class="sub-btn">Learn More</button>
+            <form th:action="@{/main/game/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                <button class="sub-btn">Learn More</button>
+            </form>
         </div>
     </div>
 </section>
@@ -88,7 +107,7 @@
 
 <!-- Initialize Swiper -->
 <script>
-    var swiper2 = new Swiper(".manual-mySwiper", {
+    var swiper2 = new Swiper(".loop-mySwiper", {
         slidesPerView: 4,
         spaceBetween: 30,
         slidesPerGroup: 4,

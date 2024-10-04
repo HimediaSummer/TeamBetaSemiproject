@@ -99,7 +99,12 @@ public class GameController {
                                  @RequestParam("gameCode") int gameCode) {
 
         GameDTO game = gameService.findGameByCode(gameCode);
-        model.addAttribute("game", game);
+
+        if (game == null) {
+            model.addAttribute("errorMessage", "해당 게임코드 정보가 없습니다");
+        } else {
+            model.addAttribute("game", game);
+        }
 
         return "game/listDetail";
     }

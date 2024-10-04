@@ -27,6 +27,12 @@ header {
 
 .logo img {
     height: 80px; /* Adjust the logo size */
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Image shadow */
+}
+
+.logo:hover img {
+    transform: scale(1.08); /* Slight zoom-in effect */
+    transition: transform 0.3s ease;
 }
 
 /* Navigation menu styling */
@@ -56,10 +62,12 @@ header {
 }
 
 /* Hover effects for better interaction */
-.my-page:hover, .community:hover, .login:hover {
+/*.my-page:hover, .community:hover, .login:hover, .username:hover, .logout:hover {*/
+.my-page:hover, .community:hover, .login:hover, .logout:hover {
     color: var(--text03); /* Change text color on hover */
 }
 
-.my-page:hover i, .community:hover i, .login:hover i {
+/*.my-page:hover i, .community:hover i, .login:hover i, .username:hover i, .logout:hover i {*/
+.my-page:hover i, .community:hover i, .login:hover i, .logout:hover i {
     color: var(--text03); /* Change icon color on hover */
 }

@@ -15,6 +15,25 @@
     <link rel="stylesheet" th:href="@{/static/css/modal.css}">
     <!-- Include FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        button {
+            padding: 10px 15px; /* 버튼 크기 조정 */
+            margin: 5px; /* 버튼 간격 조정 */
+            font-size: 14px; /* 글자 크기 조정 */
+        }
+
+        table {
+            width: 100%; /* 테이블을 전체 폭으로 설정 */
+            table-layout: auto; /* 자동으로 열 크기 조정 */
+        }
+
+        td {
+            overflow: hidden; /* 내용이 넘치면 숨김 */
+            text-overflow: ellipsis; /* 넘치는 내용에 점(...) 추가 */
+            white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+        }
+    </style>
     <script>
         const successMessage = `[[${ successMessage }]]`;
         if(successMessage) alert(successMessage);
@@ -30,68 +49,74 @@
     <aside class="side-bar">
         <ul class="sidebar-menu">
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+                <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
             </li>
             <li>
                 <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
             </li>
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+                <button class="admin-btn" onclick="location.href=''">주문관리</button>
             </li>
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+                <button class="admin-btn" onclick="location.href=''">댓글관리</button>
             </li>
         </ul>
     </aside>
 
     <main>
         <section class="top-bar">
-            <button class="admin-btn active" onclick="location.href='/game/listAll'">전체조회</button>
+            <button class="admin-btn" onclick="location.href='/game/listAll'">전체조회</button>
             <!-- Trigger/Open The listOneModal -->
             <button id="listOneBtn" class="admin-btn" onclick="location.href='/game/listOne'">개별조회</button>
             <!-- Trigger/Open The registModal -->
             <button id="registBtn" class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
         </section>
 
+        <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
         <article>
-            <table>
-                <tr>
-                    <th>게임코드</th>
-                    <th>게임이름</th>
-                    <th>게임용량</th>
-                    <th>게임가격</th>
-                    <th>업로드일자</th>
-                    <th>게임출처</th>
-                    <th>게임사양</th>
-                    <th>원본사진</th>
-                    <th>썸네일사진</th>
-                </tr>
-                <tr>
-                    <td th:text="${ game.gameCode }"></td>
-                    <td th:text="${ game.gameName }"></td>
-                    <td th:text="${ game.gameStorage }"></td>
-                    <td th:text="${ game.gamePrice }"></td>
-                    <td th:text="${ game.uploadDate }"></td>
-                    <td th:text="${ game.gameOrigin }"></td>
-                    <td th:text="${ game.gameRequirement }"></td>
-                    <td>
-                        <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto />
-                    </td>
-                    <td>
-                        <img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" alt="썸네일" width="300" height=auto />
-                    </td>
-                    <td>
-                        <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">수정</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">삭제</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            <div th:if="${game}">
+                <table>
+                    <tr>
+                        <th>게임코드</th>
+                        <th>게임이름</th>
+                        <th>게임용량</th>
+                        <th>게임가격</th>
+                        <th>업로드일자</th>
+                        <th>게임출처</th>
+                        <th>게임사양</th>
+                        <th>원본사진</th>
+                        <th>썸네일사진</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${ game.gameCode }"></td>
+                        <td th:text="${ game.gameName }"></td>
+                        <td th:text="${ game.gameStorage }"></td>
+                        <td th:text="${ game.gamePrice }"></td>
+                        <td th:text="${ game.uploadDate }"></td>
+                        <td th:text="${ game.gameOrigin }"></td>
+                        <td th:text="${ game.gameRequirement }"></td>
+                        <td>
+                            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto />
+                        </td>
+                        <td>
+                            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" alt="썸네일" width="300" height=auto />
+                        </td>
+                        <td>
+                            <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                                <button type="submit">수정</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                                <button type="submit">삭제</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </article>
 
         <div th:insert="game/gameModal :: gameModal"></div>
@@ -100,6 +125,6 @@
 </wrapper>
 
 <!-- Footer -->
-<footer th:insert="common/footer :: footer"></footer>
+<!--<footer th:insert="common/footer :: footer"></footer>-->
 </body>
 </html>

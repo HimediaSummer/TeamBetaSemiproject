@@ -24,10 +24,12 @@ img {
     width: 100px;
 }
 
+/* Global adjustments */
 body {
-    font-family: 'Pretendard', 'Montserrat', sans-serf;
-    color: white;
+    font-family: 'Pretendard', 'Montserrat', sans-serif;
+    color: var(--text03);
     background-color: var(--main-bg-color);
+    line-height: 1.6;
 }
 
 ul{
@@ -56,6 +58,19 @@ h4{
 
 p{
     font-size: 18px;
+}
+
+h1, h2, h3 {
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+}
+
+a {
+    color: var(--sub-color04);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--sub-color03);
 }
 
 /* 컬러 */

@@ -1,24 +1,25 @@
 /* Top Section Slider */
-/* Adjusted */
 .auto-mySwiper {
     width: 100%;
     height: 750px;
     margin-top: 80px;
     margin-bottom: 105px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Depth shadow for slider */
 }
 
-/* Adjusted */
+/* Swiper slide styling */
 .swiper-slide {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
 }
 
 .swiper-slide img {
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Change to 'cover' to ensure the image fills the area */
+    object-fit: cover;
 }
 
 /* Product Grid Section */
@@ -29,31 +30,32 @@
 /* Centered Container */
 .center-container {
     max-width: 1440px;
-    margin: 0 auto; /* Center the container */
-    padding: 0 20px; /* Optional padding for responsiveness */
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
+/* Product Grid */
 .productGrid {
-    /*width: 305px;
-    height: 305px;*/
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 40px;
     justify-items: center;
 }
 
-.productGrid > * { /* Apply styles to direct children of productGrid (li in this case) */
+.productGrid > * {
     position: relative;
     overflow: hidden;
-    border-radius: 10px;
-    transition: transform 0.3s ease; /* For hover effect */
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .productGrid img {
     width: 305px;
     height: 305px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Image shadow */
+    transition: transform 0.3s ease;
 }
 
 /* Button Group on Top of Image */
@@ -68,12 +70,32 @@
     z-index: 2; /* Ensure buttons appear on top of the image */
 }
 
+.main-btn02 {
+    width: 140px;
+    height: 40px;
+    font-weight: 700;
+    border-radius: 30px;
+    border: 3px solid var(--sub-color04);
+    color: var(--sub-color04);
+    background-color: var(--sub-color05);
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button hover effect */
+.main-btn02:hover {
+    background-color: var(--sub-color04);
+    color: var(--sub-color05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add depth to the buttons */
+}
+
 /* Bottom Section Slider */
-/* Adjusted */
 .swiper-container {
     width: 100%;
     height: 100%;
     margin-bottom: 145px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Depth shadow for slider */
 }
 
 .sub-btn {
@@ -83,7 +105,6 @@
     transform: translateX(-50%);
     z-index: 2; /* Make sure the button is on top of the image */
     padding: 10px 20px;
-    border: none;
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -95,9 +116,6 @@
     color: var(--sub-color03);
 }
 
-/* Hover effect for the product item */
-.product-item:hover img {
-    transform: scale(1.05); /* Slight zoom-in effect */
-    transition: transform 0.3s ease;
+.slide-img {
+    border-radius: 12px;
 }
-

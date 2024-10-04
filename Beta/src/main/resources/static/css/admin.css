@@ -21,7 +21,7 @@ main {
 .side-bar {
     width: 200px;
     background-color: var(--sub-color02);
-    padding: 20px;
+    padding: 11px;
     height: 100vh;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     position: fixed;
@@ -69,17 +69,30 @@ main {
 }
 
 /* Table styling */
+/*article {*/
+/*    background-color: var(--sub-color02);*/
+/*    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);*/
+/*    overflow-x: auto; !* Allow scrolling on small screens *!*/
+/*}*/
+
 article {
     background-color: var(--sub-color02);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    overflow-x: auto; /* Allow scrolling on small screens */
+    overflow-x: hidden;
 }
 
+/*table {*/
+/*    width: 100%; !* Full width of the article *!*/
+/*    border-collapse: collapse;*/
+/*    color: var(--text03);*/
+/*    table-layout: fixed; !* Equal column widths *!*/
+/*}*/
+
 table {
-    width: 100%; /* Full width of the article */
+    width: 100%;
     border-collapse: collapse;
     color: var(--text03);
-    table-layout: fixed; /* Equal column widths */
+    table-layout: auto;
 }
 
 th, td {
@@ -143,19 +156,26 @@ article nav .active {
 }
 
 /* Responsive adjustments */
-@media (max-width: 1440px) {
-    body {
-        flex-direction: column;
-    }
+/*@media (max-width: 1440px) {*/
+/*    body {*/
+/*        flex-direction: column;*/
+/*    }*/
 
-    .side-bar {
-        width: 100%;
-        height: auto;
-        margin-bottom: 20px;
-    }
+/*    .side-bar {*/
+/*        width: 100%;*/
+/*        height: auto;*/
+/*        margin-bottom: 20px;*/
+/*    }*/
 
-    main {
-        margin-left: 0;
-        width: 100%;
+/*    main {*/
+/*        margin-left: 0;*/
+/*        width: 100%;*/
+/*    }*/
+/*}*/
+
+@media (max-width: 768px) {
+    th, td {
+        width: auto; /* 이미 설정되어 있음 */
+        white-space: normal;
     }
 }

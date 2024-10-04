@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Detail</title>
+    <!-- Include global stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <!-- Include navbar specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/header.css}">
+    <!-- Include footer specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/footer.css}">
+    <!-- Include FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <!-- Include main specific stylesheet -->
+    <link rel="stylesheet" th:href="@{/static/css/main.css}">
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" th:href="@{/static/css/product-detail.css}">
+  <script>
+    const successMessage = `[[${ successMessage }]]`;
+    if(successMessage) alert(successMessage);
+  </script>
+</head>
+<body>
+    <header>
+    <!-- Importing the navbar with Thymeleaf -->
+    <nav th:insert="common/header :: navbar"></nav>
+    </header>
+
+    <!-- Main picture section -->
+    <section class="main-picture">
+        <div class="main-picture-container">
+            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto />
+            <form th:action="@{/cart/game/insert/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                <button class="main-btn02 main-pic-btn" type="submit">
+                    <span class="game-price" id="game-price" th:text="${ game.gamePrice }"></span> 원
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </button>
+                <script>
+                    // Get the game price value from the span element
+                    const gamePriceElement = document.getElementById('game-price');
+                    const gamePrice = parseInt(gamePriceElement.textContent);
+
+                    // Format the number with thousands separator
+                    gamePriceElement.textContent = gamePrice.toLocaleString();
+                </script>
+            </form>
+        </div>
+    </section>
+
+    <main class="main-description">
+        <article class="description-content">
+            <div class="description-container">
+                <ul class="game-description">
+                        <li class="game-header" th:text="${ game.gameName }"></li>
+                        <li class="info-item" th:text="${ '게임용량 - ' + game.gameStorage }"></li>
+                        <li class="info-item" th:text="${ '업로드일 - ' + game.uploadDate }"></li>
+                        <li class="info-item" th:text="${ '게임출처 - ' + game.gameOrigin }"></li>
+                        <li class="info-item" th:text="${ '게임사양 - ' + game.gameRequirement }"></li>
+
+                </ul>
+                <ul class="rule-description">
+                        <li class="game-header">About the game</li>
+                        <li class="info-item">
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                            <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
+                        </li>
+                </ul>
+            </div>
+        </article>
+
+        <aside class="swiper-container">
+            <div class="swiper-wrapper">
+                <!-- Add 20 product images here -->
+                <div class="swiper-slide" th:each="game : ${gameList}">
+                    <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" th:alt="${ game.gameName }" />
+                    <form th:action="@{/main/game/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                        <button class="sub-btn ">Learn More</button>
+                    </form>
+                </div>
+            </div>
+        </aside>
+        <!-- Swiper JS -->
+        <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+        <!-- Initialize Swiper -->
+        <script>
+            var swiper = new Swiper('.swiper-container', {
+                direction: 'vertical',
+                slidesPerView: 2, // Show 2 slides at once
+                spaceBetween: 30, // Space between slides
+                mousewheel: true,
+                loop: true, // Enable looping
+                autoplay: {
+                    delay: 2000,
+                    disableOnInteraction: false,
+                },
+            });
+        </script>
+    </main>
+    <!-- Footer -->
+    <footer th:insert="common/footer :: footer"></footer>
+</body>
+</html>
