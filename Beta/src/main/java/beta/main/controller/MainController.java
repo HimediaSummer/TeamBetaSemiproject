@@ -47,7 +47,7 @@ public class MainController {
     }
 
     /* 설명. 유저 권한 설정 체크 */
-    @GetMapping("/user/page")
+    @GetMapping("/user")
     public ModelAndView user(ModelAndView mv) {
         mv.setViewName("user/user");
         return mv;
@@ -56,7 +56,7 @@ public class MainController {
     /* function/account추가*/
 
     /* 설명. 관리자 권한 설정 체크 */
-    @GetMapping("/admin/page")
+    @GetMapping("/admin")
     public ModelAndView admin(ModelAndView mv) {
         mv.setViewName("admin/admin");
         return mv;

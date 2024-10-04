@@ -19,19 +19,7 @@
                     <h3>MY PAGE</h3>
                 </div>
             </a>
-            <a sec:authorize="hasAnyAuthority('ADMIN')" href="/admin/page">
-                <div class="my-page">
-                    <i class="fa-solid fa-list-check"></i>
-                    <h3>MY PAGE</h3>
-                </div>
-            </a>
-            <a sec:authorize="hasAnyAuthority('USER')" href="/cart/history">
-                <div class="my-page">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <h3>MY PAGE</h3>
-                </div>
-            </a>
-
+    
             <a href="/admin/FAQ">
                 <div class="community">
                     <i class="fa-solid fa-comments"></i>
@@ -49,6 +37,22 @@
                     </div>
                 </a>
             </div>
+
+            <!--로그인 한 사용자 이름 표시 및 어드민일 경우 접속 가능한 링크-->
+            <a sec:authorize="hasAnyAuthority('ADMIN')" href="/admin/memberList">
+                <div class="username">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <h3 sec:authentication="name"></h3>
+                </div>
+            </a>
+
+            <!--로그인 한 사용자 이름 표시 및 유저인 경우 접속 가능한 링크-->
+            <a sec:authorize="hasAnyAuthority('USER')" href="/cart/history">
+                <div class="username">
+                    <i class="fa-solid fa-circle-user"></i>
+                    <h3 sec:authentication="name"></h3>
+                </div>
+            </a>
 
             <!-- 로그인이 된 상태에서는 로그아웃 표시 -->
             <a sec:authorize="isAuthenticated()" th:href="@{/auth/logout}">

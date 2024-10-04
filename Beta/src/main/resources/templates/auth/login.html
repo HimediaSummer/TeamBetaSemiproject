@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
+    <link rel ="stylesheet" href="https://fontawesome.com/icons/house?f=classic&s=solid">
     <link rel="stylesheet" th:href="@{/static/css/global.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
 <!--    <link rel="stylesheet" th:href="@{/static/css/modal.css}">-->
     <style>
         /* 로그인 페이지 CSS 꾸미기 */
@@ -25,6 +27,7 @@
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
             width: 450px;
             text-align: center;
+            position: relative;
         }
 
         /* 헤더 스타일 */
@@ -119,9 +122,11 @@
             gap: 10px;
         }
 
-        .long-button {
-            margin-top: 20px;
-            width: 100%;
+        .home-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
             background-color: #86A0A8;
             color: #FFEE32;
             padding: 15px;
@@ -130,7 +135,7 @@
             transition: all 0.3s ease;
         }
 
-        .long-button:hover {
+        .home-button:hover {
             background-color: #FFEE32;
             color: #86A0A8;
             transform: translateY(-2px);
@@ -157,7 +162,7 @@
 <div id="loginModalWindow" class="modal">
 <div class="modal-content">
     <div class="container">
-        <div class="modal-header close">&times;</div>
+        <div class="modal-header close"></div>
         <div class="modal-body">
             <h1>Log In</h1>
 
@@ -176,7 +181,9 @@
                 <button type="button" class="secondary-button" onclick="location.href='lostpwd'">비밀번호 찾기</button>
                 <button type="button" class="secondary-button" onclick="location.href='../user/signup'"> 회원가입</button>
             </div>
-                <button type="button" class="long-button" onclick="location.href='../main'">홈페이지로 돌아가기</button>
+                <button type="button" class="home-button" onclick="location.href='../main'">
+                    <i class="fa-solid fa-x"></i>
+                </button>
         </div>
     </div>
 </div>
