@@ -3,16 +3,14 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="beta.function.order.dao.CartMapper">
-
-    <!-- game_cart와 game_list 테이블 -->
+    <!--  game_cart와 game_list 테이블  -->
     <resultMap id="cartGameResultMap" type="beta.function.order.dto.CartDTO">
         <id property="cartCode" column="cartCode"/>
         <result property="userCode" column="userCode"/>
         <result property="gameCode" column="gameCode"/>
-        <!--game_cart 테이블과 game_list 테이블 join-->
+        <!-- game_cart 테이블과 game_list 테이블 join -->
         <collection property="gameDTO" resultMap="gameResultMap"/>
     </resultMap>
-
     <resultMap id="gameResultMap" type="beta.function.game.dto.GameDTO">
         <result property="gameName" column="gameName"/>
         <result property="gamePrice" column="gamePrice"/>
@@ -20,19 +18,16 @@
         <result property="gamePicture" column="gamePicture"/>
         <result property="gameOrigin" column="gameOrigin"/>
     </resultMap>
-
-    <!--    <resultMap id="userCartResultMap" type="beta.function.account.dto.AccountDTO">-->
-    <!--        <id property="userCode" column="userCode"/>-->
-    <!--        <result property="userCode" column="userCode"/>-->
-    <!--        <result property="gameCode" column="gameCode"/>-->
-    <!--        &lt;!&ndash; aaccount_list 테이블과 game_cart 테이블 join &ndash;&gt;-->
-    <!--        <collection property="cartDTO" resultMap="cartResultMap"/>-->
-    <!--    </resultMap>-->
-
-    <!--    <resultMap id="cartResultMap" type="beta.function.order.dto.CartDTO">-->
-    <!--        <result property="gameCode" column="gameCode"/>-->
-    <!--    </resultMap>-->
-
+    <!--     <resultMap id="userCartResultMap" type="beta.function.account.dto.AccountDTO"> -->
+    <!--         <id property="userCode" column="userCode"/> -->
+    <!--         <result property="userCode" column="userCode"/> -->
+    <!--         <result property="gameCode" column="gameCode"/> -->
+    <!--         &lt;!&ndash; aaccount_list 테이블과 game_cart 테이블 join &ndash;&gt; -->
+    <!--         <collection property="cartDTO" resultMap="cartResultMap"/> -->
+    <!--     </resultMap> -->
+    <!--     <resultMap id="cartResultMap" type="beta.function.order.dto.CartDTO"> -->
+    <!--         <result property="gameCode" column="gameCode"/> -->
+    <!--     </resultMap> -->
     <resultMap id="orderResultMap" type="beta.function.order.dto.OrderDTO">
         <id property="orderCode" column="orderCode"/>
         <result property="gameCode" column="gameCode"/>
@@ -41,187 +36,106 @@
         <result property="paymentCode" column="paymentCode"/>
         <result property="gamecheck" column="gamecheck"/>
     </resultMap>
-
-    <!--장바구니 리스트-->
-    <select id="findAllList" resultMap="cartGameResultMap">
-        SELECT
-        a.cartCode,
-        a.userCode,
-        b.gameCode,
-        b.gameName,
-        b.gamePrice,
-        b.gameThumbnail
-        FROM
-        game_cart a
+    <!-- 장바구니 리스트 -->
+    <select id="findAllList" resultMap="cartGameResultMap"> SELECT a.cartCode, a.userCode, b.gameCode, b.gameName, b.gamePrice, b.gameThumbnail FROM game_cart a JOIN game_list b ON a.gameCode = b.gameCode </select>
+    <!-- (장바구니 용) 회원별 장바구니 리스트 -->
+    <select id="findByUser" resultMap="orderResultMap">
+        SELECT a.cartCode, a.userCode, b.gameCode, b.gameName, b.gamePrice, b.gameOrigin, b.gamePicture, b.gameThumbnail, c.gamecheck, a.addCart FROM game_cart a
+        <!-- 게임 리스트 목록에서 아이템을 담는 조인문 -->
         JOIN game_list b ON a.gameCode = b.gameCode
+        <!-- 장바구니에서 결제시 결제여부 체크 조인문 -->
+        join game_order c on a.userCode = c.userCode WHERE a.userCode = #{ userCode } AND c.gamecheck = 'N' AND a.addCart = 'Y'
     </select>
-
-    <!--(장바구니 용) 회원별 장바구니 리스트-->
-    <select id="findByUser" resultMap="cartGameResultMap">
-        SELECT
-        a.cartCode,
-        a.userCode,
-        b.gameCode,
-        b.gameName,
-        b.gamePrice,
-        b.gameOrigin,
-        b.gamePicture,
-        b.gameThumbnail,
-        c.gamecheck,
-        a.addCart
-        FROM
-        game_cart a
-        <!--게임 리스트 목록에서 아이템을 담는 조인문-->
-        JOIN game_list b ON a.gameCode = b.gameCode
-        <!--장바구니에서 결제시 결제여부 체크 조인문-->
-        join game_order c on a.userCode = c.userCode
-        WHERE
-        a.userCode = #{ userCode } AND c.gamecheck = 'N' AND a.addCart = 'Y'
-    </select>
-
-    <!--주문 관리/최근 결제 내역용-->
+    <!--     <insert id="OrderGameN" parameterType="beta.function.order.dto.OrderDTO"> -->
+    <!--         INSERT INTO game_order -->
+    <!--         ( -->
+    <!--         userCode, -->
+    <!--         cartCode, -->
+    <!--         gameCode, -->
+    <!--         paymentCode, -->
+    <!--         gamecheck -->
+    <!--         ) -->
+    <!--         VALUES -->
+    <!--         ( -->
+    <!--         #{ userCode }, -->
+    <!--         #{ cartCode }, -->
+    <!--         #{ gameCode }, -->
+    <!--         #{ paymentCode }, -->
+    <!--         'N' -->
+    <!--         ) -->
+    <!--     </insert> -->
+    <!--     <select id="notOrderFindCart" resultMap="beta.function.order.dto.CartDTO"> -->
+    <!--         select * from game_cart a -->
+    <!--         join game_list b on a.gameCode = b.gameCode -->
+    <!--              where a.userCode = #{ userCode } and a.addCart = 'Y'; -->
+    <!--     </select> -->
+    <!-- 주문 관리/최근 결제 내역용 -->
     <select id="haveOrderList" resultMap="cartGameResultMap">
-        SELECT
-        a.cartCode,
-        a.userCode,
-        b.gameCode,
-        b.gameName,
-        b.gamePrice,
-        b.gameOrigin,
-        b.gamePicture,
-        b.gameThumbnail,
-        c.gamecheck,
-        a.addCart
-        FROM
-        game_cart a
-        <!--게임 리스트 목록에서 아이템을 담는 조인문-->
+        SELECT a.cartCode, a.userCode, b.gameCode, b.gameName, b.gamePrice, b.gameOrigin, b.gamePicture, b.gameThumbnail, c.gamecheck, a.addCart FROM game_cart a
+        <!-- 게임 리스트 목록에서 아이템을 담는 조인문 -->
         JOIN game_list b ON a.gameCode = b.gameCode
-        <!--장바구니에서 결제시 결제여부 체크 조인문-->
-        join game_order c on a.userCode = c.userCode
-        WHERE
+        <!-- 장바구니에서 결제시 결제여부 체크 조인문 -->
+        join game_order c on a.userCode = c.userCode WHERE
+        <!--         a.userCode = #{ userCode } AND c.gamecheck = 'Y' AND a.addCart = 'N' -->
         a.userCode = #{ userCode } AND c.gamecheck = 'Y' AND a.addCart = 'N'
     </select>
-
-    <!--동일한 게임이 있는지 확인-->
-    <!--    <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO">-->
-    <!--        SELECT-->
-    <!--        cartCode, userCode, gameCode-->
-    <!--        FROM-->
-    <!--        game_cart-->
-    <!--        WHERE-->
-    <!--        userCode = #{userCode}-->
-    <!--        AND gameCode = #{gameCode}-->
-    <!--    </select>-->
-
-    <!--게임 총 금액-->
-    <select id="gamePriceTotal" parameterType="beta.function.order.dto.CartDTO">
-        SELECT
-        SUM(gamePrice) as total
-        FROM
-        game_cart a
-        JOIN game_list b ON a.gameCode = b.gameCode
-    </select>
-
-    <!--장바구니 담기 전 장바구니 체크-->
-    <!--userCode222-->
-    <select id="cartListCheck" parameterType="beta.function.order.dto.CartDTO">
-        select
-        count(gc.gameCode)
-        from game_cart gc
-        where gc.gameCode = #{ gameCode } and userCode = #{ userCode } and addCart = 'Y';
-    </select>
-
-
-    <!--장바구니에 담기-->
-    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO" >
-        INSERT INTO game_cart
-        (
-        cartCode,
-        userCode,
-        gameCode,
-        addCart
-        )
-        VALUES
-        (
-        null,
-        #{ userCode },
-        #{ gameCode },
-        'Y'
-        )
-    </insert>
-
-    <update id="updateItem" parameterType="beta.function.order.dto.CartDTO" useGeneratedKeys="true" keyProperty="userCode">
-        UPDATE game_cart
-        SET
-        addCart = 'Y'
-        WHERE gameCode = #{ gameCode } and userCode = #{ userCode }
-    </update>
-
-    <!--장바구니 게임 삭제-->
-    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO">
-        UPDATE game_cart
-        SET
-        addCart = 'N'
-        WHERE
-        gameCode = #{ gameCode }
-    </update>
-
-    <!--장바구니 전체 내역 삭제-->
+    <!-- 동일한 게임이 있는지 확인 -->
+    <!--     <select id="findItemByGameAndUser" parameterType="beta.function.order.dto.CartDTO" resultType="beta.function.order.dto.CartDTO"> -->
+    <!--         SELECT -->
+    <!--         cartCode, userCode, gameCode -->
+    <!--         FROM -->
+    <!--         game_cart -->
+    <!--         WHERE -->
+    <!--         userCode = #{userCode} -->
+    <!--         AND gameCode = #{gameCode} -->
+    <!--     </select> -->
+    <!-- 게임 총 금액 -->
+    <select id="gamePriceTotal" parameterType="beta.function.order.dto.CartDTO"> SELECT SUM(gamePrice) as total FROM game_cart a JOIN game_list b ON a.gameCode = b.gameCode </select>
+    <!-- 장바구니 담기 전 장바구니 체크 -->
+    <!-- userCode222 -->
+    <select id="cartListCheck" parameterType="beta.function.order.dto.CartDTO"> select count(gc.gameCode) from game_cart gc where gc.gameCode = #{ gameCode } and userCode = #{ userCode } </select>
+    <!-- 장바구니에 담기 -->
+    <insert id="addItem" parameterType="beta.function.order.dto.CartDTO"> INSERT INTO game_cart ( cartCode, userCode, gameCode, addCart ) VALUES ( null, #{ userCode }, #{ gameCode }, 'Y' ) </insert>
+    <update id="updateItem" parameterType="beta.function.order.dto.CartDTO" useGeneratedKeys="true" keyProperty="userCode"> UPDATE game_cart SET addCart = 'Y' WHERE gameCode = #{ gameCode } and userCode = #{ userCode } </update>
+    <!-- 장바구니 게임 삭제 -->
+    <update id="deleteCart" parameterType="beta.function.order.dto.CartDTO"> UPDATE game_cart SET addCart = 'N' WHERE gameCode = #{ gameCode } </update>
+    <!-- 장바구니 전체 내역 삭제 -->
     <update id="deleteAllCart" parameterType="beta.function.order.dto.OrderDTO">
-        <!--        DELETE-->
-        <!--        FROM-->
-        <!--            game_cart-->
-        <!--        WHERE-->
-        <!--            userCode = #{ userCode }-->
-
-        UPDATE game_order
-        SET
-        gamecheck = 'Y'
-        WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })
-
-
-        <!--        UPDATE game_order-->
-        <!--        SET-->
-        <!--        gamecheck = 'Y'-->
-        <!--        WHERE userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
+        <!--         DELETE -->
+        <!--         FROM -->
+        <!--             game_cart -->
+        <!--         WHERE -->
+        <!--             userCode = #{ userCode } -->
+        UPDATE game_order SET gamecheck = 'Y' WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })
+        <!--         UPDATE game_order -->
+        <!--         SET -->
+        <!--         gamecheck = 'Y' -->
+        <!--         WHERE userCode IN (select userCode from game_cart where userCode = #{ userCode }) -->
     </update>
-
-    <!--    <update id="gameCodeList" parameterType="java.util.List">-->
-    <!--&lt;!&ndash;        <foreach collection="list" item="gameCodeList">&ndash;&gt;-->
-    <!--        <foreach collection="gameCodeList" item="gameCode">-->
-    <!--            UPDATE game_order-->
-    <!--            SET-->
-    <!--            gamecheck = 'Y'-->
-    <!--            WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode })-->
-    <!--        </foreach>-->
-    <!--    </update>    -->
-
-    <!--    <update id="gameCode" parameterType="java.util.List">-->
-    <!--        <foreach collection="gameCode" item="gameCode" separator=";">-->
-    <!--&lt;!&ndash;        <foreach collection="gameCodeList" item="gameCode">&ndash;&gt;-->
-    <!--            UPDATE game_order-->
-    <!--            SET-->
-    <!--            gamecheck = 'Y'-->
-    <!--            WHERE gameCode = #{ gameCode }-->
-    <!--            AND userCode IN (select userCode from game_cart where userCode = 2)-->
-    <!--        </foreach>-->
-    <!--    </update>-->
-
-    <!--userCode222-->
+    <!--     <update id="gameCodeList" parameterType="java.util.List"> -->
+    <!-- &lt;!&ndash;        <foreach collection="list" item="gameCodeList">&ndash;&gt; -->
+    <!--         <foreach collection="gameCodeList" item="gameCode"> -->
+    <!--             UPDATE game_order -->
+    <!--             SET -->
+    <!--             gamecheck = 'Y' -->
+    <!--             WHERE gameCode = #{ gameCode } AND userCode IN (select userCode from game_cart where userCode = #{ userCode }) -->
+    <!--         </foreach> -->
+    <!--     </update>     -->
+    <!--     <update id="gameCode" parameterType="java.util.List"> -->
+    <!--         <foreach collection="gameCode" item="gameCode" separator=";"> -->
+    <!-- &lt;!&ndash;        <foreach collection="gameCodeList" item="gameCode">&ndash;&gt; -->
+    <!--             UPDATE game_order -->
+    <!--             SET -->
+    <!--             gamecheck = 'Y' -->
+    <!--             WHERE gameCode = #{ gameCode } -->
+    <!--             AND userCode IN (select userCode from game_cart where userCode = 2) -->
+    <!--         </foreach> -->
+    <!--     </update> -->
+    <!-- userCode222 -->
     <update id="gameCode" parameterType="java.util.List">
-        UPDATE game_order
-        SET gamecheck = 'Y'
-        WHERE gameCode IN
-        <foreach collection="list" item="gameCode" open="(" separator="," close=")">
-            #{gameCode}
-        </foreach>
+        UPDATE game_order SET gamecheck = 'Y' WHERE gameCode IN
+        <foreach collection="list" item="gameCode" open="(" separator="," close=")"> #{gameCode} </foreach>
         AND userCode IN (SELECT userCode FROM game_cart WHERE userCode = #{ userCode })
     </update>
-
-    <update id="deleteY" parameterType="beta.function.order.dto.CartDTO">
-        UPDATE game_cart
-        SET
-        addCart = 'N'
-        where addCart = 'Y'
-    </update>
+    <update id="deleteY" parameterType="beta.function.order.dto.CartDTO"> UPDATE game_cart SET addCart = 'N' where addCart = 'Y' </update>
 </mapper>
