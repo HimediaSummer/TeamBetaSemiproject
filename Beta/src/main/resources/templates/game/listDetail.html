@@ -30,16 +30,16 @@
     <aside class="side-bar">
         <ul class="sidebar-menu">
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/member-management'">회원관리</button>
+                <button class="admin-btn" onclick="location.href='/admin/memberList'">회원관리</button>
             </li>
             <li>
                 <button class="admin-btn" onclick="location.href='/game/listAll'">게임관리</button>
             </li>
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/order-management'">주문관리</button>
+                <button class="admin-btn" onclick="location.href=''">주문관리</button>
             </li>
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+                <button class="admin-btn" onclick="location.href=''">댓글관리</button>
             </li>
         </ul>
     </aside>
@@ -53,45 +53,51 @@
             <button id="registBtn" class="admin-btn" onclick="location.href='/game/regist'">등록하기</button>
         </section>
 
+        <div th:if="${errorMessage}" style="color: red;">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
         <article>
-            <table>
-                <tr>
-                    <th>게임코드</th>
-                    <th>게임이름</th>
-                    <th>게임용량</th>
-                    <th>게임가격</th>
-                    <th>업로드일자</th>
-                    <th>게임출처</th>
-                    <th>게임사양</th>
-                    <th>원본사진</th>
-                    <th>썸네일사진</th>
-                </tr>
-                <tr>
-                    <td th:text="${ game.gameCode }"></td>
-                    <td th:text="${ game.gameName }"></td>
-                    <td th:text="${ game.gameStorage }"></td>
-                    <td th:text="${ game.gamePrice }"></td>
-                    <td th:text="${ game.uploadDate }"></td>
-                    <td th:text="${ game.gameOrigin }"></td>
-                    <td th:text="${ game.gameRequirement }"></td>
-                    <td>
-                        <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto />
-                    </td>
-                    <td>
-                        <img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" alt="썸네일" width="300" height=auto />
-                    </td>
-                    <td>
-                        <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">수정</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
-                            <button type="submit">삭제</button>
-                        </form>
-                    </td>
-                </tr>
-            </table>
+            <div th:if="${game}">
+                <table>
+                    <tr>
+                        <th>게임코드</th>
+                        <th>게임이름</th>
+                        <th>게임용량</th>
+                        <th>게임가격</th>
+                        <th>업로드일자</th>
+                        <th>게임출처</th>
+                        <th>게임사양</th>
+                        <th>원본사진</th>
+                        <th>썸네일사진</th>
+                    </tr>
+                    <tr>
+                        <td th:text="${ game.gameCode }"></td>
+                        <td th:text="${ game.gameName }"></td>
+                        <td th:text="${ game.gameStorage }"></td>
+                        <td th:text="${ game.gamePrice }"></td>
+                        <td th:text="${ game.uploadDate }"></td>
+                        <td th:text="${ game.gameOrigin }"></td>
+                        <td th:text="${ game.gameRequirement }"></td>
+                        <td>
+                            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gamePicture }" alt="원본사진" width="300" height=auto />
+                        </td>
+                        <td>
+                            <img th:src="${ '/static/uploadedFiles/img/game/' + game.gameThumbnail }" alt="썸네일" width="300" height=auto />
+                        </td>
+                        <td>
+                            <form th:action="@{/game/edit/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                                <button type="submit">수정</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/game/delete/{gameCode}(gameCode=${game.gameCode})}" method="post">
+                                <button type="submit">삭제</button>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </article>
 
         <div th:insert="game/gameModal :: gameModal"></div>
