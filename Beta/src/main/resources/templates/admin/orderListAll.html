@@ -15,6 +15,25 @@
     <link rel="stylesheet" th:href="@{/static/css/modal.css}">
     <!-- Include FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+    <style>
+        button {
+            padding: 10px 15px; /* 버튼 크기 조정 */
+            margin: 5px; /* 버튼 간격 조정 */
+            font-size: 14px; /* 글자 크기 조정 */
+        }
+
+        table {
+            width: 100%; /* 테이블을 전체 폭으로 설정 */
+            table-layout: auto; /* 자동으로 열 크기 조정 */
+        }
+
+        td {
+            overflow: hidden; /* 내용이 넘치면 숨김 */
+            text-overflow: ellipsis; /* 넘치는 내용에 점(...) 추가 */
+            white-space: nowrap; /* 텍스트가 줄 바꿈되지 않도록 설정 */
+        }
+    </style>
 </head>
 <body>
 
@@ -36,7 +55,7 @@
                 <button class="admin-btn active" onclick="location.href='/admin/orderListAll'">주문관리</button>
             </li>
             <li>
-                <button class="admin-btn" onclick="location.href='/admin/comment-management'">댓글관리</button>
+                <button class="admin-btn">댓글관리</button>
             </li>
         </ul>
     </aside>
