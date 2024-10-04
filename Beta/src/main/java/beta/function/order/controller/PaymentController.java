@@ -41,12 +41,14 @@ public class PaymentController {
     public String addItem(HttpSession session,
                           Model model,
 //                          @RequestParam String userCode,
+                          @AuthenticationPrincipal AccountDTO user,
                           @RequestParam List<String> gameCode){
 
+        Integer userCode = user.getUserCode();
         // 임의로 userCode를 2로 설정
 //        session.setAttribute("userCode", 2);
-        session.getAttribute("userCode");
-        Integer userCode = (Integer) session.getAttribute("userCode");
+//        session.getAttribute("userCode");
+//        Integer userCode = (Integer) session.getAttribute("userCode");
 
         System.out.println("gameCodeList 실행 1");
         System.out.println("gameCodeList " + gameCode);
