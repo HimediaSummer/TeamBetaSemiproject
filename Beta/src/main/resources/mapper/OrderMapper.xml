@@ -11,44 +11,57 @@
         <result property="userCode" column="userCode"/>
         <result property="paymentCode" column="paymentCode"/>
         <result property="gamecheck" column="gamecheck"/>
-<!--        <association property="gameDTO" javaType="beta.function.game.dto.GameDTO"/>-->
-<!--        <association property="paymentDTO" javaType="beta.function.order.dto.PaymentDTO"/>-->
-<!--        <association property="CartDTO" javaType="beta.function.order.dto.CartDTO"/>-->
+        <!--        <association property="gameDTO" javaType="beta.function.game.dto.GameDTO"/>-->
+        <!--        <association property="paymentDTO" javaType="beta.function.order.dto.PaymentDTO"/>-->
+        <!--        <association property="CartDTO" javaType="beta.function.order.dto.CartDTO"/>-->
     </resultMap>
 
     <select id="findOrderList" resultMap="orderResultMap">
         SELECT
-            orderCode,
-            gameCode,
-            cartCode,
-            userCode,
-            paymentCode,
-            gamecheck
+        orderCode,
+        gameCode,
+        cartCode,
+        userCode,
+        paymentCode,
+        gamecheck
         FROM
-            game_order
+        game_order
         ORDER BY
-            orderCode
+        orderCode
     </select>
 
     <select id="userByOrderList" parameterType="int" resultMap="orderResultMap">
         SELECT
-            orderCode,
-            gameCode,
-            cartCode,
-            userCode,
-            paymentCode,
-            gamecheck
+        orderCode,
+        gameCode,
+        cartCode,
+        userCode,
+        paymentCode,
+        gamecheck
         FROM
-            game_order
+        game_order
         WHERE
-            orderCode =#{ orderCode }
+        orderCode =#{ orderCode }
         ORDER BY
-            orderCode
+        orderCode
+    </select>
+
+    <select id="isCheckOrderList" resultType="int">
+        select count(gamecheck) from game_order
+             where userCode = #{ userCode } and gameCode = #{ gameCode } and (gamecheck = 'N' or gamecheck = 'Y')
+<!--        where userCode = #{ userCode } and gameCode = #{ gameCode }-->
     </select>
 
     <select id="cartListCheck" parameterType="beta.function.order.dto.OrderDTO">
         select
-            count(go.gameCode)
+        count(go.gameCode)
+        from game_order go
+        where go.gameCode = #{ gameCode } and userCode = #{ userCode }
+    </select>
+
+    <select id="gameListCheck" parameterType="beta.function.order.dto.OrderDTO">
+        select
+        count(go.gameCode)
         from game_order go
         where go.gameCode = #{ gameCode } and userCode = #{ userCode }
     </select>
@@ -56,19 +69,19 @@
     <insert id="insertOrder" parameterType="beta.function.order.dto.OrderDTO">
         INSERT INTO game_order
         (
-            userCode,
-            cartCode,
-            gameCode,
-            paymentCode,
-            gamecheck
+        userCode,
+        cartCode,
+        gameCode,
+        paymentCode,
+        gamecheck
         )
         VALUES
         (
-            #{ userCode },
-            #{ cartCode },
-            #{ gameCode },
-            #{ paymentCode },
-            'Y'
+        #{ userCode },
+        #{ cartCode },
+        #{ gameCode },
+        #{ paymentCode },
+        'Y'
         )
     </insert>
 

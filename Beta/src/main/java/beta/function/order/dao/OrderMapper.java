@@ -22,4 +22,8 @@ public interface OrderMapper {
     void updateOrder(OrderDTO orderList);
 
     void insertOrder(OrderDTO order);
+
+    int isCheckOrderList(int userCode, int gameCode);
+
+    void OrderGameN(OrderDTO order);
 }

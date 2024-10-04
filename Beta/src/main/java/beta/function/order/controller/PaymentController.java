@@ -1,5 +1,6 @@
 package beta.function.order.controller;
 
+import beta.function.account.dto.AccountDTO;
 import beta.function.order.dto.CartDTO;
 import beta.function.order.dto.OrderDTO;
 import beta.function.order.dto.PaymentDTO;
@@ -10,6 +11,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -105,12 +107,14 @@ public class PaymentController {
 
     // Create 또는 Insert 부분
     @RequestMapping("/resultdetail")
-    public void resultdetail(HttpSession session, Model model) {
+    public void resultdetail(HttpSession session, Model model, @AuthenticationPrincipal AccountDTO user) {
 
+        Integer userCode = user.getUserCode();
         // 임의로 userCode를 2로 설정
-        session.setAttribute("userCode", 2);
+//        session.setAttribute("userCode", 2);
+//        session.getAttribute("userCode");
 
-        Integer userCode = (Integer) session.getAttribute("userCode");
+//        Integer userCode = (Integer) session.getAttribute("userCode");
 
         /*결제 확인*/
         List<PaymentDTO> resultList = paymentService.orderResult(userCode);

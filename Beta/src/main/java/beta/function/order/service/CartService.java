@@ -3,7 +3,11 @@ package beta.function.order.service;
 
 import beta.function.game.dto.GameDTO;
 import beta.function.order.dao.CartMapper;
+import beta.function.order.dao.OrderMapper;
+import beta.function.order.dao.PaymentMapper;
 import beta.function.order.dto.CartDTO;
+import beta.function.order.dto.OrderDTO;
+import beta.function.order.dto.PaymentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +19,14 @@ import java.util.List;
 public class CartService {
 
     private final CartMapper cartMapper;
+    private final OrderMapper orderMapper;
+    private final PaymentMapper paymentMapper;
 
     @Autowired
-    public CartService(CartMapper cartMapper) {
+    public CartService(CartMapper cartMapper, OrderMapper orderMapper, PaymentMapper paymentMapper) {
         this.cartMapper = cartMapper;
+        this.orderMapper = orderMapper;
+        this.paymentMapper = paymentMapper;
     }
 
     /*장바구니 리스트*/
@@ -50,6 +58,7 @@ public class CartService {
         cart.setUserCode(userCode);
         cart.setGameCode(gameCode);
 
+        System.out.println("cart list :" + cart);
         Integer ischeck = cartMapper.cartListCheck(cart);
 
         System.out.println("ischeck" + ischeck);
@@ -116,5 +125,41 @@ public class CartService {
     public List<CartDTO> haveOrderList() {
 
         return cartMapper.haveOrderList();
+    }
+
+    /*유저코드만*/
+    public void findUser() {
+
+        cartMapper.findUser();
+    }
+
+    public int isCheckOrderList(int userCode, int gameCode) {
+
+        return orderMapper.isCheckOrderList(userCode, gameCode);
+    }
+
+    public void OrderGameN(int userCode, int gameCode) {
+
+        PaymentDTO payment = new PaymentDTO();
+        payment.setUserCode(userCode);
+        paymentMapper.insertPayment(payment);
+
+        List<CartDTO> cartList = cartMapper.findByUser(userCode);
+        System.out.println("[CC] cartList111 : " + cartList);
+
+
+        for (CartDTO cart : cartList) {
+            int paymentCode = payment.getPaymentCode();
+            int cartCode = cart.getCartCode();
+            OrderDTO order = new OrderDTO();
+            order.setUserCode(userCode);
+            order.setCartCode(cartCode);
+            order.setGameCode(gameCode);
+            order.setPaymentCode(paymentCode);
+
+            System.out.println("order 내용물 " + order);
+
+            orderMapper.OrderGameN(order);
+        }
     }
 }

@@ -40,4 +40,10 @@ public interface CartMapper {
     List<CartDTO> haveOrderList(int userCode);
 
     List<CartDTO> haveOrderList();
+
+    /*유저코드만*/
+    void findUser();
+
+
+
 }
