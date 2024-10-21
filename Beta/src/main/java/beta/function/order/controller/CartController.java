@@ -152,7 +152,7 @@ public class CartController {
 
                 if(isCheckOrderList == 0) {
 
-//                    cartService.OrderGameN(userCode, gameCode);
+                    cartService.OrderGameN(userCode, gameCode);
 
 
 //                    for (CartDTO cart : cartList) {

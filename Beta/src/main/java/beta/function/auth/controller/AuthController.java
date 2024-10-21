@@ -62,7 +62,7 @@ public class AuthController {
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid.getUsername());
         System.out.println("버튼호출 어스컨트롤러 3 " + whereid);
 
-        int result = Integer.parseInt(String.valueOf(whereid));
+//        int result = Integer.parseInt(String.valueOf(whereid));
 
 //        if (result == null) {
 //            message = "이미 해당 정보로 가입된 회원이 존재합니다.";

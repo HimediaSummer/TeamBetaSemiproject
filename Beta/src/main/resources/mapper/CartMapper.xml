@@ -39,8 +39,19 @@
     <!-- 장바구니 리스트 -->
     <select id="findAllList" resultMap="cartGameResultMap"> SELECT a.cartCode, a.userCode, b.gameCode, b.gameName, b.gamePrice, b.gameThumbnail FROM game_cart a JOIN game_list b ON a.gameCode = b.gameCode </select>
     <!-- (장바구니 용) 회원별 장바구니 리스트 -->
-    <select id="findByUser" resultMap="orderResultMap">
-        SELECT a.cartCode, a.userCode, b.gameCode, b.gameName, b.gamePrice, b.gameOrigin, b.gamePicture, b.gameThumbnail, c.gamecheck, a.addCart FROM game_cart a
+    <select id="findByUser" resultMap="cartGameResultMap">
+        SELECT
+            a.cartCode,
+            a.userCode,
+            b.gameCode,
+            b.gameName,
+            b.gamePrice,
+            b.gameOrigin,
+            b.gamePicture,
+            b.gameThumbnail,
+            c.gamecheck,
+            a.addCart
+        FROM game_cart a
         <!-- 게임 리스트 목록에서 아이템을 담는 조인문 -->
         JOIN game_list b ON a.gameCode = b.gameCode
         <!-- 장바구니에서 결제시 결제여부 체크 조인문 -->

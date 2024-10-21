@@ -15,7 +15,7 @@
         <!--         <association property="CartDTO" javaType="beta.function.order.dto.CartDTO"/> -->
     </resultMap>
     <select id="findOrderList" resultMap="orderResultMap"> SELECT orderCode, gameCode, cartCode, userCode, paymentCode, gamecheck FROM game_order ORDER BY orderCode </select>
-    <select id="userByOrderList" parameterType="int" resultMap="orderResultMap"> SELECT orderCode, gameCode, cartCode, userCode, paymentCode, gamecheck FROM game_order WHERE orderCode =#{ orderCode } ORDER BY orderCode </select>
+
     <select id="cartListCheck" parameterType="beta.function.order.dto.OrderDTO">
         select count(go.gameCode) from game_order go
         <!--         where go.gameCode = #{ gameCode } and userCode = #{ userCode } and (go.gamecheck = 'N' or go.gamecheck = 'Y'); -->
@@ -40,22 +40,8 @@
 
     <select id="isCheckOrderList" resultType="int">
         select count(gamecheck) from game_order
-                 where userCode = #{ userCode } and gameCode = #{ gameCode } and (gamecheck = 'N' or gamecheck = 'Y')
-<!--        where userCode = #{ userCode } and gameCode = #{ gameCode }-->
-    </select>
-
-    <select id="cartListCheck" parameterType="beta.function.order.dto.OrderDTO">
-        select
-        count(go.gameCode)
-        from game_order go
-        where go.gameCode = #{ gameCode } and userCode = #{ userCode }
-    </select>
-
-    <select id="gameListCheck" parameterType="beta.function.order.dto.OrderDTO">
-        select
-        count(go.gameCode)
-        from game_order go
-        where go.gameCode = #{ gameCode } and userCode = #{ userCode }
+        where userCode = #{ userCode } and gameCode = #{ gameCode } and (gamecheck = 'N' or gamecheck = 'Y')
+        <!--        where userCode = #{ userCode } and gameCode = #{ gameCode }-->
     </select>
 
     <select id="gameListCheck" parameterType="beta.function.order.dto.OrderDTO">
