@@ -76,4 +76,23 @@
         WHERE gameCode = #{ gameCode } and userCode = #{ userCode }
     </update>
 
+    <insert id="OrderGameN" parameterType="beta.function.order.dto.OrderDTO">
+        INSERT INTO game_order
+        (
+        userCode,
+        cartCode,
+        gameCode,
+        paymentCode,
+        gamecheck
+        )
+        VALUES
+        (
+        #{ userCode },
+        #{ cartCode },
+        #{ gameCode },
+        #{ paymentCode },
+        'N'
+        )
+    </insert>
+
 </mapper>

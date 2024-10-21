@@ -57,24 +57,42 @@
         <!-- 장바구니에서 결제시 결제여부 체크 조인문 -->
         join game_order c on a.userCode = c.userCode WHERE a.userCode = #{ userCode } AND c.gamecheck = 'N' AND a.addCart = 'Y'
     </select>
-    <!--     <insert id="OrderGameN" parameterType="beta.function.order.dto.OrderDTO"> -->
-    <!--         INSERT INTO game_order -->
-    <!--         ( -->
-    <!--         userCode, -->
-    <!--         cartCode, -->
-    <!--         gameCode, -->
-    <!--         paymentCode, -->
-    <!--         gamecheck -->
-    <!--         ) -->
-    <!--         VALUES -->
-    <!--         ( -->
-    <!--         #{ userCode }, -->
-    <!--         #{ cartCode }, -->
-    <!--         #{ gameCode }, -->
-    <!--         #{ paymentCode }, -->
-    <!--         'N' -->
-    <!--         ) -->
-    <!--     </insert> -->
+    <select id="findByUserNoOrder" resultMap="cartGameResultMap">
+        SELECT
+            a.cartCode,
+            a.userCode,
+            b.gameCode,
+            b.gameName,
+            b.gamePrice,
+            b.gameOrigin,
+            b.gamePicture,
+            b.gameThumbnail,
+            c.gamecheck,
+            a.addCart
+        FROM game_cart a
+        <!-- 게임 리스트 목록에서 아이템을 담는 조인문 -->
+        JOIN game_list b ON a.gameCode = b.gameCode
+        <!-- 장바구니에서 결제시 결제여부 체크 조인문 -->
+        join game_order c on a.gameCode = c.gameCode WHERE a.userCode = #{ userCode } AND a.addCart = 'Y'
+    </select>
+<!--         <insert id="OrderGameN" parameterType="beta.function.order.dto.OrderDTO">-->
+<!--             INSERT INTO game_order-->
+<!--             (-->
+<!--             userCode,-->
+<!--             cartCode,-->
+<!--             gameCode,-->
+<!--             paymentCode,-->
+<!--             gamecheck-->
+<!--             )-->
+<!--             VALUES-->
+<!--             (-->
+<!--             #{ userCode },-->
+<!--             #{ cartCode },-->
+<!--             #{ gameCode },-->
+<!--             #{ paymentCode },-->
+<!--             'N'-->
+<!--             )-->
+<!--         </insert>-->
     <!--     <select id="notOrderFindCart" resultMap="beta.function.order.dto.CartDTO"> -->
     <!--         select * from game_cart a -->
     <!--         join game_list b on a.gameCode = b.gameCode -->

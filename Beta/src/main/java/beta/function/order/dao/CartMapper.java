@@ -16,6 +16,8 @@ public interface CartMapper {
     /*회원별 장바구니 리스트*/
     List<CartDTO> findByUser(int userCode);
 
+    List<CartDTO> findByUserNoOrder(int userCode);
+
     /*장바구니에 담기*/
     void addItem(CartDTO cart);
     void updateItem(CartDTO cart);

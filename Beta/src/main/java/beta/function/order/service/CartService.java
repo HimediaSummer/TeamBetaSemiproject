@@ -144,9 +144,10 @@ public class CartService {
         payment.setUserCode(userCode);
         paymentMapper.insertPayment(payment);
 
-        List<CartDTO> cartList = cartMapper.findByUser(userCode);
+        List<CartDTO> cartList = cartMapper.findByUserNoOrder(userCode);
         System.out.println("[CC] cartList111 : " + cartList);
 
+        System.out.println(" 포문 도는지 확인1 ");
 
         for (CartDTO cart : cartList) {
             int paymentCode = payment.getPaymentCode();
@@ -158,8 +159,12 @@ public class CartService {
             order.setPaymentCode(paymentCode);
 
             System.out.println("order 내용물 " + order);
+            System.out.println(" 포문 도는지 확인 2 ");
 
             orderMapper.OrderGameN(order);
         }
+
+        System.out.println(" 포문 도는지 확인 3 ");
+
     }
 }

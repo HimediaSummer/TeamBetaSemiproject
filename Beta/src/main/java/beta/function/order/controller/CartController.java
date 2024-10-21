@@ -153,6 +153,8 @@ public class CartController {
                 if(isCheckOrderList == 0) {
 
                     cartService.OrderGameN(userCode, gameCode);
+                    System.out.println("몇가지 확인할거");
+                    System.out.println("isCheckOrderList" + isCheckOrderList);
 
 
 //                    for (CartDTO cart : cartList) {
