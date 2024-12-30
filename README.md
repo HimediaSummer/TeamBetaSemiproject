@@ -3,7 +3,7 @@
 
 Gansung Station은 사용자가 다양한 게임을 발견하고, 즐기며, 게임 커뮤니티와 소통할 수 있도록 설계된 웹 플랫폼입니다. 깔끔한 UI와 직관적인 UX로 누구나 쉽게 사용할 수 있는 게임 허브를 목표로 합니다.
 
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/3c454583-86f1-4930-837f-af38cd9f3321)
 
 
 
