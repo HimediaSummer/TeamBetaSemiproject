@@ -20,9 +20,9 @@ Gansung Station은 사용자가 다양한 게임을 발견하고, 즐기며, 게
 - **Frontend**:  
   - HTML5  
   - CSS3  
-  - JavaScript (Vanilla JS 또는 Framework)  
+  - JavaScript 
 - **Backend**:  
-  - Node.js (Express)  
+  - Node.js  
   - SpringBoot
 - **배포**:  
   - [Git](https://github.com/HimediaSummer/TeamBetaSemiproject/) 클릭
