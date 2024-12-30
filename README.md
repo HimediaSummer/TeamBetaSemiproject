@@ -13,6 +13,19 @@ Gansung Station은 사용자가 다양한 게임을 발견하고, 즐기며, 게
 - **게임 브라우징**: 인기 게임 및 최신 게임을 쉽게 탐색 가능  
 - **커뮤니티**: 다른 사용자들과 리뷰를 공유하고 소통  
 - **사용자 계정**: 개인 프로필 생성 및 게임 라이브러리 관리  
-- **반응형 디자인**: 데스크톱과 모바일 모두 최적화  
+
+---
+
+## 🚀 기술 스택  
+- **Frontend**:  
+  - HTML5  
+  - CSS3  
+  - JavaScript (Vanilla JS 또는 Framework)  
+- **Backend**:  
+  - Node.js (Express)  
+  - SpringBoot
+- **배포**:  
+  - [Git](https://github.com/HimediaSummer/TeamBetaSemiproject/) 클릭
+  - https://github.com/HimediaSummer/TeamBetaSemiproject
 
 ---
